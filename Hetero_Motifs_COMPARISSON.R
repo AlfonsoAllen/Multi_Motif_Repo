@@ -34,10 +34,10 @@ Prediction_hetero_subplot %>% filter(Caracoles_In==FALSE,motifs_Caracoles==0)
 Prediction_hetero_subplot %>% filter(Caracoles_In==FALSE,motifs_Caracoles>0)
 
 ###############################################3
-# It seems that heterotifs per (plot,subplot) do not follow a normal distribution
+# It seems that heterotifs per (plot,subplot) do not follow a normal distribution 
 ################################################
-i=13
-sample_i <- gather(hetero_data_subplot[i,6:ncol(data_table)], key = "sample", value = "hetero")
+i=11
+sample_i <- gather(hetero_data_subplot[i,6:ncol(hetero_data_subplot)], key = "sample", value = "hetero")
 
 PI<-predict(lm(sample_i$hetero~ 1), interval="predict")
 x.test <- shapiro.test(sample_i$hetero)

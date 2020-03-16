@@ -16,7 +16,7 @@ Prediction_homo_subplot <- Homo_data_subplot %>%
 
 for (i in 1:nrow(Homo_data_subplot)){
 
-  sample_i <- gather(Homo_data_subplot[i,6:ncol(data_table)], key = "sample", value = "homo")
+  sample_i <- gather(Homo_data_subplot[i,6:ncol(Homo_data_subplot)], key = "sample", value = "homo")
 
   PI<-predict(lm(sample_i$homo~ 1), interval="predict")
   #PI[1,]
@@ -37,7 +37,7 @@ Prediction_homo_subplot %>% filter(Caracoles_In==FALSE,motifs_Caracoles>0)
 # It seems that homotifs per (plot,subplot) do not follow a normal distribution
 ################################################
 i=13
-sample_i <- gather(Homo_data_subplot[i,6:ncol(data_table)], key = "sample", value = "homo")
+sample_i <- gather(Homo_data_subplot[i,6:ncol(Homo_data_subplot)], key = "sample", value = "homo")
 
 PI<-predict(lm(sample_i$homo~ 1), interval="predict")
 x.test <- shapiro.test(sample_i$homo)
