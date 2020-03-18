@@ -1,0 +1,51 @@
+---
+title: "Notes"
+output: html_document
+---
+
+Network ecology has largely improved our understanding of multitrophis ecological communities, specially on bipartite networks depicting two interactimg guilds. While most networks are defined at the community level (Bascompte, etc...), ecological processes take place at the individual level. In fact, individual based networks has revealed important evolutionary (Roca) and ecological (Jordano) processes. However, a limitation of this type of networks is that only individuals of a single species, usually a plant species, along with the interactions with other species, are considered. Including simultaneously the relationships between different individuals belonging to different species is challenging both conceptually and mathematically. Here we show how we can use multilayer networks to understand the general patterns of connections between conspecific and heterospecific individuals. This allows characterizing both the nodes roles (Centrality papers) in the network and the overall network structure (Pilosof). Further, the most interesting process may be at the mesoscale (Simmons). We indtroduce here the concept of hetero and homospecific motifs, rooted on triplets and diamond ...(Melian, Sauve...). By relating individual positions in the network to its fitness for complete communities, we can .... blah...
+
+Specifically we aim to:
+
+1) Describe the individual multilayer network modularity and assess how individuals cluster within and among clusters. For examples, networks where individuals from  the same species cluster toguether will be .... 
+
+2) Relate individuals within layer centrality (proxy of pollen flow) and among layer centrality (proxy of heterospecific pollen competition) to its fitness.
+
+3) Relate the mesostructure of heterospecific and homospecific motifs to plant fitness. 
+
+Alfonso, can you define exactly how a network and a motif is defined? This is important to ensure abundance is not messing up. Our unit of fitness is the individual.
+Layer: " "
+Interlayer: " "
+Motif: " "
+
+
+
+Open Questions:
+- Which plant species to select: The 6 with pollinators.
+- How to group pollinators: Guild? / Species?
+- How to weight the networks: By frequency? By visitation rate? Binary?
+- Should we restrict interactions ALSO by distance and guild combination. That is, two individuals will share pollinators if 1) the same species visit both subplots AND 2) the subplots are closer than the typical pollinator foraging distance. Is this too complex and is better to assume full connectivity within plot?
+
+Analysis: 
+- Basic description of the 9 ntw: modularity, centrality, motif distribution. Do we need null models? 
+
+- Correlation centrality measures to fitness per individual.
+
+- Correlation of participation in hetero and homo motifs with fitness per individual.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
