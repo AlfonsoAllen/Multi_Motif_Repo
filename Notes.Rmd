@@ -14,9 +14,17 @@ Specifically we aim to:
 3) Relate the mesostructure of heterospecific and homospecific motifs to plant fitness. 
 
 Alfonso, can you define exactly how a network and a motif is defined? This is important to ensure abundance is not messing up. Our unit of fitness is the individual.
-Layer: " "
-Interlayer: " "
-Motif: " "
+
+Motif: "Following Milo, network motifs are patterns of interconnections occurring in such systems. As an example, let us consider the following undirected network: “A--B--C--D”. It is possible to see that the (undirected) pattern of connections “x1--x2--x3” (denoted here as triplet) appears twice: “A--B--C” and “B--C--D".
+
+In this study, our motif analysis focuses on (monolayer) plant-pollinator bipartite, undirected networks. Specifically, we identify the triplets that arise in those arrangements and classify them into homospecific and heterospecific motifs. The former refers to triplets with two plant nodes that belong to the same species, and the latter to the remaining cases. Notice that, it possible to restrict the heterospecific class to motifs with at least two plants that are different one another.
+
+At the moment, I’ve been working with plot networks, that is, plant-pollinator interactions within a given plot. For example, let us suppose that hoverflies visit 3 times the 4 CHFU plants in (plot=3, subplot=A6), then the corresponding network for plot 3 will include the weighted link “A6 CHFU” -- hoverflies with weight = 3. Besides, if hoverflies also visit twice the CHFU plant in (plot=3, subplot=D3), the homospecific triplet “A6 CHFU” -3- hoverflies -2- “D3 CHFU” appears in plot 3. For the sake of simplicity, I do not consider the weight of the links to count the triplets. For instance, given the triplets “A6 CHFU” -3- hoverflies -2- “D3 CHFU” and “A6 CHFU” -3- hoverflies -1- “F2 CHFU”, “A6 CHFU” has only two homospecific triplets, despite there are 4 CHFU plants in A6, 1 in D3, and 5 in F2.”
+
+Layer (to be discussed tomorrow!): "Consider a plot with 36 different positions, P plant species, and G functional groups of pollinators. If a multiplex arrangement is implemented, each layer should contain the state-nodes of the “36xP” different plants and G state-nodes for pollinators. For example, in the case of 6 plant species and 8 functional groups, each layer will contain 216+8 nodes. If each layer (when considered in isolation) corresponds with intraspecific flow of pollen, there will be only P layers in the multiplex (e.g., layer PUPA, layer CHFU, etc.), and, the interactions in the P-th layer (i.e., the intra-links of layer P) will be restricted to those connections between the plants that belong to P and its pollinators. For instance, according to the prior examples, the multiplex network for plot 3 contains a layer CHFU, where hoverflies are connected with “A6 CHFU” (weight=3), “D3 CHFU” (weight=2), and “F2 CHFU” (weight=1)."
+
+Interlayer: "In the multiplex arrangements the state-nodes of a given agent are connected to their respective copies in other layer. Those connections are the inter-link. For example, hoverflies in layer CHFU are linked hoverflies in layer PUPA, and so on. Assuming that all the interlinks have the same weight, in the limit of very strong couplings (i.e., huge inter-link weights), we should recover the bipartite network described above. From a diffusive perspective, when the coupling tends to infinity, the multiplex reduces to the superposition of its layers."
+
 
 
 
@@ -25,6 +33,8 @@ Open Questions:
 - How to group pollinators: Guild? / Species?
 - How to weight the networks: By frequency? By visitation rate? Binary?
 - Should we restrict interactions ALSO by distance and guild combination. That is, two individuals will share pollinators if 1) the same species visit both subplots AND 2) the subplots are closer than the typical pollinator foraging distance. Is this too complex and is better to assume full connectivity within plot?
+Alfonso: If you define the "closeness", I see no reason to implement it. For example, our algorithms can be adapted to take into account Chebyshev (o chess) distance (see Moore's neighboorhood).
+- Alfonso: If we dare, we could explore also phenology by using abundace file info. 
 
 Analysis: 
 - Basic description of the 9 ntw: modularity, centrality, motif distribution. Do we need null models? 
