@@ -37,7 +37,7 @@ Open Questions:
 - How to group pollinators: Guild? / Species?
 - How to weight the networks: By frequency? By visitation rate? Binary?
 - Should we restrict interactions ALSO by distance and guild combination. That is, two individuals will share pollinators if 1) the same species visit both subplots AND 2) the subplots are closer than the typical pollinator foraging distance. Is this too complex and is better to assume full connectivity within plot?
-Alfonso: If you define the "closeness", I see no reason to implement it. For example, our algorithms can be adapted to take into account Chebyshev (o chess) distance (see Moore's neighboorhood).
+Alfonso: If we define "closeness" and foraging distances, we could implement the above restrictions. For example, our algorithms can be adapted to take into account Chebyshev (o chess) distance (see Moore's neighboorhood).
 - Alfonso: If we dare, we could explore also phenology by using abundace file info. 
 
 Analysis: 
