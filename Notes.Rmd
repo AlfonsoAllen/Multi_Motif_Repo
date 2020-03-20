@@ -5,6 +5,8 @@ output: html_document
 
 Network ecology has largely improved our understanding of multitrophis ecological communities, specially on bipartite networks depicting two interactimg guilds. While most networks are defined at the community level (Bascompte, etc...), ecological processes take place at the individual level. In fact, individual based networks has revealed important evolutionary (Roca) and ecological (Jordano) processes. However, a limitation of this type of networks is that only individuals of a single species, usually a plant species, along with the interactions with other species, are considered. Including simultaneously the relationships between different individuals belonging to different species is challenging both conceptually and mathematically. Here we show how we can use multilayer networks to understand the general patterns of connections between conspecific and heterospecific individuals. This allows characterizing both the nodes roles (Centrality papers) in the network and the overall network structure (Pilosof). Further, the most interesting process may be at the mesoscale (Simmons). We indtroduce here the concept of hetero and homospecific motifs, rooted on triplets and diamond ...(Melian, Sauve...). By relating individual positions in the network to its fitness for complete communities, we can .... blah...
 
+Note from Oscar: make sure to stres we do not try to compare its performance with visitation rate (Magrach 2020), but to understand mechanisms of complex interactions that spread through the network.
+
 Specifically we aim to:
 
 1) Describe the individual multilayer network modularity and assess how individuals cluster within and among clusters. For examples, networks where individuals from  the same species cluster toguether will be .... 
@@ -23,6 +25,12 @@ In this study, our motif analysis focuses on (monolayer) plant-pollinator bipart
 
 At the moment, I’ve been working with plot networks, that is, plant-pollinator interactions within a given plot. For example, let us suppose that hoverflies visit 3 times the 4 CHFU plants in (plot=3, subplot=A6), then the corresponding network for plot 3 will include the weighted link “A6 CHFU” -- hoverflies with weight = 3. Besides, if hoverflies also visit twice the CHFU plant in (plot=3, subplot=D3), the homospecific triplet “A6 CHFU” -3- hoverflies -2- “D3 CHFU” appears in plot 3. For the sake of simplicity, I do not consider the weight of the links to count the triplets. For instance, given the triplets “A6 CHFU” -3- hoverflies -2- “D3 CHFU” and “A6 CHFU” -3- hoverflies -1- “F2 CHFU”, “A6 CHFU” has only two homospecific triplets, despite there are 4 CHFU plants in A6, 1 in D3, and 5 in F2.”
 
+Hetero PPA
+Homo PPA
+PAA -> Not relevant to pollen flow. BUT may be important for positive negative interactions. e.g. beetles, bees.
+cuadruples... -> For the future.
+Crithyl
+
 B) LAYER----
 "Consider a plot with 36 different positions, P plant species, and G functional groups of pollinators. If a multiplex arrangement is implemented, each layer should contain the state-nodes of the “36xP” different plants and G state-nodes for pollinators. For example, in the case of 6 plant species and 8 functional groups, each layer will contain 216+8 nodes. If each layer (when considered in isolation) corresponds with intraspecific flow of pollen, there will be only P layers in the multiplex (e.g., layer PUPA, layer CHFU, etc.), and, the interactions in the P-th layer (i.e., the intra-links of layer P) will be restricted to those connections between the plants that belong to P and its pollinators. For instance, according to the prior examples, the multiplex network for plot 3 contains a layer CHFU, where hoverflies are connected with “A6 CHFU” (weight=3), “D3 CHFU” (weight=2), and “F2 CHFU” (weight=1)."
 
@@ -34,14 +42,15 @@ C) INTER-LAYER---
 
 Open Questions:
 - Which plant species to select: The 6 with pollinators.
-- How to group pollinators: Guild? / Species?
+- How to group pollinators: Guild? / Species? -> Ok, but Sup Mat to check Func groups are representative (See Rachael Winfree papers). Maria can do that.
 - How to weight the networks: By frequency? By visitation rate? Binary?
 - Should we restrict interactions ALSO by distance and guild combination. That is, two individuals will share pollinators if 1) the same species visit both subplots AND 2) the subplots are closer than the typical pollinator foraging distance. Is this too complex and is better to assume full connectivity within plot?
-Alfonso: If we define "closeness" and foraging distances, we could implement the above restrictions. For example, our algorithms can be adapted to take into account Chebyshev (o chess) distance (see Moore's neighboorhood).
+Alfonso: If we define "closeness" and foraging distances, we could implement the above restrictions. For example, our algorithms can be adapted to take into account Chebyshev (o chess) distance (see Moore's neighboorhood). -> For discusion for now? Maybe across 1,2,3 - 4,5,6 - 7,8,9
 - Alfonso: If we dare, we could explore also phenology by using abundace file info. 
+YES, If two species do not overlap phenologically, can not create a motif. -> Maria has this data.
 
 Analysis: 
-- Basic description of the 9 ntw: modularity, centrality, motif distribution. Do we need null models? 
+- Basic description of the 9 ntw: modularity, centrality, motif distribution. Do we need null models? e.g. hay más homo o hetero motifs que los predichos por azar.
 
 - Correlation centrality measures to fitness per individual.
 
