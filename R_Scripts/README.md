@@ -27,7 +27,7 @@
         * Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019.csv
         * Processed_data/Motifs_YEAR/Caracoles_YEAR.csv
     * Output:
-        * Processed_data/Motifs_YEAR/Examples_motifs_seed_correlation_graphs/: This folder contains several figures. They show the relation between the number of seeds and total amount of heterospecific and homospecific triplets for focal plant individuals. Such relation do not take into account phenological co-occurrrence (weeks).
+        * Processed_data/Motifs_YEAR/Examples_motifs_seed_correlation_graphs/: This folder contains several figures. They show the **relation between the number of seeds and total amount of heterospecific and homospecific triplets** for focal plant individuals. Such relation **do not take into account phenological co-occurrrence (weeks)**.
 
 
 
