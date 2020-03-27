@@ -22,3 +22,12 @@
         * Processed_data/Motifs_WEEK/Caracoles_WEEK.csv: Dataframe with information on the total amount of heterospecific and homospecific triplets per plot, subplot, and plant species for Caracoles (2019)
         * Processed_data/Motifs_WEEK/random_X_WEEK.csv: 100 dataframes with information on the total amount of heterospecific and homospecific triplets per plot, subplot, and plant species for Caracoles' null model.
 
+* **CORRELATIONS_motif_fitness_YEAR**
+    * Input:
+        * Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019.csv
+        * Processed_data/Motifs_YEAR/Caracoles_YEAR.csv
+    * Output:
+        * Processed_data/Motifs_YEAR/Examples_motifs_seed_correlation_graphs/: This folder contains several figures. They show the relation between the number of seeds and total amount of heterospecific and homospecific triplets for focal plant individuals. Such relation do not take into account phenological co-occurrrence (weeks).
+
+
+
