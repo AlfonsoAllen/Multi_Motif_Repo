@@ -12,13 +12,13 @@
     * Input:
         *Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019.csv
     * Output:
-        * Processed_data/Motifs_WEEK/Caracoles_WEEK.csv: Dataframe with information on the total amount of heterospecific and homospecific motifs per plot, subplot, plant species, and week for Caracoles (2019)
+        * Processed_data/Motifs_WEEK/Caracoles_WEEK.csv: Dataframe with information on the total amount of heterospecific and homospecific triplets per plot, subplot, plant species, and week for Caracoles (2019)
 
 * **Motifs_GENERATE_DATA_YEAR**
     * Input:
         * Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019.csv
         * Raw_Data/abundances_2019.csv
     * Output:
-        * Processed_data/Motifs_WEEK/Caracoles_WEEK.csv: Dataframe with information on the total amount of heterospecific and homospecific motifs per plot, subplot, and plant species for Caracoles (2019)
-        * Processed_data/Motifs_WEEK/random_X_WEEK.csv: 100 dataframes with information on the total amount of heterospecific and homospecific motifs per plot, subplot, and plant species for Caracoles' null model.
+        * Processed_data/Motifs_WEEK/Caracoles_WEEK.csv: Dataframe with information on the total amount of heterospecific and homospecific triplets per plot, subplot, and plant species for Caracoles (2019)
+        * Processed_data/Motifs_WEEK/random_X_WEEK.csv: 100 dataframes with information on the total amount of heterospecific and homospecific triplets per plot, subplot, and plant species for Caracoles' null model.
 
