@@ -10,9 +10,9 @@
 
 * **Motifs_GENERATE_DATA_WEEK**
     * Input:
-        *Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019.csv
+        * Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019.csv
     * Output:
-        * Processed_data/Motifs_WEEK/Caracoles_WEEK.csv: Dataframe with information on the total amount of heterospecific and homospecific triplets per plot, subplot, plant species, and week for Caracoles (2019)
+        * Processed_data/Motifs_WEEK/Caracoles_WEEK.csv: Dataframe with information on the total amount of heterospecific and homospecific triplets per plot, subplot, plant species, and week for Caracoles (2019). The **triplets under consideration** in these calculations **contain two plant nodes**.
 
 * **Motifs_GENERATE_DATA_YEAR**
     * Input:
@@ -20,7 +20,7 @@
         * Raw_Data/abundances_2019.csv
     * Output:
         * Processed_data/Motifs_WEEK/Caracoles_WEEK.csv: Dataframe with information on the total amount of heterospecific and homospecific triplets per plot, subplot, and plant species for Caracoles (2019)
-        * Processed_data/Motifs_WEEK/random_X_WEEK.csv: 100 dataframes with information on the total amount of heterospecific and homospecific triplets per plot, subplot, and plant species for Caracoles' null model.
+        * Processed_data/Motifs_WEEK/random_X_WEEK.csv: 100 dataframes with information on the total amount of heterospecific and homospecific triplets per plot, subplot, and plant species for Caracoles' null model. The **triplets under consideration** in these calculations **contain two plant nodes**.
 
 * **CORRELATIONS_motif_fitness_YEAR**
     * Input:
@@ -35,6 +35,3 @@
         * Processed_data/Motifs_WEEK/Caracoles_WEEK.csv
     * Output:
         * Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/: This folder contains several figures. They show the **relation between the number of seeds and total (aggregated) amount of heterospecific and homospecific triplets** for focal plant individuals. This program **does take into account phenological co-occurrrence of plant species (by estimating triplets weekly)**.
-
-
-
