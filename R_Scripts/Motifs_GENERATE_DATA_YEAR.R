@@ -163,10 +163,17 @@ homo_hete_motifs <- function(visit_list) {
                                                  motif_3_Carac$plant_2[i],
                                                  sep = " ")
     }
+    
     if (motif_3_Carac$number_plants[i]==2 && 
         motif_3_Carac$plant_2[i] == motif_3_Carac$plant_1[i] 
-        ){
-      motif_3_Carac$Same_plant[i]<-TRUE}else{motif_3_Carac$Same_plant[i]<-FALSE}
+    ){
+      motif_3_Carac$Same_plant[i]<-TRUE}
+    else if(motif_3_Carac$number_plants[i]==2 && 
+            motif_3_Carac$plant_2[i] != motif_3_Carac$plant_1[i]){
+      
+      motif_3_Carac$Same_plant[i]<-FALSE}
+    
+    else{motif_3_Carac$Same_plant[i]<-NA}
   }
 
   output_funct <- visit_list %>% mutate(homo_motif=NA,hete_motif=NA)
@@ -179,11 +186,11 @@ homo_hete_motifs <- function(visit_list) {
     
     homo_motif <- motif_3_Carac %>% filter(Same_plant & poll_1 == output_funct$G_F[i] &
                                              (motif_3_Carac$descript_plant_1 == descrip|motif_3_Carac$descript_plant_2==descrip))
-    num_homo_motif <- sum(homo_motif$Same_plant)
+    num_homo_motif <- sum(homo_motif$Same_plant,na.rm = TRUE)
     
     hete_motif <- motif_3_Carac %>% filter(!Same_plant & number_plants==2 & poll_1 == output_funct$G_F[i] &
                                              (motif_3_Carac$descript_plant_1== descrip|motif_3_Carac$descript_plant_2==descrip))
-    num_hete_motif <- sum(!hete_motif$Same_plant)
+    num_hete_motif <- sum(!hete_motif$Same_plant,na.rm = TRUE)
     
     output_funct$homo_motif[i] <- num_homo_motif
     output_funct$hete_motif[i] <- num_hete_motif
