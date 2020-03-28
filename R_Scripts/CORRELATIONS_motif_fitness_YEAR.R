@@ -61,7 +61,9 @@ pdf("Processed_data/Motifs_YEAR/Examples_motifs_seed_correlation_graphs/Homo_Het
 ggplot(fitness_SUM_Seed)+
   geom_point(aes(x=(Homo_Sum+Hete_Sum),y=(Seeds_GF),position = "jitter"))+
   geom_smooth(aes(x=(Homo_Sum+Hete_Sum),y=(Seeds_GF)),method = "lm",se = F)+
-  facet_wrap(vars(Plot),nrow = 3,ncol = 3)
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  labs(title="Aggregation of triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo + hetero triplets)", y = "Mean(# seeds)")
 
 dev.off()
 #-----
@@ -72,7 +74,9 @@ pdf("Processed_data/Motifs_YEAR/Examples_motifs_seed_correlation_graphs/Homo_See
 ggplot(fitness_SUM_Seed)+
   geom_point(aes(x=(Homo_Sum),y=(Seeds_GF)),position = "jitter")+
   geom_smooth(aes(x=(Homo_Sum),y=(Seeds_GF)),method = "lm",se = F)+
-  facet_wrap(vars(Plot),nrow = 3,ncol = 3)
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  labs(title="Aggregation of homospecific triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo triplets)", y = "Mean(# seeds)")
 
 dev.off()
 
@@ -84,7 +88,9 @@ pdf("Processed_data/Motifs_YEAR/Examples_motifs_seed_correlation_graphs/Hete_See
 ggplot(fitness_SUM_Seed)+
   geom_point(aes(x=(Hete_Sum),y=(Seeds_GF)),position = "jitter")+
   geom_smooth(aes(x=(Hete_Sum),y=(Seeds_GF)),method = "lm",se = F)+
-  facet_wrap(vars(Plot),nrow = 3,ncol = 3)
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  labs(title="Aggregation of heterospecific triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo triplets)", y = "Mean(# seeds)")
 
 dev.off()
 
@@ -97,7 +103,9 @@ ggplot(fitness_SUM_Seed)+
                  color=Plant_Simple),position = "jitter")+
   geom_smooth(aes(x=(Homo_Sum+Hete_Sum),y=(Seeds_GF),
                   color=Plant_Simple),method = "lm",se = F)+
-  facet_wrap(vars(Plot),nrow = 3,ncol = 3)
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  labs(title="Aggregation of triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo triplets)", y = "Mean(# seeds)",color="Plant")
 
 dev.off()
 
@@ -110,7 +118,9 @@ ggplot(fitness_SUM_Seed)+
                  color=Plant_Simple),position = "jitter")+
   geom_smooth(aes(x=(Homo_Sum),y=(Seeds_GF),
                   color=Plant_Simple),method = "lm",se = F)+
-  facet_wrap(vars(Plot),nrow = 3,ncol = 3)
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  labs(title="Aggregation of homospecific triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo triplets)", y = "Mean(# seeds)",color="Plant")
 
 dev.off()
 
@@ -123,7 +133,9 @@ ggplot(fitness_SUM_Seed)+
                  color=Plant_Simple),position = "jitter")+
   geom_smooth(aes(x=(Hete_Sum),y=(Seeds_GF),
                   color=Plant_Simple),method = "lm",se = F)+
-  facet_wrap(vars(Plot),nrow = 3,ncol = 3)
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  labs(title="Aggregation of heterospecific triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo triplets)", y = "Mean(# seeds)",color="Plant")
 
 
 dev.off()
