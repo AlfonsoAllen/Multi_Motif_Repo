@@ -1,6 +1,6 @@
 # R SCRIPTS
 
-* **Motifs_GENERATE_DATA_WEEK**
+* **Phenology_Week**
     * Input:
         * Raw_data/Metadata_Pollinators_Abundances_Seeds_2019.csv
     * Output:
