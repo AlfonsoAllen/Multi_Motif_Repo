@@ -90,7 +90,7 @@ ggplot(fitness_SUM_Seed)+
   geom_smooth(aes(x=(Hete_Sum),y=(Seeds_GF)),method = "lm",se = F)+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
   labs(title="Aggregation of heterospecific triplets \n (each point represents the result for a given subplot and plant)",
-       x ="Sum(# homo triplets)", y = "Mean(# seeds)")
+       x ="Sum(# hetero triplets)", y = "Mean(# seeds)")
 
 dev.off()
 
@@ -105,7 +105,7 @@ ggplot(fitness_SUM_Seed)+
                   color=Plant_Simple),method = "lm",se = F)+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
   labs(title="Aggregation of triplets \n (each point represents the result for a given subplot and plant)",
-       x ="Sum(# homo triplets)", y = "Mean(# seeds)",color="Plant")
+       x ="Sum(# homo + hetero triplets)", y = "Mean(# seeds)",color="Plant")
 
 dev.off()
 
@@ -135,7 +135,7 @@ ggplot(fitness_SUM_Seed)+
                   color=Plant_Simple),method = "lm",se = F)+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
   labs(title="Aggregation of heterospecific triplets \n (each point represents the result for a given subplot and plant)",
-       x ="Sum(# homo triplets)", y = "Mean(# seeds)",color="Plant")
+       x ="Sum(# hetero triplets)", y = "Mean(# seeds)",color="Plant")
 
 
 dev.off()
