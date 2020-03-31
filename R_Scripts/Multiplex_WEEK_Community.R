@@ -1,5 +1,6 @@
 # Load relevant libraries
 library(infomapecology)
+# Infomap installation guide: https://github.com/Ecological-Complexity-Lab/infomap_ecology_package
 
 library(attempt)
 library(igraph)
