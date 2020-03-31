@@ -1,7 +1,6 @@
 # Load relevant libraries
 library(infomapecology)
 # Infomap installation guide: https://github.com/Ecological-Complexity-Lab/infomap_ecology_package
-
 library(attempt)
 library(igraph)
 library(bipartite)
@@ -87,14 +86,7 @@ Plot_edgelist_complete_ids <-
   select(layer_from=layer_id.x, node_from, layer_to=layer_id.y, node_to, weight)
 
 
-# Write to infomap
-# Write *Intra format
-write_lines('*Intra', 'Plot_multilayer.txt')
-Plot_edgelist_complete_ids %>% 
-  filter(layer_from==layer_to) %>% 
-  select(layer_from, node_from, node_to, weight) %>% 
-  write_delim('Plot_multilayer.txt', append=T, col_names = F) #Append=T do not overwrite the
-#previous information-->'*Intra'
+
 
 
 
@@ -112,18 +104,18 @@ Plot_multilayer <- create_multilayer_object(extended = Plot_edgelist_complete_id
 Plot_multilayer$inter <- NULL
 
 # Run Infomap
-modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = T, silent = T, trials = 50, seed = 497294, multilayer_relax_rate = 0.15, multilayer_relax_limit_up = 1, multilayer_relax_limit_down = 0, temporal_network = T)
+modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = T, silent = T, trials = 50, seed = 497294, multilayer_relax_rate = 0.95, multilayer_relax_limit_up = 1, multilayer_relax_limit_down = 0, temporal_network = T)
 
 # Extract information
 plot_modules <- modules_relax_rate$modules %>% left_join(layer_metadata,by="layer_id")
 
 
 # Number of species in a combination of layer-module
-plot_modules %>% group_by(module, layer_id) %>% count() %>% 
+plot_modules %>% group_by(module, layer_name) %>% count() %>% 
   ggplot()+
-  geom_point(aes(layer_id, module, size=n, color=as.factor(module)))+
+  geom_point(aes(layer_name, module, size=n, color=as.factor(module)))+
   theme_bw()+
-  theme(legend.position = 'none', axis.text.x = element_text(angle = -90))
+  theme(legend.position = 'none', axis.text.x = element_text(angle = 0))
 
 
 # Alluvial plots
@@ -138,7 +130,7 @@ ggplot(plot_modules,
   geom_text(stat = "stratum", size = 3) +
   labs(x='Week', y='Number of species')+
   theme_bw()+
-  theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = -90))
+  theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = 0))
 
 # Alluvial plots for plants
 
@@ -153,7 +145,7 @@ ggplot(plot_modules_plants,
   geom_text(stat = "stratum", size = 3) +
   labs(x='Week', y='Number of (plant species,subplots)')+
   theme_bw()+
-  theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = -90))
+  theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = 0))
 
 # Alluvial plots for pollinators
 
@@ -168,7 +160,7 @@ ggplot(plot_modules_pollinators,
   geom_text(stat = "stratum", size = 3) +
   labs(x='Week', y='Number of pollinator species')+
   theme_bw()+
-  theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = -90))
+  theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = 0))
 
 
 
@@ -178,3 +170,6 @@ plot_modules %>%
   group_by(type, node_id) %>% summarise(n_modules=n_distinct(module)) %>% 
   ggplot()+geom_histogram(aes(x=n_modules, fill=type), position = 'dodge')+
   theme_bw()+scale_fill_manual(values = c('dark green','orange'))+labs(x='Number of modules')
+
+
+setwd(dir_ini)
