@@ -18,7 +18,7 @@ files_base <- list.files(folder_base)
 setwd(folder_base)
 
 # Select the plot number to build up the multilayer
-Plot_i <- 1
+Plot_i <- 8
 
 # Extract layer files for Plot_i
 
@@ -104,7 +104,7 @@ Plot_multilayer <- create_multilayer_object(extended = Plot_edgelist_complete_id
 Plot_multilayer$inter <- NULL
 
 # Run Infomap
-modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = T, silent = T, trials = 50, seed = 497294, multilayer_relax_rate = 0.95, multilayer_relax_limit_up = 1, multilayer_relax_limit_down = 0, temporal_network = T)
+modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = T, silent = T, trials = 50, seed = 497294, multilayer_relax_rate = 0.15, multilayer_relax_limit_up = 1, multilayer_relax_limit_down = 0, temporal_network = T)
 
 # Extract information
 plot_modules <- modules_relax_rate$modules %>% left_join(layer_metadata,by="layer_id")
@@ -122,13 +122,14 @@ plot_modules %>% group_by(module, layer_name) %>% count() %>%
 is_lodes_form(plot_modules,
               key = layer_id, value = module, id = node_id, silent = TRUE) # Check if conforms to alluvial type data
 ggplot(plot_modules,
-       aes(x=layer_name, stratum=as.factor(module), 
+       aes(x=layer_id, stratum=as.factor(module), 
            alluvium=node_id, label=as.factor(module), fill=as.factor(module))) + 
   geom_flow(stat = "alluvium", lode.guidance = "frontback",
             color = "darkgray") +
   geom_stratum() +
   geom_text(stat = "stratum", size = 3) +
-  labs(x='Week', y='Number of species')+
+  labs(x='Week(id)', y='Number of species')+
+  scale_x_discrete(limits=as.character(layer_metadata$layer_name))+
   theme_bw()+
   theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = 0))
 
@@ -137,13 +138,14 @@ ggplot(plot_modules,
 plot_modules_plants <- plot_modules %>% filter(type=="plant")
 
 ggplot(plot_modules_plants,
-       aes(x=layer_name, stratum=as.factor(module), 
+       aes(x=layer_id, stratum=as.factor(module), 
            alluvium=node_id, label=as.factor(module), fill=as.factor(module))) + 
   geom_flow(stat = "alluvium", lode.guidance = "frontback",
             color = "darkgray") +
   geom_stratum() +
   geom_text(stat = "stratum", size = 3) +
   labs(x='Week', y='Number of (plant species,subplots)')+
+  scale_x_discrete(limits=as.character(layer_metadata$layer_name))+
   theme_bw()+
   theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = 0))
 
@@ -152,13 +154,14 @@ ggplot(plot_modules_plants,
 plot_modules_pollinators <- plot_modules %>% filter(type!="plant")
 
 ggplot(plot_modules_pollinators,
-       aes(x=layer_name, stratum=as.factor(module), 
+       aes(x=layer_id, stratum=as.factor(module), 
            alluvium=node_id, label=as.factor(module), fill=as.factor(module))) + 
   geom_flow(stat = "alluvium", lode.guidance = "frontback",
             color = "darkgray") +
   geom_stratum() +
   geom_text(stat = "stratum", size = 3) +
   labs(x='Week', y='Number of pollinator species')+
+  scale_x_discrete(limits=as.character(layer_metadata$layer_name))+
   theme_bw()+
   theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = 0))
 
