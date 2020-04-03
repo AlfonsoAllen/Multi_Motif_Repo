@@ -25,9 +25,6 @@ Subplot <- Caracoles$subplot
 #select the community
 Car_community <- Caracoles[,3:ncol(Caracoles)]
 
-#cargar librerias----
-#install.packages("vegan") #si no tienes la libreria, instalala primero
-library("vegan")
 
 #The basic is the distance measure you use:
 #distance selection!----
@@ -106,8 +103,6 @@ MDS_test_3D <- tibble(MDS1=Car_community.mds_3D$points[,1],
 
 library("gg3D")
 # http://htmlpreview.github.io/?https://github.com/AckerDWM/gg3D/blob/master/gg3D-vignette.html
-theta=0 
-phi=20
 
 ggplot(MDS_test_3D,aes(x=MDS1,y=MDS2,z=MDS3,color=as.factor(Subplot))) + 
   geom_point() +
@@ -117,6 +112,14 @@ ggplot(MDS_test_3D,aes(x=MDS1,y=MDS2,z=MDS3,color=as.factor(Subplot))) +
 facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
   labs(title="NMDS Caracoles' abundances for 2019",color="Subplot")+
   theme_void()
+
+ggplot(MDS_test_3D,aes(x=MDS1,y=MDS2,z=MDS3,color=as.factor(Plot))) + 
+  geom_point() +
+  axes_3D() +
+  stat_3D()+
+  labs_3D(labs=c("MDS1", "MDS2", "MDS3"))+
+  labs(title="NMDS Caracoles' abundances for 2019",color="Plot")+
+  theme_void()+scale_color_brewer(palette = "Paired")
 
 #######################################
 #assumptions:

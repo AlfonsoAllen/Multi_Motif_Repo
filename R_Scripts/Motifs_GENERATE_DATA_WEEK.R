@@ -13,6 +13,13 @@ fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019.c
 
 # Filtering & relabeling
 fitness2 <- fitness_data2 %>% filter(Year==2019,!Subplot == "OUT" & !is.na(G_F))
+
+#Plant species
+fitness2 %>% group_by(Plant_Simple) %>% count()
+
+#Remove HOMA and Lysimachia_arvensis
+
+fitness2 <- fitness2 %>% filter(!Plant_Simple%in%c("HOMA","Lysimachia_arvensis"))
   
 # Calculating week number
 fitness2 <- fitness2 %>% select(Day,Month,Year,Plot,Subplot,Plant_Simple,G_F,Visits) %>%
