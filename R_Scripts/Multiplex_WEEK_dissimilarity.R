@@ -194,7 +194,7 @@ net_dissim %>% ggplot()+
 
 
 
-# NaN appears because terms a, b and c in equation 2 are equal to zero and 0/0=NaN appears
+# NaN appears because terms a, b and c in equation 2 are equal to zero and 0/0=NaN
 # (see below the new columns added to net_dissim)
 
 for (i in 1:nrow(net_dissim)){
