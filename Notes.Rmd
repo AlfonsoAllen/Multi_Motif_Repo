@@ -9,7 +9,7 @@ Note from Oscar: make sure to stres we do not try to compare its performance wit
 
 Specifically we aim to:
 
-1) Describe the individual multilayer network modularity and assess how individuals cluster within and among clusters. For examples, networks where individuals from  the same species cluster toguether will be .... 
+1) Describe the individual multilayer network modularity and assess how species (layers) cluster within and among modules. For examples, networks where individuals from  the same species cluster toguether will be .... 
 
 2) Relate individuals within layer centrality (proxy of pollen flow) and among layer centrality (proxy of heterospecific pollen competition) to its fitness.
 
@@ -36,7 +36,7 @@ B) LAYER----
 
 C) INTER-LAYER---
 "In the multiplex arrangements the state-nodes of a given agent are connected to their respective copies in other layer. Those connections are the inter-link. For example, hoverflies in layer CHFU are linked hoverflies in layer PUPA, and so on. Assuming that all the interlinks have the same weight, in the limit of very strong couplings (i.e., huge inter-link weights), we should recover the bipartite network described above. From a diffusive perspective, when the coupling strenght tends to infinity, the multiplex reduces to the superposition of its layers."
-
+weight can be a function of 1) phenological overlap among plants and 2) temporal sequence
 
 
 
