@@ -8,7 +8,7 @@ library(igraph)
 # Loadind Plant-pollinator dataset (Caracoles) for 2019: visits, abundances, seeds
 ####################################################################
 
-fitness_data <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019.csv")
+fitness_data <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
 fitness_data %>% group_by(G_F) %>% count()
 
