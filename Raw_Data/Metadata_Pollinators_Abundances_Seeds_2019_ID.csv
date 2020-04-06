@@ -39,7 +39,6 @@ Day,Month,Year,Plot,Subplot,G_F,ID,Plant_Simple,Visits,num.plantas,Fruit,Seed
 15,2,2019,7,C5,Small_flies,Dilophus_sp.,CHFU,1,4,4,304
 15,2,2019,7,E2,Small_flies,Dilophus_sp.,CHFU,1,2,3,228
 15,2,2019,8,A4,Small_flies,Diptera,CHFU,1,51,7,532
-15,2,2019,8,D3,Ichneumonidae,Diplazon_sp.,CHFU,1,31,5,380
 15,2,2019,8,D6,Hoverflies,Eupeodes_corollae,CHFU,1,35,5,380
 15,2,2019,9,D3,Hoverflies,Sphaerophoria_scripta,CHFU,1,81,3,228
 15,2,2019,9,E4,Small_flies,Diptera,CHFU,1,61,3,228
@@ -134,7 +133,6 @@ Day,Month,Year,Plot,Subplot,G_F,ID,Plant_Simple,Visits,num.plantas,Fruit,Seed
 11,3,2019,4,F4,Flower_beetles,Psilothrix_viridicoerulea,CHFU,1,7,3,228
 11,3,2019,5,A1,Small_flies,Dilophus_sp.,CHFU,1,12,9,684
 11,3,2019,5,A3,Small_flies,Dilophus_sp.,CHFU,1,16,3,228
-11,3,2019,5,A4,Ants,Formicidae,CHFU,1,11,11,836
 11,3,2019,5,A4,Small_flies,Dilophus_sp.,CHFU,2,11,11,836
 11,3,2019,5,A5,Small_flies,Dilophus_sp.,CHFU,1,5,2,152
 11,3,2019,5,B1,Small_flies,Dilophus_sp.,CHFU,1,22,8,608
@@ -184,8 +182,6 @@ Day,Month,Year,Plot,Subplot,G_F,ID,Plant_Simple,Visits,num.plantas,Fruit,Seed
 11,3,2019,7,F3,Small_flies,Dilophus_sp.,CHFU,1,2,15,1140
 11,3,2019,7,F4,Small_flies,Dilophus_sp.,CHFU,3,11,8,608
 11,3,2019,7,F5,Small_flies,Dilophus_sp.,CHFU,1,14,13,988
-11,3,2019,7,F5,Mosquitoes,Culicidae,CHFU,1,14,13,988
-11,3,2019,8,A2,Mosquitoes,Nephrotoma_sp.,CHFU,1,12,10,760
 11,3,2019,8,A5,Small_flies,Dilophus_sp.,CHFU,2,71,7,532
 11,3,2019,8,A6,Small_flies,Dilophus_sp.,CHFU,1,61,10,760
 11,3,2019,8,B2,Hoverflies,Eupeodes_corollae,CHFU,1,16,8,608
@@ -195,7 +191,6 @@ Day,Month,Year,Plot,Subplot,G_F,ID,Plant_Simple,Visits,num.plantas,Fruit,Seed
 11,3,2019,8,B5,Hoverflies,Eupeodes_corollae,CHFU,1,31,3,228
 11,3,2019,8,B6,Small_flies,Empididae,CHFU,1,26,4,304
 11,3,2019,8,C3,Small_flies,Dilophus_sp.,CHFU,1,24,7,532
-11,3,2019,8,C4,Mosquitoes,Nephrotoma_sp.,CHFU,1,35,8,608
 11,3,2019,8,C4,Small_flies,Dilophus_sp.,CHFU,1,35,8,608
 11,3,2019,8,C6,Small_flies,Dilophus_sp.,CHFU,1,45,8,608
 11,3,2019,8,D2,Small_flies,Dilophus_sp.,CHFU,1,6,5,380
@@ -218,9 +213,7 @@ Day,Month,Year,Plot,Subplot,G_F,ID,Plant_Simple,Visits,num.plantas,Fruit,Seed
 11,3,2019,9,C3,Small_flies,Dilophus_sp.,LEMA,2,1,2,128
 11,3,2019,9,E3,Flower_beetles,Melyridae,CHFU,1,71,3,228
 11,3,2019,9,A2,Small_flies,Dilophus_sp.,CHFU,2,21,5,380
-11,3,2019,9,A2,Bugs,Mirini_sp.,CHFU,1,21,5,380
 11,3,2019,9,D2,Flower_beetles,Psilothrix_viridicoerulea,LEMA,2,1,0,0
-11,3,2019,9,D2,Bugs,Mirini_sp.,CHFU,1,35,2,152
 11,3,2019,9,E1,Small_flies,Dilophus_sp.,CHFU,4,31,2,152
 11,3,2019,9,F1,Small_flies,Dilophus_sp.,LEMA,2,1,0,0
 11,3,2019,9,F1,Small_flies,Dilophus_sp.,CHFU,4,16,2,152
@@ -244,7 +237,6 @@ Day,Month,Year,Plot,Subplot,G_F,ID,Plant_Simple,Visits,num.plantas,Fruit,Seed
 18,3,2019,1,F4,Flower_beetles,Mordellidae,LEMA,1,31,3,192
 18,3,2019,1,F3,Small_flies,Dilophus_sp.,LEMA,1,25,2,128
 18,3,2019,1,E2,Small_flies,Dilophus_sp.,LEMA,1,41,4,256
-18,3,2019,1,E1,Mosquitoes,Melanopangonius_sp.,LEMA,1,31,3,192
 18,3,2019,1,F1,Hoverflies,Sphaerophoria_sp.,LEMA,1,15,2,128
 18,3,2019,1,F1,Hoverflies,Sphaerophoria_sp.,LEMA,1,15,2,128
 18,3,2019,1,F1,Hoverflies,Scaeva_sp.,LEMA,1,15,2,128
@@ -548,7 +540,6 @@ Day,Month,Year,Plot,Subplot,G_F,ID,Plant_Simple,Visits,num.plantas,Fruit,Seed
 25,3,2019,8,B5,Hoverflies,Sphaerophoria_scripta,ME,1,1,0,0
 25,3,2019,8,C1,Small_beetles,Meligethes_sp.,LEMA,1,1,3,192
 25,3,2019,8,C4,Flower_beetles,Psilothrix_viridicoerulea,LEMA,1,4,5,320
-25,3,2019,8,C5,Chrysididae,Chrysididae,CHFU,1,31,12,912
 25,3,2019,8,D4,Flower_beetles,Psilothrix_viridicoerulea,LEMA,1,2,2,128
 25,3,2019,8,D6,Flower_beetles,Psilothrix_viridicoerulea,LEMA,1,3,4,256
 25,3,2019,8,E6,Flower_beetles,Oedemeridae,LEMA,1,2,6,384
