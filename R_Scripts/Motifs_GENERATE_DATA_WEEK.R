@@ -9,7 +9,7 @@ library(igraph)
 ####################################################################
 
 
-fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019.csv")
+fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
 # Filtering & relabeling
 fitness2 <- fitness_data2 %>% filter(Year==2019,!Subplot == "OUT" & !is.na(G_F))
