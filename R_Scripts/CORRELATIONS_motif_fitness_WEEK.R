@@ -9,11 +9,6 @@ fitness_data2 <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019.c
 
 fitness2 <- fitness_data2 %>% filter(Year==2019,!Subplot == "OUT" & !is.na(G_F))
 
-#Remove HOMA and Lysimachia_arvensis
-
-fitness2 <- fitness2 %>% filter(!Plant_Simple%in%c("HOMA","Lysimachia_arvensis"))
-
-
 fitness2 <- fitness2 %>% select(-Order,-Family,-Superfamily,-ID2) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
@@ -32,7 +27,8 @@ for (i in 1:nrow(caracoles_motif)){
   caracoles_motif$Plant_Simple[i] <- x[[1]][2]
 }
 
-caracoles_motif <- caracoles_motif %>% select(-Visits_tot,-Subplot_Plant_Label)
+caracoles_motif <- caracoles_motif %>% filter(!Plant_Simple%in%c("HOMA","Lysimachia_arvensis")) %>%
+  select(-Visits_tot,-Subplot_Plant_Label)
 
 #####################################
 # Merging motifs data and fitness
