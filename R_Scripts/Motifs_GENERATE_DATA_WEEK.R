@@ -270,5 +270,5 @@ for (week_i in unique(fitness2$Week)){
   }
 }
 
-write_csv(visit_list, "Processed_data/Motifs_WEEK/Caracoles2.csv")
+write_csv(visit_list, "Processed_data/Motifs_WEEK/Caracoles_WEEK.csv")
 
