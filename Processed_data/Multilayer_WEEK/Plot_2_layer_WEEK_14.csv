@@ -1,13 +1,9 @@
-"","Flies","Flower_beetles","Hoverflies"
-"A1 LEMA",2,0,1
-"B1 LEMA",0,2,0
-"B1 ME",5,0,0
-"B5 ME",0,1,0
-"B6 LEMA",0,1,0
-"C1 LEMA",0,1,0
-"C1 ME",0,1,0
-"D1 CHFU",3,0,0
-"E2 LEMA",0,0,1
-"E2 ME",1,0,0
-"E4 ME",1,0,0
-"F1 LEMA",0,2,0
+"","Flower_beetles","Hoverflies"
+"A1 LEMA",0,1
+"B1 LEMA",1,0
+"B5 ME",1,0
+"B6 LEMA",1,0
+"C1 LEMA",1,0
+"C1 ME",1,0
+"E2 LEMA",0,1
+"F1 LEMA",1,0

@@ -1,11 +1,11 @@
-"","Bees","Flies","Flower_beetles","House_flies","Hoverflies","Small_flies"
-"A5 LEMA",0,0,0,0,2,0
-"B3 LEMA",1,0,0,0,0,0
-"C1 LEMA",0,2,0,0,2,0
-"C3 LEMA",0,0,1,0,0,0
-"D1 LEMA",0,0,0,0,1,0
-"E2 LEMA",0,0,1,0,0,0
-"E2 ME",0,0,0,3,0,0
-"F2 LEMA",0,0,0,0,0,1
-"F3 LEMA",1,0,0,0,0,0
-"F4 LEMA",1,0,0,0,0,0
+"","Bees","Flower_beetles","House_flies","Hoverflies","Small_flies"
+"A5 LEMA",0,0,0,1,0
+"B3 LEMA",1,0,0,0,0
+"C1 LEMA",0,0,0,2,0
+"C3 LEMA",0,1,0,0,0
+"D1 LEMA",0,0,0,1,0
+"E2 LEMA",0,1,0,0,0
+"E2 ME",0,0,3,0,0
+"F2 LEMA",0,0,0,0,1
+"F3 LEMA",1,0,0,0,0
+"F4 LEMA",1,0,0,0,0

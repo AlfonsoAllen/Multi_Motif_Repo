@@ -1,10 +1,10 @@
-"","Flies","Flower_beetles","Small_flies"
-"B2 LEMA",0,1,0
-"C3 ME",1,1,1
-"D4 ME",0,1,0
-"D6 LEMA",0,2,0
-"E1 LEMA",0,2,0
-"E2 LEMA",0,3,0
-"F1 LEMA",0,2,0
-"F2 LEMA",0,1,0
-"F4 LEMA",0,1,0
+"","Flower_beetles","Small_flies"
+"B2 LEMA",1,0
+"C3 ME",1,1
+"D4 ME",1,0
+"D6 LEMA",1,0
+"E1 LEMA",2,0
+"E2 LEMA",3,0
+"F1 LEMA",2,0
+"F2 LEMA",1,0
+"F4 LEMA",1,0

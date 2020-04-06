@@ -1,18 +1,10 @@
-"","Bees","Flies","Flower_beetles","House_flies","Hoverflies","Small_beetles","Small_flies"
-"A2 CHFU",0,4,0,0,0,0,0
-"A3 CHFU",0,1,0,0,0,0,0
-"A4 CHFU",0,1,0,0,0,0,0
-"A5 CHFU",0,1,0,0,0,0,0
-"A6 CHFU",0,1,0,0,0,0,0
-"B2 CHFU",0,4,0,0,0,0,0
-"C2 LEMA",0,0,0,0,0,1,0
-"C3 CHFU",1,0,0,0,1,0,0
-"C4 LEMA",0,0,0,0,0,0,2
-"C6 CHFU",0,4,0,0,0,0,0
-"D1 LEMA",0,0,2,0,0,0,2
-"D2 LEMA",0,0,0,0,2,0,0
-"D5 CHFU",0,0,0,1,0,0,2
-"E1 CHFU",0,4,0,0,0,0,0
-"E2 ME",0,0,1,0,0,0,0
-"E4 CHFU",1,0,0,0,0,0,1
-"E6 ME",1,0,0,0,0,0,0
+"","Bees","Flower_beetles","House_flies","Hoverflies","Small_beetles","Small_flies"
+"C2 LEMA",0,0,0,0,1,0
+"C3 CHFU",1,0,0,1,0,0
+"C4 LEMA",0,0,0,0,0,2
+"D1 LEMA",0,1,0,0,0,2
+"D2 LEMA",0,0,0,1,0,0
+"D5 CHFU",0,0,1,0,0,1
+"E2 ME",0,1,0,0,0,0
+"E4 CHFU",1,0,0,0,0,1
+"E6 ME",1,0,0,0,0,0
