@@ -5,11 +5,11 @@ library(tidyverse)
 # Loadind Plant-pollinator dataset (Caracoles) for 2019: visits, abundances, seeds
 ####################################################################
 
-fitness_data2 <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019.csv")
+fitness_data2 <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
 fitness2 <- fitness_data2 %>% filter(Year==2019,!Subplot == "OUT" & !is.na(G_F))
 
-fitness2 <- fitness2 %>% select(-Order,-Family,-Superfamily,-ID2) %>%
+fitness2 <- fitness2 %>% select(-Order,-Family,-Superfamily) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
 
@@ -18,7 +18,7 @@ fitness2 <- fitness2 %>% select(-Order,-Family,-Superfamily,-ID2) %>%
 # Uploading motifs data
 #####################################
 
-caracoles_motif <- read_csv("Processed_data/Motifs_WEEK/Caracoles_WEEK.csv")
+caracoles_motif <- read_csv("Processed_data/Motifs_WEEK/Caracoles_WEEK_SPECIES.csv")
 
 #Adding Subplot and Plant_Simple
 for (i in 1:nrow(caracoles_motif)){
@@ -34,7 +34,7 @@ caracoles_motif <- caracoles_motif %>% filter(!Plant_Simple%in%c("HOMA","Lysimac
 # Merging motifs data and fitness
 #####################################
 
-fitness <- caracoles_motif %>% left_join(fitness2, by=c("Plot","Subplot","Plant_Simple","G_F","Week"))
+fitness <- caracoles_motif %>% left_join(fitness2, by=c("Plot","Subplot","Plant_Simple","ID","Week"))
 
 ########################################################################
 # SOME MOTIF VS SEEDS GRAPHS
