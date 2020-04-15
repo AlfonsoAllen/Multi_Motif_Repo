@@ -50,7 +50,7 @@ fitness_SUM_Seed2 <- fitness %>% group_by(Plot,Subplot,Plant_Simple) %>%
 fitness_SUM_Seed <- fitness_SUM_Seed2 #%>% filter(Week==13)
 
 #-----
-pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Hete_Seed.pdf",
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Hete_Seed_Plot.pdf",
     width = 11.69, # The width of the plot in inches
     height = 8.27)
 
@@ -64,7 +64,7 @@ ggplot(fitness_SUM_Seed2)+
 dev.off()
 
 #-----
-pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Seed.pdf",
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Seed_Plot.pdf",
     width = 11.69, # The width of the plot in inches
     height = 8.27)
 
@@ -80,7 +80,7 @@ dev.off()
 
 
 #-----
-pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Hete_Seed.pdf",
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Hete_Seed_Plot.pdf",
     width = 11.69, # The width of the plot in inches
     height = 8.27)
 
@@ -97,7 +97,7 @@ dev.off()
 
 ############################
 #-----
-pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Hete_Seed_plant.pdf",
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Hete_Seed_plant_Plot.pdf",
     width = 11.69, # The width of the plot in inches
     height = 8.27)
 
@@ -111,7 +111,7 @@ ggplot(fitness_SUM_Seed2)+
 dev.off()
 
 #-----
-pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Seed_plant.pdf",
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Seed_plant_Plot.pdf",
     width = 11.69, # The width of the plot in inches
     height = 8.27)
 
@@ -127,7 +127,7 @@ dev.off()
 
 
 #-----
-pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Hete_Seed_plant.pdf",
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Hete_Seed_plant_Plot.pdf",
     width = 11.69, # The width of the plot in inches
     height = 8.27)
 
@@ -141,3 +141,93 @@ ggplot(fitness_SUM_Seed2)+
 
 dev.off()
 
+###############
+###############
+
+
+
+#-----
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Hete_Seed.pdf",
+    width = 11.69, # The width of the plot in inches
+    height = 8.27)
+
+ggplot(fitness_SUM_Seed2)+
+  geom_point(aes(x = (Homo_Sum + Hete_Sum),y =(Seeds_GF)))+
+  geom_smooth(aes(x=(Homo_Sum + Hete_Sum),y=(Seeds_GF)),method = "lm",se = F)+
+  labs(title="Aggregation of triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo + hetero triplets)", y = "Mean(# seeds)",color="Plant")
+
+dev.off()
+
+#-----
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Seed.pdf",
+    width = 11.69, # The width of the plot in inches
+    height = 8.27)
+
+
+ggplot(fitness_SUM_Seed2)+
+  geom_point(aes(x = (Homo_Sum),y =(Seeds_GF)))+
+  geom_smooth(aes(x=(Homo_Sum),y=(Seeds_GF)),method = "lm",se = F)+
+  labs(title="Aggregation of homospecific triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo triplets)", y = "Mean(# seeds)")
+
+dev.off()
+
+
+#-----
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Hete_Seed.pdf",
+    width = 11.69, # The width of the plot in inches
+    height = 8.27)
+
+
+ggplot(fitness_SUM_Seed2)+
+  geom_point(aes(x = (Hete_Sum),y =(Seeds_GF)))+
+  geom_smooth(aes(x=(Hete_Sum),y=(Seeds_GF)),method = "lm",se = F)+
+  labs(title="Aggregation of  heterospecific triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# hetero triplets)", y = "Mean(# seeds)")
+
+dev.off()
+
+
+############################
+#-----
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Hete_Seed_plant.pdf",
+    width = 11.69, # The width of the plot in inches
+    height = 8.27)
+
+ggplot(fitness_SUM_Seed2)+
+  geom_point(aes(x = (Homo_Sum + Hete_Sum),y =(Seeds_GF),color = as.factor(Plant_Simple)))+
+  geom_smooth(aes(x=(Homo_Sum + Hete_Sum),y=(Seeds_GF),color = as.factor(Plant_Simple)),method = "lm",se = F)+
+  labs(title="Aggregation of triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo + hetero triplets)", y = "Mean(# seeds)",color="Plant")
+
+dev.off()
+
+#-----
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Seed_plant.pdf",
+    width = 11.69, # The width of the plot in inches
+    height = 8.27)
+
+
+ggplot(fitness_SUM_Seed2)+
+  geom_point(aes(x = (Homo_Sum),y =(Seeds_GF),color = as.factor(Plant_Simple)))+
+  geom_smooth(aes(x=(Homo_Sum),y=(Seeds_GF),color = as.factor(Plant_Simple)),method = "lm",se = F)+
+  labs(title="Aggregation of homospecific triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# homo triplets)", y = "Mean(# seeds)",color="Plant")
+
+dev.off()
+
+
+#-----
+pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Hete_Seed_plant.pdf",
+    width = 11.69, # The width of the plot in inches
+    height = 8.27)
+
+
+ggplot(fitness_SUM_Seed2)+
+  geom_point(aes(x = (Hete_Sum),y =(Seeds_GF),color = as.factor(Plant_Simple)))+
+  geom_smooth(aes(x=(Hete_Sum),y=(Seeds_GF),color = as.factor(Plant_Simple)),method = "lm",se = F)+
+  labs(title="Aggregation of  heterospecific triplets \n (each point represents the result for a given subplot and plant)",
+       x ="Sum(# hetero triplets)", y = "Mean(# seeds)",color="Plant")
+
+dev.off()
