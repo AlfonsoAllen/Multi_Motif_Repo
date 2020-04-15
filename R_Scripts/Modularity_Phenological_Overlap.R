@@ -219,7 +219,62 @@ S_edge_list_ID <-
 #   select(-layer_from, -layer_to) %>% 
 #   select(layer_from=layer_id.x, node_from, layer_to=layer_id.y, node_to, weight)
 
+#########################################################################################
+###########################################
+#Saving MuxViz Files for posterior analysis
+###########################################
 
+folder_muxviz_root <- paste(dir_ini,"/Processed_data/Muxviz_Pheno_Overlap/",sep="")
+newfolder <- paste("Plot_",Plot_i,"/", sep="")
+folder_muxviz <- paste0(folder_muxviz_root, newfolder)
+dir.create(folder_muxviz)
+
+general_multilayer_layout <- physical_nodes %>% rename(nodeID=node_id,nodeLabel=species)%>%
+  select(nodeID,nodeLabel) 
+
+mutate(general_multilayer_layout,
+       nodeLabel=str_replace(general_multilayer_layout$nodeLabel," ", "_"))
+
+write_delim(general_multilayer_layout,
+            paste(folder_muxviz,"general_multilayer_layout_Plot",Plot_i,".txt",sep=""),
+            delim = " ")
+
+general_multilayer_layers <- layer_metadata %>% rename(layerID=layer_id,layerLabel=layer_name)
+
+write_delim(general_multilayer_layers,
+            paste(folder_muxviz,"general_multilayer_layers_Plot",Plot_i,".txt",sep=""),
+            delim = " ")
+
+general_multilayer <- S_edge_list_ID %>%
+  select(node_from,layer_from,node_to,layer_to,weight) %>%
+  arrange(node_from,layer_from,node_to,layer_to)
+
+write_delim(general_multilayer,
+            paste(folder_muxviz,"general_multilayer_Plot",Plot_i,".edges",sep=""),
+            col_names=FALSE,
+            delim = " ")
+
+
+write_delim(as.data.frame(
+  paste(paste(folder_muxviz,"general_multilayer_Plot",Plot_i,".edges",sep=""),
+        paste(folder_muxviz,"general_multilayer_layers_Plot",Plot_i,".txt",sep=""),
+        paste(folder_muxviz,"general_multilayer_layout_Plot",Plot_i,".txt",sep=""),sep=";")),
+  paste(folder_muxviz,"general_multilayer_config_Plot",Plot_i,".txt",sep=""),
+  col_names=FALSE,
+  quote_escape = "none",
+  delim = ";")
+
+write.table(as.data.frame(
+  paste(paste(folder_muxviz,"general_multilayer_Plot",Plot_i,".edges",sep=""),
+        paste(folder_muxviz,"general_multilayer_layers_Plot",Plot_i,".txt",sep=""),
+        paste(folder_muxviz,"general_multilayer_layout_Plot",Plot_i,".txt",sep=""),sep=";")),
+  paste(folder_muxviz,"general_multilayer_config_Plot",Plot_i,".txt",sep=""),
+  row.names=FALSE,col.names = FALSE,sep="", quote = FALSE)
+
+#################################################################################
+#######################################
+#Running Infomap
+#######################################
 
 #Running Infomap
 #Setting folder with infomap.exe
