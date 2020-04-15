@@ -39,7 +39,6 @@ Day,Month,Year,Plot,Subplot,G_F,Order,Superfamily,Family,Species,ID,Plant_Simple
 15,2,2019,7,C5,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,4,4,304
 15,2,2019,7,E2,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,2,3,228
 15,2,2019,8,A4,Small_flies,Diptera,NA,NA,NA,NA,CHFU,1,51,7,532
-15,2,2019,8,D3,Ichneumonidae,Hymenoptera,Ichneumonoidea,Ichneumonidae,Diplazon_sp.,Ichneumonidae,CHFU,1,31,5,380
 15,2,2019,8,D6,Hoverflies,Diptera,Syrphoidea,Syrphidae,Eupeodes_corollae,Eupeodes_corollae,CHFU,1,35,5,380
 15,2,2019,9,D3,Hoverflies,Diptera,Syrphoidea,Syrphidae,Sphaerophoria_scripta,Sphaerophoria_scripta,CHFU,1,81,3,228
 15,2,2019,9,E4,Small_flies,Diptera,NA,NA,NA,NA,CHFU,1,61,3,228
@@ -140,7 +139,6 @@ Day,Month,Year,Plot,Subplot,G_F,Order,Superfamily,Family,Species,ID,Plant_Simple
 11,3,2019,4,F4,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,CHFU,1,7,3,228
 11,3,2019,5,A1,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,12,9,684
 11,3,2019,5,A3,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,16,3,228
-11,3,2019,5,A4,Ants,Hymenoptera,Vespoidea,Formicidae,NA,Formicidae,CHFU,1,11,11,836
 11,3,2019,5,A4,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,2,11,11,836
 11,3,2019,5,A5,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,5,2,152
 11,3,2019,5,B1,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,22,8,608
@@ -191,8 +189,6 @@ Day,Month,Year,Plot,Subplot,G_F,Order,Superfamily,Family,Species,ID,Plant_Simple
 11,3,2019,7,F3,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,2,15,1140
 11,3,2019,7,F4,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,3,11,8,608
 11,3,2019,7,F5,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,14,13,988
-11,3,2019,7,F5,Mosquitoes,Diptera,NA,Culicidae,NA,Culicidae,CHFU,1,14,13,988
-11,3,2019,8,A2,Mosquitoes,Diptera,Tipuloidea,Tipulidae,Nephrotoma_sp.,Tipulidae,CHFU,1,12,10,760
 11,3,2019,8,A2,NA,Diptera,NA,NA,NA,NA,CHFU,2,12,10,760
 11,3,2019,8,A5,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,2,71,7,532
 11,3,2019,8,A6,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,61,10,760
@@ -203,7 +199,6 @@ Day,Month,Year,Plot,Subplot,G_F,Order,Superfamily,Family,Species,ID,Plant_Simple
 11,3,2019,8,B5,Hoverflies,Diptera,Syrphoidea,Syrphidae,Eupeodes_corollae,Eupeodes_corollae,CHFU,1,31,3,228
 11,3,2019,8,B6,Small_flies,Diptera,Empidoidea,Empididae,NA,Empididae,CHFU,1,26,4,304
 11,3,2019,8,C3,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,24,7,532
-11,3,2019,8,C4,Mosquitoes,Diptera,Tipuloidea,Tipulidae,Nephrotoma_sp.,Tipulidae,CHFU,1,35,8,608
 11,3,2019,8,C4,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,35,8,608
 11,3,2019,8,C6,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,45,8,608
 11,3,2019,8,D2,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,1,6,5,380
@@ -226,9 +221,7 @@ Day,Month,Year,Plot,Subplot,G_F,Order,Superfamily,Family,Species,ID,Plant_Simple
 11,3,2019,9,C3,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,LEMA,2,1,2,128
 11,3,2019,9,E3,Flower_beetles,Coleoptera,Cleroidea,Melyridae,NA,Melyridae,CHFU,1,71,3,228
 11,3,2019,9,A2,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,2,21,5,380
-11,3,2019,9,A2,Bugs,Hemiptera,NA,Miridae,Mirini_sp.,Miridae,CHFU,1,21,5,380
 11,3,2019,9,D2,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,LEMA,2,1,0,0
-11,3,2019,9,D2,Bugs,Hemiptera,NA,Miridae,Mirini_sp.,Miridae,CHFU,1,35,2,152
 11,3,2019,9,E1,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,4,31,2,152
 11,3,2019,9,F1,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,LEMA,2,1,0,0
 11,3,2019,9,F1,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,CHFU,4,16,2,152
@@ -253,7 +246,6 @@ Day,Month,Year,Plot,Subplot,G_F,Order,Superfamily,Family,Species,ID,Plant_Simple
 18,3,2019,1,F4,Flower_beetles,Coleoptera,Tenebrionoidea,Mordellidae,NA,Mordellidae,LEMA,1,31,3,192
 18,3,2019,1,F3,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,LEMA,1,25,2,128
 18,3,2019,1,E2,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,LEMA,1,41,4,256
-18,3,2019,1,E1,Mosquitoes,Diptera,Tabanomorpha,Tabanidae,Melanopangonius_sp.,Tabanidae,LEMA,1,31,3,192
 18,3,2019,1,F1,Hoverflies,Diptera,Syrphoidea,Syrphidae,Sphaerophoria_sp.,Syrphidae,LEMA,1,15,2,128
 18,3,2019,1,F1,Hoverflies,Diptera,Syrphoidea,Syrphidae,Sphaerophoria_sp.,Syrphidae,LEMA,1,15,2,128
 18,3,2019,1,F1,Hoverflies,Diptera,Syrphoidea,Syrphidae,Scaeva_sp.,Scaeva_sp.,LEMA,1,15,2,128
@@ -587,7 +579,6 @@ Day,Month,Year,Plot,Subplot,G_F,Order,Superfamily,Family,Species,ID,Plant_Simple
 25,3,2019,7,D6,Small_flies,Diptera,NA,Bibionidae,Dilophus_sp.,Dilophus_sp.,LEMA,1,4,3,192
 25,3,2019,7,E3,Hoverflies,Diptera,Syrphoidea,Syrphidae,NA,Syrphidae,LEMA,1,11,6,384
 25,3,2019,7,E3,Flower_beetles,Coleoptera,Tenebrionoidea,Mordellidae,NA,Mordellidae,LEMA,1,11,6,384
-25,3,2019,7,E6,NA,Larva,NA,NA,NA,NA,LEMA,1,11,7,448
 25,3,2019,8,A1,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,LEMA,1,1,0,0
 25,3,2019,8,A1,Small_beetles,Coleoptera,Cucujoidea,Nitidulidae,Meligethes_sp.,Meligethes_sp.,LEMA,2,1,0,0
 25,3,2019,8,B2,Small_beetles,Coleoptera,Cucujoidea,Nitidulidae,Meligethes_sp.,Meligethes_sp.,LEMA,2,4,5,320
@@ -596,7 +587,6 @@ Day,Month,Year,Plot,Subplot,G_F,Order,Superfamily,Family,Species,ID,Plant_Simple
 25,3,2019,8,B5,Hoverflies,Diptera,Syrphoidea,Syrphidae,Sphaerophoria_scripta,Sphaerophoria_scripta,ME,1,1,0,0
 25,3,2019,8,C1,Small_beetles,Coleoptera,Cucujoidea,Nitidulidae,Meligethes_sp.,Meligethes_sp.,LEMA,1,1,3,192
 25,3,2019,8,C4,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,LEMA,1,4,5,320
-25,3,2019,8,C5,Chrysididae,Hymenoptera,Chrysidoidea,Chrysididae,NA,Chrysididae,CHFU,1,31,12,912
 25,3,2019,8,C6,NA,Diptera,NA,NA,NA,NA,CHFU,1,45,8,608
 25,3,2019,8,D4,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,LEMA,1,2,2,128
 25,3,2019,8,D6,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,LEMA,1,3,4,256
@@ -616,11 +606,9 @@ Day,Month,Year,Plot,Subplot,G_F,Order,Superfamily,Family,Species,ID,Plant_Simple
 25,3,2019,9,B5,Flower_beetles,Coleoptera,Tenebrionoidea,Mordellidae,NA,Mordellidae,LEMA,1,2,1,64
 25,3,2019,9,B5,Flower_beetles,Coleoptera,Tenebrionoidea,Mordellidae,NA,Mordellidae,LEMA,1,2,1,64
 25,3,2019,9,B5,Flower_beetles,Coleoptera,Tenebrionoidea,Mordellidae,NA,Mordellidae,LEMA,1,2,1,64
-25,3,2019,9,B5,NA,Larva,NA,NA,NA,NA,LEMA,1,2,1,64
 25,3,2019,9,E1,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,LEMA,1,1,0,0
 25,3,2019,9,E1,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,LEMA,1,1,0,0
 25,3,2019,9,E2,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,LEMA,1,1,1,64
-25,3,2019,9,E5,NA,Larva,NA,NA,NA,NA,LEMA,1,3,1,64
 25,3,2019,9,E5,Flower_beetles,Coleoptera,Cleroidea,Melyridae,Psilothrix_viridicoerulea,Psilothrix_viridicoerulea,LEMA,1,3,1,64
 25,3,2019,9,E6,Flower_beetles,Coleoptera,Buprestoidea,Buprestidae,NA,Buprestidae,LEMA,1,8,2,128
 2,4,2019,1,A4,Bees,Hymenoptera,Apoidea,NA,NA,NA,LEMA,1,15,2,128

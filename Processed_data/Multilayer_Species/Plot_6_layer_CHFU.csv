@@ -1,8 +1,6 @@
-"","Apoidea","Bruchidae","Cantharidae","Dilophus_sp","Hymenoptera","Lomatia_sp","Meligethes_sp"
-"A2 CHFU",0,1,0,1,0,0,0
-"A3 CHFU",0,1,0,1,0,0,1
-"A5 CHFU",0,0,1,0,0,0,0
-"A6 CHFU",0,0,0,1,0,0,0
-"B3 CHFU",0,0,0,0,0,2,0
-"E3 CHFU",1,0,0,0,0,0,0
-"F2 CHFU",0,0,0,0,1,0,0
+"","Bruchidae","Cantharidae","Dilophus_sp.","Meligethes_sp.","Syrphidae"
+"A2 CHFU",1,0,1,0,0
+"A3 CHFU",1,0,1,1,0
+"A5 CHFU",0,1,0,0,0
+"A6 CHFU",0,0,1,0,0
+"B3 CHFU",0,0,0,0,2

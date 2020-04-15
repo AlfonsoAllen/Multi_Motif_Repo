@@ -23,7 +23,7 @@ Plot_i <- 8
 pollination <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
 #Filter data
-pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Plot==Plot_i)
+pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Plot==Plot_i,!is.na(ID))
 
 pollination_19_i <- pollination_19_i %>% select(Day,Month,Year,Plot,Subplot,Plant_Simple,ID,Visits) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
@@ -301,8 +301,6 @@ ggplot(plot_modules_pollinators,
   theme(legend.position = "none", panel.grid = element_blank(), axis.text = element_text(color='black'), axis.text.x = element_text(angle = 0))
 
 plot_modules_pollinators <- plot_modules_pollinators %>%arrange(module)
-
-write_csv(plot_modules_pollinators,"plot_8_modules_pollinators_phen_overlap_SCALED.csv")
 
 # Flexibility of species 
 plot_modules %>%

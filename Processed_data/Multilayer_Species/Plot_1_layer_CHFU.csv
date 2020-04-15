@@ -1,8 +1,7 @@
-"","Dilophus_sp","Diptera","Empididae","Sphaerophoria_scripta","Syrphidae"
-"A2 CHFU",1,2,0,0,0
-"A3 CHFU",0,0,1,0,0
-"B1 CHFU",0,0,0,0,1
-"B2 CHFU",0,0,2,1,0
-"C4 CHFU",1,0,0,0,0
-"C5 CHFU",2,0,0,0,0
-"E5 CHFU",0,1,0,0,0
+"","Dilophus_sp.","Empididae","Sphaerophoria_scripta","Syrphidae"
+"A2 CHFU",1,0,0,0
+"A3 CHFU",0,1,0,0
+"B1 CHFU",0,0,0,1
+"B2 CHFU",0,2,1,0
+"C4 CHFU",1,0,0,0
+"C5 CHFU",2,0,0,0

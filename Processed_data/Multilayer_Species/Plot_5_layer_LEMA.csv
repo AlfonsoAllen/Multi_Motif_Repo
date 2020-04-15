@@ -1,7 +1,7 @@
-"","Dilophus_sp","Eupeodes_corollae","Malachius_sp","Meligethes_sp","Mordellidae","Nemotelus_sp","Psilothrix_viridicoerulea","Sphaerophoria_scripta"
-"A1 LEMA",0,1,0,1,0,1,0,0
+"","Dilophus_sp.","Eupeodes_corollae","Meligethes_sp.","Melyridae","Mordellidae","Nemotelus_sp.","Psilothrix_viridicoerulea","Sphaerophoria_scripta"
+"A1 LEMA",0,1,1,0,0,1,0,0
 "A2 LEMA",0,0,0,0,0,0,0,4
-"A4 LEMA",0,0,0,1,0,0,0,0
+"A4 LEMA",0,0,1,0,0,0,0,0
 "A6 LEMA",0,0,0,0,0,0,1,0
 "B2 LEMA",0,1,0,0,0,0,2,0
 "B4 LEMA",0,0,0,0,0,0,2,0
@@ -15,6 +15,6 @@
 "D4 LEMA",0,0,0,0,0,0,1,0
 "D5 LEMA",0,1,0,0,0,0,0,0
 "E1 LEMA",2,1,0,0,0,0,4,1
-"E5 LEMA",0,0,0,1,0,0,0,0
+"E5 LEMA",0,0,1,0,0,0,0,0
 "F1 LEMA",0,0,0,0,0,0,1,0
-"F4 LEMA",0,0,0,2,0,0,0,0
+"F4 LEMA",0,0,2,0,0,0,0,0

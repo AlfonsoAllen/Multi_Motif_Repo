@@ -19,10 +19,6 @@ fitness <- fitness %>% mutate(Subplot_Plant_Label=paste(Subplot,Plant_Simple,sep
   filter(!Plant_Simple %in% c("Lysimachia_arvensis","HOMA"))
 
 
-#Fix ID names:
-
-fitness$ID <- str_replace(fitness$ID, "[.]", "")
-
 fitness %>% group_by(ID) %>% count()
 
 ###########################################

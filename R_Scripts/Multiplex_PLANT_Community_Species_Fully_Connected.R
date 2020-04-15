@@ -243,8 +243,6 @@ ggplot(plot_modules_pollinators,
 
 plot_modules_pollinators <- plot_modules_pollinators %>%arrange(module)
 
-write_csv(plot_modules_pollinators,"plot_8_modules_pollinators_full_connected_SCALED.csv")
-
 # Flexibility of species 
 plot_modules %>%
   left_join(physical_nodes) %>% 
