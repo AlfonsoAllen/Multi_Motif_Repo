@@ -1,0 +1,108 @@
+nodeID nodeLabel
+1 "A1 LEMA"
+2 "A2 LEMA"
+3 "A2 PUPA"
+4 "A3 CHFU"
+5 "A3 LEMA"
+6 "A4 LEMA"
+7 "A5 CHFU"
+8 "A5 LEMA"
+9 "A6 CHFU"
+10 "B1 CHFU"
+11 "B2 CHFU"
+12 "B2 LEMA"
+13 "B2 PUPA"
+14 "B3 CHFU"
+15 "B3 LEMA"
+16 "B3 PUPA"
+17 "B4 CHFU"
+18 "B4 LEMA"
+19 "B4 PUPA"
+20 "B4 RAPE"
+21 "B5 CHFU"
+22 "B5 LEMA"
+23 "B5 ME"
+24 "B5 PUPA"
+25 "B6 CHFU"
+26 "B6 LEMA"
+27 "B6 PUPA"
+28 "C1 LEMA"
+29 "C2 CHFU"
+30 "C2 LEMA"
+31 "C2 PUPA"
+32 "C3 CHFU"
+33 "C3 LEMA"
+34 "C3 PUPA"
+35 "C4 CHFU"
+36 "C4 LEMA"
+37 "C4 PUPA"
+38 "C5 PUPA"
+39 "C6 CHFU"
+40 "C6 PUPA"
+41 "D1 CHFU"
+42 "D1 LEMA"
+43 "D2 CHFU"
+44 "D2 LEMA"
+45 "D2 PUPA"
+46 "D3 CHFU"
+47 "D3 LEMA"
+48 "D3 PUPA"
+49 "D4 LEMA"
+50 "D4 PUPA"
+51 "D5 CHFU"
+52 "D5 LEMA"
+53 "D5 PUPA"
+54 "D6 CHFU"
+55 "D6 LEMA"
+56 "D6 PUPA"
+57 "E1 LEMA"
+58 "E1 PUPA"
+59 "E2 CHFU"
+60 "E2 LEMA"
+61 "E2 ME"
+62 "E2 PUPA"
+63 "E3 CHFU"
+64 "E3 LEMA"
+65 "E3 PUPA"
+66 "E4 CHFU"
+67 "E4 LEMA"
+68 "E5 CHFU"
+69 "E5 LEMA"
+70 "E6 LEMA"
+71 "E6 PUPA"
+72 "F1 LEMA"
+73 "F1 PUPA"
+74 "F2 LEMA"
+75 "F2 PUPA"
+76 "F3 CHFU"
+77 "F3 LEMA"
+78 "F3 PUPA"
+79 "F4 CHFU"
+80 "F4 LEMA"
+81 "F4 PUPA"
+82 "F5 ME"
+83 "F5 PUPA"
+84 "F6 CHFU"
+85 "F6 LEMA"
+86 Apidae
+87 Bombyliidae
+88 Bruchidae
+89 Calliphoridae
+90 Cantharidae
+91 Dilophus_sp.
+92 Empididae
+93 Eupeodes_corollae
+94 Hesperiidae
+95 Lasiocampa_trifolii
+96 Meligethes_sp.
+97 Melyridae
+98 Mordellidae
+99 Muscidae
+100 Nemotelus_sp.
+101 Nitidulidae
+102 Odontomyia_sp.
+103 Oedemeridae
+104 Psilothrix_viridicoerulea
+105 Scaeva_sp.
+106 Sphaerophoria_scripta
+107 Syrphidae
