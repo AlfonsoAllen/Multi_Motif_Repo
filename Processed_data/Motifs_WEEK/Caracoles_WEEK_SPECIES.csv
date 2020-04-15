@@ -35,7 +35,6 @@ Plot,ID,Subplot_Plant_Label,Visits_tot,homo_motif,hete_motif,Week
 7,Dilophus_sp.,C2 CHFU,1,3,0,7
 7,Dilophus_sp.,C5 CHFU,1,3,0,7
 7,Dilophus_sp.,E2 CHFU,1,3,0,7
-8,Ichneumonidae,D3 CHFU,1,0,0,7
 8,Eupeodes_corollae,D6 CHFU,1,0,0,7
 9,Sphaerophoria_scripta,D3 CHFU,1,0,0,7
 6,Dilophus_sp.,A6 CHFU,1,0,0,8
@@ -110,7 +109,6 @@ Plot,ID,Subplot_Plant_Label,Visits_tot,homo_motif,hete_motif,Week
 5,Dilophus_sp.,A1 CHFU,1,4,0,11
 5,Dilophus_sp.,A3 CHFU,1,4,0,11
 5,Dilophus_sp.,A4 CHFU,2,4,0,11
-5,Formicidae,A4 CHFU,1,0,0,11
 5,Dilophus_sp.,A5 CHFU,1,4,0,11
 5,Dilophus_sp.,B1 CHFU,1,4,0,11
 5,Syrphidae,B3 CHFU,1,0,0,11
@@ -155,9 +153,7 @@ Plot,ID,Subplot_Plant_Label,Visits_tot,homo_motif,hete_motif,Week
 7,Empididae,F2 CHFU,1,3,0,11
 7,Dilophus_sp.,F3 CHFU,1,24,3,11
 7,Dilophus_sp.,F4 CHFU,3,24,3,11
-7,Culicidae,F5 CHFU,1,0,0,11
 7,Dilophus_sp.,F5 CHFU,1,24,3,11
-8,Tipulidae,A2 CHFU,1,1,0,11
 8,Dilophus_sp.,A5 CHFU,2,10,1,11
 8,Dilophus_sp.,A6 CHFU,1,10,1,11
 8,Eupeodes_corollae,B2 CHFU,1,1,0,11
@@ -168,7 +164,6 @@ Plot,ID,Subplot_Plant_Label,Visits_tot,homo_motif,hete_motif,Week
 8,Empididae,B6 CHFU,1,4,0,11
 8,Dilophus_sp.,C3 CHFU,1,10,1,11
 8,Dilophus_sp.,C4 CHFU,1,10,1,11
-8,Tipulidae,C4 CHFU,1,1,0,11
 8,Dilophus_sp.,C6 CHFU,1,10,1,11
 8,Dilophus_sp.,D2 CHFU,1,10,1,11
 8,Empididae,D3 CHFU,1,4,0,11
@@ -181,13 +176,11 @@ Plot,ID,Subplot_Plant_Label,Visits_tot,homo_motif,hete_motif,Week
 8,Dilophus_sp.,F4 CHFU,1,10,1,11
 8,Dilophus_sp.,F6 CHFU,2,10,1,11
 9,Dilophus_sp.,A2 CHFU,2,3,3,11
-9,Miridae,A2 CHFU,1,1,0,11
 9,Dilophus_sp.,A5 LEMA,2,2,4,11
 9,Dilophus_sp.,C3 LEMA,2,2,4,11
 9,Psilothrix_viridicoerulea,C4 LEMA,1,1,0,11
 9,Sphaerophoria_scripta,C4 LEMA,1,0,0,11
 9,Meligethes_sp.,C5 LEMA,1,1,0,11
-9,Miridae,D2 CHFU,1,1,0,11
 9,Psilothrix_viridicoerulea,D2 LEMA,2,1,0,11
 9,Dilophus_sp.,D4 CHFU,2,3,3,11
 9,Dilophus_sp.,E1 CHFU,4,3,3,11
@@ -205,7 +198,6 @@ Plot,ID,Subplot_Plant_Label,Visits_tot,homo_motif,hete_motif,Week
 1,Dilophus_sp.,D3 LEMA,1,8,0,12
 1,Buprestidae,D5 LEMA,1,0,0,12
 1,Dilophus_sp.,D5 LEMA,1,8,0,12
-1,Tabanidae,E1 LEMA,1,0,0,12
 1,Dilophus_sp.,E2 LEMA,1,8,0,12
 1,Psilothrix_viridicoerulea,E2 LEMA,1,4,0,12
 1,Psilothrix_viridicoerulea,E3 LEMA,1,4,0,12
@@ -471,7 +463,6 @@ Plot,ID,Subplot_Plant_Label,Visits_tot,homo_motif,hete_motif,Week
 8,Sphaerophoria_scripta,B5 ME,1,0,1,13
 8,Meligethes_sp.,C1 LEMA,1,4,0,13
 8,Psilothrix_viridicoerulea,C4 LEMA,1,5,0,13
-8,Chrysididae,C5 CHFU,1,0,0,13
 8,Psilothrix_viridicoerulea,D4 LEMA,1,5,0,13
 8,Psilothrix_viridicoerulea,D6 LEMA,1,5,0,13
 8,Oedemeridae,E6 LEMA,1,0,0,13
@@ -796,7 +787,6 @@ Plot,ID,Subplot_Plant_Label,Visits_tot,homo_motif,hete_motif,Week
 8,Bombyliidae,E2 PUPA,2,17,0,21
 8,Bombyliidae,E3 PUPA,3,17,0,21
 8,Lasiocampa_trifolii,E3 PUPA,1,10,0,21
-8,Na,E5 PUPA,1,0,0,21
 8,Bombyliidae,F1 PUPA,2,17,0,21
 8,Bombyliidae,F2 PUPA,2,17,0,21
 8,Lasiocampa_trifolii,F3 PUPA,1,10,0,21
