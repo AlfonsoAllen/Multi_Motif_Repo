@@ -12,12 +12,14 @@ library(igraph)
 fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
 # Filtering & relabeling
-fitness2 <- fitness_data2 %>% filter(Year==2019,!Subplot == "OUT" & !is.na(ID))
+fitness2 <- fitness_data2 %>% filter(Year==2019)
   
 # Calculating week number
-fitness2 <- fitness2 %>% select(Day,Month,Year,Plot,Subplot,Plant_Simple,ID,Visits) %>%
+fitness2 <- fitness2 %>% select(Day,Month,Year,Plot,Subplot,Plant_Simple,ID_Simple,Visits) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
+
+fitness2 <- rename(fitness2,ID=ID_Simple)
 
 ##################################################################
 # FUNCTION (NAME): motifs_extraction
