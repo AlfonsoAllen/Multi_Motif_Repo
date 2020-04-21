@@ -7,9 +7,9 @@ library(tidyverse)
 
 fitness_data2 <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
-fitness2 <- fitness_data2 %>% filter(Year==2019,!Subplot == "OUT" & !is.na(G_F))
+fitness2 <- fitness_data2 %>% filter(Year==2019)
 
-fitness2 <- fitness2 %>% select(-Order,-Family,-Superfamily) %>%
+fitness2 <- fitness2 %>% select(-Order,-Family,-Superfamily,-ID) %>% rename(ID=ID_Simple) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
 
