@@ -1,0 +1,12 @@
+Plot,Subplot,Plant_Simple,Order,Family,Species,ID,G_F,ID_Simple,num.visits
+1,C4,LEMA,Coleoptera,Melyridae,NA,Melyridae,Flower_beetles,Melyridae,2
+1,D1,LEMA,Coleoptera,Melyridae,NA,Melyridae,Flower_beetles,Melyridae,2
+2,B4,LEMA,Coleoptera,Melyridae,NA,Melyridae,Flower_beetles,Melyridae,1
+2,F2,LEMA,Coleoptera,Melyridae,NA,Melyridae,Flower_beetles,Melyridae,1
+5,A2,LEMA,Coleoptera,NA,NA,Coleoptera,Beetles,Coleoptera,1
+6,C1,LEMA,Coleoptera,NA,NA,Coleoptera,Beetles,Coleoptera,1
+6,D5,LEMA,Coleoptera,NA,NA,Coleoptera,Beetles,Coleoptera,1
+6,E1,LEMA,Coleoptera,NA,NA,Coleoptera,Beetles,Coleoptera,1
+7,F3,LEMA,Coleoptera,NA,NA,Coleoptera,Beetles,Coleoptera,1
+9,E3,CHFU,Coleoptera,Melyridae,NA,Melyridae,Flower_beetles,Melyridae,1
+9,E3,LEMA,Coleoptera,Melyridae,NA,Melyridae,Flower_beetles,Melyridae,3
