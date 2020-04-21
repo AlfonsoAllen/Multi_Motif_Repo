@@ -9,11 +9,11 @@ library(matlib)
 fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
 # Filtering & relabeling
-fitness2 <- fitness_data2 %>% filter(Year==2019,!Subplot == "OUT" & !is.na(ID))
+fitness2 <- fitness_data2 %>% filter(Year==2019)
 
 
-fitness <- fitness2 %>% group_by(Plot,Subplot,Plant_Simple,ID) %>%
-  count(wt=Visits) %>% rename(Visits_tot = n)
+fitness <- fitness2 %>% group_by(Plot,Subplot,Plant_Simple,ID_Simple) %>%
+  count(wt=Visits) %>% rename(Visits_tot = n, ID=ID_Simple)
 
 fitness <- fitness %>% mutate(Subplot_Plant_Label=paste(Subplot,Plant_Simple,sep=" "))%>%
   filter(!Plant_Simple %in% c("Lysimachia_arvensis","HOMA"))
