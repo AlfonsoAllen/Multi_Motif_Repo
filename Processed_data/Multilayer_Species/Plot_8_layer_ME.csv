@@ -1,4 +1,6 @@
-"","Cantharidae","Dilophus_sp.","Sphaerophoria_scripta"
-"B5 ME",0,1,1
-"E2 ME",1,0,0
-"F5 ME",1,0,0
+"","Andrena_cinerea","Cantharidae","Dilophus_sp.","Musca_sp.","Sphaerophoria_scripta"
+"B5 ME",0,0,1,0,1
+"C5 ME",0,0,0,1,0
+"E2 ME",1,1,0,0,0
+"E6 ME",1,0,0,0,0
+"F5 ME",0,1,0,0,0
