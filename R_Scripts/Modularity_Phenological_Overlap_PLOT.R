@@ -15,16 +15,25 @@ dir_ini <- getwd()
 #Load data on pollinator visits
 pollination <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
-for (Plot_i in 1:9){
+pollination$Line <- NA
+
+for (i in 1:nrow(pollination)){
+  if(pollination$Plot[i] %in% c(1,2,3)){pollination$Line[i] <- 1}
+  else if(pollination$Plot[i] %in% c(4,5,6)){pollination$Line[i] <- 2}
+  else{pollination$Line[i] <- 3}
+}
+
+
+for (Line_i in 1:3){
 
 ##########################
 #ESTIMATE PHENOLOGY
 ##########################
 
 #Filter pollination data
-pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Plot==Plot_i,!is.na(ID))
+pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Line==Line_i,!is.na(ID))
 
-pollination_19_i <- pollination_19_i %>% select(Day,Month,Year,Plot,Subplot,Plant_Simple,ID,Visits) %>%
+pollination_19_i <- pollination_19_i %>% select(Day,Month,Year,Line,Plot,Subplot,Plant_Simple,ID,Visits) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
 
@@ -35,10 +44,10 @@ pollination_19_i <- pollination_19_i %>% select(Day,Month,Year,Plot,Subplot,Plan
 
 plant_pheno_overlap <- function(plant1,plant2,pollination_19_i) {
   
-  plants <- sort(unique(pollination_19_i$Plant_Simple))
-  if(sum(c(plant1,plant2) %in% plants)<2){
+  plantsx <- sort(unique(pollination_19_i$Plant_Simple))
+  if(sum(c(plant1,plant2) %in% plantsx)<2){
     print(paste("Error: At least one plant does not belong to plot ",
-                Plot_i," experimental phenology",sep=""))
+                Line_i," experimental phenology",sep=""))
     }else{
     pollination_plant1 <- pollination_19_i %>% filter(Plant_Simple==plant1)
     #Weeks in which plant 1 recieves visits
@@ -63,7 +72,7 @@ plant_pheno_overlap <- function(plant1,plant2,pollination_19_i) {
 
 
 ###########################
-# CREATE MULTILAYER FOR Plot_i
+# CREATE MULTILAYER FOR Line_i
 ###########################
 
 folder_base <- paste(dir_ini,"/Processed_data/Multilayer_Species/",sep="")
@@ -72,9 +81,9 @@ files_base <- list.files(folder_base)
 
 setwd(folder_base)
 
-# Extract layer files for Plot_i
+# Extract layer files for Line_i
 
-list_files_field_level <- files_base[grepl(paste("Plot_",Plot_i,sep = ""), files_base)]
+list_files_field_level <- files_base[grepl(paste("Line_",Line_i,sep = ""), files_base)]
 
 # Extract edge_list for each layer
 for (i in 1:length(list_files_field_level)){
@@ -132,8 +141,6 @@ pollinator_strength <- Plot_edgelist_complete %>% group_by(layer_from,node_to) %
   count(wt = weight) %>% rename(strength = n)
 ##########
 
-Plot_edgelist_complete %>% filter(node_from == "B5 LEMA") # total strength should be 11 (check!)
-
 #Create the scaled directed list (previous list was meant to be undirected)
 
 #From plant to pollinator
@@ -163,6 +170,7 @@ for (i in 1:length(pollinators)){
   if (length(polinator_layers)>1){
     combination_layers <- t(combn(polinator_layers, 2))
     for (j in 1:nrow(combination_layers)){
+      
       #For undirected networks
       # interlink_i<- tibble(layer_from=combination_layers[j,1],
       #                      node_from=pollinators[i],
@@ -231,12 +239,12 @@ modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = F, silent 
 # Extract information
 plot_modules_i <- modules_relax_rate$modules %>% left_join(layer_metadata,by="layer_id")
 
-plot_modules_i$Plot <- Plot_i
+plot_modules_i$Line <- Line_i
 
 setwd(dir_ini)
 
-write_csv(plot_modules_i,paste0("Processed_data/Modularity_Pheno_Overlap/Modularity_Plot",
-                                Plot_i,".csv")  )
+write_csv(plot_modules_i,paste0("Processed_data/Modularity_Pheno_Overlap/Modularity_Line",
+                                Line_i,".csv")  )
 
 }
 
