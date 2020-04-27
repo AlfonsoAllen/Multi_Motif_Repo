@@ -84,13 +84,37 @@ abundances_19[is.na(abundances_19)] <- 0
 fitness_SUM_Ab <- fitness_SUM %>% left_join(abundances_19, 
                                             by=c("Plot","Subplot","Plant_Simple"))
 
+
+#####################################################
+# ADDING MODULARITY MEASSURES
+
+for (i in 1:9){
+
+  
+  file_i = paste0("Processed_data/Modularity_Pheno_Overlap/Modularity_Plot",i,".csv")
+  modularity_i <- read_csv(file_i)
+  
+  modularity_i <- modularity_i %>% filter(type=="plant") %>%
+    select(-node_id,-layer_id,-layer_name,-type) %>% separate(species,c("Subplot","Plant_Simple")," ")
+  
+  
+  if(i==1){modularity <- modularity_i}else{modularity <- bind_rows(modularity,modularity_i)}
+  
+}
+
+
+fitness_SUM_Ab_Mod <- fitness_SUM_Ab %>% left_join(modularity,by=c("Plot","Subplot","Plant_Simple"))
+
+
+
+
 #####################################################
 # ADDING CENTRALITY MEASSURES
 
 for (i in 1:9){
 
 file_i = paste0("C:/Users/USUARIO/Desktop/Multi_Motif_Repo/Processed_data/Muxviz_Pheno_Overlap/centrality_table_Plot",i)
-Centrality_i <- read_csv2(file_i)
+Centrality_i <- read_delim(file_i,";")
 
 # Remove data for eigenvectors
 Centrality_i <- Centrality_i %>% filter(Layer=="1-Multi") %>% mutate(Plot=i) %>%
@@ -101,14 +125,7 @@ if(i==1){centrality <- Centrality_i}else{centrality <- bind_rows(centrality,Cent
 
 }
 
-fitness_PCA <- fitness_SUM_Ab %>% left_join(centrality,by=c("Plot","Subplot","Plant_Simple")) 
-
-fitness_PCA$StrengthIn <- as.numeric(fitness_PCA$StrengthIn)
-fitness_PCA$PageRank <- as.numeric(fitness_PCA$PageRank)
-fitness_PCA$Hub <- as.numeric(fitness_PCA$Hub)
-fitness_PCA$Authority <- as.numeric(fitness_PCA$Authority)
-fitness_PCA$Katz <- as.numeric(fitness_PCA$Katz)
-fitness_PCA$Multiplexity <- as.numeric(fitness_PCA$Multiplexity)
+fitness_PCA <- fitness_SUM_Ab_Mod %>% left_join(centrality,by=c("Plot","Subplot","Plant_Simple")) 
 
 fitness_PCA <- fitness_PCA %>% select(-DegreeOut,-StrengthOut,-Multiplexity)
 
@@ -120,15 +137,18 @@ fitness_PCA <- fitness_PCA %>% select(-DegreeOut,-StrengthOut,-Multiplexity)
 #################################################################################
 
 
-row.names(fitness_PCA) <- paste(fitness_PCA$Plot,fitness_PCA$Subplot,fitness_PCA$Plant_Simple,sep="_")
+row.names(fitness_PCA) <- paste(fitness_PCA$Plot,fitness_PCA$Subplot,
+                                fitness_PCA$Plant_Simple,sep="_")
 
-plot_i <- 8
+#plot_i <- 8
 
-fitness_PCA_i <- fitness_PCA #%>% filter(Plot==plot_i)
+fitness_PCA_i <- fitness_PCA %>% select(Line,Plot,Subplot,Plant_Simple,
+                                        Seeds_GF,StrengthIn,DegreeIn,Homo_Sum,
+                                        PageRank)
 
 library("FactoMineR")
 #res.pca <- PCA(fitness_PCA[,c(4:8,10:ncol(fitness_PCA))], ncp = 5, graph = FALSE)
-res.pca <- PCA(fitness_PCA_i[,c(5:5,7:ncol(fitness_PCA_i))], ncp = 5, graph = FALSE)
+res.pca <- PCA(fitness_PCA_i[,c(5:ncol(fitness_PCA_i))], ncp = 5, graph = FALSE)
 
 print(res.pca)
 
