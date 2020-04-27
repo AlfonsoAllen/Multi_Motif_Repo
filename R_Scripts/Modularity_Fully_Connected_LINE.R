@@ -1,0 +1,179 @@
+# Load relevant libraries
+library(infomapecology)
+# Infomap installation guide: https://github.com/Ecological-Complexity-Lab/infomap_ecology_package
+library(attempt)
+library(igraph)
+library(bipartite)
+library(tidyverse)
+library(magrittr)
+library(ggalluvial)
+
+#Access layers files
+dir_ini <- getwd()
+
+folder_base <- paste(dir_ini,"/Processed_data/Multilayer_Species/",sep="")
+
+files_base <- list.files(folder_base)
+
+for (Line_i in 1:3) {
+
+setwd(folder_base)
+
+# Extract layer files for Line_i
+
+list_files_field_level <- files_base[grepl(paste("Line_",Line_i,sep = ""), files_base)]
+
+# Extract edge_list for each layer
+for (i in 1:length(list_files_field_level)){
+
+  # Extract the incidence matrix
+  inc_matrix <- read.csv(list_files_field_level[i], header=T, row.names=1)
+  
+  # Create a graph for each layer
+  g_i <- graph_from_incidence_matrix(inc_matrix, directed = FALSE, weighted = T)
+  
+  # Get the edge_list from the graph and add plant (layer) information
+  plant <- strsplit(list_files_field_level[i],".csv")
+  plant <- strsplit(plant[[1]][1],".layer_")
+  plant <- plant[[1]][2]
+  
+  g_i_edge_list <- as_tibble(igraph::as_data_frame(g_i, 'edges')) %>% mutate(species=plant)
+
+  if (i==1){
+    plot_edge_list <- g_i_edge_list
+  }
+  else{
+    plot_edge_list <- plot_edge_list %>% bind_rows(g_i_edge_list)
+  }
+}
+
+
+
+pollinators <- sort(unique(plot_edge_list$to)) 
+plants <- sort(unique(plot_edge_list$from))
+layer_plant <- sort(unique(plot_edge_list$species))
+intersect(pollinators, plants)
+A <- length(pollinators) # Number of pollinators
+P <- length(plants) # Number of plants
+S <- A+P
+
+# Create a table with node metadata
+physical_nodes <- tibble(node_id=1:S,
+                         type=c(rep('plant',P),rep('pollinator',A)),
+                         species=c(plants,pollinators))
+layer_metadata <- tibble(layer_id=1:length(layer_plant), layer_name=layer_plant)
+
+# Replace the node names with node_ids
+
+Plot_edgelist_complete <- tibble(layer_from=plot_edge_list$species,
+                                        node_from=plot_edge_list$from,
+                                        layer_to=plot_edge_list$species,
+                                        node_to=plot_edge_list$to,
+                                        weight=plot_edge_list$weight)
+
+##########
+plant_strength <- Plot_edgelist_complete %>% group_by(layer_from,node_from) %>% 
+  count(wt = weight) %>% rename(strength = n)
+
+pollinator_strength <- Plot_edgelist_complete %>% group_by(layer_from,node_to) %>% 
+  count(wt = weight) %>% rename(strength = n)
+##########
+
+#Create the scaled directed list (previous list was meant to be undirected)
+
+#From plant to pollinator
+
+S_Links_Plant_Poll <- Plot_edgelist_complete %>% left_join(plant_strength,
+                                                           by=c("layer_from","node_from")) %>%
+  mutate(weight=weight/strength) %>% select(-strength)
+
+S_Links_Poll_Plant <- Plot_edgelist_complete %>% left_join(pollinator_strength,
+                                                           by=c("layer_from","node_to")) %>%
+  
+  mutate(weight=weight/strength) %>% select(-strength) %>%
+  rename(node_from=node_to,node_to=node_from)
+
+
+S_edge_list <- bind_rows(S_Links_Plant_Poll,S_Links_Poll_Plant)
+
+###############
+# To create the inter-links we rely on the previous Plot_edgelist_complete
+# Here we can extract information on interlayer connections
+
+for (i in 1:length(pollinators)){
+  
+  polinator_edges <- Plot_edgelist_complete %>% filter(node_to==pollinators[i])
+  polinator_layers <- unique(polinator_edges$layer_to)
+  #print (polinator_layers)
+  if (length(polinator_layers)>1){
+    combination_layers <- t(combn(polinator_layers, 2))
+    for (j in 1:nrow(combination_layers)){
+      #For undirected networks
+      # interlink_i<- tibble(layer_from=combination_layers[j,1],
+      #                      node_from=pollinators[i],
+      #                      layer_to=combination_layers[j,2],
+      #                      node_to=pollinators[i],
+      #                      weight=1)
+      
+      #For directed networks
+      interlink_i<- tibble(layer_from=c(combination_layers[j,1],combination_layers[j,2]),
+                           node_from=c(pollinators[i],pollinators[i]),
+                           layer_to=c(combination_layers[j,2],combination_layers[j,1]),
+                           node_to=c(pollinators[i],pollinators[i]),
+                           weight=c(1,1))
+      #For undirected
+      #Plot_edgelist_complete <- bind_rows(Plot_edgelist_complete,interlink_i)
+      
+      #For directed
+      S_edge_list <- bind_rows(S_edge_list,interlink_i)
+    }
+  }
+}
+
+
+
+
+# Replace the node names with node_ids
+S_edge_list_ID <- 
+  S_edge_list %>% 
+  left_join(physical_nodes, by=c('node_from' = 'species')) %>%  # Join for pollinators
+  left_join(physical_nodes, by=c('node_to' = 'species')) %>%  # Join for plants
+  select(-node_from, -node_to) %>% 
+  select(layer_from, node_from=node_id.x, layer_to, node_to=node_id.y, weight) %>% 
+  left_join(layer_metadata, by=c('layer_from' = 'layer_name')) %>%  # Join for plants
+  left_join(layer_metadata, by=c('layer_to' = 'layer_name')) %>%  # Join for plants
+  select(-layer_from, -layer_to) %>% 
+  select(layer_from=layer_id.x, node_from, layer_to=layer_id.y, node_to, weight)
+
+
+#####################
+#Running Infomap
+#####################
+
+#Setting folder with infomap.exe
+folder_info <- paste(dir_ini,"/R_Scripts",sep="")
+
+# Check Infomap is running
+setwd(folder_info)
+check_infomap() # Make sure file can be run correctly. Should return TRUE
+
+# Prepare data
+#Plot_multilayer <- create_multilayer_object(extended = Plot_edgelist_complete_ids, nodes = physical_nodes, intra_output_extended = T, inter_output_extended = T)
+Plot_multilayer <- create_multilayer_object(extended = S_edge_list_ID, nodes = physical_nodes, intra_output_extended = T, inter_output_extended = T)
+
+
+# Run Infomap
+#modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = F, silent = T, flow_model = 'undirected', trials = 250, seed = 497294, temporal_network = F)
+modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = F, silent = T, flow_model = 'directed', trials = 1000, seed = 497294, temporal_network = F)
+
+# Extract information
+plot_modules_i <- modules_relax_rate$modules %>% left_join(layer_metadata,by="layer_id")
+
+plot_modules_i$Line <- Line_i
+
+setwd(dir_ini)
+
+write_csv(plot_modules_i,paste0("Processed_data/Modularity_Fully_Connected/Modularity_Line",
+                                Line_i,".csv")  )
+
+}
