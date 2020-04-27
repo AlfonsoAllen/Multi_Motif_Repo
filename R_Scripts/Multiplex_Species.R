@@ -50,6 +50,47 @@ list_incid_matrix_19 <- frame2webs(testdata_19,type.out="list")
 
 fitness %>% group_by(Plant_Simple) %>%count()
 
+###########################################
+#Plants-interactions: Generating a bipartite network for each line
+###########################################
+
+fitness_L <- fitness %>% unite("Plot_Sub_Plant", c("Plot","Subplot_Plant_Label"), sep=" ", remove = FALSE)
+
+fitness_L$Line <- NA
+
+for (i in 1:nrow(fitness_L)){
+  if(fitness_L$Plot[i] %in% c(1,2,3)){fitness_L$Line[i] <- 1}
+  else if(fitness_L$Plot[i] %in% c(4,5,6)){fitness_L$Line[i] <- 2}
+  else{fitness_L$Line[i] <- 3}
+}
+
+for (i in 1:3){ #i: Line
+  
+  fitness_data <- fitness_L %>% filter(Line==i)
+  
+  testdata_19 <-   data.frame(higher = fitness_data$ID,
+                              lower = fitness_data$Plot_Sub_Plant,
+                              webID = fitness_data$Plant_Simple,
+                              freq = fitness_data$Visits_tot)
+  
+  list_incid_matrix_19 <- frame2webs(testdata_19,type.out="list")
+  
+  for (j in 1:length(list_incid_matrix_19)){
+    
+    plant_i <- j
+    print(names(list_incid_matrix_19)[plant_i])
+    
+    incid_matrix_i <- list_incid_matrix_19[[plant_i]] 
+    
+    layer_csv <- paste("Processed_data/Multilayer_Species/Line_",i,"_layer_",names(list_incid_matrix_19)[plant_i],".csv",sep="")
+    write.csv(incid_matrix_i,layer_csv)
+  }
+}
+
+fitness_L %>% group_by(Plant_Simple) %>%count()
+
+
+#######
 
 ###########################################
 #Plants-interactions: Generating a bipartite network for CARACOLES
