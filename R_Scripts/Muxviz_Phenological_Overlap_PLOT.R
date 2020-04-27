@@ -6,24 +6,33 @@ library(tidyverse)
 #Access layers files
 dir_ini <- getwd()
 
+#Load data on pollinator visits
+pollination <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
-for (Plot_i in 1:9){
+pollination$Line <- NA
+
+for (i in 1:nrow(pollination)){
+  if(pollination$Plot[i] %in% c(1,2,3)){pollination$Line[i] <- 1}
+  else if(pollination$Plot[i] %in% c(4,5,6)){pollination$Line[i] <- 2}
+  else{pollination$Line[i] <- 3}
+}
+
+for (Line_i in 1:3){
 # Select the plot number to build up the multilayer
 
-  #Plot_i <- 7
+  #Line_i <- 7
   
 ##########################
 #ESTIMATE PHENOLOGY
 ##########################
 
-#Load data on pollinator visits
-pollination <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
+
 
 #Filter data
-pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Plot==Plot_i)
+pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Line==Line_i)
 
 pollination_19_i <- pollination_19_i %>% 
-  select(Day,Month,Year,Plot,Subplot,Plant_Simple,ID_Simple,Visits) %>%
+  select(Day,Month,Year,Line,Plot,Subplot,Plant_Simple,ID_Simple,Visits) %>%
   rename(ID=ID_Simple)%>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
@@ -37,8 +46,8 @@ plant_pheno_overlap <- function(plant1,plant2,pollination_19_i) {
   
   plants <- sort(unique(pollination_19_i$Plant_Simple))
   if(sum(c(plant1,plant2) %in% plants)<2){
-    print(paste("Error: At least one plant does not belong to plot ",
-                Plot_i," experimental phenology",sep=""))
+    print(paste("Error: At least one plant does not belong to Line ",
+                Line_i," experimental phenology",sep=""))
     }else{
     pollination_plant1 <- pollination_19_i %>% filter(Plant_Simple==plant1)
     #Weeks in which plant 1 recieves visits
@@ -63,7 +72,7 @@ plant_pheno_overlap <- function(plant1,plant2,pollination_19_i) {
 
 
 ###########################
-# CREATE MULTILAYER FOR Plot_i
+# CREATE MULTILAYER FOR Line_i
 ###########################
 
 folder_base <- paste(dir_ini,"/Processed_data/Multilayer_Species/",sep="")
@@ -72,9 +81,9 @@ files_base <- list.files(folder_base)
 
 setwd(folder_base)
 
-# Extract layer files for Plot_i
+# Extract layer files for Line_i
 
-list_files_field_level <- files_base[grepl(paste("Plot_",Plot_i,sep = ""), files_base)]
+list_files_field_level <- files_base[grepl(paste("Line_",Line_i,sep = ""), files_base)]
 
 # Extract edge_list for each layer
 for (i in 1:length(list_files_field_level)){
@@ -227,7 +236,7 @@ S_edge_list_ID <-
 ###########################################
 
 folder_muxviz_root <- paste(dir_ini,"/Processed_data/Muxviz_Pheno_Overlap/",sep="")
-newfolder <- paste("Plot_",Plot_i,"/", sep="")
+newfolder <- paste("Line_",Line_i,"/", sep="")
 folder_muxviz <- paste0(folder_muxviz_root, newfolder)
 dir.create(folder_muxviz)
 
@@ -238,13 +247,13 @@ mutate(general_multilayer_layout,
        nodeLabel=str_replace(general_multilayer_layout$nodeLabel," ", "_"))
 
 write_delim(general_multilayer_layout,
-            paste(folder_muxviz,"general_multilayer_layout_Plot",Plot_i,".txt",sep=""),
+            paste(folder_muxviz,"general_multilayer_layout_Line",Line_i,".txt",sep=""),
             delim = " ")
 
 general_multilayer_layers <- layer_metadata %>% rename(layerID=layer_id,layerLabel=layer_name)
 
 write_delim(general_multilayer_layers,
-            paste(folder_muxviz,"general_multilayer_layers_Plot",Plot_i,".txt",sep=""),
+            paste(folder_muxviz,"general_multilayer_layers_Line",Line_i,".txt",sep=""),
             delim = " ")
 
 general_multilayer <- S_edge_list_ID %>%
@@ -252,25 +261,25 @@ general_multilayer <- S_edge_list_ID %>%
   arrange(node_from,layer_from,node_to,layer_to)
 
 write_delim(general_multilayer,
-            paste(folder_muxviz,"general_multilayer_Plot",Plot_i,".edges",sep=""),
+            paste(folder_muxviz,"general_multilayer_Line",Line_i,".edges",sep=""),
             col_names=FALSE,
             delim = " ")
 
 
 write_delim(as.data.frame(
-  paste(paste(folder_muxviz,"general_multilayer_Plot",Plot_i,".edges",sep=""),
-        paste(folder_muxviz,"general_multilayer_layers_Plot",Plot_i,".txt",sep=""),
-        paste(folder_muxviz,"general_multilayer_layout_Plot",Plot_i,".txt",sep=""),sep=";")),
-  paste(folder_muxviz,"general_multilayer_config_Plot",Plot_i,".txt",sep=""),
+  paste(paste(folder_muxviz,"general_multilayer_Line",Line_i,".edges",sep=""),
+        paste(folder_muxviz,"general_multilayer_layers_Line",Line_i,".txt",sep=""),
+        paste(folder_muxviz,"general_multilayer_layout_Line",Line_i,".txt",sep=""),sep=";")),
+  paste(folder_muxviz,"general_multilayer_config_Line",Line_i,".txt",sep=""),
   col_names=FALSE,
   quote_escape = "none",
   delim = ";")
 
 write.table(as.data.frame(
-  paste(paste(folder_muxviz,"general_multilayer_Plot",Plot_i,".edges",sep=""),
-        paste(folder_muxviz,"general_multilayer_layers_Plot",Plot_i,".txt",sep=""),
-        paste(folder_muxviz,"general_multilayer_layout_Plot",Plot_i,".txt",sep=""),sep=";")),
-  paste(folder_muxviz,"general_multilayer_config_Plot",Plot_i,".txt",sep=""),
+  paste(paste(folder_muxviz,"general_multilayer_Line",Line_i,".edges",sep=""),
+        paste(folder_muxviz,"general_multilayer_layers_Line",Line_i,".txt",sep=""),
+        paste(folder_muxviz,"general_multilayer_layout_Line",Line_i,".txt",sep=""),sep=";")),
+  paste(folder_muxviz,"general_multilayer_config_Line",Line_i,".txt",sep=""),
   row.names=FALSE,col.names = FALSE,sep="", quote = FALSE)
 
 setwd(dir_ini)
