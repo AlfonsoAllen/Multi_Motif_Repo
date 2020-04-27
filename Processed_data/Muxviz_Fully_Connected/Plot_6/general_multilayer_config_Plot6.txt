@@ -1,0 +1,1 @@
+C:/Users/USUARIO/Desktop/Multi_Motif_Repo/Processed_data/Muxviz_Fully_Connected/Plot_6/general_multilayer_Plot6.edges;C:/Users/USUARIO/Desktop/Multi_Motif_Repo/Processed_data/Muxviz_Fully_Connected/Plot_6/general_multilayer_layers_Plot6.txt;C:/Users/USUARIO/Desktop/Multi_Motif_Repo/Processed_data/Muxviz_Fully_Connected/Plot_6/general_multilayer_layout_Plot6.txt

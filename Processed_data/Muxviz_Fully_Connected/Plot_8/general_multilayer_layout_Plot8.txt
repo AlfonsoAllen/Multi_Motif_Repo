@@ -20,99 +20,97 @@ nodeID nodeLabel
 19 "B4 CHFU"
 20 "B4 LEMA"
 21 "B4 PUPA"
-22 "B4 RAPE"
-23 "B5 CHFU"
-24 "B5 LEMA"
-25 "B5 ME"
-26 "B5 PUPA"
-27 "B6 CHFU"
-28 "B6 LEMA"
-29 "B6 PUPA"
-30 "C1 LEMA"
-31 "C2 CHFU"
-32 "C2 LEMA"
-33 "C2 PUPA"
-34 "C3 CHFU"
-35 "C3 LEMA"
-36 "C3 PUPA"
-37 "C4 CHFU"
-38 "C4 LEMA"
-39 "C4 PUPA"
-40 "C5 ME"
-41 "C5 PUPA"
-42 "C6 CHFU"
-43 "C6 PUPA"
-44 "D1 CHFU"
-45 "D1 LEMA"
-46 "D2 CHFU"
-47 "D2 LEMA"
-48 "D2 PUPA"
-49 "D3 CHFU"
-50 "D3 LEMA"
-51 "D3 PUPA"
-52 "D4 LEMA"
-53 "D4 PUPA"
-54 "D5 CHFU"
-55 "D5 LEMA"
-56 "D5 PUPA"
-57 "D6 CHFU"
-58 "D6 LEMA"
-59 "D6 PUPA"
-60 "E1 CHFU"
-61 "E1 LEMA"
-62 "E1 PUPA"
-63 "E2 CHFU"
-64 "E2 LEMA"
-65 "E2 ME"
-66 "E2 PUPA"
-67 "E3 CHFU"
-68 "E3 LEMA"
-69 "E3 PUPA"
-70 "E4 CHFU"
-71 "E4 LEMA"
-72 "E5 CHFU"
-73 "E5 LEMA"
-74 "E5 PUPA"
-75 "E6 LEMA"
-76 "E6 ME"
-77 "E6 PUPA"
-78 "F1 LEMA"
-79 "F1 PUPA"
-80 "F2 LEMA"
-81 "F2 PUPA"
-82 "F3 CHFU"
-83 "F3 LEMA"
-84 "F3 PUPA"
-85 "F4 CHFU"
-86 "F4 LEMA"
-87 "F4 PUPA"
-88 "F5 ME"
-89 "F5 PUPA"
-90 "F6 CHFU"
-91 "F6 LEMA"
-92 Andrena_cinerea
-93 Bombyliidae
-94 Bruchidae
-95 Calliphoridae
-96 Cantharidae
-97 Dilophus_sp.
-98 Diptera
-99 Empididae
-100 Episyrphus_balteatus
-101 Eristalis_sp.
-102 Eucera_sp.
-103 Eupeodes_corollae
-104 Lasiocampa_trifolii
-105 Lomatia_sp.
-106 Malachius_bipustulatus
-107 Meligethes_sp.
-108 Mordellidae
-109 Musca_sp.
-110 Nemotelus_sp.
-111 Odontomyia_sp.
-112 Oedemeridae
-113 Psilothrix_viridicoerulea
-114 Scaeva_sp.
-115 Sphaerophoria_scripta
-116 Syrphidae
-117 Thymelicus_sp.
+22 "B5 CHFU"
+23 "B5 LEMA"
+24 "B5 ME"
+25 "B5 PUPA"
+26 "B6 CHFU"
+27 "B6 LEMA"
+28 "B6 PUPA"
+29 "C1 LEMA"
+30 "C2 CHFU"
+31 "C2 LEMA"
+32 "C2 PUPA"
+33 "C3 CHFU"
+34 "C3 LEMA"
+35 "C3 PUPA"
+36 "C4 CHFU"
+37 "C4 LEMA"
+38 "C4 PUPA"
+39 "C5 ME"
+40 "C5 PUPA"
+41 "C6 CHFU"
+42 "C6 PUPA"
+43 "D1 CHFU"
+44 "D1 LEMA"
+45 "D2 CHFU"
+46 "D2 LEMA"
+47 "D2 PUPA"
+48 "D3 CHFU"
+49 "D3 LEMA"
+50 "D3 PUPA"
+51 "D4 LEMA"
+52 "D4 PUPA"
+53 "D5 CHFU"
+54 "D5 LEMA"
+55 "D5 PUPA"
+56 "D6 CHFU"
+57 "D6 LEMA"
+58 "D6 PUPA"
+59 "E1 CHFU"
+60 "E1 LEMA"
+61 "E1 PUPA"
+62 "E2 CHFU"
+63 "E2 LEMA"
+64 "E2 ME"
+65 "E2 PUPA"
+66 "E3 CHFU"
+67 "E3 LEMA"
+68 "E3 PUPA"
+69 "E4 CHFU"
+70 "E4 LEMA"
+71 "E5 CHFU"
+72 "E5 LEMA"
+73 "E5 PUPA"
+74 "E6 LEMA"
+75 "E6 ME"
+76 "E6 PUPA"
+77 "F1 LEMA"
+78 "F1 PUPA"
+79 "F2 LEMA"
+80 "F2 PUPA"
+81 "F3 CHFU"
+82 "F3 LEMA"
+83 "F3 PUPA"
+84 "F4 CHFU"
+85 "F4 LEMA"
+86 "F4 PUPA"
+87 "F5 ME"
+88 "F5 PUPA"
+89 "F6 CHFU"
+90 "F6 LEMA"
+91 Andrena_cinerea
+92 Bombyliidae
+93 Bruchidae
+94 Calliphoridae
+95 Cantharidae
+96 Dilophus_sp.
+97 Diptera
+98 Empididae
+99 Episyrphus_balteatus
+100 Eristalis_sp.
+101 Eucera_sp.
+102 Eupeodes_corollae
+103 Lasiocampa_trifolii
+104 Lomatia_sp.
+105 Malachius_bipustulatus
+106 Meligethes_sp.
+107 Mordellidae
+108 Musca_sp.
+109 Nemotelus_sp.
+110 Odontomyia_sp.
+111 Oedemeridae
+112 Psilothrix_viridicoerulea
+113 Scaeva_sp.
+114 Sphaerophoria_scripta
+115 Thymelicus_sp.
