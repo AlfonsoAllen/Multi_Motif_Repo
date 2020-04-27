@@ -36,10 +36,6 @@ caracoles_motif <- caracoles_motif %>% filter(!Plant_Simple%in%c("HOMA","Lysimac
 
 fitness <- caracoles_motif %>% left_join(fitness2, by=c("Plot","Subplot","Plant_Simple","ID","Week"))
 
-########################################################################
-# SOME MOTIF VS SEEDS GRAPHS
-########################################################################
-
 # Adding GF contributions
 
 fitness_SUM_Seed2 <- fitness %>% group_by(Plot,Subplot,Plant_Simple) %>%
@@ -52,6 +48,44 @@ fitness_SUM_Seed2 <- fitness %>% group_by(Plot,Subplot,Plant_Simple) %>%
 fitness_SUM_Seed2 <- filter(fitness_SUM_Seed2,Motif_Sum!=0)
 
 fitness_SUM_Seed <- fitness_SUM_Seed2 #%>% filter(Week==13)
+
+#####################################
+# ADDING MODULARITY MEASSURES
+#####################################
+
+for (i in 1:9){
+  
+  
+  file_i = paste0("Processed_data/Modularity_Pheno_Overlap/Modularity_Plot",i,".csv")
+  modularity_i <- read_csv(file_i)
+  
+  modularity_i <- modularity_i %>% filter(type=="plant") %>%
+    select(-node_id,-layer_id,-layer_name,-type) %>% separate(species,c("Subplot","Plant_Simple")," ")
+  
+  
+  if(i==1){modularity <- modularity_i}else{modularity <- bind_rows(modularity,modularity_i)}
+  
+}
+
+
+fitness_SUM_Seed <- fitness_SUM_Seed %>% left_join(modularity,by=c("Plot","Subplot","Plant_Simple"))
+
+
+ggplot(fitness_SUM_Seed)+
+  geom_point(aes(x = (module),y =(Seeds_GF),color = as.factor(Plant_Simple)))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  labs(title="Phen. Overlap Modules \n (each point represents the result for a given subplot and plant)",
+       x ="Module", y = "Mean(# seeds)",color="Plant")
+
+ggplot(fitness_SUM_Seed)+
+  geom_boxplot(aes(x = as.factor(module),y =(Seeds_GF),color = as.factor(module)))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  labs(title="Phen. Overlap Modules \n (each point represents the result for a given subplot and plant)",
+       x ="Module", y = "Mean(# seeds)",color="Plant")
+
+########################################################################
+# SOME MOTIF VS SEEDS GRAPHS
+########################################################################
 
 #-----
 # pdf("Processed_data/Motifs_WEEK/Examples_motifs_seed_correlation_graphs/Homo_Hete_Seed_Plot.pdf",
