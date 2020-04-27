@@ -1,0 +1,132 @@
+node_id,module,layer_id,type,species,layer_name,Plot
+1,9,2,plant,A1 LEMA,LEMA,8
+2,5,1,plant,A2 CHFU,CHFU,8
+3,4,2,plant,A2 LEMA,LEMA,8
+4,14,4,plant,A2 PUPA,PUPA,8
+5,13,1,plant,A3 CHFU,CHFU,8
+6,8,2,plant,A3 LEMA,LEMA,8
+7,2,1,plant,A4 CHFU,CHFU,8
+8,6,2,plant,A4 LEMA,LEMA,8
+9,2,1,plant,A5 CHFU,CHFU,8
+10,4,2,plant,A5 LEMA,LEMA,8
+11,13,1,plant,A6 CHFU,CHFU,8
+12,2,1,plant,B1 CHFU,CHFU,8
+13,5,1,plant,B2 CHFU,CHFU,8
+14,9,2,plant,B2 LEMA,LEMA,8
+15,1,4,plant,B2 PUPA,PUPA,8
+16,13,1,plant,B3 CHFU,CHFU,8
+17,3,2,plant,B3 LEMA,LEMA,8
+18,1,4,plant,B3 PUPA,PUPA,8
+19,2,1,plant,B4 CHFU,CHFU,8
+20,2,2,plant,B4 LEMA,LEMA,8
+21,1,4,plant,B4 PUPA,PUPA,8
+22,7,1,plant,B5 CHFU,CHFU,8
+23,3,2,plant,B5 LEMA,LEMA,8
+24,4,3,plant,B5 ME,ME,8
+25,1,4,plant,B5 PUPA,PUPA,8
+26,7,1,plant,B6 CHFU,CHFU,8
+27,3,2,plant,B6 LEMA,LEMA,8
+28,1,4,plant,B6 PUPA,PUPA,8
+29,9,2,plant,C1 LEMA,LEMA,8
+30,11,1,plant,C2 CHFU,CHFU,8
+31,3,2,plant,C2 LEMA,LEMA,8
+32,1,4,plant,C2 PUPA,PUPA,8
+33,6,1,plant,C3 CHFU,CHFU,8
+34,3,2,plant,C3 LEMA,LEMA,8
+35,1,4,plant,C3 PUPA,PUPA,8
+36,2,1,plant,C4 CHFU,CHFU,8
+37,3,2,plant,C4 LEMA,LEMA,8
+38,1,4,plant,C4 PUPA,PUPA,8
+39,8,3,plant,C5 ME,ME,8
+40,1,4,plant,C5 PUPA,PUPA,8
+41,5,1,plant,C6 CHFU,CHFU,8
+42,1,4,plant,C6 PUPA,PUPA,8
+43,16,1,plant,D1 CHFU,CHFU,8
+44,2,2,plant,D1 LEMA,LEMA,8
+45,11,1,plant,D2 CHFU,CHFU,8
+46,10,2,plant,D2 LEMA,LEMA,8
+47,1,4,plant,D2 PUPA,PUPA,8
+48,7,1,plant,D3 CHFU,CHFU,8
+49,3,2,plant,D3 LEMA,LEMA,8
+50,1,4,plant,D3 PUPA,PUPA,8
+51,4,2,plant,D4 LEMA,LEMA,8
+52,1,4,plant,D4 PUPA,PUPA,8
+53,7,1,plant,D5 CHFU,CHFU,8
+54,10,2,plant,D5 LEMA,LEMA,8
+55,1,4,plant,D5 PUPA,PUPA,8
+56,7,1,plant,D6 CHFU,CHFU,8
+57,3,2,plant,D6 LEMA,LEMA,8
+58,1,4,plant,D6 PUPA,PUPA,8
+59,5,1,plant,E1 CHFU,CHFU,8
+60,3,2,plant,E1 LEMA,LEMA,8
+61,14,4,plant,E1 PUPA,PUPA,8
+62,4,1,plant,E2 CHFU,CHFU,8
+63,5,2,plant,E2 LEMA,LEMA,8
+64,12,3,plant,E2 ME,ME,8
+65,1,4,plant,E2 PUPA,PUPA,8
+66,2,1,plant,E3 CHFU,CHFU,8
+67,3,2,plant,E3 LEMA,LEMA,8
+68,1,4,plant,E3 PUPA,PUPA,8
+69,2,1,plant,E4 CHFU,CHFU,8
+70,6,2,plant,E4 LEMA,LEMA,8
+71,8,1,plant,E5 CHFU,CHFU,8
+72,3,2,plant,E5 LEMA,LEMA,8
+73,15,4,plant,E5 PUPA,PUPA,8
+74,10,2,plant,E6 LEMA,LEMA,8
+75,6,3,plant,E6 ME,ME,8
+76,1,4,plant,E6 PUPA,PUPA,8
+77,9,2,plant,F1 LEMA,LEMA,8
+78,1,4,plant,F1 PUPA,PUPA,8
+79,4,2,plant,F2 LEMA,LEMA,8
+80,1,4,plant,F2 PUPA,PUPA,8
+81,7,1,plant,F3 CHFU,CHFU,8
+82,2,2,plant,F3 LEMA,LEMA,8
+83,1,4,plant,F3 PUPA,PUPA,8
+84,2,1,plant,F4 CHFU,CHFU,8
+85,3,2,plant,F4 LEMA,LEMA,8
+86,1,4,plant,F4 PUPA,PUPA,8
+87,12,3,plant,F5 ME,ME,8
+88,1,4,plant,F5 PUPA,PUPA,8
+89,2,1,plant,F6 CHFU,CHFU,8
+90,17,2,plant,F6 LEMA,LEMA,8
+91,6,1,pollinator,Andrena_cinerea,CHFU,8
+91,6,2,pollinator,Andrena_cinerea,LEMA,8
+91,6,3,pollinator,Andrena_cinerea,ME,8
+91,15,4,pollinator,Andrena_cinerea,PUPA,8
+92,1,4,pollinator,Bombyliidae,PUPA,8
+93,11,1,pollinator,Bruchidae,CHFU,8
+94,7,1,pollinator,Calliphoridae,CHFU,8
+95,12,3,pollinator,Cantharidae,ME,8
+95,1,4,pollinator,Cantharidae,PUPA,8
+96,2,1,pollinator,Dilophus_sp.,CHFU,8
+96,2,2,pollinator,Dilophus_sp.,LEMA,8
+96,2,3,pollinator,Dilophus_sp.,ME,8
+96,2,4,pollinator,Dilophus_sp.,PUPA,8
+97,5,1,pollinator,Diptera,CHFU,8
+97,5,2,pollinator,Diptera,LEMA,8
+98,7,1,pollinator,Empididae,CHFU,8
+99,16,1,pollinator,Episyrphus_balteatus,CHFU,8
+100,14,4,pollinator,Eristalis_sp.,PUPA,8
+101,1,4,pollinator,Eucera_sp.,PUPA,8
+102,7,1,pollinator,Eupeodes_corollae,CHFU,8
+103,1,4,pollinator,Lasiocampa_trifolii,PUPA,8
+104,11,1,pollinator,Lomatia_sp.,CHFU,8
+105,3,2,pollinator,Malachius_bipustulatus,LEMA,8
+106,9,2,pollinator,Meligethes_sp.,LEMA,8
+106,9,4,pollinator,Meligethes_sp.,PUPA,8
+107,3,2,pollinator,Mordellidae,LEMA,8
+108,8,1,pollinator,Musca_sp.,CHFU,8
+108,8,2,pollinator,Musca_sp.,LEMA,8
+108,8,3,pollinator,Musca_sp.,ME,8
+108,1,4,pollinator,Musca_sp.,PUPA,8
+109,17,2,pollinator,Nemotelus_sp.,LEMA,8
+110,6,1,pollinator,Odontomyia_sp.,CHFU,8
+110,10,2,pollinator,Odontomyia_sp.,LEMA,8
+111,10,2,pollinator,Oedemeridae,LEMA,8
+112,3,2,pollinator,Psilothrix_viridicoerulea,LEMA,8
+112,3,4,pollinator,Psilothrix_viridicoerulea,PUPA,8
+113,13,1,pollinator,Scaeva_sp.,CHFU,8
+114,4,1,pollinator,Sphaerophoria_scripta,CHFU,8
+114,4,2,pollinator,Sphaerophoria_scripta,LEMA,8
+114,4,3,pollinator,Sphaerophoria_scripta,ME,8
+115,1,4,pollinator,Thymelicus_sp.,PUPA,8

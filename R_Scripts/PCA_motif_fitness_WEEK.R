@@ -13,6 +13,14 @@ fitness2 <- fitness2 %>% select(-Order,-Family,-Superfamily,-ID) %>% rename(ID=I
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
 
+fitness2$Line <- NA
+
+for (i in 1:nrow(fitness2 )){
+  if(fitness2$Plot[i] %in% c(1,2,3)){fitness2$Line[i] <- 1}
+  else if(fitness2$Plot[i] %in% c(4,5,6)){fitness2$Line[i] <- 2}
+  else{fitness2$Line[i] <- 3}
+} 
+
 
 #####################################
 # Uploading motifs data
@@ -42,7 +50,7 @@ fitness <- caracoles_motif %>% left_join(fitness2, by=c("Plot","Subplot","Plant_
 
 # Adding GF contributions
 
-fitness_SUM <- fitness %>% group_by(Plot,Subplot,Plant_Simple) %>%
+fitness_SUM <- fitness %>% group_by(Line,Plot,Subplot,Plant_Simple) %>%
   summarize(Seeds_GF = mean(Seed),
                 Fruit_GF = mean(Fruit),
                 visits_GF = sum(Visits),
@@ -54,34 +62,55 @@ fitness_SUM <- fitness_SUM %>% filter(!is.na(Seeds_GF),!is.na(Fruit_GF))
 unique(fitness_SUM)
 
 #####################################################
+# ADDING ABUNDANCES
+
+abundances <- read_csv2("Raw_Data/abundances_2019.csv")
+abundances_19 <- abundances %>% filter(year==2019) %>% 
+  select(plot,subplot,species,individuals) %>% arrange(plot,subplot)
+
+# Since there is no ME in abundances and pollination data shows that plant, we set 
+# MEEL, and MESU to ME
+
+abundances_19$species[abundances_19$species=="MEEL"] <- "ME"
+abundances_19$species[abundances_19$species=="MESU"] <- "ME"
+
+abundances_19 <- abundances_19 %>% group_by(plot, subplot,species) %>% count(wt=individuals)%>%
+  mutate(species_name=species) %>%
+  rename(individuals=n, Plant_Simple=species,Plot=plot,Subplot=subplot) %>%
+  spread(species_name,individuals)
+
+abundances_19[is.na(abundances_19)] <- 0
+
+fitness_SUM_Ab <- fitness_SUM %>% left_join(abundances_19, 
+                                            by=c("Plot","Subplot","Plant_Simple"))
+
+#####################################################
 # ADDING CENTRALITY MEASSURES
 
 for (i in 1:9){
 
-file_i = paste0("C:/Users/USUARIO/Desktop/Multi_Motif_Repo/Processed_data/Muxviz_Fully_Connected/centrality_table_Plot",i)
+file_i = paste0("C:/Users/USUARIO/Desktop/Multi_Motif_Repo/Processed_data/Muxviz_Pheno_Overlap/centrality_table_Plot",i)
 Centrality_i <- read_csv2(file_i)
 
+# Remove data for eigenvectors
 Centrality_i <- Centrality_i %>% filter(Layer=="1-Multi") %>% mutate(Plot=i) %>%
-  select(-Layer,-Node) %>% separate(Label,c("Subplot","Plant_Simple")," ")
+  select(-Layer,-Node,-Eigenvector) %>% separate(Label,c("Subplot","Plant_Simple")," ")
 
 
 if(i==1){centrality <- Centrality_i}else{centrality <- bind_rows(centrality,Centrality_i)}
 
 }
 
-fitness_PCA <- fitness_SUM %>% left_join(centrality,by=c("Plot","Subplot","Plant_Simple")) 
+fitness_PCA <- fitness_SUM_Ab %>% left_join(centrality,by=c("Plot","Subplot","Plant_Simple")) 
 
 fitness_PCA$StrengthIn <- as.numeric(fitness_PCA$StrengthIn)
 fitness_PCA$PageRank <- as.numeric(fitness_PCA$PageRank)
-fitness_PCA$Eigenvector <- as.numeric(fitness_PCA$Eigenvector)
 fitness_PCA$Hub <- as.numeric(fitness_PCA$Hub)
 fitness_PCA$Authority <- as.numeric(fitness_PCA$Authority)
 fitness_PCA$Katz <- as.numeric(fitness_PCA$Katz)
 fitness_PCA$Multiplexity <- as.numeric(fitness_PCA$Multiplexity)
 
-fitness_PCA <- fitness_PCA%>% select(-DegreeOut,-StrengthOut,-Eigenvector,-Multiplexity)
-
-plot((fitness_PCA$Authority),fitness_PCA$Seeds_GF)
+fitness_PCA <- fitness_PCA %>% select(-DegreeOut,-StrengthOut,-Multiplexity)
 
 #################################################################################
 #################################################################################
@@ -95,11 +124,11 @@ row.names(fitness_PCA) <- paste(fitness_PCA$Plot,fitness_PCA$Subplot,fitness_PCA
 
 plot_i <- 8
 
-fitness_PCA_i <- fitness_PCA %>% filter(Plot==plot_i)
+fitness_PCA_i <- fitness_PCA #%>% filter(Plot==plot_i)
 
 library("FactoMineR")
 #res.pca <- PCA(fitness_PCA[,c(4:8,10:ncol(fitness_PCA))], ncp = 5, graph = FALSE)
-res.pca <- PCA(fitness_PCA_i[,c(4:ncol(fitness_PCA_i))], ncp = 5, graph = FALSE)
+res.pca <- PCA(fitness_PCA_i[,c(5:5,7:ncol(fitness_PCA_i))], ncp = 5, graph = FALSE)
 
 print(res.pca)
 
@@ -183,7 +212,7 @@ fviz_pca_ind(res.pca,
              col.ind = as.factor(fitness_PCA_i$Line), # color by groups
              palette = rcolors,
              addEllipses = TRUE, # Concentration ellipses
-             legend.title = "Groups"
+             legend.title = "Line"
 )
 
 fviz_pca_ind(res.pca,
@@ -191,7 +220,7 @@ fviz_pca_ind(res.pca,
              col.ind = as.factor(fitness_PCA_i$Plant_Simple), # color by groups
              palette = rcolors,
              addEllipses = TRUE, # Concentration ellipses
-             legend.title = "Groups"
+             legend.title = "Plant"
 )
 
 fviz_pca_ind(res.pca,
@@ -199,5 +228,6 @@ fviz_pca_ind(res.pca,
              col.ind = as.factor(fitness_PCA_i$Plot), # color by groups
              palette = rcolors,
              addEllipses = TRUE, # Concentration ellipses
-             legend.title = "Groups"
+             legend.title = "Plots"
 )
+

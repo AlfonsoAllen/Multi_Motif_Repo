@@ -1,0 +1,65 @@
+node_id,module,layer_id,type,species,layer_name,Plot
+1,3,2,plant,A1 LEMA,LEMA,2
+2,2,1,plant,A3 CHFU,CHFU,2
+3,1,2,plant,A3 LEMA,LEMA,2
+4,2,1,plant,A4 CHFU,CHFU,2
+5,5,2,plant,A4 LEMA,LEMA,2
+6,11,2,plant,A5 LEMA,LEMA,2
+7,4,3,plant,A5 ME,ME,2
+8,2,1,plant,B1 CHFU,CHFU,2
+9,1,2,plant,B1 LEMA,LEMA,2
+10,3,3,plant,B1 ME,ME,2
+11,7,2,plant,B2 LEMA,LEMA,2
+12,1,2,plant,B3 LEMA,LEMA,2
+13,10,2,plant,B4 LEMA,LEMA,2
+14,9,3,plant,B5 ME,ME,2
+15,1,2,plant,B6 LEMA,LEMA,2
+16,6,2,plant,C1 LEMA,LEMA,2
+17,6,3,plant,C1 ME,ME,2
+18,1,2,plant,C3 LEMA,LEMA,2
+19,4,2,plant,C5 LEMA,LEMA,2
+20,7,2,plant,C6 LEMA,LEMA,2
+21,3,1,plant,D1 CHFU,CHFU,2
+22,1,2,plant,D1 LEMA,LEMA,2
+23,8,3,plant,D2 ME,ME,2
+24,9,3,plant,D3 ME,ME,2
+25,5,2,plant,D4 LEMA,LEMA,2
+26,4,2,plant,D5 LEMA,LEMA,2
+27,4,2,plant,D6 LEMA,LEMA,2
+28,2,1,plant,E1 CHFU,CHFU,2
+29,2,2,plant,E1 LEMA,LEMA,2
+30,4,2,plant,E2 LEMA,LEMA,2
+31,5,3,plant,E2 ME,ME,2
+32,7,2,plant,E3 LEMA,LEMA,2
+33,1,2,plant,E4 LEMA,LEMA,2
+34,6,3,plant,E4 ME,ME,2
+35,5,2,plant,E5 LEMA,LEMA,2
+36,1,2,plant,E6 LEMA,LEMA,2
+37,6,2,plant,F1 LEMA,LEMA,2
+38,10,2,plant,F2 LEMA,LEMA,2
+39,1,2,plant,F3 LEMA,LEMA,2
+40,1,2,plant,F4 LEMA,LEMA,2
+41,7,2,plant,F6 LEMA,LEMA,2
+42,8,2,pollinator,Andrena_cinerea,LEMA,2
+42,8,3,pollinator,Andrena_cinerea,ME,2
+43,1,2,pollinator,Brassicogethes_sp.,LEMA,2
+44,9,3,pollinator,Calliphoridae,ME,2
+45,6,2,pollinator,Cantharidae,LEMA,2
+45,6,3,pollinator,Cantharidae,ME,2
+46,2,1,pollinator,Dilophus_sp.,CHFU,2
+46,2,2,pollinator,Dilophus_sp.,LEMA,2
+47,3,1,pollinator,Diptera,CHFU,2
+47,3,2,pollinator,Diptera,LEMA,2
+47,3,3,pollinator,Diptera,ME,2
+48,11,2,pollinator,Episyrphus_balteatus,LEMA,2
+49,4,2,pollinator,Eupeodes_corollae,LEMA,2
+49,4,3,pollinator,Eupeodes_corollae,ME,2
+50,6,3,pollinator,Lassioglosum_.immunitum,ME,2
+51,10,2,pollinator,Malachius_bipustulatus,LEMA,2
+52,7,2,pollinator,Meligethes_sp.,LEMA,2
+53,10,2,pollinator,Melyridae,LEMA,2
+54,2,2,pollinator,Mordellidae,LEMA,2
+55,1,2,pollinator,Musca_sp.,LEMA,2
+56,5,2,pollinator,Nemotelus_sp.,LEMA,2
+56,5,3,pollinator,Nemotelus_sp.,ME,2
+57,1,2,pollinator,Psilothrix_viridicoerulea,LEMA,2
