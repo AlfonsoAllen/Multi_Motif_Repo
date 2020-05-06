@@ -1,0 +1,1769 @@
+layer_from,node_from,layer_to,node_to,weight,Plot
+CHFU,A2 CHFU,CHFU,Dilophus_sp.,0.3333333333333333,1
+CHFU,A2 CHFU,CHFU,Diptera,0.6666666666666666,1
+CHFU,A3 CHFU,CHFU,Empididae,1,1
+CHFU,B1 CHFU,CHFU,Eupeodes_corollae,1,1
+CHFU,B2 CHFU,CHFU,Empididae,0.6666666666666666,1
+CHFU,B2 CHFU,CHFU,Sphaerophoria_scripta,0.3333333333333333,1
+CHFU,C4 CHFU,CHFU,Dilophus_sp.,1,1
+CHFU,C5 CHFU,CHFU,Dilophus_sp.,1,1
+CHFU,E2 CHFU,CHFU,Diptera,1,1
+CHFU,E5 CHFU,CHFU,Diptera,1,1
+CHFU,F4 CHFU,CHFU,Diptera,1,1
+LEMA,A1 LEMA,LEMA,Dilophus_sp.,0.25,1
+LEMA,A1 LEMA,LEMA,Psilothrix_viridicoerulea,0.75,1
+LEMA,A2 LEMA,LEMA,Odontomyia_sp.,0.25,1
+LEMA,A2 LEMA,LEMA,Psilothrix_viridicoerulea,0.75,1
+LEMA,A3 LEMA,LEMA,Anthaxia_semicuprea,0.5,1
+LEMA,A3 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,1
+LEMA,A4 LEMA,LEMA,Andrena_cinerea,0.3333333333333333,1
+LEMA,A4 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,1
+LEMA,A5 LEMA,LEMA,Dilophus_sp.,1,1
+LEMA,A6 LEMA,LEMA,Anthaxia_semicuprea,0.3333333333333333,1
+LEMA,A6 LEMA,LEMA,Odontomyia_sp.,0.3333333333333333,1
+LEMA,A6 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,1
+LEMA,B1 LEMA,LEMA,Eupeodes_corollae,0.5,1
+LEMA,B1 LEMA,LEMA,Oedemeridae,0.5,1
+LEMA,B2 LEMA,LEMA,Odontomyia_sp.,0.25,1
+LEMA,B2 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,1
+LEMA,B2 LEMA,LEMA,Sphaerophoria_scripta,0.25,1
+LEMA,B5 LEMA,LEMA,Psilothrix_viridicoerulea,1,1
+LEMA,C1 LEMA,LEMA,Musca_sp.,0.5,1
+LEMA,C1 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,1
+LEMA,C2 LEMA,LEMA,Dilophus_sp.,1,1
+LEMA,C3 LEMA,LEMA,Odontomyia_sp.,0.5,1
+LEMA,C3 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,1
+LEMA,C4 LEMA,LEMA,Andrena_cinerea,0.5,1
+LEMA,C4 LEMA,LEMA,Melyridae,0.5,1
+LEMA,C5 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,1
+LEMA,C5 LEMA,LEMA,Diptera,0.3333333333333333,1
+LEMA,C5 LEMA,LEMA,Eupeodes_corollae,0.3333333333333333,1
+LEMA,D1 LEMA,LEMA,Melyridae,1,1
+LEMA,D2 LEMA,LEMA,Psilothrix_viridicoerulea,1,1
+LEMA,D3 LEMA,LEMA,Chrysomelidae,0.14285714285714285,1
+LEMA,D3 LEMA,LEMA,Dilophus_sp.,0.2857142857142857,1
+LEMA,D3 LEMA,LEMA,Mordellidae,0.14285714285714285,1
+LEMA,D3 LEMA,LEMA,Psilothrix_viridicoerulea,0.42857142857142855,1
+LEMA,D4 LEMA,LEMA,Mordellidae,1,1
+LEMA,D5 LEMA,LEMA,Anthaxia_semicuprea,0.2,1
+LEMA,D5 LEMA,LEMA,Dilophus_sp.,0.2,1
+LEMA,D5 LEMA,LEMA,Mordellidae,0.2,1
+LEMA,D5 LEMA,LEMA,Odontomyia_sp.,0.2,1
+LEMA,D5 LEMA,LEMA,Psilothrix_viridicoerulea,0.2,1
+LEMA,E1 LEMA,LEMA,Psilothrix_viridicoerulea,1,1
+LEMA,E2 LEMA,LEMA,Dilophus_sp.,0.2,1
+LEMA,E2 LEMA,LEMA,Psilothrix_viridicoerulea,0.4,1
+LEMA,E2 LEMA,LEMA,Sphaerophoria_scripta,0.4,1
+LEMA,E3 LEMA,LEMA,Eupeodes_corollae,0.2,1
+LEMA,E3 LEMA,LEMA,Odontomyia_sp.,0.2,1
+LEMA,E3 LEMA,LEMA,Psilothrix_viridicoerulea,0.6,1
+LEMA,E4 LEMA,LEMA,Psilothrix_viridicoerulea,1,1
+LEMA,E5 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,1
+LEMA,E5 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,1
+LEMA,E6 LEMA,LEMA,Psilothrix_viridicoerulea,1,1
+LEMA,F1 LEMA,LEMA,Dilophus_sp.,0.25,1
+LEMA,F1 LEMA,LEMA,Scaeva_sp.,0.25,1
+LEMA,F1 LEMA,LEMA,Sphaerophoria_scripta,0.5,1
+LEMA,F2 LEMA,LEMA,Dilophus_sp.,1,1
+LEMA,F3 LEMA,LEMA,Dilophus_sp.,0.2,1
+LEMA,F3 LEMA,LEMA,Psilothrix_viridicoerulea,0.6,1
+LEMA,F3 LEMA,LEMA,Scaeva_sp.,0.2,1
+LEMA,F4 LEMA,LEMA,Mordellidae,1,1
+LEMA,F5 LEMA,LEMA,Psilothrix_viridicoerulea,1,1
+LEMA,F6 LEMA,LEMA,Eupeodes_corollae,0.5,1
+LEMA,F6 LEMA,LEMA,Sphaerophoria_scripta,0.5,1
+ME,B2 ME,ME,Empididae,1,1
+ME,D2 ME,ME,Musca_sp.,1,1
+ME,E3 ME,ME,Sphaerophoria_scripta,1,1
+CHFU,Dilophus_sp.,CHFU,A2 CHFU,0.25,1
+CHFU,Diptera,CHFU,A2 CHFU,0.4,1
+CHFU,Empididae,CHFU,A3 CHFU,0.3333333333333333,1
+CHFU,Eupeodes_corollae,CHFU,B1 CHFU,1,1
+CHFU,Empididae,CHFU,B2 CHFU,0.6666666666666666,1
+CHFU,Sphaerophoria_scripta,CHFU,B2 CHFU,1,1
+CHFU,Dilophus_sp.,CHFU,C4 CHFU,0.25,1
+CHFU,Dilophus_sp.,CHFU,C5 CHFU,0.5,1
+CHFU,Diptera,CHFU,E2 CHFU,0.2,1
+CHFU,Diptera,CHFU,E5 CHFU,0.2,1
+CHFU,Diptera,CHFU,F4 CHFU,0.2,1
+LEMA,Dilophus_sp.,LEMA,A1 LEMA,0.08333333333333333,1
+LEMA,Psilothrix_viridicoerulea,LEMA,A1 LEMA,0.06976744186046512,1
+LEMA,Odontomyia_sp.,LEMA,A2 LEMA,0.16666666666666666,1
+LEMA,Psilothrix_viridicoerulea,LEMA,A2 LEMA,0.06976744186046512,1
+LEMA,Anthaxia_semicuprea,LEMA,A3 LEMA,0.3333333333333333,1
+LEMA,Psilothrix_viridicoerulea,LEMA,A3 LEMA,0.023255813953488372,1
+LEMA,Andrena_cinerea,LEMA,A4 LEMA,0.3333333333333333,1
+LEMA,Psilothrix_viridicoerulea,LEMA,A4 LEMA,0.046511627906976744,1
+LEMA,Dilophus_sp.,LEMA,A5 LEMA,0.08333333333333333,1
+LEMA,Anthaxia_semicuprea,LEMA,A6 LEMA,0.3333333333333333,1
+LEMA,Odontomyia_sp.,LEMA,A6 LEMA,0.16666666666666666,1
+LEMA,Psilothrix_viridicoerulea,LEMA,A6 LEMA,0.023255813953488372,1
+LEMA,Eupeodes_corollae,LEMA,B1 LEMA,0.25,1
+LEMA,Oedemeridae,LEMA,B1 LEMA,1,1
+LEMA,Odontomyia_sp.,LEMA,B2 LEMA,0.16666666666666666,1
+LEMA,Psilothrix_viridicoerulea,LEMA,B2 LEMA,0.046511627906976744,1
+LEMA,Sphaerophoria_scripta,LEMA,B2 LEMA,0.16666666666666666,1
+LEMA,Psilothrix_viridicoerulea,LEMA,B5 LEMA,0.023255813953488372,1
+LEMA,Musca_sp.,LEMA,C1 LEMA,1,1
+LEMA,Psilothrix_viridicoerulea,LEMA,C1 LEMA,0.023255813953488372,1
+LEMA,Dilophus_sp.,LEMA,C2 LEMA,0.08333333333333333,1
+LEMA,Odontomyia_sp.,LEMA,C3 LEMA,0.16666666666666666,1
+LEMA,Psilothrix_viridicoerulea,LEMA,C3 LEMA,0.023255813953488372,1
+LEMA,Andrena_cinerea,LEMA,C4 LEMA,0.6666666666666666,1
+LEMA,Melyridae,LEMA,C4 LEMA,0.5,1
+LEMA,Dilophus_sp.,LEMA,C5 LEMA,0.08333333333333333,1
+LEMA,Diptera,LEMA,C5 LEMA,1,1
+LEMA,Eupeodes_corollae,LEMA,C5 LEMA,0.25,1
+LEMA,Melyridae,LEMA,D1 LEMA,0.5,1
+LEMA,Psilothrix_viridicoerulea,LEMA,D2 LEMA,0.023255813953488372,1
+LEMA,Chrysomelidae,LEMA,D3 LEMA,1,1
+LEMA,Dilophus_sp.,LEMA,D3 LEMA,0.16666666666666666,1
+LEMA,Mordellidae,LEMA,D3 LEMA,0.25,1
+LEMA,Psilothrix_viridicoerulea,LEMA,D3 LEMA,0.06976744186046512,1
+LEMA,Mordellidae,LEMA,D4 LEMA,0.25,1
+LEMA,Anthaxia_semicuprea,LEMA,D5 LEMA,0.3333333333333333,1
+LEMA,Dilophus_sp.,LEMA,D5 LEMA,0.08333333333333333,1
+LEMA,Mordellidae,LEMA,D5 LEMA,0.25,1
+LEMA,Odontomyia_sp.,LEMA,D5 LEMA,0.16666666666666666,1
+LEMA,Psilothrix_viridicoerulea,LEMA,D5 LEMA,0.023255813953488372,1
+LEMA,Psilothrix_viridicoerulea,LEMA,E1 LEMA,0.09302325581395349,1
+LEMA,Dilophus_sp.,LEMA,E2 LEMA,0.08333333333333333,1
+LEMA,Psilothrix_viridicoerulea,LEMA,E2 LEMA,0.046511627906976744,1
+LEMA,Sphaerophoria_scripta,LEMA,E2 LEMA,0.3333333333333333,1
+LEMA,Eupeodes_corollae,LEMA,E3 LEMA,0.25,1
+LEMA,Odontomyia_sp.,LEMA,E3 LEMA,0.16666666666666666,1
+LEMA,Psilothrix_viridicoerulea,LEMA,E3 LEMA,0.06976744186046512,1
+LEMA,Psilothrix_viridicoerulea,LEMA,E4 LEMA,0.09302325581395349,1
+LEMA,Dilophus_sp.,LEMA,E5 LEMA,0.08333333333333333,1
+LEMA,Psilothrix_viridicoerulea,LEMA,E5 LEMA,0.046511627906976744,1
+LEMA,Psilothrix_viridicoerulea,LEMA,E6 LEMA,0.06976744186046512,1
+LEMA,Dilophus_sp.,LEMA,F1 LEMA,0.08333333333333333,1
+LEMA,Scaeva_sp.,LEMA,F1 LEMA,0.5,1
+LEMA,Sphaerophoria_scripta,LEMA,F1 LEMA,0.3333333333333333,1
+LEMA,Dilophus_sp.,LEMA,F2 LEMA,0.08333333333333333,1
+LEMA,Dilophus_sp.,LEMA,F3 LEMA,0.08333333333333333,1
+LEMA,Psilothrix_viridicoerulea,LEMA,F3 LEMA,0.06976744186046512,1
+LEMA,Scaeva_sp.,LEMA,F3 LEMA,0.5,1
+LEMA,Mordellidae,LEMA,F4 LEMA,0.25,1
+LEMA,Psilothrix_viridicoerulea,LEMA,F5 LEMA,0.046511627906976744,1
+LEMA,Eupeodes_corollae,LEMA,F6 LEMA,0.25,1
+LEMA,Sphaerophoria_scripta,LEMA,F6 LEMA,0.16666666666666666,1
+ME,Empididae,ME,B2 ME,1,1
+ME,Musca_sp.,ME,D2 ME,1,1
+ME,Sphaerophoria_scripta,ME,E3 ME,1,1
+CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0,1
+LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,0,1
+CHFU,Diptera,LEMA,Diptera,0,1
+LEMA,Diptera,CHFU,Diptera,0,1
+CHFU,Empididae,ME,Empididae,0.2,1
+ME,Empididae,CHFU,Empididae,0.2,1
+CHFU,Eupeodes_corollae,LEMA,Eupeodes_corollae,0,1
+LEMA,Eupeodes_corollae,CHFU,Eupeodes_corollae,0,1
+LEMA,Musca_sp.,ME,Musca_sp.,1,1
+ME,Musca_sp.,LEMA,Musca_sp.,0.8,1
+CHFU,Sphaerophoria_scripta,LEMA,Sphaerophoria_scripta,0,1
+LEMA,Sphaerophoria_scripta,CHFU,Sphaerophoria_scripta,0,1
+CHFU,Sphaerophoria_scripta,ME,Sphaerophoria_scripta,0.2,1
+ME,Sphaerophoria_scripta,CHFU,Sphaerophoria_scripta,0.2,1
+LEMA,Sphaerophoria_scripta,ME,Sphaerophoria_scripta,1,1
+ME,Sphaerophoria_scripta,LEMA,Sphaerophoria_scripta,0.8,1
+CHFU,A3 CHFU,CHFU,Dilophus_sp.,1,2
+CHFU,A4 CHFU,CHFU,Dilophus_sp.,1,2
+CHFU,B1 CHFU,CHFU,Dilophus_sp.,1,2
+CHFU,D1 CHFU,CHFU,Diptera,1,2
+CHFU,E1 CHFU,CHFU,Dilophus_sp.,1,2
+LEMA,A1 LEMA,LEMA,Diptera,0.4,2
+LEMA,A1 LEMA,LEMA,Eupeodes_corollae,0.2,2
+LEMA,A1 LEMA,LEMA,Nemotelus_sp.,0.2,2
+LEMA,A1 LEMA,LEMA,Psilothrix_viridicoerulea,0.2,2
+LEMA,A3 LEMA,LEMA,Psilothrix_viridicoerulea,1,2
+LEMA,A4 LEMA,LEMA,Nemotelus_sp.,1,2
+LEMA,A5 LEMA,LEMA,Episyrphus_balteatus,1,2
+LEMA,B1 LEMA,LEMA,Cantharidae,0.3333333333333333,2
+LEMA,B1 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,2
+LEMA,B2 LEMA,LEMA,Meligethes_sp.,1,2
+LEMA,B3 LEMA,LEMA,Psilothrix_viridicoerulea,1,2
+LEMA,B4 LEMA,LEMA,Melyridae,0.5,2
+LEMA,B4 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,2
+LEMA,B6 LEMA,LEMA,Psilothrix_viridicoerulea,1,2
+LEMA,C1 LEMA,LEMA,Cantharidae,0.25,2
+LEMA,C1 LEMA,LEMA,Dilophus_sp.,0.5,2
+LEMA,C1 LEMA,LEMA,Eupeodes_corollae,0.25,2
+LEMA,C3 LEMA,LEMA,Nemotelus_sp.,0.3333333333333333,2
+LEMA,C3 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,2
+LEMA,C5 LEMA,LEMA,Eupeodes_corollae,0.5,2
+LEMA,C5 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,2
+LEMA,C6 LEMA,LEMA,Meligethes_sp.,0.5,2
+LEMA,C6 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,2
+LEMA,D1 LEMA,LEMA,Brassicogethes_sp.,0.125,2
+LEMA,D1 LEMA,LEMA,Dilophus_sp.,0.375,2
+LEMA,D1 LEMA,LEMA,Eupeodes_corollae,0.125,2
+LEMA,D1 LEMA,LEMA,Musca_sp.,0.125,2
+LEMA,D1 LEMA,LEMA,Psilothrix_viridicoerulea,0.25,2
+LEMA,D4 LEMA,LEMA,Nemotelus_sp.,0.6666666666666666,2
+LEMA,D4 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,2
+LEMA,D5 LEMA,LEMA,Eupeodes_corollae,1,2
+LEMA,D6 LEMA,LEMA,Eupeodes_corollae,0.5,2
+LEMA,D6 LEMA,LEMA,Nemotelus_sp.,0.5,2
+LEMA,E1 LEMA,LEMA,Dilophus_sp.,0.625,2
+LEMA,E1 LEMA,LEMA,Mordellidae,0.125,2
+LEMA,E1 LEMA,LEMA,Psilothrix_viridicoerulea,0.25,2
+LEMA,E2 LEMA,LEMA,Dilophus_sp.,0.5,2
+LEMA,E2 LEMA,LEMA,Eupeodes_corollae,0.5,2
+LEMA,E3 LEMA,LEMA,Meligethes_sp.,1,2
+LEMA,E4 LEMA,LEMA,Andrena_cinerea,0.25,2
+LEMA,E4 LEMA,LEMA,Psilothrix_viridicoerulea,0.75,2
+LEMA,E5 LEMA,LEMA,Nemotelus_sp.,0.5,2
+LEMA,E5 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,2
+LEMA,E6 LEMA,LEMA,Andrena_cinerea,0.125,2
+LEMA,E6 LEMA,LEMA,Eupeodes_corollae,0.125,2
+LEMA,E6 LEMA,LEMA,Meligethes_sp.,0.125,2
+LEMA,E6 LEMA,LEMA,Psilothrix_viridicoerulea,0.625,2
+LEMA,F1 LEMA,LEMA,Cantharidae,0.25,2
+LEMA,F1 LEMA,LEMA,Dilophus_sp.,0.5,2
+LEMA,F1 LEMA,LEMA,Psilothrix_viridicoerulea,0.25,2
+LEMA,F2 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,2
+LEMA,F2 LEMA,LEMA,Malachius_bipustulatus,0.3333333333333333,2
+LEMA,F2 LEMA,LEMA,Melyridae,0.3333333333333333,2
+LEMA,F3 LEMA,LEMA,Andrena_cinerea,0.09090909090909091,2
+LEMA,F3 LEMA,LEMA,Brassicogethes_sp.,0.2727272727272727,2
+LEMA,F3 LEMA,LEMA,Dilophus_sp.,0.18181818181818182,2
+LEMA,F3 LEMA,LEMA,Nemotelus_sp.,0.09090909090909091,2
+LEMA,F3 LEMA,LEMA,Psilothrix_viridicoerulea,0.36363636363636365,2
+LEMA,F4 LEMA,LEMA,Psilothrix_viridicoerulea,1,2
+LEMA,F6 LEMA,LEMA,Dilophus_sp.,0.2,2
+LEMA,F6 LEMA,LEMA,Meligethes_sp.,0.6,2
+LEMA,F6 LEMA,LEMA,Psilothrix_viridicoerulea,0.2,2
+ME,A5 ME,ME,Eupeodes_corollae,1,2
+ME,B1 ME,ME,Diptera,1,2
+ME,B5 ME,ME,Calliphoridae,0.6666666666666666,2
+ME,B5 ME,ME,Cantharidae,0.3333333333333333,2
+ME,C1 ME,ME,Cantharidae,1,2
+ME,D2 ME,ME,Andrena_cinerea,1,2
+ME,D3 ME,ME,Calliphoridae,1,2
+ME,E2 ME,ME,Diptera,0.5,2
+ME,E2 ME,ME,Nemotelus_sp.,0.5,2
+ME,E4 ME,ME,Cantharidae,0.3333333333333333,2
+ME,E4 ME,ME,Diptera,0.3333333333333333,2
+ME,E4 ME,ME,Lassioglosum_.immunitum,0.3333333333333333,2
+CHFU,Dilophus_sp.,CHFU,A3 CHFU,0.2,2
+CHFU,Dilophus_sp.,CHFU,A4 CHFU,0.4,2
+CHFU,Dilophus_sp.,CHFU,B1 CHFU,0.2,2
+CHFU,Diptera,CHFU,D1 CHFU,1,2
+CHFU,Dilophus_sp.,CHFU,E1 CHFU,0.2,2
+LEMA,Diptera,LEMA,A1 LEMA,1,2
+LEMA,Eupeodes_corollae,LEMA,A1 LEMA,0.125,2
+LEMA,Nemotelus_sp.,LEMA,A1 LEMA,0.1111111111111111,2
+LEMA,Psilothrix_viridicoerulea,LEMA,A1 LEMA,0.030303030303030304,2
+LEMA,Psilothrix_viridicoerulea,LEMA,A3 LEMA,0.06060606060606061,2
+LEMA,Nemotelus_sp.,LEMA,A4 LEMA,0.2222222222222222,2
+LEMA,Episyrphus_balteatus,LEMA,A5 LEMA,1,2
+LEMA,Cantharidae,LEMA,B1 LEMA,0.3333333333333333,2
+LEMA,Psilothrix_viridicoerulea,LEMA,B1 LEMA,0.06060606060606061,2
+LEMA,Meligethes_sp.,LEMA,B2 LEMA,0.14285714285714285,2
+LEMA,Psilothrix_viridicoerulea,LEMA,B3 LEMA,0.030303030303030304,2
+LEMA,Melyridae,LEMA,B4 LEMA,0.5,2
+LEMA,Psilothrix_viridicoerulea,LEMA,B4 LEMA,0.030303030303030304,2
+LEMA,Psilothrix_viridicoerulea,LEMA,B6 LEMA,0.030303030303030304,2
+LEMA,Cantharidae,LEMA,C1 LEMA,0.3333333333333333,2
+LEMA,Dilophus_sp.,LEMA,C1 LEMA,0.11764705882352941,2
+LEMA,Eupeodes_corollae,LEMA,C1 LEMA,0.125,2
+LEMA,Nemotelus_sp.,LEMA,C3 LEMA,0.1111111111111111,2
+LEMA,Psilothrix_viridicoerulea,LEMA,C3 LEMA,0.06060606060606061,2
+LEMA,Eupeodes_corollae,LEMA,C5 LEMA,0.125,2
+LEMA,Psilothrix_viridicoerulea,LEMA,C5 LEMA,0.030303030303030304,2
+LEMA,Meligethes_sp.,LEMA,C6 LEMA,0.14285714285714285,2
+LEMA,Psilothrix_viridicoerulea,LEMA,C6 LEMA,0.030303030303030304,2
+LEMA,Brassicogethes_sp.,LEMA,D1 LEMA,0.25,2
+LEMA,Dilophus_sp.,LEMA,D1 LEMA,0.17647058823529413,2
+LEMA,Eupeodes_corollae,LEMA,D1 LEMA,0.125,2
+LEMA,Musca_sp.,LEMA,D1 LEMA,1,2
+LEMA,Psilothrix_viridicoerulea,LEMA,D1 LEMA,0.06060606060606061,2
+LEMA,Nemotelus_sp.,LEMA,D4 LEMA,0.2222222222222222,2
+LEMA,Psilothrix_viridicoerulea,LEMA,D4 LEMA,0.030303030303030304,2
+LEMA,Eupeodes_corollae,LEMA,D5 LEMA,0.125,2
+LEMA,Eupeodes_corollae,LEMA,D6 LEMA,0.125,2
+LEMA,Nemotelus_sp.,LEMA,D6 LEMA,0.1111111111111111,2
+LEMA,Dilophus_sp.,LEMA,E1 LEMA,0.29411764705882354,2
+LEMA,Mordellidae,LEMA,E1 LEMA,1,2
+LEMA,Psilothrix_viridicoerulea,LEMA,E1 LEMA,0.06060606060606061,2
+LEMA,Dilophus_sp.,LEMA,E2 LEMA,0.058823529411764705,2
+LEMA,Eupeodes_corollae,LEMA,E2 LEMA,0.125,2
+LEMA,Meligethes_sp.,LEMA,E3 LEMA,0.14285714285714285,2
+LEMA,Andrena_cinerea,LEMA,E4 LEMA,0.3333333333333333,2
+LEMA,Psilothrix_viridicoerulea,LEMA,E4 LEMA,0.09090909090909091,2
+LEMA,Nemotelus_sp.,LEMA,E5 LEMA,0.1111111111111111,2
+LEMA,Psilothrix_viridicoerulea,LEMA,E5 LEMA,0.030303030303030304,2
+LEMA,Andrena_cinerea,LEMA,E6 LEMA,0.3333333333333333,2
+LEMA,Eupeodes_corollae,LEMA,E6 LEMA,0.125,2
+LEMA,Meligethes_sp.,LEMA,E6 LEMA,0.14285714285714285,2
+LEMA,Psilothrix_viridicoerulea,LEMA,E6 LEMA,0.15151515151515152,2
+LEMA,Cantharidae,LEMA,F1 LEMA,0.3333333333333333,2
+LEMA,Dilophus_sp.,LEMA,F1 LEMA,0.11764705882352941,2
+LEMA,Psilothrix_viridicoerulea,LEMA,F1 LEMA,0.030303030303030304,2
+LEMA,Dilophus_sp.,LEMA,F2 LEMA,0.058823529411764705,2
+LEMA,Malachius_bipustulatus,LEMA,F2 LEMA,1,2
+LEMA,Melyridae,LEMA,F2 LEMA,0.5,2
+LEMA,Andrena_cinerea,LEMA,F3 LEMA,0.3333333333333333,2
+LEMA,Brassicogethes_sp.,LEMA,F3 LEMA,0.75,2
+LEMA,Dilophus_sp.,LEMA,F3 LEMA,0.11764705882352941,2
+LEMA,Nemotelus_sp.,LEMA,F3 LEMA,0.1111111111111111,2
+LEMA,Psilothrix_viridicoerulea,LEMA,F3 LEMA,0.12121212121212122,2
+LEMA,Psilothrix_viridicoerulea,LEMA,F4 LEMA,0.030303030303030304,2
+LEMA,Dilophus_sp.,LEMA,F6 LEMA,0.058823529411764705,2
+LEMA,Meligethes_sp.,LEMA,F6 LEMA,0.42857142857142855,2
+LEMA,Psilothrix_viridicoerulea,LEMA,F6 LEMA,0.030303030303030304,2
+ME,Eupeodes_corollae,ME,A5 ME,1,2
+ME,Diptera,ME,B1 ME,0.7142857142857143,2
+ME,Calliphoridae,ME,B5 ME,0.5,2
+ME,Cantharidae,ME,B5 ME,0.3333333333333333,2
+ME,Cantharidae,ME,C1 ME,0.3333333333333333,2
+ME,Andrena_cinerea,ME,D2 ME,1,2
+ME,Calliphoridae,ME,D3 ME,0.5,2
+ME,Diptera,ME,E2 ME,0.14285714285714285,2
+ME,Nemotelus_sp.,ME,E2 ME,1,2
+ME,Cantharidae,ME,E4 ME,0.3333333333333333,2
+ME,Diptera,ME,E4 ME,0.14285714285714285,2
+ME,Lassioglosum_.immunitum,ME,E4 ME,1,2
+LEMA,Andrena_cinerea,ME,Andrena_cinerea,0.5714285714285714,2
+ME,Andrena_cinerea,LEMA,Andrena_cinerea,1,2
+LEMA,Cantharidae,ME,Cantharidae,0.5714285714285714,2
+ME,Cantharidae,LEMA,Cantharidae,1,2
+CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0.7777777777777778,2
+LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,1,2
+CHFU,Diptera,LEMA,Diptera,0.7777777777777778,2
+LEMA,Diptera,CHFU,Diptera,1,2
+CHFU,Diptera,ME,Diptera,0.4444444444444444,2
+ME,Diptera,CHFU,Diptera,1,2
+LEMA,Diptera,ME,Diptera,0.5714285714285714,2
+ME,Diptera,LEMA,Diptera,1,2
+LEMA,Eupeodes_corollae,ME,Eupeodes_corollae,0.5714285714285714,2
+ME,Eupeodes_corollae,LEMA,Eupeodes_corollae,1,2
+LEMA,Nemotelus_sp.,ME,Nemotelus_sp.,0.5714285714285714,2
+ME,Nemotelus_sp.,LEMA,Nemotelus_sp.,1,2
+CHFU,A6 CHFU,CHFU,Scaeva_sp.,1,3
+CHFU,C3 CHFU,CHFU,Eupeodes_corollae,1,3
+CHFU,D2 CHFU,CHFU,Bruchidae,1,3
+CHFU,D3 CHFU,CHFU,Scaeva_sp.,1,3
+CHFU,E2 CHFU,CHFU,Dilophus_sp.,1,3
+CHFU,F2 CHFU,CHFU,Scaeva_sp.,1,3
+LEMA,A1 LEMA,LEMA,Dilophus_sp.,1,3
+LEMA,A5 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+LEMA,B1 LEMA,LEMA,Eupeodes_corollae,0.25,3
+LEMA,B1 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,3
+LEMA,B1 LEMA,LEMA,Sphaerophoria_scripta,0.25,3
+LEMA,B2 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+LEMA,B3 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,3
+LEMA,B3 LEMA,LEMA,Scaeva_sp.,0.3333333333333333,3
+LEMA,B5 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+LEMA,B6 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+LEMA,C1 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+LEMA,C3 LEMA,LEMA,Andrena_cinerea,1,3
+LEMA,C4 LEMA,LEMA,Scaeva_sp.,1,3
+LEMA,C5 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+LEMA,C6 LEMA,LEMA,Meligethes_sp.,0.2,3
+LEMA,C6 LEMA,LEMA,Psilothrix_viridicoerulea,0.8,3
+LEMA,D1 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+LEMA,D2 LEMA,LEMA,Andrena_cinerea,0.45454545454545453,3
+LEMA,D2 LEMA,LEMA,Dilophus_sp.,0.18181818181818182,3
+LEMA,D2 LEMA,LEMA,Psilothrix_viridicoerulea,0.2727272727272727,3
+LEMA,D2 LEMA,LEMA,Scaeva_sp.,0.09090909090909091,3
+LEMA,D3 LEMA,LEMA,Dilophus_sp.,0.16666666666666666,3
+LEMA,D3 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,3
+LEMA,D3 LEMA,LEMA,Scaeva_sp.,0.16666666666666666,3
+LEMA,D5 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,3
+LEMA,D5 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,3
+LEMA,D6 LEMA,LEMA,Chrysotoxum_sp.,0.125,3
+LEMA,D6 LEMA,LEMA,Malachius_bipustulatus,0.125,3
+LEMA,D6 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,3
+LEMA,D6 LEMA,LEMA,Scaeva_sp.,0.25,3
+LEMA,E1 LEMA,LEMA,Meligethes_sp.,0.14285714285714285,3
+LEMA,E1 LEMA,LEMA,Psilothrix_viridicoerulea,0.8571428571428571,3
+LEMA,E2 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+LEMA,E3 LEMA,LEMA,Meligethes_sp.,0.5,3
+LEMA,E3 LEMA,LEMA,Sphaerophoria_scripta,0.5,3
+LEMA,E4 LEMA,LEMA,Dilophus_sp.,0.5,3
+LEMA,E4 LEMA,LEMA,Diptera,0.5,3
+LEMA,E5 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+LEMA,F1 LEMA,LEMA,Meligethes_sp.,0.16666666666666666,3
+LEMA,F1 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,3
+LEMA,F1 LEMA,LEMA,Sphaerophoria_scripta,0.16666666666666666,3
+LEMA,F2 LEMA,LEMA,Andrena_cinerea,0.2,3
+LEMA,F2 LEMA,LEMA,Psilothrix_viridicoerulea,0.8,3
+LEMA,F3 LEMA,LEMA,Meligethes_sp.,0.5,3
+LEMA,F3 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,3
+LEMA,F4 LEMA,LEMA,Meligethes_sp.,0.25,3
+LEMA,F4 LEMA,LEMA,Psilothrix_viridicoerulea,0.75,3
+LEMA,F5 LEMA,LEMA,Andrena_cinerea,0.25,3
+LEMA,F5 LEMA,LEMA,Dilophus_sp.,0.25,3
+LEMA,F5 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,3
+LEMA,F6 LEMA,LEMA,Psilothrix_viridicoerulea,1,3
+ME,C3 ME,ME,Dilophus_sp.,0.25,3
+ME,C3 ME,ME,Diptera,0.5,3
+ME,C3 ME,ME,Psilothrix_viridicoerulea,0.25,3
+ME,D4 ME,ME,Psilothrix_viridicoerulea,1,3
+ME,E3 ME,ME,Diptera,1,3
+ME,E4 ME,ME,Diptera,1,3
+ME,F4 ME,ME,Diptera,1,3
+CHFU,Scaeva_sp.,CHFU,A6 CHFU,0.5,3
+CHFU,Eupeodes_corollae,CHFU,C3 CHFU,1,3
+CHFU,Bruchidae,CHFU,D2 CHFU,1,3
+CHFU,Scaeva_sp.,CHFU,D3 CHFU,0.3333333333333333,3
+CHFU,Dilophus_sp.,CHFU,E2 CHFU,1,3
+CHFU,Scaeva_sp.,CHFU,F2 CHFU,0.16666666666666666,3
+LEMA,Dilophus_sp.,LEMA,A1 LEMA,0.14285714285714285,3
+LEMA,Psilothrix_viridicoerulea,LEMA,A5 LEMA,0.016129032258064516,3
+LEMA,Eupeodes_corollae,LEMA,B1 LEMA,1,3
+LEMA,Psilothrix_viridicoerulea,LEMA,B1 LEMA,0.03225806451612903,3
+LEMA,Sphaerophoria_scripta,LEMA,B1 LEMA,0.3333333333333333,3
+LEMA,Psilothrix_viridicoerulea,LEMA,B2 LEMA,0.03225806451612903,3
+LEMA,Psilothrix_viridicoerulea,LEMA,B3 LEMA,0.03225806451612903,3
+LEMA,Scaeva_sp.,LEMA,B3 LEMA,0.16666666666666666,3
+LEMA,Psilothrix_viridicoerulea,LEMA,B5 LEMA,0.03225806451612903,3
+LEMA,Psilothrix_viridicoerulea,LEMA,B6 LEMA,0.03225806451612903,3
+LEMA,Psilothrix_viridicoerulea,LEMA,C1 LEMA,0.03225806451612903,3
+LEMA,Andrena_cinerea,LEMA,C3 LEMA,0.125,3
+LEMA,Scaeva_sp.,LEMA,C4 LEMA,0.16666666666666666,3
+LEMA,Psilothrix_viridicoerulea,LEMA,C5 LEMA,0.016129032258064516,3
+LEMA,Meligethes_sp.,LEMA,C6 LEMA,0.16666666666666666,3
+LEMA,Psilothrix_viridicoerulea,LEMA,C6 LEMA,0.06451612903225806,3
+LEMA,Psilothrix_viridicoerulea,LEMA,D1 LEMA,0.04838709677419355,3
+LEMA,Andrena_cinerea,LEMA,D2 LEMA,0.625,3
+LEMA,Dilophus_sp.,LEMA,D2 LEMA,0.2857142857142857,3
+LEMA,Psilothrix_viridicoerulea,LEMA,D2 LEMA,0.04838709677419355,3
+LEMA,Scaeva_sp.,LEMA,D2 LEMA,0.16666666666666666,3
+LEMA,Dilophus_sp.,LEMA,D3 LEMA,0.14285714285714285,3
+LEMA,Psilothrix_viridicoerulea,LEMA,D3 LEMA,0.06451612903225806,3
+LEMA,Scaeva_sp.,LEMA,D3 LEMA,0.16666666666666666,3
+LEMA,Dilophus_sp.,LEMA,D5 LEMA,0.14285714285714285,3
+LEMA,Psilothrix_viridicoerulea,LEMA,D5 LEMA,0.03225806451612903,3
+LEMA,Chrysotoxum_sp.,LEMA,D6 LEMA,1,3
+LEMA,Malachius_bipustulatus,LEMA,D6 LEMA,1,3
+LEMA,Psilothrix_viridicoerulea,LEMA,D6 LEMA,0.06451612903225806,3
+LEMA,Scaeva_sp.,LEMA,D6 LEMA,0.3333333333333333,3
+LEMA,Meligethes_sp.,LEMA,E1 LEMA,0.16666666666666666,3
+LEMA,Psilothrix_viridicoerulea,LEMA,E1 LEMA,0.0967741935483871,3
+LEMA,Psilothrix_viridicoerulea,LEMA,E2 LEMA,0.08064516129032258,3
+LEMA,Meligethes_sp.,LEMA,E3 LEMA,0.16666666666666666,3
+LEMA,Sphaerophoria_scripta,LEMA,E3 LEMA,0.3333333333333333,3
+LEMA,Dilophus_sp.,LEMA,E4 LEMA,0.14285714285714285,3
+LEMA,Diptera,LEMA,E4 LEMA,1,3
+LEMA,Psilothrix_viridicoerulea,LEMA,E5 LEMA,0.03225806451612903,3
+LEMA,Meligethes_sp.,LEMA,F1 LEMA,0.16666666666666666,3
+LEMA,Psilothrix_viridicoerulea,LEMA,F1 LEMA,0.06451612903225806,3
+LEMA,Sphaerophoria_scripta,LEMA,F1 LEMA,0.3333333333333333,3
+LEMA,Andrena_cinerea,LEMA,F2 LEMA,0.125,3
+LEMA,Psilothrix_viridicoerulea,LEMA,F2 LEMA,0.06451612903225806,3
+LEMA,Meligethes_sp.,LEMA,F3 LEMA,0.16666666666666666,3
+LEMA,Psilothrix_viridicoerulea,LEMA,F3 LEMA,0.016129032258064516,3
+LEMA,Meligethes_sp.,LEMA,F4 LEMA,0.16666666666666666,3
+LEMA,Psilothrix_viridicoerulea,LEMA,F4 LEMA,0.04838709677419355,3
+LEMA,Andrena_cinerea,LEMA,F5 LEMA,0.125,3
+LEMA,Dilophus_sp.,LEMA,F5 LEMA,0.14285714285714285,3
+LEMA,Psilothrix_viridicoerulea,LEMA,F5 LEMA,0.03225806451612903,3
+LEMA,Psilothrix_viridicoerulea,LEMA,F6 LEMA,0.016129032258064516,3
+ME,Dilophus_sp.,ME,C3 ME,1,3
+ME,Diptera,ME,C3 ME,0.2222222222222222,3
+ME,Psilothrix_viridicoerulea,ME,C3 ME,0.5,3
+ME,Psilothrix_viridicoerulea,ME,D4 ME,0.5,3
+ME,Diptera,ME,E3 ME,0.1111111111111111,3
+ME,Diptera,ME,E4 ME,0.4444444444444444,3
+ME,Diptera,ME,F4 ME,0.2222222222222222,3
+CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0,3
+LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,0,3
+CHFU,Dilophus_sp.,ME,Dilophus_sp.,0,3
+ME,Dilophus_sp.,CHFU,Dilophus_sp.,0,3
+LEMA,Dilophus_sp.,ME,Dilophus_sp.,0.75,3
+ME,Dilophus_sp.,LEMA,Dilophus_sp.,1,3
+LEMA,Diptera,ME,Diptera,0.75,3
+ME,Diptera,LEMA,Diptera,1,3
+CHFU,Eupeodes_corollae,LEMA,Eupeodes_corollae,0,3
+LEMA,Eupeodes_corollae,CHFU,Eupeodes_corollae,0,3
+LEMA,Psilothrix_viridicoerulea,ME,Psilothrix_viridicoerulea,0.75,3
+ME,Psilothrix_viridicoerulea,LEMA,Psilothrix_viridicoerulea,1,3
+CHFU,Scaeva_sp.,LEMA,Scaeva_sp.,0,3
+LEMA,Scaeva_sp.,CHFU,Scaeva_sp.,0,3
+CHFU,A2 CHFU,CHFU,Andrena_cinerea,0.3333333333333333,4
+CHFU,A2 CHFU,CHFU,Empididae,0.6666666666666666,4
+CHFU,A5 CHFU,CHFU,Eupeodes_corollae,1,4
+CHFU,A6 CHFU,CHFU,Eupeodes_corollae,1,4
+CHFU,B1 CHFU,CHFU,Empididae,0.3333333333333333,4
+CHFU,B1 CHFU,CHFU,Psilothrix_viridicoerulea,0.6666666666666666,4
+CHFU,B2 CHFU,CHFU,Empididae,1,4
+CHFU,B5 CHFU,CHFU,Dilophus_sp.,0.3333333333333333,4
+CHFU,B5 CHFU,CHFU,Psilothrix_viridicoerulea,0.6666666666666666,4
+CHFU,B6 CHFU,CHFU,Dilophus_sp.,0.5,4
+CHFU,B6 CHFU,CHFU,Empididae,0.5,4
+CHFU,C2 CHFU,CHFU,Diptera,0.8,4
+CHFU,C2 CHFU,CHFU,Empididae,0.2,4
+CHFU,C5 CHFU,CHFU,Diptera,1,4
+CHFU,D6 CHFU,CHFU,Empididae,1,4
+CHFU,E5 CHFU,CHFU,Empididae,1,4
+CHFU,F4 CHFU,CHFU,Psilothrix_viridicoerulea,1,4
+CHFU,F5 CHFU,CHFU,Dilophus_sp.,0.3333333333333333,4
+CHFU,F5 CHFU,CHFU,Empididae,0.6666666666666666,4
+LEMA,A1 LEMA,LEMA,Odontomyia_sp.,0.5,4
+LEMA,A1 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,4
+LEMA,A2 LEMA,LEMA,Meligethes_sp.,0.4444444444444444,4
+LEMA,A2 LEMA,LEMA,Nemotelus_sp.,0.1111111111111111,4
+LEMA,A2 LEMA,LEMA,Odontomyia_sp.,0.1111111111111111,4
+LEMA,A2 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,4
+LEMA,B2 LEMA,LEMA,Andrena_cinerea,0.25,4
+LEMA,B2 LEMA,LEMA,Dilophus_sp.,0.25,4
+LEMA,B2 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,4
+LEMA,B4 LEMA,LEMA,Andrena_cinerea,1,4
+LEMA,B6 LEMA,LEMA,Psilothrix_viridicoerulea,1,4
+LEMA,C1 LEMA,LEMA,Dilophus_sp.,1,4
+LEMA,C2 LEMA,LEMA,Andrena_cinerea,0.2,4
+LEMA,C2 LEMA,LEMA,Chrysotoxum_sp.,0.2,4
+LEMA,C2 LEMA,LEMA,Dilophus_sp.,0.2,4
+LEMA,C2 LEMA,LEMA,Psilothrix_viridicoerulea,0.4,4
+LEMA,C3 LEMA,LEMA,Psilothrix_viridicoerulea,1,4
+LEMA,C4 LEMA,LEMA,Andrena_cinerea,0.2,4
+LEMA,C4 LEMA,LEMA,Meligethes_sp.,0.2,4
+LEMA,C4 LEMA,LEMA,Psilothrix_viridicoerulea,0.2,4
+LEMA,C4 LEMA,LEMA,Sphaerophoria_scripta,0.4,4
+LEMA,C5 LEMA,LEMA,Sphaerophoria_scripta,1,4
+LEMA,C6 LEMA,LEMA,Dilophus_sp.,1,4
+LEMA,D2 LEMA,LEMA,Psilothrix_viridicoerulea,1,4
+LEMA,D5 LEMA,LEMA,Nemotelus_sp.,0.5,4
+LEMA,D5 LEMA,LEMA,Odontomyia_sp.,0.5,4
+LEMA,E1 LEMA,LEMA,Dilophus_sp.,0.42857142857142855,4
+LEMA,E1 LEMA,LEMA,Meligethes_sp.,0.14285714285714285,4
+LEMA,E1 LEMA,LEMA,Psilothrix_viridicoerulea,0.42857142857142855,4
+LEMA,E2 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,4
+LEMA,E2 LEMA,LEMA,Sphaerophoria_scripta,0.5,4
+LEMA,E4 LEMA,LEMA,Eupeodes_corollae,0.25,4
+LEMA,E4 LEMA,LEMA,Meligethes_sp.,0.25,4
+LEMA,E4 LEMA,LEMA,Psilothrix_viridicoerulea,0.25,4
+LEMA,E4 LEMA,LEMA,Sphaerophoria_scripta,0.25,4
+LEMA,E5 LEMA,LEMA,Nemotelus_sp.,1,4
+LEMA,F1 LEMA,LEMA,Andrena_cinerea,0.3333333333333333,4
+LEMA,F1 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,4
+LEMA,F1 LEMA,LEMA,Sphaerophoria_scripta,0.3333333333333333,4
+LEMA,F2 LEMA,LEMA,Diptera,1,4
+LEMA,F3 LEMA,LEMA,Psilothrix_viridicoerulea,1,4
+LEMA,F4 LEMA,LEMA,Psilothrix_viridicoerulea,1,4
+LEMA,F6 LEMA,LEMA,Mordellidae,0.6666666666666666,4
+LEMA,F6 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,4
+ME,B4 ME,ME,Andrena_cinerea,1,4
+CHFU,Andrena_cinerea,CHFU,A2 CHFU,1,4
+CHFU,Empididae,CHFU,A2 CHFU,0.2,4
+CHFU,Eupeodes_corollae,CHFU,A5 CHFU,0.5,4
+CHFU,Eupeodes_corollae,CHFU,A6 CHFU,0.5,4
+CHFU,Empididae,CHFU,B1 CHFU,0.1,4
+CHFU,Psilothrix_viridicoerulea,CHFU,B1 CHFU,0.4,4
+CHFU,Empididae,CHFU,B2 CHFU,0.1,4
+CHFU,Dilophus_sp.,CHFU,B5 CHFU,0.3333333333333333,4
+CHFU,Psilothrix_viridicoerulea,CHFU,B5 CHFU,0.4,4
+CHFU,Dilophus_sp.,CHFU,B6 CHFU,0.3333333333333333,4
+CHFU,Empididae,CHFU,B6 CHFU,0.1,4
+CHFU,Diptera,CHFU,C2 CHFU,0.8,4
+CHFU,Empididae,CHFU,C2 CHFU,0.1,4
+CHFU,Diptera,CHFU,C5 CHFU,0.2,4
+CHFU,Empididae,CHFU,D6 CHFU,0.1,4
+CHFU,Empididae,CHFU,E5 CHFU,0.1,4
+CHFU,Psilothrix_viridicoerulea,CHFU,F4 CHFU,0.2,4
+CHFU,Dilophus_sp.,CHFU,F5 CHFU,0.3333333333333333,4
+CHFU,Empididae,CHFU,F5 CHFU,0.2,4
+LEMA,Odontomyia_sp.,LEMA,A1 LEMA,0.3333333333333333,4
+LEMA,Psilothrix_viridicoerulea,LEMA,A1 LEMA,0.043478260869565216,4
+LEMA,Meligethes_sp.,LEMA,A2 LEMA,0.5714285714285714,4
+LEMA,Nemotelus_sp.,LEMA,A2 LEMA,0.3333333333333333,4
+LEMA,Odontomyia_sp.,LEMA,A2 LEMA,0.3333333333333333,4
+LEMA,Psilothrix_viridicoerulea,LEMA,A2 LEMA,0.13043478260869565,4
+LEMA,Andrena_cinerea,LEMA,B2 LEMA,0.16666666666666666,4
+LEMA,Dilophus_sp.,LEMA,B2 LEMA,0.14285714285714285,4
+LEMA,Psilothrix_viridicoerulea,LEMA,B2 LEMA,0.08695652173913043,4
+LEMA,Andrena_cinerea,LEMA,B4 LEMA,0.3333333333333333,4
+LEMA,Psilothrix_viridicoerulea,LEMA,B6 LEMA,0.08695652173913043,4
+LEMA,Dilophus_sp.,LEMA,C1 LEMA,0.14285714285714285,4
+LEMA,Andrena_cinerea,LEMA,C2 LEMA,0.16666666666666666,4
+LEMA,Chrysotoxum_sp.,LEMA,C2 LEMA,1,4
+LEMA,Dilophus_sp.,LEMA,C2 LEMA,0.14285714285714285,4
+LEMA,Psilothrix_viridicoerulea,LEMA,C2 LEMA,0.08695652173913043,4
+LEMA,Psilothrix_viridicoerulea,LEMA,C3 LEMA,0.043478260869565216,4
+LEMA,Andrena_cinerea,LEMA,C4 LEMA,0.16666666666666666,4
+LEMA,Meligethes_sp.,LEMA,C4 LEMA,0.14285714285714285,4
+LEMA,Psilothrix_viridicoerulea,LEMA,C4 LEMA,0.043478260869565216,4
+LEMA,Sphaerophoria_scripta,LEMA,C4 LEMA,0.3333333333333333,4
+LEMA,Sphaerophoria_scripta,LEMA,C5 LEMA,0.16666666666666666,4
+LEMA,Dilophus_sp.,LEMA,C6 LEMA,0.14285714285714285,4
+LEMA,Psilothrix_viridicoerulea,LEMA,D2 LEMA,0.043478260869565216,4
+LEMA,Nemotelus_sp.,LEMA,D5 LEMA,0.3333333333333333,4
+LEMA,Odontomyia_sp.,LEMA,D5 LEMA,0.3333333333333333,4
+LEMA,Dilophus_sp.,LEMA,E1 LEMA,0.42857142857142855,4
+LEMA,Meligethes_sp.,LEMA,E1 LEMA,0.14285714285714285,4
+LEMA,Psilothrix_viridicoerulea,LEMA,E1 LEMA,0.13043478260869565,4
+LEMA,Psilothrix_viridicoerulea,LEMA,E2 LEMA,0.043478260869565216,4
+LEMA,Sphaerophoria_scripta,LEMA,E2 LEMA,0.16666666666666666,4
+LEMA,Eupeodes_corollae,LEMA,E4 LEMA,1,4
+LEMA,Meligethes_sp.,LEMA,E4 LEMA,0.14285714285714285,4
+LEMA,Psilothrix_viridicoerulea,LEMA,E4 LEMA,0.043478260869565216,4
+LEMA,Sphaerophoria_scripta,LEMA,E4 LEMA,0.16666666666666666,4
+LEMA,Nemotelus_sp.,LEMA,E5 LEMA,0.3333333333333333,4
+LEMA,Andrena_cinerea,LEMA,F1 LEMA,0.16666666666666666,4
+LEMA,Psilothrix_viridicoerulea,LEMA,F1 LEMA,0.043478260869565216,4
+LEMA,Sphaerophoria_scripta,LEMA,F1 LEMA,0.16666666666666666,4
+LEMA,Diptera,LEMA,F2 LEMA,1,4
+LEMA,Psilothrix_viridicoerulea,LEMA,F3 LEMA,0.043478260869565216,4
+LEMA,Psilothrix_viridicoerulea,LEMA,F4 LEMA,0.08695652173913043,4
+LEMA,Mordellidae,LEMA,F6 LEMA,1,4
+LEMA,Psilothrix_viridicoerulea,LEMA,F6 LEMA,0.043478260869565216,4
+ME,Andrena_cinerea,ME,B4 ME,1,4
+CHFU,Andrena_cinerea,LEMA,Andrena_cinerea,0.6666666666666666,4
+LEMA,Andrena_cinerea,CHFU,Andrena_cinerea,0.5714285714285714,4
+CHFU,Andrena_cinerea,ME,Andrena_cinerea,0,4
+ME,Andrena_cinerea,CHFU,Andrena_cinerea,0,4
+LEMA,Andrena_cinerea,ME,Andrena_cinerea,0.14285714285714285,4
+ME,Andrena_cinerea,LEMA,Andrena_cinerea,1,4
+CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0.6666666666666666,4
+LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,0.5714285714285714,4
+CHFU,Diptera,LEMA,Diptera,0.6666666666666666,4
+LEMA,Diptera,CHFU,Diptera,0.5714285714285714,4
+CHFU,Eupeodes_corollae,LEMA,Eupeodes_corollae,0.6666666666666666,4
+LEMA,Eupeodes_corollae,CHFU,Eupeodes_corollae,0.5714285714285714,4
+CHFU,Psilothrix_viridicoerulea,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,4
+LEMA,Psilothrix_viridicoerulea,CHFU,Psilothrix_viridicoerulea,0.5714285714285714,4
+CHFU,A1 CHFU,CHFU,Dilophus_sp.,1,5
+CHFU,A3 CHFU,CHFU,Dilophus_sp.,0.5,5
+CHFU,A3 CHFU,CHFU,Sphaerophoria_scripta,0.5,5
+CHFU,A4 CHFU,CHFU,Dilophus_sp.,1,5
+CHFU,A5 CHFU,CHFU,Dilophus_sp.,1,5
+CHFU,B1 CHFU,CHFU,Dilophus_sp.,1,5
+CHFU,B2 CHFU,CHFU,Dilophus_sp.,0.5,5
+CHFU,B2 CHFU,CHFU,Eupeodes_corollae,0.5,5
+CHFU,B3 CHFU,CHFU,Eupeodes_corollae,1,5
+CHFU,C3 CHFU,CHFU,Episyrphus_balteatus,1,5
+CHFU,C4 CHFU,CHFU,Dilophus_sp.,1,5
+CHFU,D1 CHFU,CHFU,Diptera,1,5
+CHFU,D2 CHFU,CHFU,Dilophus_sp.,1,5
+CHFU,D5 CHFU,CHFU,Dilophus_sp.,1,5
+CHFU,E1 CHFU,CHFU,Diptera,0.5,5
+CHFU,E1 CHFU,CHFU,Meligethes_sp.,0.5,5
+CHFU,F5 CHFU,CHFU,Dilophus_sp.,1,5
+CHFU,F6 CHFU,CHFU,Diptera,0.2,5
+CHFU,F6 CHFU,CHFU,Scaeva_sp.,0.8,5
+LEMA,A1 LEMA,LEMA,Eupeodes_corollae,0.3333333333333333,5
+LEMA,A1 LEMA,LEMA,Meligethes_sp.,0.3333333333333333,5
+LEMA,A1 LEMA,LEMA,Nemotelus_sp.,0.3333333333333333,5
+LEMA,A2 LEMA,LEMA,Coleoptera,0.2,5
+LEMA,A2 LEMA,LEMA,Sphaerophoria_scripta,0.8,5
+LEMA,A3 LEMA,LEMA,Diptera,1,5
+LEMA,A4 LEMA,LEMA,Meligethes_sp.,1,5
+LEMA,A6 LEMA,LEMA,Psilothrix_viridicoerulea,1,5
+LEMA,B2 LEMA,LEMA,Eupeodes_corollae,0.3333333333333333,5
+LEMA,B2 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,5
+LEMA,B4 LEMA,LEMA,Psilothrix_viridicoerulea,1,5
+LEMA,B5 LEMA,LEMA,Psilothrix_viridicoerulea,1,5
+LEMA,C1 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,5
+LEMA,C1 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,5
+LEMA,C1 LEMA,LEMA,Sphaerophoria_scripta,0.3333333333333333,5
+LEMA,C3 LEMA,LEMA,Psilothrix_viridicoerulea,1,5
+LEMA,C4 LEMA,LEMA,Dilophus_sp.,0.5,5
+LEMA,C4 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,5
+LEMA,C5 LEMA,LEMA,Dilophus_sp.,1,5
+LEMA,D1 LEMA,LEMA,Dilophus_sp.,0.6666666666666666,5
+LEMA,D1 LEMA,LEMA,Malachius_bipustulatus,0.08333333333333333,5
+LEMA,D1 LEMA,LEMA,Meligethes_sp.,0.08333333333333333,5
+LEMA,D1 LEMA,LEMA,Mordellidae,0.08333333333333333,5
+LEMA,D1 LEMA,LEMA,Psilothrix_viridicoerulea,0.08333333333333333,5
+LEMA,D2 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,5
+LEMA,D2 LEMA,LEMA,Eupeodes_corollae,0.6666666666666666,5
+LEMA,D4 LEMA,LEMA,Psilothrix_viridicoerulea,1,5
+LEMA,D5 LEMA,LEMA,Eupeodes_corollae,1,5
+LEMA,E1 LEMA,LEMA,Dilophus_sp.,0.25,5
+LEMA,E1 LEMA,LEMA,Eupeodes_corollae,0.125,5
+LEMA,E1 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,5
+LEMA,E1 LEMA,LEMA,Sphaerophoria_scripta,0.125,5
+LEMA,E5 LEMA,LEMA,Meligethes_sp.,1,5
+LEMA,F1 LEMA,LEMA,Psilothrix_viridicoerulea,1,5
+LEMA,F4 LEMA,LEMA,Meligethes_sp.,1,5
+CHFU,Dilophus_sp.,CHFU,A1 CHFU,0.07142857142857142,5
+CHFU,Dilophus_sp.,CHFU,A3 CHFU,0.14285714285714285,5
+CHFU,Sphaerophoria_scripta,CHFU,A3 CHFU,1,5
+CHFU,Dilophus_sp.,CHFU,A4 CHFU,0.14285714285714285,5
+CHFU,Dilophus_sp.,CHFU,A5 CHFU,0.14285714285714285,5
+CHFU,Dilophus_sp.,CHFU,B1 CHFU,0.07142857142857142,5
+CHFU,Dilophus_sp.,CHFU,B2 CHFU,0.07142857142857142,5
+CHFU,Eupeodes_corollae,CHFU,B2 CHFU,0.5,5
+CHFU,Eupeodes_corollae,CHFU,B3 CHFU,0.5,5
+CHFU,Episyrphus_balteatus,CHFU,C3 CHFU,1,5
+CHFU,Dilophus_sp.,CHFU,C4 CHFU,0.07142857142857142,5
+CHFU,Diptera,CHFU,D1 CHFU,0.3333333333333333,5
+CHFU,Dilophus_sp.,CHFU,D2 CHFU,0.14285714285714285,5
+CHFU,Dilophus_sp.,CHFU,D5 CHFU,0.07142857142857142,5
+CHFU,Diptera,CHFU,E1 CHFU,0.3333333333333333,5
+CHFU,Meligethes_sp.,CHFU,E1 CHFU,1,5
+CHFU,Dilophus_sp.,CHFU,F5 CHFU,0.07142857142857142,5
+CHFU,Diptera,CHFU,F6 CHFU,0.3333333333333333,5
+CHFU,Scaeva_sp.,CHFU,F6 CHFU,1,5
+LEMA,Eupeodes_corollae,LEMA,A1 LEMA,0.16666666666666666,5
+LEMA,Meligethes_sp.,LEMA,A1 LEMA,0.16666666666666666,5
+LEMA,Nemotelus_sp.,LEMA,A1 LEMA,1,5
+LEMA,Coleoptera,LEMA,A2 LEMA,1,5
+LEMA,Sphaerophoria_scripta,LEMA,A2 LEMA,0.6666666666666666,5
+LEMA,Diptera,LEMA,A3 LEMA,1,5
+LEMA,Meligethes_sp.,LEMA,A4 LEMA,0.16666666666666666,5
+LEMA,Psilothrix_viridicoerulea,LEMA,A6 LEMA,0.0625,5
+LEMA,Eupeodes_corollae,LEMA,B2 LEMA,0.16666666666666666,5
+LEMA,Psilothrix_viridicoerulea,LEMA,B2 LEMA,0.125,5
+LEMA,Psilothrix_viridicoerulea,LEMA,B4 LEMA,0.125,5
+LEMA,Psilothrix_viridicoerulea,LEMA,B5 LEMA,0.0625,5
+LEMA,Dilophus_sp.,LEMA,C1 LEMA,0.0625,5
+LEMA,Psilothrix_viridicoerulea,LEMA,C1 LEMA,0.0625,5
+LEMA,Sphaerophoria_scripta,LEMA,C1 LEMA,0.16666666666666666,5
+LEMA,Psilothrix_viridicoerulea,LEMA,C3 LEMA,0.0625,5
+LEMA,Dilophus_sp.,LEMA,C4 LEMA,0.0625,5
+LEMA,Psilothrix_viridicoerulea,LEMA,C4 LEMA,0.0625,5
+LEMA,Dilophus_sp.,LEMA,C5 LEMA,0.1875,5
+LEMA,Dilophus_sp.,LEMA,D1 LEMA,0.5,5
+LEMA,Malachius_bipustulatus,LEMA,D1 LEMA,1,5
+LEMA,Meligethes_sp.,LEMA,D1 LEMA,0.16666666666666666,5
+LEMA,Mordellidae,LEMA,D1 LEMA,1,5
+LEMA,Psilothrix_viridicoerulea,LEMA,D1 LEMA,0.0625,5
+LEMA,Dilophus_sp.,LEMA,D2 LEMA,0.0625,5
+LEMA,Eupeodes_corollae,LEMA,D2 LEMA,0.3333333333333333,5
+LEMA,Psilothrix_viridicoerulea,LEMA,D4 LEMA,0.0625,5
+LEMA,Eupeodes_corollae,LEMA,D5 LEMA,0.16666666666666666,5
+LEMA,Dilophus_sp.,LEMA,E1 LEMA,0.125,5
+LEMA,Eupeodes_corollae,LEMA,E1 LEMA,0.16666666666666666,5
+LEMA,Psilothrix_viridicoerulea,LEMA,E1 LEMA,0.25,5
+LEMA,Sphaerophoria_scripta,LEMA,E1 LEMA,0.16666666666666666,5
+LEMA,Meligethes_sp.,LEMA,E5 LEMA,0.16666666666666666,5
+LEMA,Psilothrix_viridicoerulea,LEMA,F1 LEMA,0.0625,5
+LEMA,Meligethes_sp.,LEMA,F4 LEMA,0.3333333333333333,5
+CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0.5,5
+LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,0.42857142857142855,5
+CHFU,Diptera,LEMA,Diptera,0.5,5
+LEMA,Diptera,CHFU,Diptera,0.42857142857142855,5
+CHFU,Eupeodes_corollae,LEMA,Eupeodes_corollae,0.5,5
+LEMA,Eupeodes_corollae,CHFU,Eupeodes_corollae,0.42857142857142855,5
+CHFU,Meligethes_sp.,LEMA,Meligethes_sp.,0.5,5
+LEMA,Meligethes_sp.,CHFU,Meligethes_sp.,0.42857142857142855,5
+CHFU,Sphaerophoria_scripta,LEMA,Sphaerophoria_scripta,0.5,5
+LEMA,Sphaerophoria_scripta,CHFU,Sphaerophoria_scripta,0.42857142857142855,5
+CHFU,A2 CHFU,CHFU,Bruchidae,0.5,6
+CHFU,A2 CHFU,CHFU,Dilophus_sp.,0.5,6
+CHFU,A3 CHFU,CHFU,Bruchidae,0.3333333333333333,6
+CHFU,A3 CHFU,CHFU,Dilophus_sp.,0.3333333333333333,6
+CHFU,A3 CHFU,CHFU,Meligethes_sp.,0.3333333333333333,6
+CHFU,A5 CHFU,CHFU,Cantharidae,1,6
+CHFU,A6 CHFU,CHFU,Dilophus_sp.,1,6
+CHFU,B3 CHFU,CHFU,Diptera,0.6666666666666666,6
+CHFU,B3 CHFU,CHFU,Lomatia_sp.,0.3333333333333333,6
+CHFU,E3 CHFU,CHFU,Eucera_sp.,1,6
+CHFU,F2 CHFU,CHFU,Andrena_cinerea,1,6
+LEMA,A1 LEMA,LEMA,Dilophus_sp.,0.4,6
+LEMA,A1 LEMA,LEMA,Psilothrix_viridicoerulea,0.6,6
+LEMA,A3 LEMA,LEMA,Dilophus_sp.,0.5,6
+LEMA,A3 LEMA,LEMA,Diptera,0.5,6
+LEMA,A4 LEMA,LEMA,Dilophus_sp.,0.5,6
+LEMA,A4 LEMA,LEMA,Sphaerophoria_scripta,0.5,6
+LEMA,A6 LEMA,LEMA,Dilophus_sp.,1,6
+LEMA,B1 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,6
+LEMA,B1 LEMA,LEMA,Diptera,0.3333333333333333,6
+LEMA,B1 LEMA,LEMA,Meligethes_sp.,0.3333333333333333,6
+LEMA,B2 LEMA,LEMA,Meligethes_sp.,1,6
+LEMA,B3 LEMA,LEMA,Dilophus_sp.,0.25,6
+LEMA,B3 LEMA,LEMA,Eristalis_sp.,0.5,6
+LEMA,B3 LEMA,LEMA,Meligethes_sp.,0.125,6
+LEMA,B3 LEMA,LEMA,Psilothrix_viridicoerulea,0.125,6
+LEMA,B4 LEMA,LEMA,Chrysotoxum_sp.,0.14285714285714285,6
+LEMA,B4 LEMA,LEMA,Dilophus_sp.,0.2857142857142857,6
+LEMA,B4 LEMA,LEMA,Eupeodes_corollae,0.14285714285714285,6
+LEMA,B4 LEMA,LEMA,Meligethes_sp.,0.14285714285714285,6
+LEMA,B4 LEMA,LEMA,Psilothrix_viridicoerulea,0.14285714285714285,6
+LEMA,B4 LEMA,LEMA,Sphaerophoria_scripta,0.14285714285714285,6
+LEMA,B5 LEMA,LEMA,Dilophus_sp.,1,6
+LEMA,B6 LEMA,LEMA,Psilothrix_viridicoerulea,1,6
+LEMA,C1 LEMA,LEMA,Cantharidae,0.16666666666666666,6
+LEMA,C1 LEMA,LEMA,Coleoptera,0.16666666666666666,6
+LEMA,C1 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,6
+LEMA,C1 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,6
+LEMA,C3 LEMA,LEMA,Meligethes_sp.,1,6
+LEMA,C4 LEMA,LEMA,Andrena_cinerea,0.5,6
+LEMA,C4 LEMA,LEMA,Dilophus_sp.,0.5,6
+LEMA,C6 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,6
+LEMA,C6 LEMA,LEMA,Sphaerophoria_scripta,0.5,6
+LEMA,D1 LEMA,LEMA,Dilophus_sp.,0.5,6
+LEMA,D1 LEMA,LEMA,Psilothrix_viridicoerulea,0.25,6
+LEMA,D1 LEMA,LEMA,Sphaerophoria_scripta,0.25,6
+LEMA,D2 LEMA,LEMA,Eucera_sp.,1,6
+LEMA,D3 LEMA,LEMA,Eucera_sp.,0.25,6
+LEMA,D3 LEMA,LEMA,Meligethes_sp.,0.25,6
+LEMA,D3 LEMA,LEMA,Psilothrix_viridicoerulea,0.25,6
+LEMA,D3 LEMA,LEMA,Sphaerophoria_scripta,0.25,6
+LEMA,D4 LEMA,LEMA,Dilophus_sp.,1,6
+LEMA,D5 LEMA,LEMA,Coleoptera,0.3333333333333333,6
+LEMA,D5 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,6
+LEMA,D5 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,6
+LEMA,D6 LEMA,LEMA,Diptera,1,6
+LEMA,E1 LEMA,LEMA,Coleoptera,0.3333333333333333,6
+LEMA,E1 LEMA,LEMA,Meligethes_sp.,0.6666666666666666,6
+LEMA,E2 LEMA,LEMA,Sphaerophoria_scripta,1,6
+LEMA,F2 LEMA,LEMA,Psilothrix_viridicoerulea,1,6
+LEMA,F3 LEMA,LEMA,Dilophus_sp.,1,6
+LEMA,F4 LEMA,LEMA,Dilophus_sp.,0.5,6
+LEMA,F4 LEMA,LEMA,Sphaerophoria_scripta,0.5,6
+LEMA,F5 LEMA,LEMA,Meligethes_sp.,0.3333333333333333,6
+LEMA,F5 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,6
+LEMA,F6 LEMA,LEMA,Meligethes_sp.,1,6
+ME,E5 ME,ME,Eupeodes_corollae,1,6
+CHFU,Bruchidae,CHFU,A2 CHFU,0.5,6
+CHFU,Dilophus_sp.,CHFU,A2 CHFU,0.3333333333333333,6
+CHFU,Bruchidae,CHFU,A3 CHFU,0.5,6
+CHFU,Dilophus_sp.,CHFU,A3 CHFU,0.3333333333333333,6
+CHFU,Meligethes_sp.,CHFU,A3 CHFU,1,6
+CHFU,Cantharidae,CHFU,A5 CHFU,1,6
+CHFU,Dilophus_sp.,CHFU,A6 CHFU,0.3333333333333333,6
+CHFU,Diptera,CHFU,B3 CHFU,1,6
+CHFU,Lomatia_sp.,CHFU,B3 CHFU,1,6
+CHFU,Eucera_sp.,CHFU,E3 CHFU,1,6
+CHFU,Andrena_cinerea,CHFU,F2 CHFU,1,6
+LEMA,Dilophus_sp.,LEMA,A1 LEMA,0.09523809523809523,6
+LEMA,Psilothrix_viridicoerulea,LEMA,A1 LEMA,0.16666666666666666,6
+LEMA,Dilophus_sp.,LEMA,A3 LEMA,0.047619047619047616,6
+LEMA,Diptera,LEMA,A3 LEMA,0.3333333333333333,6
+LEMA,Dilophus_sp.,LEMA,A4 LEMA,0.047619047619047616,6
+LEMA,Sphaerophoria_scripta,LEMA,A4 LEMA,0.14285714285714285,6
+LEMA,Dilophus_sp.,LEMA,A6 LEMA,0.047619047619047616,6
+LEMA,Dilophus_sp.,LEMA,B1 LEMA,0.047619047619047616,6
+LEMA,Diptera,LEMA,B1 LEMA,0.3333333333333333,6
+LEMA,Meligethes_sp.,LEMA,B1 LEMA,0.1,6
+LEMA,Meligethes_sp.,LEMA,B2 LEMA,0.1,6
+LEMA,Dilophus_sp.,LEMA,B3 LEMA,0.09523809523809523,6
+LEMA,Eristalis_sp.,LEMA,B3 LEMA,1,6
+LEMA,Meligethes_sp.,LEMA,B3 LEMA,0.1,6
+LEMA,Psilothrix_viridicoerulea,LEMA,B3 LEMA,0.05555555555555555,6
+LEMA,Chrysotoxum_sp.,LEMA,B4 LEMA,1,6
+LEMA,Dilophus_sp.,LEMA,B4 LEMA,0.09523809523809523,6
+LEMA,Eupeodes_corollae,LEMA,B4 LEMA,1,6
+LEMA,Meligethes_sp.,LEMA,B4 LEMA,0.1,6
+LEMA,Psilothrix_viridicoerulea,LEMA,B4 LEMA,0.05555555555555555,6
+LEMA,Sphaerophoria_scripta,LEMA,B4 LEMA,0.14285714285714285,6
+LEMA,Dilophus_sp.,LEMA,B5 LEMA,0.047619047619047616,6
+LEMA,Psilothrix_viridicoerulea,LEMA,B6 LEMA,0.2222222222222222,6
+LEMA,Cantharidae,LEMA,C1 LEMA,1,6
+LEMA,Coleoptera,LEMA,C1 LEMA,0.3333333333333333,6
+LEMA,Dilophus_sp.,LEMA,C1 LEMA,0.09523809523809523,6
+LEMA,Psilothrix_viridicoerulea,LEMA,C1 LEMA,0.1111111111111111,6
+LEMA,Meligethes_sp.,LEMA,C3 LEMA,0.1,6
+LEMA,Andrena_cinerea,LEMA,C4 LEMA,1,6
+LEMA,Dilophus_sp.,LEMA,C4 LEMA,0.09523809523809523,6
+LEMA,Psilothrix_viridicoerulea,LEMA,C6 LEMA,0.05555555555555555,6
+LEMA,Sphaerophoria_scripta,LEMA,C6 LEMA,0.14285714285714285,6
+LEMA,Dilophus_sp.,LEMA,D1 LEMA,0.09523809523809523,6
+LEMA,Psilothrix_viridicoerulea,LEMA,D1 LEMA,0.05555555555555555,6
+LEMA,Sphaerophoria_scripta,LEMA,D1 LEMA,0.14285714285714285,6
+LEMA,Eucera_sp.,LEMA,D2 LEMA,0.5,6
+LEMA,Eucera_sp.,LEMA,D3 LEMA,0.5,6
+LEMA,Meligethes_sp.,LEMA,D3 LEMA,0.1,6
+LEMA,Psilothrix_viridicoerulea,LEMA,D3 LEMA,0.05555555555555555,6
+LEMA,Sphaerophoria_scripta,LEMA,D3 LEMA,0.14285714285714285,6
+LEMA,Dilophus_sp.,LEMA,D4 LEMA,0.047619047619047616,6
+LEMA,Coleoptera,LEMA,D5 LEMA,0.3333333333333333,6
+LEMA,Dilophus_sp.,LEMA,D5 LEMA,0.047619047619047616,6
+LEMA,Psilothrix_viridicoerulea,LEMA,D5 LEMA,0.05555555555555555,6
+LEMA,Diptera,LEMA,D6 LEMA,0.3333333333333333,6
+LEMA,Coleoptera,LEMA,E1 LEMA,0.3333333333333333,6
+LEMA,Meligethes_sp.,LEMA,E1 LEMA,0.2,6
+LEMA,Sphaerophoria_scripta,LEMA,E2 LEMA,0.14285714285714285,6
+LEMA,Psilothrix_viridicoerulea,LEMA,F2 LEMA,0.05555555555555555,6
+LEMA,Dilophus_sp.,LEMA,F3 LEMA,0.047619047619047616,6
+LEMA,Dilophus_sp.,LEMA,F4 LEMA,0.047619047619047616,6
+LEMA,Sphaerophoria_scripta,LEMA,F4 LEMA,0.14285714285714285,6
+LEMA,Meligethes_sp.,LEMA,F5 LEMA,0.1,6
+LEMA,Psilothrix_viridicoerulea,LEMA,F5 LEMA,0.1111111111111111,6
+LEMA,Meligethes_sp.,LEMA,F6 LEMA,0.1,6
+ME,Eupeodes_corollae,ME,E5 ME,1,6
+CHFU,Andrena_cinerea,LEMA,Andrena_cinerea,0.6666666666666666,6
+LEMA,Andrena_cinerea,CHFU,Andrena_cinerea,0.6666666666666666,6
+CHFU,Cantharidae,LEMA,Cantharidae,0.6666666666666666,6
+LEMA,Cantharidae,CHFU,Cantharidae,0.6666666666666666,6
+CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0.6666666666666666,6
+LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,0.6666666666666666,6
+CHFU,Diptera,LEMA,Diptera,0.6666666666666666,6
+LEMA,Diptera,CHFU,Diptera,0.6666666666666666,6
+CHFU,Eucera_sp.,LEMA,Eucera_sp.,0.6666666666666666,6
+LEMA,Eucera_sp.,CHFU,Eucera_sp.,0.6666666666666666,6
+LEMA,Eupeodes_corollae,ME,Eupeodes_corollae,0,6
+ME,Eupeodes_corollae,LEMA,Eupeodes_corollae,0,6
+CHFU,Meligethes_sp.,LEMA,Meligethes_sp.,0.6666666666666666,6
+LEMA,Meligethes_sp.,CHFU,Meligethes_sp.,0.6666666666666666,6
+CHFU,A1 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,A5 CHFU,CHFU,Dilophus_sp.,0.875,7
+CHFU,A5 CHFU,CHFU,Ulidiidae,0.125,7
+CHFU,B1 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,B2 CHFU,CHFU,Dilophus_sp.,0.75,7
+CHFU,B2 CHFU,CHFU,Eupeodes_corollae,0.25,7
+CHFU,B3 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,B4 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,B5 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,B6 CHFU,CHFU,Dilophus_sp.,0.8333333333333334,7
+CHFU,B6 CHFU,CHFU,Empididae,0.16666666666666666,7
+CHFU,C2 CHFU,CHFU,Andrena_cinerea,0.4,7
+CHFU,C2 CHFU,CHFU,Dilophus_sp.,0.4,7
+CHFU,C2 CHFU,CHFU,Musca_sp.,0.2,7
+CHFU,C3 CHFU,CHFU,Dilophus_sp.,0.4,7
+CHFU,C3 CHFU,CHFU,Empididae,0.2,7
+CHFU,C3 CHFU,CHFU,Ulidiidae,0.4,7
+CHFU,C5 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,C6 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,D1 CHFU,CHFU,Dilophus_sp.,0.5,7
+CHFU,D1 CHFU,CHFU,Empididae,0.5,7
+CHFU,D2 CHFU,CHFU,Dilophus_sp.,0.6666666666666666,7
+CHFU,D2 CHFU,CHFU,Musca_sp.,0.3333333333333333,7
+CHFU,D3 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,D4 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,D5 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,D6 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,E1 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,E2 CHFU,CHFU,Dilophus_sp.,0.75,7
+CHFU,E2 CHFU,CHFU,Diptera,0.25,7
+CHFU,E3 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,E4 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,E5 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,E6 CHFU,CHFU,Odontomyia_sp.,1,7
+CHFU,F1 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,F2 CHFU,CHFU,Dilophus_sp.,0.5,7
+CHFU,F2 CHFU,CHFU,Empididae,0.25,7
+CHFU,F2 CHFU,CHFU,Scaeva_sp.,0.25,7
+CHFU,F3 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,F4 CHFU,CHFU,Dilophus_sp.,1,7
+CHFU,F5 CHFU,CHFU,Dilophus_sp.,1,7
+CHMI,D1 CHMI,CHMI,Mordellidae,1,7
+CHMI,D3 CHMI,CHMI,Dilophus_sp.,1,7
+CHMI,F4 CHMI,CHMI,Mordellidae,0.6666666666666666,7
+CHMI,F4 CHMI,CHMI,Psilothrix_viridicoerulea,0.3333333333333333,7
+CHMI,F5 CHMI,CHMI,Mordellidae,1,7
+LEMA,A4 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,7
+LEMA,A4 LEMA,LEMA,Sphaerophoria_scripta,0.6666666666666666,7
+LEMA,A5 LEMA,LEMA,Eupeodes_corollae,0.5,7
+LEMA,A5 LEMA,LEMA,Sphaerophoria_scripta,0.5,7
+LEMA,A6 LEMA,LEMA,Dilophus_sp.,1,7
+LEMA,B3 LEMA,LEMA,Andrena_cinerea,0.5,7
+LEMA,B3 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,7
+LEMA,B4 LEMA,LEMA,Andrena_cinerea,1,7
+LEMA,B5 LEMA,LEMA,Andrena_cinerea,0.4,7
+LEMA,B5 LEMA,LEMA,Dilophus_sp.,0.2,7
+LEMA,B5 LEMA,LEMA,Sphaerophoria_scripta,0.4,7
+LEMA,B6 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,7
+LEMA,B6 LEMA,LEMA,Sphaerophoria_scripta,0.5,7
+LEMA,C1 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,7
+LEMA,C1 LEMA,LEMA,Musca_sp.,0.3333333333333333,7
+LEMA,C1 LEMA,LEMA,Sphaerophoria_scripta,0.3333333333333333,7
+LEMA,C2 LEMA,LEMA,Dilophus_sp.,0.2,7
+LEMA,C2 LEMA,LEMA,Malachius_bipustulatus,0.2,7
+LEMA,C2 LEMA,LEMA,Psilothrix_viridicoerulea,0.4,7
+LEMA,C2 LEMA,LEMA,Sphaerophoria_scripta,0.2,7
+LEMA,C3 LEMA,LEMA,Andrena_cinerea,0.4,7
+LEMA,C3 LEMA,LEMA,Psilothrix_viridicoerulea,0.6,7
+LEMA,C4 LEMA,LEMA,Andrena_cinerea,0.5,7
+LEMA,C4 LEMA,LEMA,Odontomyia_sp.,0.16666666666666666,7
+LEMA,C4 LEMA,LEMA,Psilothrix_viridicoerulea,0.16666666666666666,7
+LEMA,C4 LEMA,LEMA,Sphaerophoria_scripta,0.16666666666666666,7
+LEMA,C5 LEMA,LEMA,Sphaerophoria_scripta,1,7
+LEMA,C6 LEMA,LEMA,Odontomyia_sp.,1,7
+LEMA,D1 LEMA,LEMA,Sphaerophoria_scripta,1,7
+LEMA,D2 LEMA,LEMA,Dilophus_sp.,0.5,7
+LEMA,D2 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,7
+LEMA,D3 LEMA,LEMA,Sphaerophoria_scripta,1,7
+LEMA,D4 LEMA,LEMA,Dilophus_sp.,0.5,7
+LEMA,D4 LEMA,LEMA,Melanostoma_sp.,0.5,7
+LEMA,D5 LEMA,LEMA,Mordellidae,0.2,7
+LEMA,D5 LEMA,LEMA,Odontomyia_sp.,0.6,7
+LEMA,D5 LEMA,LEMA,Sphaerophoria_scripta,0.2,7
+LEMA,D6 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,7
+LEMA,D6 LEMA,LEMA,Mordellidae,0.6666666666666666,7
+LEMA,E1 LEMA,LEMA,Psilothrix_viridicoerulea,1,7
+LEMA,E2 LEMA,LEMA,Psilothrix_viridicoerulea,1,7
+LEMA,E3 LEMA,LEMA,Mordellidae,0.5,7
+LEMA,E3 LEMA,LEMA,Sphaerophoria_scripta,0.5,7
+LEMA,E4 LEMA,LEMA,Odontomyia_sp.,0.5,7
+LEMA,E4 LEMA,LEMA,Sphaerophoria_scripta,0.5,7
+LEMA,E6 LEMA,LEMA,Odontomyia_sp.,0.8571428571428571,7
+LEMA,E6 LEMA,LEMA,Psilothrix_viridicoerulea,0.14285714285714285,7
+LEMA,F2 LEMA,LEMA,Dilophus_sp.,1,7
+LEMA,F3 LEMA,LEMA,Andrena_cinerea,0.3333333333333333,7
+LEMA,F3 LEMA,LEMA,Coleoptera,0.3333333333333333,7
+LEMA,F3 LEMA,LEMA,Curculionidae,0.3333333333333333,7
+LEMA,F4 LEMA,LEMA,Andrena_cinerea,0.5,7
+LEMA,F4 LEMA,LEMA,Curculionidae,0.5,7
+ME,A5 ME,ME,Odontomyia_sp.,1,7
+ME,B3 ME,ME,Odontomyia_sp.,1,7
+ME,B5 ME,ME,Odontomyia_sp.,1,7
+ME,D2 ME,ME,Dilophus_sp.,1,7
+ME,E2 ME,ME,Musca_sp.,1,7
+PUPA,A6 PUPA,PUPA,Bombyliidae,1,7
+PUPA,B4 PUPA,PUPA,Bombyliidae,0.5,7
+PUPA,B4 PUPA,PUPA,Lasiocampa_trifolii,0.5,7
+PUPA,B5 PUPA,PUPA,Bombyliidae,0.5,7
+PUPA,B5 PUPA,PUPA,Eucera_sp.,0.5,7
+PUPA,C2 PUPA,PUPA,Bombyliidae,0.2,7
+PUPA,C2 PUPA,PUPA,Dilophus_sp.,0.2,7
+PUPA,C2 PUPA,PUPA,Eucera_sp.,0.4,7
+PUPA,C2 PUPA,PUPA,Lasiocampa_trifolii,0.2,7
+PUPA,C3 PUPA,PUPA,Colias_croceus,1,7
+PUPA,C4 PUPA,PUPA,Bombyliidae,1,7
+PUPA,D2 PUPA,PUPA,Eucera_sp.,1,7
+PUPA,D3 PUPA,PUPA,Eucera_sp.,1,7
+PUPA,D5 PUPA,PUPA,Eucera_sp.,1,7
+PUPA,E3 PUPA,PUPA,Andrena_cinerea,1,7
+PUPA,E4 PUPA,PUPA,Bombyliidae,0.75,7
+PUPA,E4 PUPA,PUPA,Lasiocampa_trifolii,0.25,7
+PUPA,E6 PUPA,PUPA,Bombyliidae,1,7
+PUPA,F3 PUPA,PUPA,Bombyliidae,0.5,7
+PUPA,F3 PUPA,PUPA,Lasiocampa_trifolii,0.5,7
+PUPA,F4 PUPA,PUPA,Lasiocampa_trifolii,1,7
+PUPA,F6 PUPA,PUPA,Lasiocampa_trifolii,1,7
+CHFU,Dilophus_sp.,CHFU,A1 CHFU,0.017543859649122806,7
+CHFU,Dilophus_sp.,CHFU,A5 CHFU,0.12280701754385964,7
+CHFU,Ulidiidae,CHFU,A5 CHFU,0.3333333333333333,7
+CHFU,Dilophus_sp.,CHFU,B1 CHFU,0.017543859649122806,7
+CHFU,Dilophus_sp.,CHFU,B2 CHFU,0.05263157894736842,7
+CHFU,Eupeodes_corollae,CHFU,B2 CHFU,1,7
+CHFU,Dilophus_sp.,CHFU,B3 CHFU,0.03508771929824561,7
+CHFU,Dilophus_sp.,CHFU,B4 CHFU,0.017543859649122806,7
+CHFU,Dilophus_sp.,CHFU,B5 CHFU,0.03508771929824561,7
+CHFU,Dilophus_sp.,CHFU,B6 CHFU,0.08771929824561403,7
+CHFU,Empididae,CHFU,B6 CHFU,0.25,7
+CHFU,Andrena_cinerea,CHFU,C2 CHFU,1,7
+CHFU,Dilophus_sp.,CHFU,C2 CHFU,0.03508771929824561,7
+CHFU,Musca_sp.,CHFU,C2 CHFU,0.5,7
+CHFU,Dilophus_sp.,CHFU,C3 CHFU,0.03508771929824561,7
+CHFU,Empididae,CHFU,C3 CHFU,0.25,7
+CHFU,Ulidiidae,CHFU,C3 CHFU,0.6666666666666666,7
+CHFU,Dilophus_sp.,CHFU,C5 CHFU,0.017543859649122806,7
+CHFU,Dilophus_sp.,CHFU,C6 CHFU,0.05263157894736842,7
+CHFU,Dilophus_sp.,CHFU,D1 CHFU,0.017543859649122806,7
+CHFU,Empididae,CHFU,D1 CHFU,0.25,7
+CHFU,Dilophus_sp.,CHFU,D2 CHFU,0.03508771929824561,7
+CHFU,Musca_sp.,CHFU,D2 CHFU,0.5,7
+CHFU,Dilophus_sp.,CHFU,D3 CHFU,0.017543859649122806,7
+CHFU,Dilophus_sp.,CHFU,D4 CHFU,0.017543859649122806,7
+CHFU,Dilophus_sp.,CHFU,D5 CHFU,0.017543859649122806,7
+CHFU,Dilophus_sp.,CHFU,D6 CHFU,0.05263157894736842,7
+CHFU,Dilophus_sp.,CHFU,E1 CHFU,0.017543859649122806,7
+CHFU,Dilophus_sp.,CHFU,E2 CHFU,0.05263157894736842,7
+CHFU,Diptera,CHFU,E2 CHFU,1,7
+CHFU,Dilophus_sp.,CHFU,E3 CHFU,0.03508771929824561,7
+CHFU,Dilophus_sp.,CHFU,E4 CHFU,0.03508771929824561,7
+CHFU,Dilophus_sp.,CHFU,E5 CHFU,0.017543859649122806,7
+CHFU,Odontomyia_sp.,CHFU,E6 CHFU,1,7
+CHFU,Dilophus_sp.,CHFU,F1 CHFU,0.03508771929824561,7
+CHFU,Dilophus_sp.,CHFU,F2 CHFU,0.03508771929824561,7
+CHFU,Empididae,CHFU,F2 CHFU,0.25,7
+CHFU,Scaeva_sp.,CHFU,F2 CHFU,1,7
+CHFU,Dilophus_sp.,CHFU,F3 CHFU,0.017543859649122806,7
+CHFU,Dilophus_sp.,CHFU,F4 CHFU,0.05263157894736842,7
+CHFU,Dilophus_sp.,CHFU,F5 CHFU,0.017543859649122806,7
+CHMI,Mordellidae,CHMI,D1 CHMI,0.4,7
+CHMI,Dilophus_sp.,CHMI,D3 CHMI,1,7
+CHMI,Mordellidae,CHMI,F4 CHMI,0.4,7
+CHMI,Psilothrix_viridicoerulea,CHMI,F4 CHMI,1,7
+CHMI,Mordellidae,CHMI,F5 CHMI,0.2,7
+LEMA,Psilothrix_viridicoerulea,LEMA,A4 LEMA,0.058823529411764705,7
+LEMA,Sphaerophoria_scripta,LEMA,A4 LEMA,0.1111111111111111,7
+LEMA,Eupeodes_corollae,LEMA,A5 LEMA,1,7
+LEMA,Sphaerophoria_scripta,LEMA,A5 LEMA,0.05555555555555555,7
+LEMA,Dilophus_sp.,LEMA,A6 LEMA,0.1,7
+LEMA,Andrena_cinerea,LEMA,B3 LEMA,0.07142857142857142,7
+LEMA,Psilothrix_viridicoerulea,LEMA,B3 LEMA,0.058823529411764705,7
+LEMA,Andrena_cinerea,LEMA,B4 LEMA,0.2857142857142857,7
+LEMA,Andrena_cinerea,LEMA,B5 LEMA,0.14285714285714285,7
+LEMA,Dilophus_sp.,LEMA,B5 LEMA,0.1,7
+LEMA,Sphaerophoria_scripta,LEMA,B5 LEMA,0.1111111111111111,7
+LEMA,Psilothrix_viridicoerulea,LEMA,B6 LEMA,0.11764705882352941,7
+LEMA,Sphaerophoria_scripta,LEMA,B6 LEMA,0.1111111111111111,7
+LEMA,Dilophus_sp.,LEMA,C1 LEMA,0.2,7
+LEMA,Musca_sp.,LEMA,C1 LEMA,1,7
+LEMA,Sphaerophoria_scripta,LEMA,C1 LEMA,0.1111111111111111,7
+LEMA,Dilophus_sp.,LEMA,C2 LEMA,0.1,7
+LEMA,Malachius_bipustulatus,LEMA,C2 LEMA,1,7
+LEMA,Psilothrix_viridicoerulea,LEMA,C2 LEMA,0.11764705882352941,7
+LEMA,Sphaerophoria_scripta,LEMA,C2 LEMA,0.05555555555555555,7
+LEMA,Andrena_cinerea,LEMA,C3 LEMA,0.14285714285714285,7
+LEMA,Psilothrix_viridicoerulea,LEMA,C3 LEMA,0.17647058823529413,7
+LEMA,Andrena_cinerea,LEMA,C4 LEMA,0.21428571428571427,7
+LEMA,Odontomyia_sp.,LEMA,C4 LEMA,0.08333333333333333,7
+LEMA,Psilothrix_viridicoerulea,LEMA,C4 LEMA,0.058823529411764705,7
+LEMA,Sphaerophoria_scripta,LEMA,C4 LEMA,0.05555555555555555,7
+LEMA,Sphaerophoria_scripta,LEMA,C5 LEMA,0.1111111111111111,7
+LEMA,Odontomyia_sp.,LEMA,C6 LEMA,0.08333333333333333,7
+LEMA,Sphaerophoria_scripta,LEMA,D1 LEMA,0.05555555555555555,7
+LEMA,Dilophus_sp.,LEMA,D2 LEMA,0.1,7
+LEMA,Psilothrix_viridicoerulea,LEMA,D2 LEMA,0.058823529411764705,7
+LEMA,Sphaerophoria_scripta,LEMA,D3 LEMA,0.05555555555555555,7
+LEMA,Dilophus_sp.,LEMA,D4 LEMA,0.1,7
+LEMA,Melanostoma_sp.,LEMA,D4 LEMA,1,7
+LEMA,Mordellidae,LEMA,D5 LEMA,0.25,7
+LEMA,Odontomyia_sp.,LEMA,D5 LEMA,0.25,7
+LEMA,Sphaerophoria_scripta,LEMA,D5 LEMA,0.05555555555555555,7
+LEMA,Dilophus_sp.,LEMA,D6 LEMA,0.1,7
+LEMA,Mordellidae,LEMA,D6 LEMA,0.5,7
+LEMA,Psilothrix_viridicoerulea,LEMA,E1 LEMA,0.11764705882352941,7
+LEMA,Psilothrix_viridicoerulea,LEMA,E2 LEMA,0.17647058823529413,7
+LEMA,Mordellidae,LEMA,E3 LEMA,0.25,7
+LEMA,Sphaerophoria_scripta,LEMA,E3 LEMA,0.05555555555555555,7
+LEMA,Odontomyia_sp.,LEMA,E4 LEMA,0.08333333333333333,7
+LEMA,Sphaerophoria_scripta,LEMA,E4 LEMA,0.05555555555555555,7
+LEMA,Odontomyia_sp.,LEMA,E6 LEMA,0.5,7
+LEMA,Psilothrix_viridicoerulea,LEMA,E6 LEMA,0.058823529411764705,7
+LEMA,Dilophus_sp.,LEMA,F2 LEMA,0.2,7
+LEMA,Andrena_cinerea,LEMA,F3 LEMA,0.07142857142857142,7
+LEMA,Coleoptera,LEMA,F3 LEMA,1,7
+LEMA,Curculionidae,LEMA,F3 LEMA,0.5,7
+LEMA,Andrena_cinerea,LEMA,F4 LEMA,0.07142857142857142,7
+LEMA,Curculionidae,LEMA,F4 LEMA,0.5,7
+ME,Odontomyia_sp.,ME,A5 ME,0.5,7
+ME,Odontomyia_sp.,ME,B3 ME,0.25,7
+ME,Odontomyia_sp.,ME,B5 ME,0.25,7
+ME,Dilophus_sp.,ME,D2 ME,1,7
+ME,Musca_sp.,ME,E2 ME,1,7
+PUPA,Bombyliidae,PUPA,A6 PUPA,0.1,7
+PUPA,Bombyliidae,PUPA,B4 PUPA,0.1,7
+PUPA,Lasiocampa_trifolii,PUPA,B4 PUPA,0.16666666666666666,7
+PUPA,Bombyliidae,PUPA,B5 PUPA,0.1,7
+PUPA,Eucera_sp.,PUPA,B5 PUPA,0.125,7
+PUPA,Bombyliidae,PUPA,C2 PUPA,0.1,7
+PUPA,Dilophus_sp.,PUPA,C2 PUPA,1,7
+PUPA,Eucera_sp.,PUPA,C2 PUPA,0.25,7
+PUPA,Lasiocampa_trifolii,PUPA,C2 PUPA,0.16666666666666666,7
+PUPA,Colias_croceus,PUPA,C3 PUPA,1,7
+PUPA,Bombyliidae,PUPA,C4 PUPA,0.1,7
+PUPA,Eucera_sp.,PUPA,D2 PUPA,0.25,7
+PUPA,Eucera_sp.,PUPA,D3 PUPA,0.125,7
+PUPA,Eucera_sp.,PUPA,D5 PUPA,0.25,7
+PUPA,Andrena_cinerea,PUPA,E3 PUPA,1,7
+PUPA,Bombyliidae,PUPA,E4 PUPA,0.3,7
+PUPA,Lasiocampa_trifolii,PUPA,E4 PUPA,0.16666666666666666,7
+PUPA,Bombyliidae,PUPA,E6 PUPA,0.1,7
+PUPA,Bombyliidae,PUPA,F3 PUPA,0.1,7
+PUPA,Lasiocampa_trifolii,PUPA,F3 PUPA,0.16666666666666666,7
+PUPA,Lasiocampa_trifolii,PUPA,F4 PUPA,0.16666666666666666,7
+PUPA,Lasiocampa_trifolii,PUPA,F6 PUPA,0.16666666666666666,7
+CHFU,Andrena_cinerea,LEMA,Andrena_cinerea,0.16666666666666666,7
+LEMA,Andrena_cinerea,CHFU,Andrena_cinerea,0.16666666666666666,7
+CHFU,Andrena_cinerea,PUPA,Andrena_cinerea,0,7
+PUPA,Andrena_cinerea,CHFU,Andrena_cinerea,0,7
+LEMA,Andrena_cinerea,PUPA,Andrena_cinerea,0,7
+PUPA,Andrena_cinerea,LEMA,Andrena_cinerea,0,7
+CHFU,Dilophus_sp.,CHMI,Dilophus_sp.,0,7
+CHMI,Dilophus_sp.,CHFU,Dilophus_sp.,0,7
+CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0.16666666666666666,7
+LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,0.16666666666666666,7
+CHFU,Dilophus_sp.,ME,Dilophus_sp.,0.16666666666666666,7
+ME,Dilophus_sp.,CHFU,Dilophus_sp.,0.3333333333333333,7
+CHFU,Dilophus_sp.,PUPA,Dilophus_sp.,0,7
+PUPA,Dilophus_sp.,CHFU,Dilophus_sp.,0,7
+CHMI,Dilophus_sp.,LEMA,Dilophus_sp.,1,7
+LEMA,Dilophus_sp.,CHMI,Dilophus_sp.,0.16666666666666666,7
+CHMI,Dilophus_sp.,ME,Dilophus_sp.,0,7
+ME,Dilophus_sp.,CHMI,Dilophus_sp.,0,7
+CHMI,Dilophus_sp.,PUPA,Dilophus_sp.,0,7
+PUPA,Dilophus_sp.,CHMI,Dilophus_sp.,0,7
+LEMA,Dilophus_sp.,ME,Dilophus_sp.,0.5,7
+ME,Dilophus_sp.,LEMA,Dilophus_sp.,1,7
+LEMA,Dilophus_sp.,PUPA,Dilophus_sp.,0,7
+PUPA,Dilophus_sp.,LEMA,Dilophus_sp.,0,7
+ME,Dilophus_sp.,PUPA,Dilophus_sp.,0,7
+PUPA,Dilophus_sp.,ME,Dilophus_sp.,0,7
+CHFU,Eupeodes_corollae,LEMA,Eupeodes_corollae,0.16666666666666666,7
+LEMA,Eupeodes_corollae,CHFU,Eupeodes_corollae,0.16666666666666666,7
+CHMI,Mordellidae,LEMA,Mordellidae,1,7
+LEMA,Mordellidae,CHMI,Mordellidae,0.16666666666666666,7
+CHFU,Musca_sp.,LEMA,Musca_sp.,0.16666666666666666,7
+LEMA,Musca_sp.,CHFU,Musca_sp.,0.16666666666666666,7
+CHFU,Musca_sp.,ME,Musca_sp.,0.16666666666666666,7
+ME,Musca_sp.,CHFU,Musca_sp.,0.3333333333333333,7
+LEMA,Musca_sp.,ME,Musca_sp.,0.5,7
+ME,Musca_sp.,LEMA,Musca_sp.,1,7
+CHFU,Odontomyia_sp.,LEMA,Odontomyia_sp.,0.16666666666666666,7
+LEMA,Odontomyia_sp.,CHFU,Odontomyia_sp.,0.16666666666666666,7
+CHFU,Odontomyia_sp.,ME,Odontomyia_sp.,0.16666666666666666,7
+ME,Odontomyia_sp.,CHFU,Odontomyia_sp.,0.3333333333333333,7
+LEMA,Odontomyia_sp.,ME,Odontomyia_sp.,0.5,7
+ME,Odontomyia_sp.,LEMA,Odontomyia_sp.,1,7
+CHMI,Psilothrix_viridicoerulea,LEMA,Psilothrix_viridicoerulea,1,7
+LEMA,Psilothrix_viridicoerulea,CHMI,Psilothrix_viridicoerulea,0.16666666666666666,7
+CHFU,A2 CHFU,CHFU,Diptera,1,8
+CHFU,A3 CHFU,CHFU,Diptera,0.5,8
+CHFU,A3 CHFU,CHFU,Scaeva_sp.,0.5,8
+CHFU,A4 CHFU,CHFU,Dilophus_sp.,0.5,8
+CHFU,A4 CHFU,CHFU,Diptera,0.5,8
+CHFU,A5 CHFU,CHFU,Dilophus_sp.,0.6666666666666666,8
+CHFU,A5 CHFU,CHFU,Diptera,0.3333333333333333,8
+CHFU,A6 CHFU,CHFU,Dilophus_sp.,0.3333333333333333,8
+CHFU,A6 CHFU,CHFU,Diptera,0.3333333333333333,8
+CHFU,A6 CHFU,CHFU,Scaeva_sp.,0.3333333333333333,8
+CHFU,B1 CHFU,CHFU,Dilophus_sp.,1,8
+CHFU,B2 CHFU,CHFU,Diptera,0.8,8
+CHFU,B2 CHFU,CHFU,Eupeodes_corollae,0.2,8
+CHFU,B3 CHFU,CHFU,Scaeva_sp.,1,8
+CHFU,B4 CHFU,CHFU,Dilophus_sp.,1,8
+CHFU,B5 CHFU,CHFU,Diptera,0.25,8
+CHFU,B5 CHFU,CHFU,Empididae,0.5,8
+CHFU,B5 CHFU,CHFU,Eupeodes_corollae,0.25,8
+CHFU,B6 CHFU,CHFU,Empididae,1,8
+CHFU,C2 CHFU,CHFU,Lomatia_sp.,1,8
+CHFU,C3 CHFU,CHFU,Andrena_cinerea,0.3333333333333333,8
+CHFU,C3 CHFU,CHFU,Dilophus_sp.,0.3333333333333333,8
+CHFU,C3 CHFU,CHFU,Odontomyia_sp.,0.3333333333333333,8
+CHFU,C4 CHFU,CHFU,Dilophus_sp.,1,8
+CHFU,C6 CHFU,CHFU,Dilophus_sp.,0.16666666666666666,8
+CHFU,C6 CHFU,CHFU,Diptera,0.8333333333333334,8
+CHFU,D1 CHFU,CHFU,Episyrphus_balteatus,1,8
+CHFU,D2 CHFU,CHFU,Bruchidae,0.3333333333333333,8
+CHFU,D2 CHFU,CHFU,Dilophus_sp.,0.3333333333333333,8
+CHFU,D2 CHFU,CHFU,Lomatia_sp.,0.3333333333333333,8
+CHFU,D3 CHFU,CHFU,Empididae,1,8
+CHFU,D5 CHFU,CHFU,Calliphoridae,0.25,8
+CHFU,D5 CHFU,CHFU,Dilophus_sp.,0.25,8
+CHFU,D5 CHFU,CHFU,Diptera,0.25,8
+CHFU,D5 CHFU,CHFU,Empididae,0.25,8
+CHFU,D6 CHFU,CHFU,Eupeodes_corollae,1,8
+CHFU,E1 CHFU,CHFU,Diptera,1,8
+CHFU,E2 CHFU,CHFU,Sphaerophoria_scripta,1,8
+CHFU,E3 CHFU,CHFU,Dilophus_sp.,1,8
+CHFU,E4 CHFU,CHFU,Andrena_cinerea,0.3333333333333333,8
+CHFU,E4 CHFU,CHFU,Dilophus_sp.,0.6666666666666666,8
+CHFU,E5 CHFU,CHFU,Dilophus_sp.,0.5,8
+CHFU,E5 CHFU,CHFU,Musca_sp.,0.5,8
+CHFU,F3 CHFU,CHFU,Empididae,1,8
+CHFU,F4 CHFU,CHFU,Dilophus_sp.,1,8
+CHFU,F6 CHFU,CHFU,Dilophus_sp.,1,8
+LEMA,A1 LEMA,LEMA,Meligethes_sp.,0.5,8
+LEMA,A1 LEMA,LEMA,Psilothrix_viridicoerulea,0.25,8
+LEMA,A1 LEMA,LEMA,Sphaerophoria_scripta,0.25,8
+LEMA,A2 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,8
+LEMA,A2 LEMA,LEMA,Sphaerophoria_scripta,0.6666666666666666,8
+LEMA,A3 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,8
+LEMA,A3 LEMA,LEMA,Musca_sp.,0.3333333333333333,8
+LEMA,A3 LEMA,LEMA,Sphaerophoria_scripta,0.3333333333333333,8
+LEMA,A4 LEMA,LEMA,Andrena_cinerea,0.5,8
+LEMA,A4 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,8
+LEMA,A5 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,8
+LEMA,A5 LEMA,LEMA,Sphaerophoria_scripta,0.5,8
+LEMA,B2 LEMA,LEMA,Dilophus_sp.,0.25,8
+LEMA,B2 LEMA,LEMA,Meligethes_sp.,0.5,8
+LEMA,B2 LEMA,LEMA,Sphaerophoria_scripta,0.25,8
+LEMA,B3 LEMA,LEMA,Dilophus_sp.,0.14285714285714285,8
+LEMA,B3 LEMA,LEMA,Meligethes_sp.,0.14285714285714285,8
+LEMA,B3 LEMA,LEMA,Oedemeridae,0.14285714285714285,8
+LEMA,B3 LEMA,LEMA,Psilothrix_viridicoerulea,0.5714285714285714,8
+LEMA,B4 LEMA,LEMA,Andrena_cinerea,0.25,8
+LEMA,B4 LEMA,LEMA,Dilophus_sp.,0.75,8
+LEMA,B5 LEMA,LEMA,Andrena_cinerea,0.18181818181818182,8
+LEMA,B5 LEMA,LEMA,Dilophus_sp.,0.2727272727272727,8
+LEMA,B5 LEMA,LEMA,Malachius_bipustulatus,0.09090909090909091,8
+LEMA,B5 LEMA,LEMA,Meligethes_sp.,0.09090909090909091,8
+LEMA,B5 LEMA,LEMA,Mordellidae,0.09090909090909091,8
+LEMA,B5 LEMA,LEMA,Psilothrix_viridicoerulea,0.2727272727272727,8
+LEMA,B6 LEMA,LEMA,Psilothrix_viridicoerulea,1,8
+LEMA,C1 LEMA,LEMA,Meligethes_sp.,1,8
+LEMA,C2 LEMA,LEMA,Andrena_cinerea,0.125,8
+LEMA,C2 LEMA,LEMA,Dilophus_sp.,0.125,8
+LEMA,C2 LEMA,LEMA,Meligethes_sp.,0.125,8
+LEMA,C2 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,8
+LEMA,C2 LEMA,LEMA,Sphaerophoria_scripta,0.125,8
+LEMA,C3 LEMA,LEMA,Psilothrix_viridicoerulea,1,8
+LEMA,C4 LEMA,LEMA,Andrena_cinerea,0.125,8
+LEMA,C4 LEMA,LEMA,Dilophus_sp.,0.375,8
+LEMA,C4 LEMA,LEMA,Meligethes_sp.,0.125,8
+LEMA,C4 LEMA,LEMA,Psilothrix_viridicoerulea,0.375,8
+LEMA,D1 LEMA,LEMA,Dilophus_sp.,0.5,8
+LEMA,D1 LEMA,LEMA,Oedemeridae,0.25,8
+LEMA,D1 LEMA,LEMA,Psilothrix_viridicoerulea,0.25,8
+LEMA,D2 LEMA,LEMA,Odontomyia_sp.,0.16666666666666666,8
+LEMA,D2 LEMA,LEMA,Oedemeridae,0.5,8
+LEMA,D2 LEMA,LEMA,Sphaerophoria_scripta,0.3333333333333333,8
+LEMA,D3 LEMA,LEMA,Psilothrix_viridicoerulea,1,8
+LEMA,D4 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,8
+LEMA,D4 LEMA,LEMA,Sphaerophoria_scripta,0.5,8
+LEMA,D5 LEMA,LEMA,Oedemeridae,1,8
+LEMA,D6 LEMA,LEMA,Psilothrix_viridicoerulea,1,8
+LEMA,E1 LEMA,LEMA,Psilothrix_viridicoerulea,1,8
+LEMA,E2 LEMA,LEMA,Dilophus_sp.,0.3333333333333333,8
+LEMA,E2 LEMA,LEMA,Diptera,0.3333333333333333,8
+LEMA,E2 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,8
+LEMA,E3 LEMA,LEMA,Psilothrix_viridicoerulea,1,8
+LEMA,E4 LEMA,LEMA,Andrena_cinerea,0.5,8
+LEMA,E4 LEMA,LEMA,Dilophus_sp.,0.5,8
+LEMA,E5 LEMA,LEMA,Psilothrix_viridicoerulea,1,8
+LEMA,E6 LEMA,LEMA,Oedemeridae,1,8
+LEMA,F1 LEMA,LEMA,Meligethes_sp.,1,8
+LEMA,F2 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,8
+LEMA,F2 LEMA,LEMA,Sphaerophoria_scripta,0.5,8
+LEMA,F3 LEMA,LEMA,Dilophus_sp.,1,8
+LEMA,F4 LEMA,LEMA,Malachius_bipustulatus,0.14285714285714285,8
+LEMA,F4 LEMA,LEMA,Meligethes_sp.,0.14285714285714285,8
+LEMA,F4 LEMA,LEMA,Psilothrix_viridicoerulea,0.7142857142857143,8
+LEMA,F6 LEMA,LEMA,Nemotelus_sp.,1,8
+ME,B5 ME,ME,Dilophus_sp.,0.5,8
+ME,B5 ME,ME,Sphaerophoria_scripta,0.5,8
+ME,C5 ME,ME,Musca_sp.,1,8
+ME,E2 ME,ME,Andrena_cinerea,0.5,8
+ME,E2 ME,ME,Cantharidae,0.5,8
+ME,E6 ME,ME,Andrena_cinerea,1,8
+ME,F5 ME,ME,Cantharidae,1,8
+PUPA,A2 PUPA,PUPA,Eristalis_sp.,1,8
+PUPA,B2 PUPA,PUPA,Eucera_sp.,0.4,8
+PUPA,B2 PUPA,PUPA,Lasiocampa_trifolii,0.2,8
+PUPA,B2 PUPA,PUPA,Thymelicus_sp.,0.4,8
+PUPA,B3 PUPA,PUPA,Bombyliidae,0.6,8
+PUPA,B3 PUPA,PUPA,Lasiocampa_trifolii,0.2,8
+PUPA,B3 PUPA,PUPA,Musca_sp.,0.2,8
+PUPA,B4 PUPA,PUPA,Bombyliidae,0.3333333333333333,8
+PUPA,B4 PUPA,PUPA,Lasiocampa_trifolii,0.3333333333333333,8
+PUPA,B4 PUPA,PUPA,Thymelicus_sp.,0.3333333333333333,8
+PUPA,B5 PUPA,PUPA,Bombyliidae,1,8
+PUPA,B6 PUPA,PUPA,Thymelicus_sp.,1,8
+PUPA,C2 PUPA,PUPA,Bombyliidae,0.5,8
+PUPA,C2 PUPA,PUPA,Lasiocampa_trifolii,0.5,8
+PUPA,C3 PUPA,PUPA,Bombyliidae,0.5,8
+PUPA,C3 PUPA,PUPA,Eucera_sp.,0.25,8
+PUPA,C3 PUPA,PUPA,Lasiocampa_trifolii,0.25,8
+PUPA,C4 PUPA,PUPA,Bombyliidae,0.5,8
+PUPA,C4 PUPA,PUPA,Lasiocampa_trifolii,0.5,8
+PUPA,C5 PUPA,PUPA,Lasiocampa_trifolii,0.25,8
+PUPA,C5 PUPA,PUPA,Thymelicus_sp.,0.75,8
+PUPA,C6 PUPA,PUPA,Bombyliidae,1,8
+PUPA,D2 PUPA,PUPA,Bombyliidae,0.5,8
+PUPA,D2 PUPA,PUPA,Lasiocampa_trifolii,0.5,8
+PUPA,D3 PUPA,PUPA,Bombyliidae,0.16666666666666666,8
+PUPA,D3 PUPA,PUPA,Eucera_sp.,0.5833333333333334,8
+PUPA,D3 PUPA,PUPA,Lasiocampa_trifolii,0.16666666666666666,8
+PUPA,D3 PUPA,PUPA,Psilothrix_viridicoerulea,0.08333333333333333,8
+PUPA,D4 PUPA,PUPA,Bombyliidae,1,8
+PUPA,D5 PUPA,PUPA,Bombyliidae,0.6666666666666666,8
+PUPA,D5 PUPA,PUPA,Eucera_sp.,0.3333333333333333,8
+PUPA,D6 PUPA,PUPA,Bombyliidae,0.3,8
+PUPA,D6 PUPA,PUPA,Eucera_sp.,0.1,8
+PUPA,D6 PUPA,PUPA,Lasiocampa_trifolii,0.1,8
+PUPA,D6 PUPA,PUPA,Meligethes_sp.,0.1,8
+PUPA,D6 PUPA,PUPA,Psilothrix_viridicoerulea,0.1,8
+PUPA,D6 PUPA,PUPA,Thymelicus_sp.,0.3,8
+PUPA,E1 PUPA,PUPA,Bombyliidae,0.25,8
+PUPA,E1 PUPA,PUPA,Eristalis_sp.,0.5,8
+PUPA,E1 PUPA,PUPA,Eucera_sp.,0.25,8
+PUPA,E2 PUPA,PUPA,Bombyliidae,0.6666666666666666,8
+PUPA,E2 PUPA,PUPA,Musca_sp.,0.3333333333333333,8
+PUPA,E3 PUPA,PUPA,Bombyliidae,0.75,8
+PUPA,E3 PUPA,PUPA,Lasiocampa_trifolii,0.25,8
+PUPA,E5 PUPA,PUPA,Andrena_cinerea,1,8
+PUPA,E6 PUPA,PUPA,Thymelicus_sp.,1,8
+PUPA,F1 PUPA,PUPA,Bombyliidae,1,8
+PUPA,F2 PUPA,PUPA,Bombyliidae,0.6666666666666666,8
+PUPA,F2 PUPA,PUPA,Cantharidae,0.3333333333333333,8
+PUPA,F3 PUPA,PUPA,Dilophus_sp.,0.25,8
+PUPA,F3 PUPA,PUPA,Eucera_sp.,0.5,8
+PUPA,F3 PUPA,PUPA,Lasiocampa_trifolii,0.25,8
+PUPA,F4 PUPA,PUPA,Bombyliidae,0.75,8
+PUPA,F4 PUPA,PUPA,Eucera_sp.,0.25,8
+PUPA,F5 PUPA,PUPA,Thymelicus_sp.,1,8
+CHFU,Diptera,CHFU,A2 CHFU,0.2692307692307692,8
+CHFU,Diptera,CHFU,A3 CHFU,0.038461538461538464,8
+CHFU,Scaeva_sp.,CHFU,A3 CHFU,0.3333333333333333,8
+CHFU,Dilophus_sp.,CHFU,A4 CHFU,0.05555555555555555,8
+CHFU,Diptera,CHFU,A4 CHFU,0.038461538461538464,8
+CHFU,Dilophus_sp.,CHFU,A5 CHFU,0.1111111111111111,8
+CHFU,Diptera,CHFU,A5 CHFU,0.038461538461538464,8
+CHFU,Dilophus_sp.,CHFU,A6 CHFU,0.05555555555555555,8
+CHFU,Diptera,CHFU,A6 CHFU,0.038461538461538464,8
+CHFU,Scaeva_sp.,CHFU,A6 CHFU,0.3333333333333333,8
+CHFU,Dilophus_sp.,CHFU,B1 CHFU,0.05555555555555555,8
+CHFU,Diptera,CHFU,B2 CHFU,0.15384615384615385,8
+CHFU,Eupeodes_corollae,CHFU,B2 CHFU,0.3333333333333333,8
+CHFU,Scaeva_sp.,CHFU,B3 CHFU,0.3333333333333333,8
+CHFU,Dilophus_sp.,CHFU,B4 CHFU,0.05555555555555555,8
+CHFU,Diptera,CHFU,B5 CHFU,0.038461538461538464,8
+CHFU,Empididae,CHFU,B5 CHFU,0.3333333333333333,8
+CHFU,Eupeodes_corollae,CHFU,B5 CHFU,0.3333333333333333,8
+CHFU,Empididae,CHFU,B6 CHFU,0.16666666666666666,8
+CHFU,Lomatia_sp.,CHFU,C2 CHFU,0.5,8
+CHFU,Andrena_cinerea,CHFU,C3 CHFU,0.5,8
+CHFU,Dilophus_sp.,CHFU,C3 CHFU,0.05555555555555555,8
+CHFU,Odontomyia_sp.,CHFU,C3 CHFU,1,8
+CHFU,Dilophus_sp.,CHFU,C4 CHFU,0.05555555555555555,8
+CHFU,Dilophus_sp.,CHFU,C6 CHFU,0.05555555555555555,8
+CHFU,Diptera,CHFU,C6 CHFU,0.19230769230769232,8
+CHFU,Episyrphus_balteatus,CHFU,D1 CHFU,1,8
+CHFU,Bruchidae,CHFU,D2 CHFU,1,8
+CHFU,Dilophus_sp.,CHFU,D2 CHFU,0.05555555555555555,8
+CHFU,Lomatia_sp.,CHFU,D2 CHFU,0.5,8
+CHFU,Empididae,CHFU,D3 CHFU,0.16666666666666666,8
+CHFU,Calliphoridae,CHFU,D5 CHFU,1,8
+CHFU,Dilophus_sp.,CHFU,D5 CHFU,0.05555555555555555,8
+CHFU,Diptera,CHFU,D5 CHFU,0.038461538461538464,8
+CHFU,Empididae,CHFU,D5 CHFU,0.16666666666666666,8
+CHFU,Eupeodes_corollae,CHFU,D6 CHFU,0.3333333333333333,8
+CHFU,Diptera,CHFU,E1 CHFU,0.15384615384615385,8
+CHFU,Sphaerophoria_scripta,CHFU,E2 CHFU,1,8
+CHFU,Dilophus_sp.,CHFU,E3 CHFU,0.05555555555555555,8
+CHFU,Andrena_cinerea,CHFU,E4 CHFU,0.5,8
+CHFU,Dilophus_sp.,CHFU,E4 CHFU,0.1111111111111111,8
+CHFU,Dilophus_sp.,CHFU,E5 CHFU,0.05555555555555555,8
+CHFU,Musca_sp.,CHFU,E5 CHFU,1,8
+CHFU,Empididae,CHFU,F3 CHFU,0.16666666666666666,8
+CHFU,Dilophus_sp.,CHFU,F4 CHFU,0.05555555555555555,8
+CHFU,Dilophus_sp.,CHFU,F6 CHFU,0.1111111111111111,8
+LEMA,Meligethes_sp.,LEMA,A1 LEMA,0.18181818181818182,8
+LEMA,Psilothrix_viridicoerulea,LEMA,A1 LEMA,0.025,8
+LEMA,Sphaerophoria_scripta,LEMA,A1 LEMA,0.08333333333333333,8
+LEMA,Psilothrix_viridicoerulea,LEMA,A2 LEMA,0.025,8
+LEMA,Sphaerophoria_scripta,LEMA,A2 LEMA,0.16666666666666666,8
+LEMA,Dilophus_sp.,LEMA,A3 LEMA,0.05555555555555555,8
+LEMA,Musca_sp.,LEMA,A3 LEMA,1,8
+LEMA,Sphaerophoria_scripta,LEMA,A3 LEMA,0.08333333333333333,8
+LEMA,Andrena_cinerea,LEMA,A4 LEMA,0.14285714285714285,8
+LEMA,Psilothrix_viridicoerulea,LEMA,A4 LEMA,0.025,8
+LEMA,Psilothrix_viridicoerulea,LEMA,A5 LEMA,0.05,8
+LEMA,Sphaerophoria_scripta,LEMA,A5 LEMA,0.16666666666666666,8
+LEMA,Dilophus_sp.,LEMA,B2 LEMA,0.05555555555555555,8
+LEMA,Meligethes_sp.,LEMA,B2 LEMA,0.18181818181818182,8
+LEMA,Sphaerophoria_scripta,LEMA,B2 LEMA,0.08333333333333333,8
+LEMA,Dilophus_sp.,LEMA,B3 LEMA,0.05555555555555555,8
+LEMA,Meligethes_sp.,LEMA,B3 LEMA,0.09090909090909091,8
+LEMA,Oedemeridae,LEMA,B3 LEMA,0.14285714285714285,8
+LEMA,Psilothrix_viridicoerulea,LEMA,B3 LEMA,0.1,8
+LEMA,Andrena_cinerea,LEMA,B4 LEMA,0.14285714285714285,8
+LEMA,Dilophus_sp.,LEMA,B4 LEMA,0.16666666666666666,8
+LEMA,Andrena_cinerea,LEMA,B5 LEMA,0.2857142857142857,8
+LEMA,Dilophus_sp.,LEMA,B5 LEMA,0.16666666666666666,8
+LEMA,Malachius_bipustulatus,LEMA,B5 LEMA,0.5,8
+LEMA,Meligethes_sp.,LEMA,B5 LEMA,0.09090909090909091,8
+LEMA,Mordellidae,LEMA,B5 LEMA,1,8
+LEMA,Psilothrix_viridicoerulea,LEMA,B5 LEMA,0.075,8
+LEMA,Psilothrix_viridicoerulea,LEMA,B6 LEMA,0.025,8
+LEMA,Meligethes_sp.,LEMA,C1 LEMA,0.09090909090909091,8
+LEMA,Andrena_cinerea,LEMA,C2 LEMA,0.14285714285714285,8
+LEMA,Dilophus_sp.,LEMA,C2 LEMA,0.05555555555555555,8
+LEMA,Meligethes_sp.,LEMA,C2 LEMA,0.09090909090909091,8
+LEMA,Psilothrix_viridicoerulea,LEMA,C2 LEMA,0.1,8
+LEMA,Sphaerophoria_scripta,LEMA,C2 LEMA,0.08333333333333333,8
+LEMA,Psilothrix_viridicoerulea,LEMA,C3 LEMA,0.15,8
+LEMA,Andrena_cinerea,LEMA,C4 LEMA,0.14285714285714285,8
+LEMA,Dilophus_sp.,LEMA,C4 LEMA,0.16666666666666666,8
+LEMA,Meligethes_sp.,LEMA,C4 LEMA,0.09090909090909091,8
+LEMA,Psilothrix_viridicoerulea,LEMA,C4 LEMA,0.075,8
+LEMA,Dilophus_sp.,LEMA,D1 LEMA,0.1111111111111111,8
+LEMA,Oedemeridae,LEMA,D1 LEMA,0.14285714285714285,8
+LEMA,Psilothrix_viridicoerulea,LEMA,D1 LEMA,0.025,8
+LEMA,Odontomyia_sp.,LEMA,D2 LEMA,1,8
+LEMA,Oedemeridae,LEMA,D2 LEMA,0.42857142857142855,8
+LEMA,Sphaerophoria_scripta,LEMA,D2 LEMA,0.16666666666666666,8
+LEMA,Psilothrix_viridicoerulea,LEMA,D3 LEMA,0.025,8
+LEMA,Psilothrix_viridicoerulea,LEMA,D4 LEMA,0.025,8
+LEMA,Sphaerophoria_scripta,LEMA,D4 LEMA,0.08333333333333333,8
+LEMA,Oedemeridae,LEMA,D5 LEMA,0.14285714285714285,8
+LEMA,Psilothrix_viridicoerulea,LEMA,D6 LEMA,0.025,8
+LEMA,Psilothrix_viridicoerulea,LEMA,E1 LEMA,0.025,8
+LEMA,Dilophus_sp.,LEMA,E2 LEMA,0.05555555555555555,8
+LEMA,Diptera,LEMA,E2 LEMA,1,8
+LEMA,Psilothrix_viridicoerulea,LEMA,E2 LEMA,0.025,8
+LEMA,Psilothrix_viridicoerulea,LEMA,E3 LEMA,0.025,8
+LEMA,Andrena_cinerea,LEMA,E4 LEMA,0.14285714285714285,8
+LEMA,Dilophus_sp.,LEMA,E4 LEMA,0.05555555555555555,8
+LEMA,Psilothrix_viridicoerulea,LEMA,E5 LEMA,0.025,8
+LEMA,Oedemeridae,LEMA,E6 LEMA,0.14285714285714285,8
+LEMA,Meligethes_sp.,LEMA,F1 LEMA,0.09090909090909091,8
+LEMA,Psilothrix_viridicoerulea,LEMA,F2 LEMA,0.025,8
+LEMA,Sphaerophoria_scripta,LEMA,F2 LEMA,0.08333333333333333,8
+LEMA,Dilophus_sp.,LEMA,F3 LEMA,0.05555555555555555,8
+LEMA,Malachius_bipustulatus,LEMA,F4 LEMA,0.5,8
+LEMA,Meligethes_sp.,LEMA,F4 LEMA,0.09090909090909091,8
+LEMA,Psilothrix_viridicoerulea,LEMA,F4 LEMA,0.125,8
+LEMA,Nemotelus_sp.,LEMA,F6 LEMA,1,8
+ME,Dilophus_sp.,ME,B5 ME,1,8
+ME,Sphaerophoria_scripta,ME,B5 ME,1,8
+ME,Musca_sp.,ME,C5 ME,1,8
+ME,Andrena_cinerea,ME,E2 ME,0.5,8
+ME,Cantharidae,ME,E2 ME,0.5,8
+ME,Andrena_cinerea,ME,E6 ME,0.5,8
+ME,Cantharidae,ME,F5 ME,0.5,8
+PUPA,Eristalis_sp.,PUPA,A2 PUPA,0.3333333333333333,8
+PUPA,Eucera_sp.,PUPA,B2 PUPA,0.1111111111111111,8
+PUPA,Lasiocampa_trifolii,PUPA,B2 PUPA,0.05555555555555555,8
+PUPA,Thymelicus_sp.,PUPA,B2 PUPA,0.125,8
+PUPA,Bombyliidae,PUPA,B3 PUPA,0.07317073170731707,8
+PUPA,Lasiocampa_trifolii,PUPA,B3 PUPA,0.05555555555555555,8
+PUPA,Musca_sp.,PUPA,B3 PUPA,0.5,8
+PUPA,Bombyliidae,PUPA,B4 PUPA,0.024390243902439025,8
+PUPA,Lasiocampa_trifolii,PUPA,B4 PUPA,0.05555555555555555,8
+PUPA,Thymelicus_sp.,PUPA,B4 PUPA,0.0625,8
+PUPA,Bombyliidae,PUPA,B5 PUPA,0.024390243902439025,8
+PUPA,Thymelicus_sp.,PUPA,B6 PUPA,0.0625,8
+PUPA,Bombyliidae,PUPA,C2 PUPA,0.024390243902439025,8
+PUPA,Lasiocampa_trifolii,PUPA,C2 PUPA,0.05555555555555555,8
+PUPA,Bombyliidae,PUPA,C3 PUPA,0.14634146341463414,8
+PUPA,Eucera_sp.,PUPA,C3 PUPA,0.16666666666666666,8
+PUPA,Lasiocampa_trifolii,PUPA,C3 PUPA,0.16666666666666666,8
+PUPA,Bombyliidae,PUPA,C4 PUPA,0.024390243902439025,8
+PUPA,Lasiocampa_trifolii,PUPA,C4 PUPA,0.05555555555555555,8
+PUPA,Lasiocampa_trifolii,PUPA,C5 PUPA,0.1111111111111111,8
+PUPA,Thymelicus_sp.,PUPA,C5 PUPA,0.375,8
+PUPA,Bombyliidae,PUPA,C6 PUPA,0.024390243902439025,8
+PUPA,Bombyliidae,PUPA,D2 PUPA,0.07317073170731707,8
+PUPA,Lasiocampa_trifolii,PUPA,D2 PUPA,0.16666666666666666,8
+PUPA,Bombyliidae,PUPA,D3 PUPA,0.04878048780487805,8
+PUPA,Eucera_sp.,PUPA,D3 PUPA,0.3888888888888889,8
+PUPA,Lasiocampa_trifolii,PUPA,D3 PUPA,0.1111111111111111,8
+PUPA,Psilothrix_viridicoerulea,PUPA,D3 PUPA,0.5,8
+PUPA,Bombyliidae,PUPA,D4 PUPA,0.07317073170731707,8
+PUPA,Bombyliidae,PUPA,D5 PUPA,0.04878048780487805,8
+PUPA,Eucera_sp.,PUPA,D5 PUPA,0.05555555555555555,8
+PUPA,Bombyliidae,PUPA,D6 PUPA,0.07317073170731707,8
+PUPA,Eucera_sp.,PUPA,D6 PUPA,0.05555555555555555,8
+PUPA,Lasiocampa_trifolii,PUPA,D6 PUPA,0.05555555555555555,8
+PUPA,Meligethes_sp.,PUPA,D6 PUPA,1,8
+PUPA,Psilothrix_viridicoerulea,PUPA,D6 PUPA,0.5,8
+PUPA,Thymelicus_sp.,PUPA,D6 PUPA,0.1875,8
+PUPA,Bombyliidae,PUPA,E1 PUPA,0.024390243902439025,8
+PUPA,Eristalis_sp.,PUPA,E1 PUPA,0.6666666666666666,8
+PUPA,Eucera_sp.,PUPA,E1 PUPA,0.05555555555555555,8
+PUPA,Bombyliidae,PUPA,E2 PUPA,0.04878048780487805,8
+PUPA,Musca_sp.,PUPA,E2 PUPA,0.5,8
+PUPA,Bombyliidae,PUPA,E3 PUPA,0.07317073170731707,8
+PUPA,Lasiocampa_trifolii,PUPA,E3 PUPA,0.05555555555555555,8
+PUPA,Andrena_cinerea,PUPA,E5 PUPA,1,8
+PUPA,Thymelicus_sp.,PUPA,E6 PUPA,0.0625,8
+PUPA,Bombyliidae,PUPA,F1 PUPA,0.07317073170731707,8
+PUPA,Bombyliidae,PUPA,F2 PUPA,0.04878048780487805,8
+PUPA,Cantharidae,PUPA,F2 PUPA,1,8
+PUPA,Dilophus_sp.,PUPA,F3 PUPA,1,8
+PUPA,Eucera_sp.,PUPA,F3 PUPA,0.1111111111111111,8
+PUPA,Lasiocampa_trifolii,PUPA,F3 PUPA,0.05555555555555555,8
+PUPA,Bombyliidae,PUPA,F4 PUPA,0.07317073170731707,8
+PUPA,Eucera_sp.,PUPA,F4 PUPA,0.05555555555555555,8
+PUPA,Thymelicus_sp.,PUPA,F5 PUPA,0.125,8
+CHFU,Andrena_cinerea,LEMA,Andrena_cinerea,0.375,8
+LEMA,Andrena_cinerea,CHFU,Andrena_cinerea,0.42857142857142855,8
+CHFU,Andrena_cinerea,ME,Andrena_cinerea,0.25,8
+ME,Andrena_cinerea,CHFU,Andrena_cinerea,0.5,8
+CHFU,Andrena_cinerea,PUPA,Andrena_cinerea,0,8
+PUPA,Andrena_cinerea,CHFU,Andrena_cinerea,0,8
+LEMA,Andrena_cinerea,ME,Andrena_cinerea,0.5714285714285714,8
+ME,Andrena_cinerea,LEMA,Andrena_cinerea,1,8
+LEMA,Andrena_cinerea,PUPA,Andrena_cinerea,0.14285714285714285,8
+PUPA,Andrena_cinerea,LEMA,Andrena_cinerea,0.2,8
+ME,Andrena_cinerea,PUPA,Andrena_cinerea,0,8
+PUPA,Andrena_cinerea,ME,Andrena_cinerea,0,8
+ME,Cantharidae,PUPA,Cantharidae,0,8
+PUPA,Cantharidae,ME,Cantharidae,0,8
+CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0.375,8
+LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,0.42857142857142855,8
+CHFU,Dilophus_sp.,ME,Dilophus_sp.,0.25,8
+ME,Dilophus_sp.,CHFU,Dilophus_sp.,0.5,8
+CHFU,Dilophus_sp.,PUPA,Dilophus_sp.,0,8
+PUPA,Dilophus_sp.,CHFU,Dilophus_sp.,0,8
+LEMA,Dilophus_sp.,ME,Dilophus_sp.,0.5714285714285714,8
+ME,Dilophus_sp.,LEMA,Dilophus_sp.,1,8
+LEMA,Dilophus_sp.,PUPA,Dilophus_sp.,0.14285714285714285,8
+PUPA,Dilophus_sp.,LEMA,Dilophus_sp.,0.2,8
+ME,Dilophus_sp.,PUPA,Dilophus_sp.,0,8
+PUPA,Dilophus_sp.,ME,Dilophus_sp.,0,8
+CHFU,Diptera,LEMA,Diptera,0.375,8
+LEMA,Diptera,CHFU,Diptera,0.42857142857142855,8
+LEMA,Meligethes_sp.,PUPA,Meligethes_sp.,0.14285714285714285,8
+PUPA,Meligethes_sp.,LEMA,Meligethes_sp.,0.2,8
+CHFU,Musca_sp.,LEMA,Musca_sp.,0.375,8
+LEMA,Musca_sp.,CHFU,Musca_sp.,0.42857142857142855,8
+CHFU,Musca_sp.,ME,Musca_sp.,0.25,8
+ME,Musca_sp.,CHFU,Musca_sp.,0.5,8
+CHFU,Musca_sp.,PUPA,Musca_sp.,0,8
+PUPA,Musca_sp.,CHFU,Musca_sp.,0,8
+LEMA,Musca_sp.,ME,Musca_sp.,0.5714285714285714,8
+ME,Musca_sp.,LEMA,Musca_sp.,1,8
+LEMA,Musca_sp.,PUPA,Musca_sp.,0.14285714285714285,8
+PUPA,Musca_sp.,LEMA,Musca_sp.,0.2,8
+ME,Musca_sp.,PUPA,Musca_sp.,0,8
+PUPA,Musca_sp.,ME,Musca_sp.,0,8
+CHFU,Odontomyia_sp.,LEMA,Odontomyia_sp.,0.375,8
+LEMA,Odontomyia_sp.,CHFU,Odontomyia_sp.,0.42857142857142855,8
+LEMA,Psilothrix_viridicoerulea,PUPA,Psilothrix_viridicoerulea,0.14285714285714285,8
+PUPA,Psilothrix_viridicoerulea,LEMA,Psilothrix_viridicoerulea,0.2,8
+CHFU,Sphaerophoria_scripta,LEMA,Sphaerophoria_scripta,0.375,8
+LEMA,Sphaerophoria_scripta,CHFU,Sphaerophoria_scripta,0.42857142857142855,8
+CHFU,Sphaerophoria_scripta,ME,Sphaerophoria_scripta,0.25,8
+ME,Sphaerophoria_scripta,CHFU,Sphaerophoria_scripta,0.5,8
+LEMA,Sphaerophoria_scripta,ME,Sphaerophoria_scripta,0.5714285714285714,8
+ME,Sphaerophoria_scripta,LEMA,Sphaerophoria_scripta,1,8
+CHFU,A2 CHFU,CHFU,Dilophus_sp.,0.75,9
+CHFU,A2 CHFU,CHFU,Sphaerophoria_scripta,0.25,9
+CHFU,A3 CHFU,CHFU,Dilophus_sp.,1,9
+CHFU,A4 CHFU,CHFU,Dilophus_sp.,1,9
+CHFU,A6 CHFU,CHFU,Dilophus_sp.,1,9
+CHFU,B1 CHFU,CHFU,Dilophus_sp.,0.3333333333333333,9
+CHFU,B1 CHFU,CHFU,Diptera,0.3333333333333333,9
+CHFU,B1 CHFU,CHFU,Musca_sp.,0.3333333333333333,9
+CHFU,B2 CHFU,CHFU,Dilophus_sp.,1,9
+CHFU,B3 CHFU,CHFU,Bruchidae,1,9
+CHFU,C1 CHFU,CHFU,Episyrphus_balteatus,1,9
+CHFU,C3 CHFU,CHFU,Episyrphus_balteatus,0.5,9
+CHFU,C3 CHFU,CHFU,Eupeodes_corollae,0.5,9
+CHFU,C5 CHFU,CHFU,Eupeodes_corollae,1,9
+CHFU,C6 CHFU,CHFU,Dilophus_sp.,0.5,9
+CHFU,C6 CHFU,CHFU,Scaeva_sp.,0.5,9
+CHFU,D2 CHFU,CHFU,Lomatia_sp.,1,9
+CHFU,D3 CHFU,CHFU,Sphaerophoria_scripta,1,9
+CHFU,D4 CHFU,CHFU,Dilophus_sp.,0.8,9
+CHFU,D4 CHFU,CHFU,Episyrphus_balteatus,0.2,9
+CHFU,E1 CHFU,CHFU,Dilophus_sp.,0.8,9
+CHFU,E1 CHFU,CHFU,Musca_sp.,0.2,9
+CHFU,E3 CHFU,CHFU,Dilophus_sp.,0.5,9
+CHFU,E3 CHFU,CHFU,Melyridae,0.5,9
+CHFU,E4 CHFU,CHFU,Dilophus_sp.,0.3333333333333333,9
+CHFU,E4 CHFU,CHFU,Eupeodes_corollae,0.3333333333333333,9
+CHFU,E4 CHFU,CHFU,Musca_sp.,0.3333333333333333,9
+CHFU,E5 CHFU,CHFU,Andrena_cinerea,1,9
+CHFU,F1 CHFU,CHFU,Dilophus_sp.,1,9
+CHFU,F4 CHFU,CHFU,Dilophus_sp.,1,9
+CHFU,F5 CHFU,CHFU,Dilophus_sp.,1,9
+CHFU,F6 CHFU,CHFU,Dilophus_sp.,1,9
+LEMA,A3 LEMA,LEMA,Mordellidae,0.5,9
+LEMA,A3 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,9
+LEMA,A5 LEMA,LEMA,Dilophus_sp.,0.6666666666666666,9
+LEMA,A5 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,9
+LEMA,B2 LEMA,LEMA,Psilothrix_viridicoerulea,1,9
+LEMA,B4 LEMA,LEMA,Psilothrix_viridicoerulea,0.75,9
+LEMA,B4 LEMA,LEMA,Sphaerophoria_scripta,0.25,9
+LEMA,B5 LEMA,LEMA,Dilophus_sp.,0.2222222222222222,9
+LEMA,B5 LEMA,LEMA,Malachius_bipustulatus,0.1111111111111111,9
+LEMA,B5 LEMA,LEMA,Mordellidae,0.3333333333333333,9
+LEMA,B5 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,9
+LEMA,B6 LEMA,LEMA,Psilothrix_viridicoerulea,1,9
+LEMA,C3 LEMA,LEMA,Dilophus_sp.,1,9
+LEMA,C4 LEMA,LEMA,Psilothrix_viridicoerulea,0.75,9
+LEMA,C4 LEMA,LEMA,Sphaerophoria_scripta,0.25,9
+LEMA,C5 LEMA,LEMA,Lagorina_sericea,0.2,9
+LEMA,C5 LEMA,LEMA,Melanostoma_sp.,0.2,9
+LEMA,C5 LEMA,LEMA,Meligethes_sp.,0.2,9
+LEMA,C5 LEMA,LEMA,Psilothrix_viridicoerulea,0.4,9
+LEMA,D2 LEMA,LEMA,Psilothrix_viridicoerulea,0.75,9
+LEMA,D2 LEMA,LEMA,Sphaerophoria_scripta,0.25,9
+LEMA,D3 LEMA,LEMA,Psilothrix_viridicoerulea,1,9
+LEMA,D5 LEMA,LEMA,Dilophus_sp.,1,9
+LEMA,D6 LEMA,LEMA,Psilothrix_viridicoerulea,1,9
+LEMA,E1 LEMA,LEMA,Psilothrix_viridicoerulea,1,9
+LEMA,E2 LEMA,LEMA,Meligethes_sp.,0.3333333333333333,9
+LEMA,E2 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,9
+LEMA,E2 LEMA,LEMA,Sphaerophoria_scripta,0.3333333333333333,9
+LEMA,E3 LEMA,LEMA,Dilophus_sp.,0.15384615384615385,9
+LEMA,E3 LEMA,LEMA,Eupeodes_corollae,0.07692307692307693,9
+LEMA,E3 LEMA,LEMA,Melyridae,0.23076923076923078,9
+LEMA,E3 LEMA,LEMA,Psilothrix_viridicoerulea,0.3076923076923077,9
+LEMA,E3 LEMA,LEMA,Sphaerophoria_scripta,0.23076923076923078,9
+LEMA,E4 LEMA,LEMA,Eucera_sp.,1,9
+LEMA,E5 LEMA,LEMA,Psilothrix_viridicoerulea,1,9
+LEMA,E6 LEMA,LEMA,Anthaxia_semicuprea,0.5,9
+LEMA,E6 LEMA,LEMA,Psilothrix_viridicoerulea,0.5,9
+LEMA,F1 LEMA,LEMA,Dilophus_sp.,1,9
+LEMA,F2 LEMA,LEMA,Psilothrix_viridicoerulea,1,9
+LEMA,F5 LEMA,LEMA,Meligethes_sp.,0.2,9
+LEMA,F5 LEMA,LEMA,Psilothrix_viridicoerulea,0.8,9
+LEMA,F6 LEMA,LEMA,Meligethes_sp.,0.4,9
+LEMA,F6 LEMA,LEMA,Psilothrix_viridicoerulea,0.6,9
+ME,D5 ME,ME,Musca_sp.,0.6666666666666666,9
+ME,D5 ME,ME,Psilothrix_viridicoerulea,0.3333333333333333,9
+ME,D6 ME,ME,Dilophus_sp.,1,9
+ME,E3 ME,ME,Musca_sp.,1,9
+ME,E6 ME,ME,Musca_sp.,1,9
+ME,F4 ME,ME,Musca_sp.,1,9
+CHFU,Dilophus_sp.,CHFU,A2 CHFU,0.08823529411764706,9
+CHFU,Sphaerophoria_scripta,CHFU,A2 CHFU,0.5,9
+CHFU,Dilophus_sp.,CHFU,A3 CHFU,0.029411764705882353,9
+CHFU,Dilophus_sp.,CHFU,A4 CHFU,0.029411764705882353,9
+CHFU,Dilophus_sp.,CHFU,A6 CHFU,0.029411764705882353,9
+CHFU,Dilophus_sp.,CHFU,B1 CHFU,0.029411764705882353,9
+CHFU,Diptera,CHFU,B1 CHFU,1,9
+CHFU,Musca_sp.,CHFU,B1 CHFU,0.3333333333333333,9
+CHFU,Dilophus_sp.,CHFU,B2 CHFU,0.029411764705882353,9
+CHFU,Bruchidae,CHFU,B3 CHFU,1,9
+CHFU,Episyrphus_balteatus,CHFU,C1 CHFU,0.3333333333333333,9
+CHFU,Episyrphus_balteatus,CHFU,C3 CHFU,0.3333333333333333,9
+CHFU,Eupeodes_corollae,CHFU,C3 CHFU,0.3333333333333333,9
+CHFU,Eupeodes_corollae,CHFU,C5 CHFU,0.3333333333333333,9
+CHFU,Dilophus_sp.,CHFU,C6 CHFU,0.029411764705882353,9
+CHFU,Scaeva_sp.,CHFU,C6 CHFU,1,9
+CHFU,Lomatia_sp.,CHFU,D2 CHFU,1,9
+CHFU,Sphaerophoria_scripta,CHFU,D3 CHFU,0.5,9
+CHFU,Dilophus_sp.,CHFU,D4 CHFU,0.11764705882352941,9
+CHFU,Episyrphus_balteatus,CHFU,D4 CHFU,0.3333333333333333,9
+CHFU,Dilophus_sp.,CHFU,E1 CHFU,0.11764705882352941,9
+CHFU,Musca_sp.,CHFU,E1 CHFU,0.3333333333333333,9
+CHFU,Dilophus_sp.,CHFU,E3 CHFU,0.029411764705882353,9
+CHFU,Melyridae,CHFU,E3 CHFU,1,9
+CHFU,Dilophus_sp.,CHFU,E4 CHFU,0.029411764705882353,9
+CHFU,Eupeodes_corollae,CHFU,E4 CHFU,0.3333333333333333,9
+CHFU,Musca_sp.,CHFU,E4 CHFU,0.3333333333333333,9
+CHFU,Andrena_cinerea,CHFU,E5 CHFU,1,9
+CHFU,Dilophus_sp.,CHFU,F1 CHFU,0.14705882352941177,9
+CHFU,Dilophus_sp.,CHFU,F4 CHFU,0.08823529411764706,9
+CHFU,Dilophus_sp.,CHFU,F5 CHFU,0.058823529411764705,9
+CHFU,Dilophus_sp.,CHFU,F6 CHFU,0.14705882352941177,9
+LEMA,Mordellidae,LEMA,A3 LEMA,0.25,9
+LEMA,Psilothrix_viridicoerulea,LEMA,A3 LEMA,0.02,9
+LEMA,Dilophus_sp.,LEMA,A5 LEMA,0.16666666666666666,9
+LEMA,Psilothrix_viridicoerulea,LEMA,A5 LEMA,0.02,9
+LEMA,Psilothrix_viridicoerulea,LEMA,B2 LEMA,0.02,9
+LEMA,Psilothrix_viridicoerulea,LEMA,B4 LEMA,0.06,9
+LEMA,Sphaerophoria_scripta,LEMA,B4 LEMA,0.14285714285714285,9
+LEMA,Dilophus_sp.,LEMA,B5 LEMA,0.16666666666666666,9
+LEMA,Malachius_bipustulatus,LEMA,B5 LEMA,1,9
+LEMA,Mordellidae,LEMA,B5 LEMA,0.75,9
+LEMA,Psilothrix_viridicoerulea,LEMA,B5 LEMA,0.06,9
+LEMA,Psilothrix_viridicoerulea,LEMA,B6 LEMA,0.08,9
+LEMA,Dilophus_sp.,LEMA,C3 LEMA,0.16666666666666666,9
+LEMA,Psilothrix_viridicoerulea,LEMA,C4 LEMA,0.06,9
+LEMA,Sphaerophoria_scripta,LEMA,C4 LEMA,0.14285714285714285,9
+LEMA,Lagorina_sericea,LEMA,C5 LEMA,1,9
+LEMA,Melanostoma_sp.,LEMA,C5 LEMA,1,9
+LEMA,Meligethes_sp.,LEMA,C5 LEMA,0.2,9
+LEMA,Psilothrix_viridicoerulea,LEMA,C5 LEMA,0.04,9
+LEMA,Psilothrix_viridicoerulea,LEMA,D2 LEMA,0.06,9
+LEMA,Sphaerophoria_scripta,LEMA,D2 LEMA,0.14285714285714285,9
+LEMA,Psilothrix_viridicoerulea,LEMA,D3 LEMA,0.06,9
+LEMA,Dilophus_sp.,LEMA,D5 LEMA,0.08333333333333333,9
+LEMA,Psilothrix_viridicoerulea,LEMA,D6 LEMA,0.02,9
+LEMA,Psilothrix_viridicoerulea,LEMA,E1 LEMA,0.04,9
+LEMA,Meligethes_sp.,LEMA,E2 LEMA,0.2,9
+LEMA,Psilothrix_viridicoerulea,LEMA,E2 LEMA,0.02,9
+LEMA,Sphaerophoria_scripta,LEMA,E2 LEMA,0.14285714285714285,9
+LEMA,Dilophus_sp.,LEMA,E3 LEMA,0.16666666666666666,9
+LEMA,Eupeodes_corollae,LEMA,E3 LEMA,1,9
+LEMA,Melyridae,LEMA,E3 LEMA,1,9
+LEMA,Psilothrix_viridicoerulea,LEMA,E3 LEMA,0.08,9
+LEMA,Sphaerophoria_scripta,LEMA,E3 LEMA,0.42857142857142855,9
+LEMA,Eucera_sp.,LEMA,E4 LEMA,1,9
+LEMA,Psilothrix_viridicoerulea,LEMA,E5 LEMA,0.1,9
+LEMA,Anthaxia_semicuprea,LEMA,E6 LEMA,1,9
+LEMA,Psilothrix_viridicoerulea,LEMA,E6 LEMA,0.02,9
+LEMA,Dilophus_sp.,LEMA,F1 LEMA,0.25,9
+LEMA,Psilothrix_viridicoerulea,LEMA,F2 LEMA,0.1,9
+LEMA,Meligethes_sp.,LEMA,F5 LEMA,0.2,9
+LEMA,Psilothrix_viridicoerulea,LEMA,F5 LEMA,0.08,9
+LEMA,Meligethes_sp.,LEMA,F6 LEMA,0.4,9
+LEMA,Psilothrix_viridicoerulea,LEMA,F6 LEMA,0.06,9
+ME,Musca_sp.,ME,D5 ME,0.4,9
+ME,Psilothrix_viridicoerulea,ME,D5 ME,1,9
+ME,Dilophus_sp.,ME,D6 ME,1,9
+ME,Musca_sp.,ME,E3 ME,0.2,9
+ME,Musca_sp.,ME,E6 ME,0.2,9
+ME,Musca_sp.,ME,F4 ME,0.2,9
+CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0.7142857142857143,9
+LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,0.5,9
+CHFU,Dilophus_sp.,ME,Dilophus_sp.,0,9
+ME,Dilophus_sp.,CHFU,Dilophus_sp.,0,9
+LEMA,Dilophus_sp.,ME,Dilophus_sp.,0.2,9
+ME,Dilophus_sp.,LEMA,Dilophus_sp.,1,9
+CHFU,Eupeodes_corollae,LEMA,Eupeodes_corollae,0.7142857142857143,9
+LEMA,Eupeodes_corollae,CHFU,Eupeodes_corollae,0.5,9
+CHFU,Melyridae,LEMA,Melyridae,0.7142857142857143,9
+LEMA,Melyridae,CHFU,Melyridae,0.5,9
+CHFU,Musca_sp.,ME,Musca_sp.,0,9
+ME,Musca_sp.,CHFU,Musca_sp.,0,9
+LEMA,Psilothrix_viridicoerulea,ME,Psilothrix_viridicoerulea,0.2,9
+ME,Psilothrix_viridicoerulea,LEMA,Psilothrix_viridicoerulea,1,9
+CHFU,Sphaerophoria_scripta,LEMA,Sphaerophoria_scripta,0.7142857142857143,9
+LEMA,Sphaerophoria_scripta,CHFU,Sphaerophoria_scripta,0.5,9
