@@ -24,14 +24,14 @@ for (i in 1:nrow(pollination)){
 }
 
 
-for (Line_i in 1:3){
+for (Plot_i in 1:9){
 
 ##########################
 #ESTIMATE PHENOLOGY
 ##########################
 
 #Filter pollination data
-pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Line==Line_i,!is.na(ID))
+pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Plot==Plot_i,!is.na(ID))
 
 pollination_19_i <- pollination_19_i %>% select(Day,Month,Year,Line,Plot,Subplot,Plant_Simple,ID,Visits) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
@@ -47,7 +47,7 @@ plant_pheno_overlap <- function(plant1,plant2,pollination_19_i) {
   plantsx <- sort(unique(pollination_19_i$Plant_Simple))
   if(sum(c(plant1,plant2) %in% plantsx)<2){
     print(paste("Error: At least one plant does not belong to plot ",
-                Line_i," experimental phenology",sep=""))
+                Plot_i," experimental phenology",sep=""))
     }else{
     pollination_plant1 <- pollination_19_i %>% filter(Plant_Simple==plant1)
     #Weeks in which plant 1 recieves visits
@@ -72,7 +72,7 @@ plant_pheno_overlap <- function(plant1,plant2,pollination_19_i) {
 
 
 ###########################
-# CREATE MULTILAYER FOR Line_i
+# CREATE MULTILAYER FOR Plot_i
 ###########################
 
 folder_base <- paste(dir_ini,"/Processed_data/Multilayer_Species/",sep="")
@@ -81,9 +81,9 @@ files_base <- list.files(folder_base)
 
 setwd(folder_base)
 
-# Extract layer files for Line_i
+# Extract layer files for Plot_i
 
-list_files_field_level <- files_base[grepl(paste("Line_",Line_i,sep = ""), files_base)]
+list_files_field_level <- files_base[grepl(paste("Plot_",Plot_i,sep = ""), files_base)]
 
 # Extract edge_list for each layer
 for (i in 1:length(list_files_field_level)){
@@ -199,7 +199,9 @@ for (i in 1:length(pollinators)){
   }
 }
 
-
+S_edge_list_i <- S_edge_list %>% mutate(Plot=Plot_i)
+if (Plot_i==1){S_edge_list_final <- S_edge_list_i}
+else{S_edge_list_final <- bind_rows(S_edge_list_final,S_edge_list_i)}
 
 
 # Replace the node names with node_ids
@@ -239,12 +241,13 @@ modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = F, silent 
 # Extract information
 plot_modules_i <- modules_relax_rate$modules %>% left_join(layer_metadata,by="layer_id")
 
-plot_modules_i$Line <- Line_i
+plot_modules_i$Plot <- Plot_i
 
 setwd(dir_ini)
 
-write_csv(plot_modules_i,paste0("Processed_data/Modularity_Pheno_Overlap/Modularity_Line",
-                                Line_i,".csv")  )
+write_csv(plot_modules_i,paste0("Processed_data/Modularity_Pheno_Overlap/Modularity_Plot",
+                                Plot_i,".csv")  )
 
 }
 
+write_csv(S_edge_list_final,"Processed_data/Modularity_Pheno_Overlap/Edge_list_Phen_Over_PLOT.csv")
