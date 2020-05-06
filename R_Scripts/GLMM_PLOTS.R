@@ -76,6 +76,9 @@ competition <- read_csv2("Raw_Data/competition.txt")
 competition$ME_iden <- NA
 competition$ME_iden[competition$focal=="MEEL"] <- "MEEL" # we add this dummy variable to identify ME
 competition$ME_iden[competition$focal=="MESU"] <- "MESU"
+
+
+# Rename MEEL and MESU -> ME
 competition$focal[competition$focal=="MEEL"] <- "ME"
 competition$focal[competition$focal=="MESU"] <- "ME"
 
@@ -96,6 +99,13 @@ competition_fil <- competition %>%
 
 fitness <- competition_fil %>% full_join(fitness_aux,by=c("Plot","Subplot",
                                                           "Plant_Simple"))
+
+
+# There are pollinator observations in ME without ME_iden. No competition data is registered
+# at those sites. MESU and MEEL have zero abundances at those places.
+# Assuming that ME <> MESu, we set ME_iden
+
+fitness$ME_iden[fitness$Plant_Simple=="ME"& is.na(fitness$ME_iden)] <- "MESU"
 
 #According to fitness dataframe, poll. dataset does not contain MEEL observations
 
@@ -118,28 +128,25 @@ for (i in 1:nrow(fitness)){
 }
 
 # Test number of fruits: There are 12 differences between compet. dataset and poll. dataset
-fitness %>% select(Plot,Subplot,Plant_Simple, Fruit_GF.x,Fruit_GF.y)%>%
-  filter(Fruit_GF.x!=Fruit_GF.y) %>% group_by(Plot,Subplot,Plant_Simple,Fruit_GF.x,Fruit_GF.y) %>%
+fitness %>% select(Plot,Subplot,Plant_Simple, Fruit_GF.x,Fruit_GF.y,ME_iden)%>%
+  filter(Fruit_GF.x!=Fruit_GF.y) %>% group_by(Plot,Subplot,Plant_Simple,Fruit_GF.x,Fruit_GF.y,ME_iden) %>%
   count()
 
 # We use fruit and seed data from pollinator dataset
 
 fitness_final <- fitness %>% select(Plot,Subplot,Plant_Simple,Seeds_GF.y,
                                     Fruit_GF.y,visits_GF,ID,homo_motif,
-                                    hete_motif) %>%
+                                    hete_motif,ME_iden) %>%
   rename(Seeds_GF = Seeds_GF.y, Fruit_GF = Fruit_GF.y)
 
+# Removing NAs from motifs, animals and visits
 fitness_final$visits_GF[is.na(fitness_final$visits_GF)] <- 0
 fitness_final$homo_motif[is.na(fitness_final$homo_motif)] <- 0
 fitness_final$hete_motif[is.na(fitness_final$hete_motif)] <- 0
 fitness_final$ID[is.na(fitness_final$ID)] <- "None"
 
-
-str(fitness_final)
-
 #9     E3      LEMA       Seeds_GF=NA     Fruit_GF=NA    visits_GF=3 Melyridae  0   0
 fitness_final <- fitness_final %>% filter(!is.na(Seeds_GF))
-
 
 #############################################
 # ADDING CENTRALITY MEASSURES
@@ -164,16 +171,154 @@ fitness_final <- fitness_final %>% left_join(centrality, by=c("Plot","Subplot","
 # Removing centrality NAs
 fitness_final[is.na(fitness_final)] <- 0
 
+str(fitness_final)
+
+
+#############################################
+# ADDING ABUNDANCES
+#############################################
+
+abundances <- read_csv2("Raw_Data/abundances_2019.csv")
+abundances_19 <- abundances %>% filter(year==2019) %>% 
+  select(plot,subplot,species,individuals) %>% arrange(plot,subplot)
+
+
+# Total number of individuals per species and plot
+individuals_plot <- abundances_19 %>% group_by(plot,species) %>% 
+  summarize(individuals_plot=sum(individuals,na.rm = T))
+
+# Total number of individuals per subplot
+total_abundances_SUB <- abundances_19 %>% group_by(plot,subplot) %>% 
+  summarize(total_individuals_subplot=sum(individuals,na.rm = T))
+
+# Total number of individuals per plot
+total_abundances_PLOT <- abundances_19 %>% group_by(plot) %>% 
+  summarize(total_individuals_plot=sum(individuals,na.rm = T))
+
+# Percentage of species individuals per subplot
+abundances_19 <- abundances_19 %>% 
+  left_join(individuals_plot, by = c("plot","species")) %>%
+  left_join(total_abundances_SUB, by = c("plot","subplot")) %>%
+  left_join(total_abundances_PLOT, by = c("plot")) %>%
+  mutate(prop_individuals_sub = individuals/total_individuals_subplot,
+         prop_individuals_plot = individuals_plot/total_individuals_plot) %>% 
+  rename(Plot = plot, Subplot = subplot, Plant_Simple = species)
+
+# We use our MEEL/MESU dummy variable to replace ME by its real species name
+
+fitness_final$Plant_Simple[fitness_final$ME_iden=="MEEL"] <- "MEEL"
+fitness_final$Plant_Simple[fitness_final$ME_iden=="MESU"] <- "MESU"
+
+fitness_final <- fitness_final %>%
+  left_join(abundances_19, by = c("Plot","Subplot","Plant_Simple"))
+
+# sanity Check
+sum(is.na(fitness_final))==0
+
+# Rename MEEL and MESU -> ME
+fitness_final$Plant_Simple[fitness_final$Plant_Simple=="MEEL"] <- "ME"
+fitness_final$Plant_Simple[fitness_final$Plant_Simple=="MESU"] <- "ME"
+
+# Sanity check: All plant species plant should have at least there one individual 
+# in our subplots
+fitness_final %>% filter(individuals==0) #95 fails
+fitness_final %>% filter(individuals_plot==0) #1 fail included in the previous one
+which(fitness_final$individuals_plot==0)
+
+fails <- fitness_final %>% filter(individuals==0)
+fitness_final %>% filter(visits_GF>0,individuals==0) #87 fails
+
+fails %>% filter(Seeds_GF>0) #There are 6 plots with several ME plants
+
+# We add one individual to each plot
+modification_indiv <- fitness_final %>% filter(individuals==0) %>%
+  select(Plot,Subplot,total_individuals_subplot,total_individuals_plot,Seeds_GF) %>%
+  unique()%>% group_by(Plot,Subplot,total_individuals_subplot,total_individuals_plot)%>%
+  summarize(n=n(),total_seeds=sum(Seeds_GF))
+
+modification_indiv$n_new <- NA
+modification_indiv$new_total_sub <- NA
+modification_indiv$new_total_plot <- NA
+
+for(i in 1: nrow(modification_indiv)){
+  
+  if (modification_indiv$total_seeds[i]>0){
+    modification_indiv$n_new[i] = modification_indiv$total_seeds[i]+modification_indiv$n[i]-1
+    modification_indiv$new_total_sub[i] = 
+      modification_indiv$total_individuals_subplot[i]+modification_indiv$n_new[i]
+    modification_indiv$new_total_plot[i]=
+      modification_indiv$total_individuals_plot[i]+modification_indiv$n_new[i]
+  }else{
+      
+    modification_indiv$n_new[i] <-  modification_indiv$n[i]
+    modification_indiv$new_total_sub[i] = 
+      modification_indiv$total_individuals_subplot[i]+modification_indiv$n_new[i]
+    modification_indiv$new_total_plot[i]=
+      modification_indiv$total_individuals_plot[i]+modification_indiv$n_new[i]
+  }
+}
+
+
+# Fix total_individuals_plot in fitness_final
+for(i in 1:nrow(modification_indiv)){
+
+  
+  fitness_final$total_individuals_subplot[fitness_final$Plot==modification_indiv$Plot[i] &
+                                       fitness_final$Subplot==modification_indiv$Subplot[i]] <- 
+    modification_indiv$new_total_sub[i]
+  
+  fitness_final$total_individuals_plot[fitness_final$Plot==modification_indiv$Plot[i]] <- 
+    modification_indiv$new_total_plot[i]
+}
+
+fitness_final$individuals[fitness_final$individuals==0 & fitness_final$Seeds_GF==0] <- 1
+fitness_final$individuals[fitness_final$individuals==0 & fitness_final$Seeds_GF!=0] <- 
+  fitness_final$Seeds_GF[fitness_final$individuals==0 & fitness_final$Seeds_GF!=0]
+fitness_final$individuals_plot[fitness_final$individuals_plot==0 & fitness_final$Seeds_GF==0] <- 1
+  
+#Sanity Checks
+fitness_final %>% filter(individuals==0)
+fitness_final %>% filter(individuals_plot==0)
+
+fitness_final <- mutate(fitness_final,
+                        prop_indiviudals_sub = individuals/total_individuals_subplot,
+                        prop_indiviudals_plot = individuals/total_individuals_plot)
+  
+write_csv(fitness_final,"data_models_phenol_overlap.csv")
+
 fitness_final$Plot <- as.factor(fitness_final$Plot)
 fitness_final$Subplot <- as.factor(fitness_final$Subplot)
 fitness_final$ID <- as.factor(fitness_final$ID)
 fitness_final$Plant_Simple <- as.factor(fitness_final$Plant_Simple)
 
-
-write_csv(fitness_final,"data_models_phenol_overlap.csv")
+str(fitness_final)
 
 #############################################
 # EXPLORING THE DATA
+##############################################
+
+################################################
+# Exploring relations between seed and individuals
+################################################
+
+fitness_final %>% filter(Seeds_GF==0)
+fitness_final %>% filter(individuals_plot==0)
+
+ggplot(fitness_final, aes(x = log(prop_individuals_sub),y=log(Seeds_GF),color=Plant_Simple)) +
+  geom_point()+geom_smooth(method = "lm", formula = y~exp(-x), se = F) +facet_wrap(vars(Plot),nrow = 3,ncol = 3)
+
+ggplot(fitness_final, aes(x = log(prop_individuals_plot),y=log(Seeds_GF),color=Plant_Simple)) +
+  geom_point()+geom_smooth(method = "lm", formula = y~exp(-x), se = F)
+
+# Number of individuals por subplot is a good predictor:
+# Seeds_GF is prop to contant*individuals^k
+
+fitness_final <-  fitness_final %>% mutate(exp_neg_prop_individuals_sub = exp(-prop_individuals_sub),
+                                           exp_neg_prop_individuals_plot = exp(-prop_individuals_plot),)
+
+
+#############################################
+# Characterizing Seeds
 ##############################################
 
 mean(fitness_final$Seeds_GF) # calculate mean: 277.9159
@@ -235,6 +380,7 @@ var(fitness_CHMI$Seeds_GF) # calculate variance 667315
 
 ggplot(fitness_CHMI, aes(x = Seeds_GF)) +geom_histogram(binwidth = 10)+
   geom_density(aes(y= 10 * ..count..),alpha = .2, fill = "#FF6666")
+
 
 ############################
 library(vcd)
@@ -421,8 +567,8 @@ library(usdm)
 
 vif(as.data.frame(dplyr::select(fitness_LEMA,StrengthIn,homo_motif,hete_motif,Hub,Katz)))
 vif(as.data.frame(dplyr::select(fitness_LEMA,StrengthIn,PageRank,DegreeIn)))
-vif(as.data.frame(dplyr::select(fitness_LEMA,DegreeIn,homo_motif,hete_motif)))
-vif(as.data.frame(dplyr::select(fitness_LEMA,PageRank,homo_motif,hete_motif)))
+vif(as.data.frame(dplyr::select(fitness_LEMA,DegreeIn,homo_motif,hete_motif,log_individuals)))
+vif(as.data.frame(dplyr::select(fitness_LEMA,PageRank,homo_motif,hete_motif,log_individuals)))
 
 fitness_LEMA %>% group_by(Plot) %>% count()
 
@@ -453,7 +599,7 @@ library(DHARMa)
 # get residuals
 simulationOutput <- simulateResiduals(fittedModel = m2.nbinom_LEMA_ZI, n = 250)
 # Checking Residuals 
-testDispersion(m2.nbinom)
+testDispersion(simulationOutput)
 # Check zero inflation
 testZeroInflation(simulationOutput)
 plot(simulationOutput)
@@ -461,7 +607,7 @@ plot(simulationOutput)
 # Simulation outliers (data points that are outside the range of simulated values)
 # are highlighted as red stars. These points should be carefully interpreted, because
 # we actually don’t know “how much” these values deviate from the model expectation.
-
+plotResiduals(simulationOutput, fitness_LEMA$log_individuals)
 plotResiduals(simulationOutput, fitness_LEMA$homo_motif)
 plotResiduals(simulationOutput, fitness_LEMA$hete_motif)
 plotResiduals(simulationOutput, fitness_LEMA$ID)
@@ -480,7 +626,7 @@ fitness_CHFU %>% group_by(Plot) %>% count()
 x <- fitness_CHFU %>% group_by(homo_motif,ID) %>% count()
 
 # Seeds_GF ~ ID + homo_motif + hete_motif + (1|Plot)
-m2.nbinom_CHFU_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) + scale(hete_motif) +(1|Plot),
+m2.nbinom_CHFU_ZI <- glmmTMB(Seeds_GF ~ scale(DegreeIn) + scale(homo_motif) + scale(hete_motif) +(1|Plot),
                      ziformula= ~ 1,
                      family= nbinom2(),
                      data = fitness_CHFU)
@@ -494,7 +640,7 @@ mu_real <- mean(fitness_CHFU$Seeds_GF)
 mu_real/(-1+var_real/mu_real) # 1.96
 
 
-m2.nbinom_CHFU <- glmmTMB(Seeds_GF ~ scale(homo_motif) + scale(hete_motif) +(1|Plot),
+m2.nbinom_CHFU <- glmmTMB(Seeds_GF ~ scale(DegreeIn) + scale(homo_motif) + scale(hete_motif) +(1|Plot),
                              ziformula= ~ 0,
                              family= nbinom2(),
                              data = fitness_CHFU)
@@ -511,7 +657,7 @@ plotResiduals(simulationOutput, fitness_CHFU$homo_motif)
 plotResiduals(simulationOutput, fitness_CHFU$hete_motif)
 plotResiduals(simulationOutput, fitness_CHFU$ID)
 plotResiduals(simulationOutput, fitness_CHFU$DegreeIn)
-
+plotResiduals(simulationOutput, fitness_CHFU$prop_individuals)
 
 ##########################################
 # PUPA
@@ -525,7 +671,7 @@ vif(as.data.frame(dplyr::select(fitness_PUPA,PageRank, homo_motif)))
 
 x <- fitness_PUPA %>% group_by(ID,Plot) %>% count()
 
-
+# Note: PUPA is present in very few plots 
 m2.nbinom_PUPA_ZI <- glmmTMB(Seeds_GF ~ scale(DegreeIn) + scale(homo_motif) + (1|Plot),
                      ziformula= ~ 1,
                      family= nbinom2(),
@@ -557,7 +703,7 @@ plotResiduals(simulationOutput, fitness_PUPA$homo_motif)
 plotResiduals(simulationOutput, fitness_PUPA$hete_motif) #Only Zero hete_motifs
 plotResiduals(simulationOutput, fitness_PUPA$ID)
 plotResiduals(simulationOutput, fitness_PUPA$DegreeIn)
-
+plotResiduals(simulationOutput, fitness_PUPA$prop_individuals_sub)
 
 ##########################################
 # ME
@@ -603,7 +749,7 @@ plotResiduals(simulationOutput, fitness_ME$homo_motif)
 plotResiduals(simulationOutput, fitness_ME$hete_motif)
 plotResiduals(simulationOutput, fitness_ME$ID)
 plotResiduals(simulationOutput, fitness_ME$DegreeIn)
-
+plotResiduals(simulationOutput, fitness_ME$prop_individuals_sub)
 ##########################################
 # CHMI
 ##########################################
@@ -637,3 +783,4 @@ simulationOutput <- simulateResiduals(fittedModel = m2.nbinom_CHFI, n = 2500)
 testDispersion(simulationOutput)
 plot(simulationOutput)
 testZeroInflation(simulationOutput)
+
