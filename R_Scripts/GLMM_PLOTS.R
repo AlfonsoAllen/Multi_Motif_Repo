@@ -293,6 +293,8 @@ fitness_final$Plant_Simple <- as.factor(fitness_final$Plant_Simple)
 
 str(fitness_final)
 
+
+
 #############################################
 # EXPLORING THE DATA
 ##############################################
@@ -301,25 +303,103 @@ str(fitness_final)
 # Exploring relations between seed and individuals
 ################################################
 
-fitness_final %>% filter(Seeds_GF==0)
-fitness_final %>% filter(individuals_plot==0)
+# Cleveland dotplot
 
-ggplot(fitness_final, aes(x = log(prop_individuals_sub),y=log(Seeds_GF),color=Plant_Simple)) +
-  geom_point()+geom_smooth(method = "lm", formula = y~exp(-x), se = F) +facet_wrap(vars(Plot),nrow = 3,ncol = 3)
+library(ggpubr)
+ggdotchart(fitness_final, x = "Seeds_GF", y = c("individuals"),
+           group = "Plant_Simple", color = "Plant_Simple",
+           rotate = TRUE,
+           combine = TRUE,
+           sorting = "descending",
+           ggtheme = theme_bw(),
+           y.text.col = TRUE )
 
-ggplot(fitness_final, aes(x = log(prop_individuals_plot),y=log(Seeds_GF),color=Plant_Simple)) +
-  geom_point()+geom_smooth(method = "lm", formula = y~exp(-x), se = F)
+ggdotchart(fitness_final, x = "Seeds_GF", y = c("StrengthIn"),
+           group = "Plant_Simple", color = "Plant_Simple",
+           rotate = TRUE,
+           combine = TRUE,
+           sorting = "descending",
+           ggtheme = theme_bw(),
+           y.text.col = TRUE )
 
-# Number of individuals por subplot is a good predictor:
-# Seeds_GF is prop to contant*individuals^k
+ggdotchart(fitness_final, x = "Seeds_GF", y = c("homo_motif"),
+           group = "Plant_Simple", color = "Plant_Simple",
+           rotate = TRUE,
+           combine = TRUE,
+           sorting = "descending",
+           ggtheme = theme_bw(),
+           y.text.col = TRUE )
 
-fitness_final <-  fitness_final %>% mutate(exp_neg_prop_individuals_sub = exp(-prop_individuals_sub),
-                                           exp_neg_prop_individuals_plot = exp(-prop_individuals_plot),)
+# COPLOTS
+
+ggplot(fitness_final, aes(x = log(individuals),y=log(Seeds_GF))) +
+  geom_point()+geom_smooth(aes(color=Plant_Simple),method = "lm", se = F)+
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
+
+ggplot(fitness_final, aes(x = (StrengthIn),y=log(Seeds_GF))) +
+  geom_point()+geom_smooth(aes(color=Plant_Simple),method = "lm", se = F)+
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
+
+ggplot(fitness_final, aes(x = (homo_motif),y=log(Seeds_GF))) +
+  geom_point() +
+  geom_smooth(aes(color=Plant_Simple),method = "lm", formula = y~x+I(x^2), se = F) +
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
+
+ggplot(fitness_final, aes(x = (hete_motif),y=log(Seeds_GF))) +
+  geom_point()+
+  geom_smooth(aes(color=Plant_Simple),method = "lm", formula = y~x+I(x^2), se = F)+
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
 
 
-#############################################
-# Characterizing Seeds
-##############################################
+ggplot(fitness_final, aes(x = as.factor(DegreeIn),y=(Seeds_GF))) +
+  geom_boxplot()+
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
+
+ggplot(fitness_final, aes(x = as.factor(homo_motif),y=(Seeds_GF))) +
+  geom_boxplot()+
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
+
+
+#scatter plots
+
+pairs(~DegreeIn+StrengthIn+Seeds_GF+Fruit_GF+homo_motif+hete_motif+ID,data=fitness_final_sin,
+      main="Simple Scatterplot Matrix")
+
+
+########################################################
+#SEEDS WITHOUT ZEROS
+#########################################################
+
+fitness_final_sin <- fitness_final %>% filter(Seeds_GF>1)
+
+ggplot(fitness_final_sin, aes(x = log(individuals),y=log(Seeds_GF))) +
+  geom_point()+geom_smooth(aes(color=Plant_Simple),method = "loess", se = F)+
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
+
+ggplot(fitness_final_sin, aes(x = (StrengthIn),y=log(Seeds_GF))) +
+  geom_point()+
+  geom_smooth(aes(color=Plant_Simple),method = "lm", formula = y~x+I(x^2),se = F)+
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
+
+ggplot(fitness_final_sin, aes(x = (homo_motif),y=log(Seeds_GF))) +
+  geom_point() +
+  geom_smooth(aes(color=Plant_Simple),method = "lm", formula = y~x+I(x^2), se = F) +
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
+
+ggplot(fitness_final_sin, aes(x = (hete_motif),y=log(Seeds_GF))) +
+  geom_point()+
+  geom_smooth(aes(color=Plant_Simple),method = "lm", formula = y~x+I(x^2), se = F)+
+  facet_grid(Plot~Plant_Simple, margins=TRUE)
+
+#scatter plots
+
+pairs(~DegreeIn+StrengthIn+Seeds_GF+Fruit_GF+homo_motif+hete_motif+ID+Plot,data=fitness_final_sin,
+      main="Simple Scatterplot Matrix")
+
+##################3
+#
+###################
+
 
 mean(fitness_final$Seeds_GF) # calculate mean: 277.9159
 var(fitness_final$Seeds_GF) # calculate variance 57469.86
@@ -567,14 +647,20 @@ library(usdm)
 
 vif(as.data.frame(dplyr::select(fitness_LEMA,StrengthIn,homo_motif,hete_motif,Hub,Katz)))
 vif(as.data.frame(dplyr::select(fitness_LEMA,StrengthIn,PageRank,DegreeIn)))
-vif(as.data.frame(dplyr::select(fitness_LEMA,DegreeIn,homo_motif,hete_motif,log_individuals)))
-vif(as.data.frame(dplyr::select(fitness_LEMA,PageRank,homo_motif,hete_motif,log_individuals)))
+vif(as.data.frame(dplyr::select(fitness_LEMA,DegreeIn,homo_motif,hete_motif,individuals)))
+vif(as.data.frame(dplyr::select(fitness_LEMA,PageRank,homo_motif,hete_motif,individuals)))
 
 fitness_LEMA %>% group_by(Plot) %>% count()
 
-library(DHARMa)
+
 #Seeds_GF ~ DegreeIn + homo_motif + ID + (1|Plot)
-m2.nbinom_LEMA_ZI <- glmmTMB(Seeds_GF ~ ID + scale(DegreeIn) + scale(homo_motif) + scale(hete_motif) +(1|Plot),
+
+fitness_LEMA <- mutate(fitness_LEMA,individuals_5 = scale(individuals^(5)),
+                       homo_motif_2 = scale(homo_motif^2))
+
+#ID + scale(individuals_5) + scale(homo_motif) + scale(DegreeIn) + scale(hete_motif) +(1|Plot) + (1|ID),
+#ziformula= ~ 1,
+m2.nbinom_LEMA_ZI <- glmmTMB(Seeds_GF ~ ID + scale(individuals_5) + scale(homo_motif) + scale(DegreeIn) + scale(hete_motif) +(1|Plot),
                            ziformula= ~ 1,
                            family = nbinom2(),
                            data = fitness_LEMA)
@@ -587,7 +673,9 @@ mu_real <- mean(fitness_LEMA$Seeds_GF)
 # Real overdispersion
 mu_real/(-1+var_real/mu_real) # 1.96
 
-m2.nbinom_LEMA <- glmmTMB(Seeds_GF ~ ID + scale(DegreeIn) + scale(homo_motif) + scale(hete_motif) +(1|Plot),
+
+
+m2.nbinom_LEMA <- glmmTMB(Seeds_GF ~ ID + scale(individuals_5) + scale(DegreeIn) + scale(homo_motif) + scale(hete_motif) +(1|Plot),
                              ziformula= ~ 0,
                              family = nbinom2(),
                              data = fitness_LEMA)
@@ -597,21 +685,24 @@ AIC(m2.nbinom_LEMA_ZI,m2.nbinom_LEMA) #AIC for ZI_model is smaller than the alte
 library(DHARMa)
 
 # get residuals
-simulationOutput <- simulateResiduals(fittedModel = m2.nbinom_LEMA_ZI, n = 250)
+simulationOutput <- simulateResiduals(fittedModel = m2.nbinom_LEMA_ZI, n = 1500)
 # Checking Residuals 
 testDispersion(simulationOutput)
 # Check zero inflation
 testZeroInflation(simulationOutput)
+#test uniformity
+testUniformity(simulationOutput = simulationOutput)
 plot(simulationOutput)
 
 # Simulation outliers (data points that are outside the range of simulated values)
 # are highlighted as red stars. These points should be carefully interpreted, because
 # we actually don’t know “how much” these values deviate from the model expectation.
-plotResiduals(simulationOutput, fitness_LEMA$log_individuals)
+plotResiduals(simulationOutput, fitness_LEMA$individuals_5)
 plotResiduals(simulationOutput, fitness_LEMA$homo_motif)
 plotResiduals(simulationOutput, fitness_LEMA$hete_motif)
 plotResiduals(simulationOutput, fitness_LEMA$ID)
 plotResiduals(simulationOutput, fitness_LEMA$DegreeIn)
+
 
 ##########################################
 # CHFU
@@ -783,4 +874,3 @@ simulationOutput <- simulateResiduals(fittedModel = m2.nbinom_CHFI, n = 2500)
 testDispersion(simulationOutput)
 plot(simulationOutput)
 testZeroInflation(simulationOutput)
-
