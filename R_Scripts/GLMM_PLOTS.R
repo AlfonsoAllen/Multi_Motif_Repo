@@ -362,7 +362,7 @@ ggplot(fitness_final, aes(x = as.factor(homo_motif),y=(Seeds_GF))) +
 
 #scatter plots
 
-pairs(~DegreeIn+StrengthIn+Seeds_GF+Fruit_GF+homo_motif+hete_motif+ID,data=fitness_final_sin,
+pairs(~DegreeIn+StrengthIn+Seeds_GF+Fruit_GF+homo_motif+hete_motif+ID,data=fitness_final,
       main="Simple Scatterplot Matrix")
 
 
