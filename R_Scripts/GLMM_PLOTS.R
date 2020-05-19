@@ -284,7 +284,7 @@ fitness_final <- mutate(fitness_final,
                         prop_indiviudals_sub = individuals/total_individuals_subplot,
                         prop_indiviudals_plot = individuals/total_individuals_plot)
   
-write_csv(fitness_final,"data_models_phenol_overlap.csv")
+# write_csv(fitness_final,"data_models_phenol_overlap.csv")
 
 fitness_final$Plot <- as.factor(fitness_final$Plot)
 fitness_final$Subplot <- as.factor(fitness_final$Subplot)
