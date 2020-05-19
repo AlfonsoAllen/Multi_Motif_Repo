@@ -1,10 +1,16 @@
+# Load relevant libraries
+library(infomapecology)
+# Infomap installation guide: https://github.com/Ecological-Complexity-Lab/infomap_ecology_package
 library(attempt)
 library(igraph)
 library(bipartite)
 library(tidyverse)
+library(magrittr)
+library(ggalluvial)
 
 #Access layers files
 dir_ini <- getwd()
+
 
 #Load data on pollinator visits
 pollination <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
@@ -17,23 +23,18 @@ for (i in 1:nrow(pollination)){
   else{pollination$Line[i] <- 3}
 }
 
-for (Plot_i in 1:9){
-# Select the plot number to build up the multilayer
 
-  #Plot_i <- 7
+for (Plot_i in 1:9){
+
   
 ##########################
 #ESTIMATE PHENOLOGY
 ##########################
 
+#Filter pollination data
+pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Plot==Plot_i,!is.na(ID))
 
-
-#Filter data
-pollination_19_i <- pollination %>% filter(Year==2019,Subplot!="OUT",Plot==Plot_i)
-
-pollination_19_i <- pollination_19_i %>% 
-  select(Day,Month,Year,Line,Plot,Subplot,Plant_Simple,ID_Simple,Visits) %>%
-  rename(ID=ID_Simple)%>%
+pollination_19_i <- pollination_19_i %>% select(Day,Month,Year,Line,Plot,Subplot,Plant_Simple,G_F,Visits) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
 
@@ -44,9 +45,9 @@ pollination_19_i <- pollination_19_i %>%
 
 plant_pheno_overlap <- function(plant1,plant2,pollination_19_i) {
   
-  plants <- sort(unique(pollination_19_i$Plant_Simple))
-  if(sum(c(plant1,plant2) %in% plants)<2){
-    print(paste("Error: At least one plant does not belong to Plot ",
+  plantsx <- sort(unique(pollination_19_i$Plant_Simple))
+  if(sum(c(plant1,plant2) %in% plantsx)<2){
+    print(paste("Error: At least one plant does not belong to plot ",
                 Plot_i," experimental phenology",sep=""))
     }else{
     pollination_plant1 <- pollination_19_i %>% filter(Plant_Simple==plant1)
@@ -75,7 +76,7 @@ plant_pheno_overlap <- function(plant1,plant2,pollination_19_i) {
 # CREATE MULTILAYER FOR Plot_i
 ###########################
 
-folder_base <- paste(dir_ini,"/Processed_data/Multilayer_Species/",sep="")
+folder_base <- paste(dir_ini,"/Processed_data/Multilayer_GF/",sep="")
 
 files_base <- list.files(folder_base)
 
@@ -163,17 +164,13 @@ S_edge_list <- bind_rows(S_Links_Plant_Poll,S_Links_Poll_Plant)
 # Here we can extract information on interlayer connections
 
 for (i in 1:length(pollinators)){
-
+  
   polinator_edges <- Plot_edgelist_complete %>% filter(node_to==pollinators[i])
   polinator_layers <- unique(polinator_edges$layer_to)
   #print (polinator_layers)
   if (length(polinator_layers)>1){
     combination_layers <- t(combn(polinator_layers, 2))
     for (j in 1:nrow(combination_layers)){
-
-      # print(i)
-      # print(j)
-      # print("---")
       
       #For undirected networks
       # interlink_i<- tibble(layer_from=combination_layers[j,1],
@@ -203,7 +200,9 @@ for (i in 1:length(pollinators)){
   }
 }
 
-
+S_edge_list_i <- S_edge_list %>% mutate(Plot=Plot_i)
+if (Plot_i==1){S_edge_list_final <- S_edge_list_i}
+else{S_edge_list_final <- bind_rows(S_edge_list_final,S_edge_list_i)}
 
 
 # Replace the node names with node_ids
@@ -218,69 +217,38 @@ S_edge_list_ID <-
   select(-layer_from, -layer_to) %>% 
   select(layer_from=layer_id.x, node_from, layer_to=layer_id.y, node_to, weight)
 
-# # Replace the node names with node_ids
-# Plot_edgelist_complete_ids <- 
-#   Plot_edgelist_complete %>% 
-#   left_join(physical_nodes, by=c('node_from' = 'species')) %>%  # Join for pollinators
-#   left_join(physical_nodes, by=c('node_to' = 'species')) %>%  # Join for plants
-#   select(-node_from, -node_to) %>% 
-#   select(layer_from, node_from=node_id.x, layer_to, node_to=node_id.y, weight) %>% 
-#   left_join(layer_metadata, by=c('layer_from' = 'layer_name')) %>%  # Join for plants
-#   left_join(layer_metadata, by=c('layer_to' = 'layer_name')) %>%  # Join for plants
-#   select(-layer_from, -layer_to) %>% 
-#   select(layer_from=layer_id.x, node_from, layer_to=layer_id.y, node_to, weight)
 
-#########################################################################################
-###########################################
-#Saving MuxViz Files for posterior analysis
-###########################################
+#######################################
+#Running Infomap
+#######################################
 
-folder_muxviz_root <- paste(dir_ini,"/Processed_data/Muxviz_Pheno_Overlap/",sep="")
-newfolder <- paste("Plot_",Plot_i,"/", sep="")
-folder_muxviz <- paste0(folder_muxviz_root, newfolder)
-dir.create(folder_muxviz)
+#Running Infomap
+#Setting folder with infomap.exe
+folder_info <- paste(dir_ini,"/R_Scripts",sep="")
 
-general_multilayer_layout <- physical_nodes %>% rename(nodeID=node_id,nodeLabel=species)%>%
-  select(nodeID,nodeLabel) 
+# Check Infomap is running
+setwd(folder_info)
+check_infomap() # Make sure file can be run correctly. Should return TRUE
 
-mutate(general_multilayer_layout,
-       nodeLabel=str_replace(general_multilayer_layout$nodeLabel," ", "_"))
-
-write_delim(general_multilayer_layout,
-            paste(folder_muxviz,"general_multilayer_layout_Plot",Plot_i,".txt",sep=""),
-            delim = " ")
-
-general_multilayer_layers <- layer_metadata %>% rename(layerID=layer_id,layerLabel=layer_name)
-
-write_delim(general_multilayer_layers,
-            paste(folder_muxviz,"general_multilayer_layers_Plot",Plot_i,".txt",sep=""),
-            delim = " ")
-
-general_multilayer <- S_edge_list_ID %>%
-  select(node_from,layer_from,node_to,layer_to,weight) %>%
-  arrange(node_from,layer_from,node_to,layer_to)
-
-write_delim(general_multilayer,
-            paste(folder_muxviz,"general_multilayer_Plot",Plot_i,".edges",sep=""),
-            col_names=FALSE,
-            delim = " ")
+# Prepare data
+#Plot_multilayer <- create_multilayer_object(extended = Plot_edgelist_complete_ids, nodes = physical_nodes, intra_output_extended = T, inter_output_extended = T)
+Plot_multilayer <- create_multilayer_object(extended = S_edge_list_ID, nodes = physical_nodes, intra_output_extended = T, inter_output_extended = T)
 
 
-write_delim(as.data.frame(
-  paste(paste(folder_muxviz,"general_multilayer_Plot",Plot_i,".edges",sep=""),
-        paste(folder_muxviz,"general_multilayer_layers_Plot",Plot_i,".txt",sep=""),
-        paste(folder_muxviz,"general_multilayer_layout_Plot",Plot_i,".txt",sep=""),sep=";")),
-  paste(folder_muxviz,"general_multilayer_config_Plot",Plot_i,".txt",sep=""),
-  col_names=FALSE,
-  quote_escape = "none",
-  delim = ";")
+# Run Infomap
+#modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = F, silent = T, flow_model = 'undirected', trials = 250, seed = 497294, temporal_network = F)
+modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = F, silent = T, flow_model = 'directed', trials = 1000, seed = 497294, temporal_network = F)
 
-write.table(as.data.frame(
-  paste(paste(folder_muxviz,"general_multilayer_Plot",Plot_i,".edges",sep=""),
-        paste(folder_muxviz,"general_multilayer_layers_Plot",Plot_i,".txt",sep=""),
-        paste(folder_muxviz,"general_multilayer_layout_Plot",Plot_i,".txt",sep=""),sep=";")),
-  paste(folder_muxviz,"general_multilayer_config_Plot",Plot_i,".txt",sep=""),
-  row.names=FALSE,col.names = FALSE,sep="", quote = FALSE)
+# Extract information
+plot_modules_i <- modules_relax_rate$modules %>% left_join(layer_metadata,by="layer_id")
+
+plot_modules_i$Plot <- Plot_i
 
 setwd(dir_ini)
+
+write_csv(plot_modules_i,paste0("Processed_data/Modularity_Pheno_Overlap_GF/Modularity_Plot",
+                                Plot_i,".csv")  )
+
 }
+
+write_csv(S_edge_list_final,"Processed_data/Modularity_Pheno_Overlap_GF/Edge_list_Phen_Over_PLOT.csv")

@@ -75,7 +75,7 @@ plant_pheno_overlap <- function(plant1,plant2,pollination_19_i) {
 # CREATE MULTILAYER FOR Plot_i
 ###########################
 
-folder_base <- paste(dir_ini,"/Processed_data/Multilayer_Species/",sep="")
+folder_base <- paste(dir_ini,"/Processed_data/Multilayer_GF/",sep="")
 
 files_base <- list.files(folder_base)
 
@@ -235,7 +235,7 @@ S_edge_list_ID <-
 #Saving MuxViz Files for posterior analysis
 ###########################################
 
-folder_muxviz_root <- paste(dir_ini,"/Processed_data/Muxviz_Pheno_Overlap/",sep="")
+folder_muxviz_root <- paste(dir_ini,"/Processed_data/Muxviz_Pheno_Overlap_GF/",sep="")
 newfolder <- paste("Plot_",Plot_i,"/", sep="")
 folder_muxviz <- paste0(folder_muxviz_root, newfolder)
 dir.create(folder_muxviz)

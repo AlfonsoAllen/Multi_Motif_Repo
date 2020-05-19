@@ -13,6 +13,8 @@
 # He comprobado los datos de MEEL y MESU, y MEEL tiene siempre 1 semilla,
 # y MESU varía de 1 a 2. Igual se podría hacer 
 # una media
+
+
 # 
 # CHMI igual puede tener 0 semillas cuando la abundancia de la planta fue 0. Me explico, 
 # como no tenía sentido que un polinizador visitase a una planta  inexistente, decidimos 
@@ -20,6 +22,18 @@
 # se seguían quedando a 0, ya que esa planta cuando se hizo el muestreo de competencia 
 # no estaba.
 
+# Sustituimos ID_simple por G_F
+
+# 1 Bees             
+# 2 Beetles          
+# 3 Butterflies      
+# 4 Flies            
+# 5 Flower_beetles   
+# 6 House_flies       
+# 7 Hoverflies       
+# 8 Humbleflies      
+# 9 Small_beetles    
+# 10 Small_flies      
 
 library(tidyverse)
 
@@ -32,7 +46,7 @@ fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_I
 
 fitness2 <- fitness_data2 %>% filter(Year==2019)
 
-fitness2 <- fitness2 %>% select(-Order,-Family,-Superfamily,-ID) %>% rename(ID=ID_Simple) %>%
+fitness2 <- fitness2 %>% select(-Order,-Family,-Superfamily,-ID) %>% rename(ID=G_F) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
 
@@ -54,7 +68,7 @@ fitness3 <- fitness2 %>% group_by(Line,Plot,Subplot,Plant_Simple,Week,ID) %>%
 # Uploading motifs data
 #####################################
 
-caracoles_motif <- read_csv("Processed_data/Motifs_WEEK/Caracoles_WEEK_SPECIES.csv")
+caracoles_motif <- read_csv("Processed_data/Motifs_WEEK/Caracoles_WEEK_GF.csv")
 
 caracoles_motif <- caracoles_motif %>% separate(Subplot_Plant_Label,c("Subplot",
                                                                       "Plant_Simple")," ")
@@ -154,7 +168,7 @@ fitness_final <- fitness_final %>% filter(!is.na(Seeds_GF))
 
 for (i in 1:9){
   
-  file_i = paste0("Processed_data/Muxviz_Pheno_Overlap/centrality_table_Plot",i)
+  file_i = paste0("Processed_data/Muxviz_Pheno_Overlap_GF/centrality_table_Plot",i)
   Centrality_i <- read_delim(file_i,";")
   
   # Remove data for eigenvectors
@@ -221,12 +235,12 @@ fitness_final$Plant_Simple[fitness_final$Plant_Simple=="MESU"] <- "ME"
 
 # Sanity check: All plant species plant should have at least there one individual 
 # in our subplots
-fitness_final %>% filter(individuals==0) #95 fails
+fitness_final %>% filter(individuals==0) #93 fails
 fitness_final %>% filter(individuals_plot==0) #1 fail included in the previous one
 which(fitness_final$individuals_plot==0)
 
 fails <- fitness_final %>% filter(individuals==0)
-fitness_final %>% filter(visits_GF>0,individuals==0) #87 fails
+fitness_final %>% filter(visits_GF>0,individuals==0) #85 fails
 
 fails %>% filter(Seeds_GF>0) #There are 6 plots with several ME plants
 
@@ -284,7 +298,7 @@ fitness_final <- mutate(fitness_final,
                         prop_indiviudals_sub = individuals/total_individuals_subplot,
                         prop_indiviudals_plot = individuals/total_individuals_plot)
   
-# write_csv(fitness_final,"data_models_phenol_overlap.csv")
+write_csv(fitness_final,"data_models_phenol_overlap_GF.csv")
 
 fitness_final$Plot <- as.factor(fitness_final$Plot)
 fitness_final$Subplot <- as.factor(fitness_final$Subplot)
