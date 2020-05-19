@@ -370,6 +370,7 @@ ggplot(fitness_final, aes(x = as.factor(homo_motif),y=(Seeds_GF))) +
   facet_grid(Plot~Plant_Simple, margins=TRUE)
 
 #scatter plots
+<<<<<<< HEAD
 
 =======
 >>>>>>> 1a3154161fd47ca450ba079ae59e97659768c9b6
