@@ -13,6 +13,17 @@
 # He comprobado los datos de MEEL y MESU, y MEEL tiene siempre 1 semilla,
 # y MESU varía de 1 a 2. Igual se podría hacer 
 # una media
+
+# 2 Bees             260
+# 3 Beetles          452
+# 5 Butterflies      126
+# 8 Flies            271
+# 9 Flower_beetles   387
+# 11 House_flies       31
+# 12 Hoverflies       320
+# 13 Humbleflies      285
+# 17 Small_beetles     59
+# 18 Small_flies      266
 # 
 # CHMI igual puede tener 0 semillas cuando la abundancia de la planta fue 0. Me explico, 
 # como no tenía sentido que un polinizador visitase a una planta  inexistente, decidimos 
@@ -660,7 +671,7 @@ fitness_LEMA <- mutate(fitness_LEMA,individuals_5 = scale(individuals^(5)),
 
 #ID + scale(individuals_5) + scale(homo_motif) + scale(DegreeIn) + scale(hete_motif) +(1|Plot) + (1|ID),
 #ziformula= ~ 1,
-m2.nbinom_LEMA_ZI <- glmmTMB(Seeds_GF ~ ID + scale(individuals_5) + scale(homo_motif) + scale(DegreeIn) + scale(hete_motif) +(1|Plot),
+m2.nbinom_LEMA_ZI <- glmmTMB(Seeds_GF ~ ID + scale(individuals_5) + scale(homo_motif) + scale(DegreeIn) + scale(hete_motif),
                            ziformula= ~ 1,
                            family = nbinom2(),
                            data = fitness_LEMA)
@@ -717,7 +728,7 @@ fitness_CHFU %>% group_by(Plot) %>% count()
 x <- fitness_CHFU %>% group_by(homo_motif,ID) %>% count()
 
 # Seeds_GF ~ ID + homo_motif + hete_motif + (1|Plot)
-m2.nbinom_CHFU_ZI <- glmmTMB(Seeds_GF ~ scale(DegreeIn) + scale(homo_motif) + scale(hete_motif) +(1|Plot),
+m2.nbinom_CHFU_ZI <- glmmTMB(Seeds_GF ~ ID + scale(DegreeIn) + scale(homo_motif) + scale(hete_motif) +(1|Plot),
                      ziformula= ~ 1,
                      family= nbinom2(),
                      data = fitness_CHFU)
