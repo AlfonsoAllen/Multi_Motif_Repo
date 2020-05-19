@@ -1,0 +1,117 @@
+node_id,module,layer_id,type,species,layer_name,Plot
+1,8,2,plant,A1 LEMA,LEMA,8
+2,6,1,plant,A2 CHFU,CHFU,8
+3,4,2,plant,A2 LEMA,LEMA,8
+4,9,4,plant,A2 PUPA,PUPA,8
+5,4,1,plant,A3 CHFU,CHFU,8
+6,7,2,plant,A3 LEMA,LEMA,8
+7,6,1,plant,A4 CHFU,CHFU,8
+8,5,2,plant,A4 LEMA,LEMA,8
+9,2,1,plant,A5 CHFU,CHFU,8
+10,4,2,plant,A5 LEMA,LEMA,8
+11,4,1,plant,A6 CHFU,CHFU,8
+12,2,1,plant,B1 CHFU,CHFU,8
+13,6,1,plant,B2 CHFU,CHFU,8
+14,8,2,plant,B2 LEMA,LEMA,8
+15,1,4,plant,B2 PUPA,PUPA,8
+16,4,1,plant,B3 CHFU,CHFU,8
+17,3,2,plant,B3 LEMA,LEMA,8
+18,1,4,plant,B3 PUPA,PUPA,8
+19,2,1,plant,B4 CHFU,CHFU,8
+20,2,2,plant,B4 LEMA,LEMA,8
+21,1,4,plant,B4 PUPA,PUPA,8
+22,2,1,plant,B5 CHFU,CHFU,8
+23,3,2,plant,B5 LEMA,LEMA,8
+24,2,3,plant,B5 ME,ME,8
+25,1,4,plant,B5 PUPA,PUPA,8
+26,2,1,plant,B6 CHFU,CHFU,8
+27,3,2,plant,B6 LEMA,LEMA,8
+28,1,4,plant,B6 PUPA,PUPA,8
+29,8,2,plant,C1 LEMA,LEMA,8
+30,4,1,plant,C2 CHFU,CHFU,8
+31,3,2,plant,C2 LEMA,LEMA,8
+32,1,4,plant,C2 PUPA,PUPA,8
+33,5,1,plant,C3 CHFU,CHFU,8
+34,3,2,plant,C3 LEMA,LEMA,8
+35,1,4,plant,C3 PUPA,PUPA,8
+36,2,1,plant,C4 CHFU,CHFU,8
+37,2,2,plant,C4 LEMA,LEMA,8
+38,1,4,plant,C4 PUPA,PUPA,8
+39,7,3,plant,C5 ME,ME,8
+40,1,4,plant,C5 PUPA,PUPA,8
+41,6,1,plant,C6 CHFU,CHFU,8
+42,1,4,plant,C6 PUPA,PUPA,8
+43,4,1,plant,D1 CHFU,CHFU,8
+44,2,2,plant,D1 LEMA,LEMA,8
+45,8,1,plant,D2 CHFU,CHFU,8
+46,4,2,plant,D2 LEMA,LEMA,8
+47,1,4,plant,D2 PUPA,PUPA,8
+48,2,1,plant,D3 CHFU,CHFU,8
+49,3,2,plant,D3 LEMA,LEMA,8
+50,1,4,plant,D3 PUPA,PUPA,8
+51,4,2,plant,D4 LEMA,LEMA,8
+52,1,4,plant,D4 PUPA,PUPA,8
+53,7,1,plant,D5 CHFU,CHFU,8
+54,3,2,plant,D5 LEMA,LEMA,8
+55,1,4,plant,D5 PUPA,PUPA,8
+56,4,1,plant,D6 CHFU,CHFU,8
+57,3,2,plant,D6 LEMA,LEMA,8
+58,1,4,plant,D6 PUPA,PUPA,8
+59,6,1,plant,E1 CHFU,CHFU,8
+60,3,2,plant,E1 LEMA,LEMA,8
+61,9,4,plant,E1 PUPA,PUPA,8
+62,4,1,plant,E2 CHFU,CHFU,8
+63,6,2,plant,E2 LEMA,LEMA,8
+64,3,3,plant,E2 ME,ME,8
+65,1,4,plant,E2 PUPA,PUPA,8
+66,2,1,plant,E3 CHFU,CHFU,8
+67,3,2,plant,E3 LEMA,LEMA,8
+68,1,4,plant,E3 PUPA,PUPA,8
+69,5,1,plant,E4 CHFU,CHFU,8
+70,5,2,plant,E4 LEMA,LEMA,8
+71,7,1,plant,E5 CHFU,CHFU,8
+72,3,2,plant,E5 LEMA,LEMA,8
+73,1,4,plant,E5 PUPA,PUPA,8
+74,3,2,plant,E6 LEMA,LEMA,8
+75,5,3,plant,E6 ME,ME,8
+76,1,4,plant,E6 PUPA,PUPA,8
+77,8,2,plant,F1 LEMA,LEMA,8
+78,1,4,plant,F1 PUPA,PUPA,8
+79,4,2,plant,F2 LEMA,LEMA,8
+80,1,4,plant,F2 PUPA,PUPA,8
+81,2,1,plant,F3 CHFU,CHFU,8
+82,2,2,plant,F3 LEMA,LEMA,8
+83,1,4,plant,F3 PUPA,PUPA,8
+84,2,1,plant,F4 CHFU,CHFU,8
+85,3,2,plant,F4 LEMA,LEMA,8
+86,1,4,plant,F4 PUPA,PUPA,8
+87,3,3,plant,F5 ME,ME,8
+88,1,4,plant,F5 PUPA,PUPA,8
+89,2,1,plant,F6 CHFU,CHFU,8
+90,2,2,plant,F6 LEMA,LEMA,8
+91,5,1,pollinator,Bees,CHFU,8
+91,5,2,pollinator,Bees,LEMA,8
+91,5,3,pollinator,Bees,ME,8
+91,1,4,pollinator,Bees,PUPA,8
+92,1,4,pollinator,Butterflies,PUPA,8
+93,6,1,pollinator,Flies,CHFU,8
+93,6,2,pollinator,Flies,LEMA,8
+94,3,2,pollinator,Flower_beetles,LEMA,8
+94,3,3,pollinator,Flower_beetles,ME,8
+94,3,4,pollinator,Flower_beetles,PUPA,8
+95,7,1,pollinator,House_flies,CHFU,8
+95,7,2,pollinator,House_flies,LEMA,8
+95,7,3,pollinator,House_flies,ME,8
+95,1,4,pollinator,House_flies,PUPA,8
+96,4,1,pollinator,Hoverflies,CHFU,8
+96,4,2,pollinator,Hoverflies,LEMA,8
+96,4,3,pollinator,Hoverflies,ME,8
+96,9,4,pollinator,Hoverflies,PUPA,8
+97,1,4,pollinator,Humbleflies,PUPA,8
+98,8,1,pollinator,Small_beetles,CHFU,8
+98,8,2,pollinator,Small_beetles,LEMA,8
+98,8,4,pollinator,Small_beetles,PUPA,8
+99,2,1,pollinator,Small_flies,CHFU,8
+99,2,2,pollinator,Small_flies,LEMA,8
+99,2,3,pollinator,Small_flies,ME,8
+99,2,4,pollinator,Small_flies,PUPA,8
