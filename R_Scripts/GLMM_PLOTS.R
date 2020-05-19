@@ -13,17 +13,6 @@
 # He comprobado los datos de MEEL y MESU, y MEEL tiene siempre 1 semilla,
 # y MESU varía de 1 a 2. Igual se podría hacer 
 # una media
-
-# 2 Bees             260
-# 3 Beetles          452
-# 5 Butterflies      126
-# 8 Flies            271
-# 9 Flower_beetles   387
-# 11 House_flies       31
-# 12 Hoverflies       320
-# 13 Humbleflies      285
-# 17 Small_beetles     59
-# 18 Small_flies      266
 # 
 # CHMI igual puede tener 0 semillas cuando la abundancia de la planta fue 0. Me explico, 
 # como no tenía sentido que un polinizador visitase a una planta  inexistente, decidimos 
