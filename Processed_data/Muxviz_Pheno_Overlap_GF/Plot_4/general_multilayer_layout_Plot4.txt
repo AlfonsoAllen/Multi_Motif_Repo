@@ -1,0 +1,43 @@
+nodeID nodeLabel
+1 "A1 LEMA"
+2 "A2 CHFU"
+3 "A2 LEMA"
+4 "A5 CHFU"
+5 "A6 CHFU"
+6 "B1 CHFU"
+7 "B2 CHFU"
+8 "B2 LEMA"
+9 "B4 LEMA"
+10 "B4 ME"
+11 "B5 CHFU"
+12 "B6 CHFU"
+13 "B6 LEMA"
+14 "C1 LEMA"
+15 "C2 CHFU"
+16 "C2 LEMA"
+17 "C3 LEMA"
+18 "C4 LEMA"
+19 "C5 CHFU"
+20 "C5 LEMA"
+21 "C6 LEMA"
+22 "D2 LEMA"
+23 "D5 LEMA"
+24 "D6 CHFU"
+25 "E1 LEMA"
+26 "E2 LEMA"
+27 "E4 LEMA"
+28 "E5 CHFU"
+29 "E5 LEMA"
+30 "F1 LEMA"
+31 "F2 LEMA"
+32 "F3 LEMA"
+33 "F4 CHFU"
+34 "F4 LEMA"
+35 "F5 CHFU"
+36 "F6 LEMA"
+37 Bees
+38 Flies
+39 Flower_beetles
+40 Hoverflies
+41 Small_beetles
+42 Small_flies
