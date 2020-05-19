@@ -39,7 +39,7 @@ library(tidyverse)
 # Loadind Plant-pollinator dataset (Caracoles) for 2019: visits, abundances, seeds
 ####################################################################
 
-fitness_data2 <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
+fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
 
 fitness2 <- fitness_data2 %>% filter(Year==2019)
 
@@ -165,7 +165,7 @@ fitness_final <- fitness_final %>% filter(!is.na(Seeds_GF))
 
 for (i in 1:9){
   
-  file_i = paste0("C:/Users/USUARIO/Desktop/Multi_Motif_Repo/Processed_data/Muxviz_Pheno_Overlap/centrality_table_Plot",i)
+  file_i = paste0("Processed_data/Muxviz_Pheno_Overlap/centrality_table_Plot",i)
   Centrality_i <- read_delim(file_i,";")
   
   # Remove data for eigenvectors
@@ -304,7 +304,7 @@ fitness_final$Plant_Simple <- as.factor(fitness_final$Plant_Simple)
 
 str(fitness_final)
 
-
+fitness_final <- dplyr::arrange(fitness_final,Plot,Subplot,Plant_Simple,ID)
 
 #############################################
 # EXPLORING THE DATA
@@ -361,7 +361,6 @@ ggplot(fitness_final, aes(x = (hete_motif),y=log(Seeds_GF))) +
   geom_smooth(aes(color=Plant_Simple),method = "lm", formula = y~x+I(x^2), se = F)+
   facet_grid(Plot~Plant_Simple, margins=TRUE)
 
-
 ggplot(fitness_final, aes(x = as.factor(DegreeIn),y=(Seeds_GF))) +
   geom_boxplot()+
   facet_grid(Plot~Plant_Simple, margins=TRUE)
@@ -370,12 +369,12 @@ ggplot(fitness_final, aes(x = as.factor(homo_motif),y=(Seeds_GF))) +
   geom_boxplot()+
   facet_grid(Plot~Plant_Simple, margins=TRUE)
 
-
 #scatter plots
 
+=======
+>>>>>>> 1a3154161fd47ca450ba079ae59e97659768c9b6
 pairs(~DegreeIn+StrengthIn+Seeds_GF+Fruit_GF+homo_motif+hete_motif+ID,data=fitness_final,
       main="Simple Scatterplot Matrix")
-
 
 ########################################################
 #SEEDS WITHOUT ZEROS
@@ -410,7 +409,6 @@ pairs(~DegreeIn+StrengthIn+Seeds_GF+Fruit_GF+homo_motif+hete_motif+ID+Plot,data=
 ##################3
 #
 ###################
-
 
 mean(fitness_final$Seeds_GF) # calculate mean: 277.9159
 var(fitness_final$Seeds_GF) # calculate variance 57469.86
@@ -455,7 +453,6 @@ var(fitness_PUPA$Seeds_GF) # calculate variance 68470.24
 ggplot(fitness_PUPA, aes(x = Seeds_GF)) +geom_histogram(binwidth = 10)+
   geom_density(aes(y= 10 * ..count..),alpha = .2, fill = "#FF6666")
 
-
 fitness_ME <- fitness_final %>% filter(Plant_Simple=="ME")
 
 mean(fitness_ME$Seeds_GF) # calculate mean: 302.008
@@ -471,7 +468,6 @@ var(fitness_CHMI$Seeds_GF) # calculate variance 667315
 
 ggplot(fitness_CHMI, aes(x = Seeds_GF)) +geom_histogram(binwidth = 10)+
   geom_density(aes(y= 10 * ..count..),alpha = .2, fill = "#FF6666")
-
 
 ############################
 library(vcd)
@@ -663,7 +659,6 @@ vif(as.data.frame(dplyr::select(fitness_LEMA,PageRank,homo_motif,hete_motif,indi
 
 fitness_LEMA %>% group_by(Plot) %>% count()
 
-
 #Seeds_GF ~ DegreeIn + homo_motif + ID + (1|Plot)
 
 fitness_LEMA <- mutate(fitness_LEMA,individuals_5 = scale(individuals^(5)),
@@ -683,8 +678,6 @@ var_real <- var(fitness_LEMA$Seeds_GF)
 mu_real <- mean(fitness_LEMA$Seeds_GF)
 # Real overdispersion
 mu_real/(-1+var_real/mu_real) # 1.96
-
-
 
 m2.nbinom_LEMA <- glmmTMB(Seeds_GF ~ ID + scale(individuals_5) + scale(DegreeIn) + scale(homo_motif) + scale(hete_motif) +(1|Plot),
                              ziformula= ~ 0,
@@ -852,6 +845,7 @@ plotResiduals(simulationOutput, fitness_ME$hete_motif)
 plotResiduals(simulationOutput, fitness_ME$ID)
 plotResiduals(simulationOutput, fitness_ME$DegreeIn)
 plotResiduals(simulationOutput, fitness_ME$prop_individuals_sub)
+
 ##########################################
 # CHMI
 ##########################################
