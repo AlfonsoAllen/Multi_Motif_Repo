@@ -150,13 +150,13 @@ plot(res_CHFU) #KS
 ``` 
 
                       
-Quantile results for LEMA can be improved by adding the following cross-effect: (1|Plot). However, the latter worsen the KS results. 
+Quantile results for LEMA can be improved by adding the following cross-effect: (1|Plot). However, the latter worsens the KS results of the model. 
 
 ```{r}
 plot(res_LEMA_Plot) #KS + heter.
 ``` 
 
-Finally it is worth mentioning that the addition of zero-inflation factors to the previous models worsen their residuals results.
+Finally it is worth mentioning that the addition of zero-inflation factors to the previous models deteriorates their residuals results/diagnostics.
 
 ----
 
