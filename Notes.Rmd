@@ -65,7 +65,7 @@ CHFU <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                       family = nbinom2(),
                       data = fitness_CHFU)
                       
-where nbinom1 is negative binomial distribution with linear parameterizationa (also called quasi-poisson) and nbinom2 represents the negative binomial distribution with quadratic parameterization (the default negative binomial in most packages). nbinom1 has variance = µ * phi where µ is the mean and phi is the over-dispersion parameter, while nbinom2 has variance = µ(1+µ/k).
+where nbinom1 is the negative binomial distribution with linear parameterizationa (also called quasi-poisson) and nbinom2 represents the negative binomial distribution with quadratic parameterization (the default negative binomial in most packages). nbinom1 has variance = µ * phi where µ is the mean and phi is the over-dispersion parameter, while nbinom2 has variance = µ(1+µ/k).
                       
 Results for LEMA can be improved by adding the following cross-effect: (1|Plot). Adding a zeros inflation factor to the previous models worsen their residuals results. 
 
