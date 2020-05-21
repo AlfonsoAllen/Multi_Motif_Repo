@@ -34,7 +34,7 @@ summary(scale(fitness_LEMA$hete_motif))
 summary(scale(fitness_LEMA$DegreeIn))
 
 summary(scale(fitness_PUPA$homo_motif))
-summary(scale(fitness_PUPA$hete_motif)) # fail
+summary(scale(fitness_PUPA$hete_motif)) # fail 
 summary(scale(fitness_PUPA$DegreeIn))
 
 summary(scale(fitness_CHFU$homo_motif))

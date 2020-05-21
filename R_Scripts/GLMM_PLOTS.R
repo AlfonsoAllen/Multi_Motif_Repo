@@ -232,7 +232,7 @@ fails %>% filter(Seeds_GF>0) #There are 6 plots with several ME plants
 
 # We add one individual to each plot
 modification_indiv <- fitness_final %>% filter(individuals==0) %>%
-  select(Plot,Subplot,total_individuals_subplot,total_individuals_plot,Seeds_GF) %>%
+  dplyr::select(Plot,Subplot,total_individuals_subplot,total_individuals_plot,Seeds_GF) %>%
   unique()%>% group_by(Plot,Subplot,total_individuals_subplot,total_individuals_plot)%>%
   summarize(n=n(),total_seeds=sum(Seeds_GF))
 
@@ -284,7 +284,7 @@ fitness_final <- mutate(fitness_final,
                         prop_indiviudals_sub = individuals/total_individuals_subplot,
                         prop_indiviudals_plot = individuals/total_individuals_plot)
   
-# write_csv(fitness_final,"data_models_phenol_overlap.csv")
+ write_csv(fitness_final,"data_models_phenol_overlap.csv")
 
 fitness_final$Plot <- as.factor(fitness_final$Plot)
 fitness_final$Subplot <- as.factor(fitness_final$Subplot)

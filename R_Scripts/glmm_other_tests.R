@@ -113,6 +113,35 @@ GF_CHFU_01_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                       family = nbinom2(),
                       data = fitness_CHFU_ZI)
 
+
+# negbin - ZI GF no space --------------------------------------------------
+
+GF_LEMA_01_ZI_fil <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
+                           scale(hete_motif) + 
+                           scale(DegreeIn) + 
+                           (1|ID),
+                         ziformula = ~1,
+                         family = nbinom2(),
+                         data = fitness_LEMA)
+
+GF_PUPA_01_ZI_fil <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
+                           # scale(hete_motif) + 
+                           scale(DegreeIn) + 
+                           (1|ID),
+                         ziformula = ~1,
+                         family = nbinom2(),
+                         data = fitness_PUPA)
+
+GF_CHFU_01_ZI_fil <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
+                           scale(hete_motif) + 
+                           scale(DegreeIn) + 
+                           (1|ID),
+                         ziformula = ~1,
+                         family = nbinom2(),
+                         data = fitness_CHFU)
+
+
+
 # negbin - GF ----------------------------------------------------------
 
 GF_LEMA_02 <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
@@ -142,22 +171,28 @@ GF_CHFU_02 <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
 
 res_LEMA_01 <- simulateResiduals(fittedModel = GF_LEMA_01, n = 1500)
 res_LEMA_02 <- simulateResiduals(fittedModel = GF_LEMA_01_ZI, n = 1500)
+res_LEMA_03 <- simulateResiduals(fittedModel = GF_LEMA_01_ZI_fil, n = 1500)
 
 res_PUPA_01 <- simulateResiduals(fittedModel = GF_PUPA_01, n = 1500)
 res_PUPA_02 <- simulateResiduals(fittedModel = GF_PUPA_01_ZI, n = 1500)
+res_PUPA_03 <- simulateResiduals(fittedModel = GF_PUPA_01_ZI_fil, n = 1500)
 
 res_CHFU_01 <- simulateResiduals(fittedModel = GF_CHFU_01, n = 1500)
 res_CHFU_02 <- simulateResiduals(fittedModel = GF_CHFU_01_ZI, n = 1500)
+res_CHFU_03 <- simulateResiduals(fittedModel = GF_CHFU_01_ZI_fil, n = 1500)
 
 # Checking Residuals 
 testDispersion(res_LEMA_01)
 testDispersion(res_LEMA_02)
+testDispersion(res_LEMA_03)
 
 testDispersion(res_PUPA_01)
 testDispersion(res_PUPA_02)
+testDispersion(res_PUPA_03)
 
 testDispersion(res_CHFU_01)
 testDispersion(res_CHFU_02)
+testDispersion(res_CHFU_03)
 
 # plot residuals
 # generally ok, adding plot does not help
@@ -165,12 +200,15 @@ testDispersion(res_CHFU_02)
 
 plot(res_LEMA_01)
 plot(res_LEMA_02)
+plot(res_LEMA_03)
 
 plot(res_PUPA_01)
 plot(res_PUPA_02)
+plot(res_PUPA_03)
 
 plot(res_CHFU_01)
 plot(res_CHFU_02)
+plot(res_CHFU_03)
 
 # more specific plots
 plotResiduals(res_LEMA_01, fitness_LEMA$homo_motif)
@@ -189,6 +227,12 @@ plotResiduals(res_CHFU_01, fitness_CHFU$homo_motif)
 plotResiduals(res_CHFU_01, fitness_CHFU$hete_motif)
 plotResiduals(res_CHFU_01, fitness_CHFU$DegreeIn)
 plotResiduals(res_CHFU_01, fitness_CHFU$ID)
+
+
+# check differences between models with and without ZI, when seed > 0 -----
+AIC(GF_LEMA_01,GF_LEMA_01_ZI_fil) 
+AIC(GF_CHFU_01,GF_CHFU_01_ZI_fil)
+AIC(GF_PUPA_01,GF_PUPA_01_ZI_fil)
 
 # check package GLMMadaptive ----------------------------------------------
 # did this because it uses different integration method, 
