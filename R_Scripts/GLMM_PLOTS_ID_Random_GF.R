@@ -32,7 +32,6 @@ fitness_orig$Plot <- as.factor(fitness_orig$Plot)
 fitness_orig$ID <- as.factor(fitness_orig$ID)
 fitness_orig$G_F <- as.factor(fitness_orig$G_F)
 
-library(tidyverse)
 library(MASS)
 library(fitdistrplus)
 library(lme4)
@@ -192,7 +191,7 @@ GF_PUPA_01 <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                         # scale(hete_motif) + 
                         scale(DegreeIn) + 
                         (1|G_F),
-                      family = nbinom2(),
+                      family = nbinom1(),
                       data = fitness_PUPA)
 
 GF_CHFU_01 <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
@@ -217,7 +216,7 @@ GF_PUPA_01_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) + #Convergence problems wi
                            scale(DegreeIn) + 
                            (1|G_F),
                          ziformula = ~1,
-                         family = nbinom2(),
+                         family = nbinom1(),
                          data = fitness_PUPA)
 
 GF_CHFU_01_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) +  # Convergence problems with G_F
@@ -245,7 +244,7 @@ GF_PUPA_02 <- glmmTMB(Seeds_GF ~ scale(homo_motif) + # Convergence problem witho
                         scale(DegreeIn) + 
                         (1|G_F) + (1|Plot),
                       #ziformula = ~1,
-                      family = nbinom2(),
+                      family = nbinom1(),
                       data = fitness_PUPA)
 
 GF_CHFU_02 <- glmmTMB(Seeds_GF ~ scale(homo_motif) + # Convergence problem with ZI
@@ -272,7 +271,7 @@ GF_PUPA_03 <- glmmTMB(Seeds_GF ~ scale(homo_motif) + # Convergence problem witho
                         scale(DegreeIn) + 
                         (1|Plot),
                       #ziformula = ~1,
-                      family = nbinom2(),
+                      family = nbinom1(),
                       data = fitness_PUPA)
 
 GF_CHFU_03 <- glmmTMB(Seeds_GF ~ scale(homo_motif) + # Convergence problem with ZI
@@ -339,6 +338,8 @@ plot(res_CHFU_01) #KS
 plot(res_CHFU_02) #KS + heter.
 plot(res_CHFU_both) #KS + High heter.
 plot(res_CHFU_03)#KS + High heter.
+
+fitness.data %>% group_by(G_F) %>% count()
 
 # more specific plots
 plotResiduals(res_LEMA_01, fitness_LEMA$homo_motif)
