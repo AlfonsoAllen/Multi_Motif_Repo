@@ -38,6 +38,39 @@ C) INTER-LAYER---
 "In the multiplex arrangements the state-nodes of a given agent are connected to their respective copies in other layer. Those connections are the inter-link. For example, hoverflies in layer CHFU are linked hoverflies in layer PUPA, and so on. Assuming that all the interlinks have the same weight, in the limit of very strong couplings (i.e., huge inter-link weights), we should recover the bipartite network described above. From a diffusive perspective, when the coupling strenght tends to infinity, the multiplex reduces to the superposition of its layers."
 weight can be a function of 1) phenological overlap among plants and 2) temporal sequence
 
+D) GLMMs---
+
+To explore the influence of floral visitors on plant species fitness, we fit GLMM for LEMA, CHFU, and PUPA. Our response variable is the # of seeds, while the predictor variables are several structural metrics of plant-pollinator networks, namely: the normalized in-degree of plant nodes (denoted here as DegreeIn), and the total amount of heterospecific (HE) and homospecific (HO) motifs, respectively. To calculate the latter, we add the amount of HE and HO motifs observed over the weeks for a given pollinator and plant. The weekly amount of motifs is estimated from weekly plant-pollinator networks. To control the unobserved heterogeneity of plant visitors, we add a group (or random) effect whose category values are the functional groups of such animals, namely: Bees, beetles, butterflies, flies, flower beetles,house flies, hoverflies, humbleflies, small_beetles, small_flies and none (which refers to the absence of animal visits).
+
+Since the response variable (seeds) refers to counts and the probability density of each plant species does not meet Poisson requirements (i.e., its mean is not aprox. equal to its variance), we fit GLMMs by using a negative binomial distribution. After removing the observations with #seeds = NA and floral visits. The models are as follows:
+
+LEMA <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                        scale(hete_motif) + 
+                        scale(DegreeIn) + 
+                        (1|G_F),
+                      family = nbinom2(), 
+                      data = fitness_LEMA)
+
+PUPA <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
+                        # scale(hete_motif) + 
+                        scale(DegreeIn) + 
+                        (1|G_F),
+                      family = nbinom1(),
+                      data = fitness_PUPA)
+
+CHFU <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
+                        scale(hete_motif) + 
+                        scale(DegreeIn) + 
+                        (1|G_F),
+                      family = nbinom2(),
+                      data = fitness_CHFU)
+                      
+where nbinom1 is the negative binomial distribution with linear parameterizationa (also called quasi-poisson) and nbinom2 represents the negative binomial distribution with quadratic parameterization (the default negative binomial in most packages). nbinom1 has variance = µ * phi where µ is the mean and phi is the over-dispersion parameter, while nbinom2 has variance = µ(1+µ/k).
+                      
+Results for LEMA can be improved by adding the following cross-effect: (1|Plot). Adding a zeros inflation factor to the previous models worsen their residuals results. 
+
+
+
 
 
 Open Questions:
