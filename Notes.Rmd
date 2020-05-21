@@ -48,7 +48,7 @@ To explore the influence of floral visitors on plant species fitness, we fit GLM
 
 
 ```{r}
-# Load data and prepare data---------------------------------------------------------------
+# Load and prepare data---------------------------------------------------------------
 
 library(tidyverse)
 
