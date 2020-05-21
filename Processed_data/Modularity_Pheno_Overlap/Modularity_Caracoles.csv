@@ -1,0 +1,524 @@
+node_id,module,layer_id,type,species,layer_name
+1,2,3,plant,1 A1 LEMA,LEMA
+2,4,1,plant,1 A2 CHFU,CHFU
+3,2,3,plant,1 A2 LEMA,LEMA
+4,8,1,plant,1 A3 CHFU,CHFU
+5,29,3,plant,1 A3 LEMA,LEMA
+6,2,3,plant,1 A4 LEMA,LEMA
+7,1,3,plant,1 A5 LEMA,LEMA
+8,29,3,plant,1 A6 LEMA,LEMA
+9,7,1,plant,1 B1 CHFU,CHFU
+10,22,3,plant,1 B1 LEMA,LEMA
+11,8,1,plant,1 B2 CHFU,CHFU
+12,2,3,plant,1 B2 LEMA,LEMA
+13,8,4,plant,1 B2 ME,ME
+14,2,3,plant,1 B5 LEMA,LEMA
+15,10,3,plant,1 C1 LEMA,LEMA
+16,1,3,plant,1 C2 LEMA,LEMA
+17,11,3,plant,1 C3 LEMA,LEMA
+18,1,1,plant,1 C4 CHFU,CHFU
+19,18,3,plant,1 C4 LEMA,LEMA
+20,1,1,plant,1 C5 CHFU,CHFU
+21,4,3,plant,1 C5 LEMA,LEMA
+22,18,3,plant,1 D1 LEMA,LEMA
+23,2,3,plant,1 D2 LEMA,LEMA
+24,10,4,plant,1 D2 ME,ME
+25,33,3,plant,1 D3 LEMA,LEMA
+26,15,3,plant,1 D4 LEMA,LEMA
+27,29,3,plant,1 D5 LEMA,LEMA
+28,2,3,plant,1 E1 LEMA,LEMA
+29,4,1,plant,1 E2 CHFU,CHFU
+30,5,3,plant,1 E2 LEMA,LEMA
+31,2,3,plant,1 E3 LEMA,LEMA
+32,5,4,plant,1 E3 ME,ME
+33,2,3,plant,1 E4 LEMA,LEMA
+34,4,1,plant,1 E5 CHFU,CHFU
+35,2,3,plant,1 E5 LEMA,LEMA
+36,2,3,plant,1 E6 LEMA,LEMA
+37,13,3,plant,1 F1 LEMA,LEMA
+38,1,3,plant,1 F2 LEMA,LEMA
+39,13,3,plant,1 F3 LEMA,LEMA
+40,4,1,plant,1 F4 CHFU,CHFU
+41,15,3,plant,1 F4 LEMA,LEMA
+42,2,3,plant,1 F5 LEMA,LEMA
+43,7,3,plant,1 F6 LEMA,LEMA
+44,4,3,plant,2 A1 LEMA,LEMA
+45,1,1,plant,2 A3 CHFU,CHFU
+46,2,3,plant,2 A3 LEMA,LEMA
+47,1,1,plant,2 A4 CHFU,CHFU
+48,17,3,plant,2 A4 LEMA,LEMA
+49,16,3,plant,2 A5 LEMA,LEMA
+50,7,4,plant,2 A5 ME,ME
+51,1,1,plant,2 B1 CHFU,CHFU
+52,12,3,plant,2 B1 LEMA,LEMA
+53,4,4,plant,2 B1 ME,ME
+54,9,3,plant,2 B2 LEMA,LEMA
+55,2,3,plant,2 B3 LEMA,LEMA
+56,18,3,plant,2 B4 LEMA,LEMA
+57,19,4,plant,2 B5 ME,ME
+58,2,3,plant,2 B6 LEMA,LEMA
+59,12,3,plant,2 C1 LEMA,LEMA
+60,12,4,plant,2 C1 ME,ME
+61,17,3,plant,2 C3 LEMA,LEMA
+62,7,3,plant,2 C5 LEMA,LEMA
+63,9,3,plant,2 C6 LEMA,LEMA
+64,4,1,plant,2 D1 CHFU,CHFU
+65,27,3,plant,2 D1 LEMA,LEMA
+66,6,4,plant,2 D2 ME,ME
+67,19,4,plant,2 D3 ME,ME
+68,17,3,plant,2 D4 LEMA,LEMA
+69,7,3,plant,2 D5 LEMA,LEMA
+70,17,3,plant,2 D6 LEMA,LEMA
+71,1,1,plant,2 E1 CHFU,CHFU
+72,1,3,plant,2 E1 LEMA,LEMA
+73,7,3,plant,2 E2 LEMA,LEMA
+74,17,4,plant,2 E2 ME,ME
+75,9,3,plant,2 E3 LEMA,LEMA
+76,2,3,plant,2 E4 LEMA,LEMA
+77,12,4,plant,2 E4 ME,ME
+78,17,3,plant,2 E5 LEMA,LEMA
+79,2,3,plant,2 E6 LEMA,LEMA
+80,12,3,plant,2 F1 LEMA,LEMA
+81,26,3,plant,2 F2 LEMA,LEMA
+82,27,3,plant,2 F3 LEMA,LEMA
+83,2,3,plant,2 F4 LEMA,LEMA
+84,9,3,plant,2 F6 LEMA,LEMA
+85,1,3,plant,3 A1 LEMA,LEMA
+86,2,3,plant,3 A5 LEMA,LEMA
+87,13,1,plant,3 A6 CHFU,CHFU
+88,7,3,plant,3 B1 LEMA,LEMA
+89,2,3,plant,3 B2 LEMA,LEMA
+90,13,3,plant,3 B3 LEMA,LEMA
+91,2,3,plant,3 B5 LEMA,LEMA
+92,2,3,plant,3 B6 LEMA,LEMA
+93,2,3,plant,3 C1 LEMA,LEMA
+94,7,1,plant,3 C3 CHFU,CHFU
+95,6,3,plant,3 C3 LEMA,LEMA
+96,2,4,plant,3 C3 ME,ME
+97,13,3,plant,3 C4 LEMA,LEMA
+98,2,3,plant,3 C5 LEMA,LEMA
+99,2,3,plant,3 C6 LEMA,LEMA
+100,2,3,plant,3 D1 LEMA,LEMA
+101,20,1,plant,3 D2 CHFU,CHFU
+102,6,3,plant,3 D2 LEMA,LEMA
+103,13,1,plant,3 D3 CHFU,CHFU
+104,2,3,plant,3 D3 LEMA,LEMA
+105,2,4,plant,3 D4 ME,ME
+106,2,3,plant,3 D5 LEMA,LEMA
+107,13,3,plant,3 D6 LEMA,LEMA
+108,2,3,plant,3 E1 LEMA,LEMA
+109,1,1,plant,3 E2 CHFU,CHFU
+110,2,3,plant,3 E2 LEMA,LEMA
+111,9,3,plant,3 E3 LEMA,LEMA
+112,4,4,plant,3 E3 ME,ME
+113,4,3,plant,3 E4 LEMA,LEMA
+114,4,4,plant,3 E4 ME,ME
+115,2,3,plant,3 E5 LEMA,LEMA
+116,2,3,plant,3 F1 LEMA,LEMA
+117,13,1,plant,3 F2 CHFU,CHFU
+118,2,3,plant,3 F2 LEMA,LEMA
+119,9,3,plant,3 F3 LEMA,LEMA
+120,2,3,plant,3 F4 LEMA,LEMA
+121,4,4,plant,3 F4 ME,ME
+122,2,3,plant,3 F5 LEMA,LEMA
+123,2,3,plant,3 F6 LEMA,LEMA
+124,11,3,plant,4 A1 LEMA,LEMA
+125,8,1,plant,4 A2 CHFU,CHFU
+126,9,3,plant,4 A2 LEMA,LEMA
+127,7,1,plant,4 A5 CHFU,CHFU
+128,7,1,plant,4 A6 CHFU,CHFU
+129,2,1,plant,4 B1 CHFU,CHFU
+130,8,1,plant,4 B2 CHFU,CHFU
+131,2,3,plant,4 B2 LEMA,LEMA
+132,6,3,plant,4 B4 LEMA,LEMA
+133,6,4,plant,4 B4 ME,ME
+134,2,1,plant,4 B5 CHFU,CHFU
+135,8,1,plant,4 B6 CHFU,CHFU
+136,2,3,plant,4 B6 LEMA,LEMA
+137,1,3,plant,4 C1 LEMA,LEMA
+138,4,1,plant,4 C2 CHFU,CHFU
+139,31,3,plant,4 C2 LEMA,LEMA
+140,2,3,plant,4 C3 LEMA,LEMA
+141,5,3,plant,4 C4 LEMA,LEMA
+142,4,1,plant,4 C5 CHFU,CHFU
+143,5,3,plant,4 C5 LEMA,LEMA
+144,1,3,plant,4 C6 LEMA,LEMA
+145,2,3,plant,4 D2 LEMA,LEMA
+146,17,3,plant,4 D5 LEMA,LEMA
+147,8,1,plant,4 D6 CHFU,CHFU
+148,1,3,plant,4 E1 LEMA,LEMA
+149,5,3,plant,4 E2 LEMA,LEMA
+150,9,3,plant,4 E4 LEMA,LEMA
+151,8,1,plant,4 E5 CHFU,CHFU
+152,17,3,plant,4 E5 LEMA,LEMA
+153,6,3,plant,4 F1 LEMA,LEMA
+154,4,3,plant,4 F2 LEMA,LEMA
+155,2,3,plant,4 F3 LEMA,LEMA
+156,2,1,plant,4 F4 CHFU,CHFU
+157,2,3,plant,4 F4 LEMA,LEMA
+158,8,1,plant,4 F5 CHFU,CHFU
+159,15,3,plant,4 F6 LEMA,LEMA
+160,1,1,plant,5 A1 CHFU,CHFU
+161,17,3,plant,5 A1 LEMA,LEMA
+162,5,3,plant,5 A2 LEMA,LEMA
+163,5,1,plant,5 A3 CHFU,CHFU
+164,4,3,plant,5 A3 LEMA,LEMA
+165,1,1,plant,5 A4 CHFU,CHFU
+166,9,3,plant,5 A4 LEMA,LEMA
+167,1,1,plant,5 A5 CHFU,CHFU
+168,2,3,plant,5 A6 LEMA,LEMA
+169,1,1,plant,5 B1 CHFU,CHFU
+170,7,1,plant,5 B2 CHFU,CHFU
+171,7,3,plant,5 B2 LEMA,LEMA
+172,7,1,plant,5 B3 CHFU,CHFU
+173,2,3,plant,5 B4 LEMA,LEMA
+174,2,3,plant,5 B5 LEMA,LEMA
+175,5,3,plant,5 C1 LEMA,LEMA
+176,16,1,plant,5 C3 CHFU,CHFU
+177,2,3,plant,5 C3 LEMA,LEMA
+178,1,1,plant,5 C4 CHFU,CHFU
+179,1,3,plant,5 C4 LEMA,LEMA
+180,1,3,plant,5 C5 LEMA,LEMA
+181,4,1,plant,5 D1 CHFU,CHFU
+182,1,3,plant,5 D1 LEMA,LEMA
+183,1,1,plant,5 D2 CHFU,CHFU
+184,7,3,plant,5 D2 LEMA,LEMA
+185,2,3,plant,5 D4 LEMA,LEMA
+186,1,1,plant,5 D5 CHFU,CHFU
+187,7,3,plant,5 D5 LEMA,LEMA
+188,9,1,plant,5 E1 CHFU,CHFU
+189,2,3,plant,5 E1 LEMA,LEMA
+190,9,3,plant,5 E5 LEMA,LEMA
+191,2,3,plant,5 F1 LEMA,LEMA
+192,9,3,plant,5 F4 LEMA,LEMA
+193,1,1,plant,5 F5 CHFU,CHFU
+194,13,1,plant,5 F6 CHFU,CHFU
+195,2,3,plant,6 A1 LEMA,LEMA
+196,20,1,plant,6 A2 CHFU,CHFU
+197,9,1,plant,6 A3 CHFU,CHFU
+198,4,3,plant,6 A3 LEMA,LEMA
+199,5,3,plant,6 A4 LEMA,LEMA
+200,12,1,plant,6 A5 CHFU,CHFU
+201,1,1,plant,6 A6 CHFU,CHFU
+202,1,3,plant,6 A6 LEMA,LEMA
+203,4,3,plant,6 B1 LEMA,LEMA
+204,9,3,plant,6 B2 LEMA,LEMA
+205,25,1,plant,6 B3 CHFU,CHFU
+206,21,3,plant,6 B3 LEMA,LEMA
+207,31,3,plant,6 B4 LEMA,LEMA
+208,1,3,plant,6 B5 LEMA,LEMA
+209,2,3,plant,6 B6 LEMA,LEMA
+210,24,3,plant,6 C1 LEMA,LEMA
+211,9,3,plant,6 C3 LEMA,LEMA
+212,6,3,plant,6 C4 LEMA,LEMA
+213,5,3,plant,6 C6 LEMA,LEMA
+214,1,3,plant,6 D1 LEMA,LEMA
+215,14,3,plant,6 D2 LEMA,LEMA
+216,14,3,plant,6 D3 LEMA,LEMA
+217,1,3,plant,6 D4 LEMA,LEMA
+218,24,3,plant,6 D5 LEMA,LEMA
+219,4,3,plant,6 D6 LEMA,LEMA
+220,9,3,plant,6 E1 LEMA,LEMA
+221,5,3,plant,6 E2 LEMA,LEMA
+222,14,1,plant,6 E3 CHFU,CHFU
+223,7,4,plant,6 E5 ME,ME
+224,6,1,plant,6 F2 CHFU,CHFU
+225,2,3,plant,6 F2 LEMA,LEMA
+226,1,3,plant,6 F3 LEMA,LEMA
+227,5,3,plant,6 F4 LEMA,LEMA
+228,2,3,plant,6 F5 LEMA,LEMA
+229,9,3,plant,6 F6 LEMA,LEMA
+230,1,1,plant,7 A1 CHFU,CHFU
+231,5,3,plant,7 A4 LEMA,LEMA
+232,1,1,plant,7 A5 CHFU,CHFU
+233,7,3,plant,7 A5 LEMA,LEMA
+234,11,4,plant,7 A5 ME,ME
+235,1,3,plant,7 A6 LEMA,LEMA
+236,3,5,plant,7 A6 PUPA,PUPA
+237,1,1,plant,7 B1 CHFU,CHFU
+238,1,1,plant,7 B2 CHFU,CHFU
+239,1,1,plant,7 B3 CHFU,CHFU
+240,6,3,plant,7 B3 LEMA,LEMA
+241,11,4,plant,7 B3 ME,ME
+242,1,1,plant,7 B4 CHFU,CHFU
+243,6,3,plant,7 B4 LEMA,LEMA
+244,3,5,plant,7 B4 PUPA,PUPA
+245,1,1,plant,7 B5 CHFU,CHFU
+246,6,3,plant,7 B5 LEMA,LEMA
+247,11,4,plant,7 B5 ME,ME
+248,3,5,plant,7 B5 PUPA,PUPA
+249,1,1,plant,7 B6 CHFU,CHFU
+250,5,3,plant,7 B6 LEMA,LEMA
+251,10,3,plant,7 C1 LEMA,LEMA
+252,6,1,plant,7 C2 CHFU,CHFU
+253,26,3,plant,7 C2 LEMA,LEMA
+254,3,5,plant,7 C2 PUPA,PUPA
+255,32,1,plant,7 C3 CHFU,CHFU
+256,6,3,plant,7 C3 LEMA,LEMA
+257,28,5,plant,7 C3 PUPA,PUPA
+258,6,3,plant,7 C4 LEMA,LEMA
+259,3,5,plant,7 C4 PUPA,PUPA
+260,1,1,plant,7 C5 CHFU,CHFU
+261,5,3,plant,7 C5 LEMA,LEMA
+262,1,1,plant,7 C6 CHFU,CHFU
+263,11,3,plant,7 C6 LEMA,LEMA
+264,8,1,plant,7 D1 CHFU,CHFU
+265,15,2,plant,7 D1 CHMI,CHMI
+266,5,3,plant,7 D1 LEMA,LEMA
+267,10,1,plant,7 D2 CHFU,CHFU
+268,1,3,plant,7 D2 LEMA,LEMA
+269,1,4,plant,7 D2 ME,ME
+270,3,5,plant,7 D2 PUPA,PUPA
+271,1,1,plant,7 D3 CHFU,CHFU
+272,1,2,plant,7 D3 CHMI,CHMI
+273,5,3,plant,7 D3 LEMA,LEMA
+274,3,5,plant,7 D3 PUPA,PUPA
+275,1,1,plant,7 D4 CHFU,CHFU
+276,30,3,plant,7 D4 LEMA,LEMA
+277,1,1,plant,7 D5 CHFU,CHFU
+278,11,3,plant,7 D5 LEMA,LEMA
+279,3,5,plant,7 D5 PUPA,PUPA
+280,1,1,plant,7 D6 CHFU,CHFU
+281,15,3,plant,7 D6 LEMA,LEMA
+282,1,1,plant,7 E1 CHFU,CHFU
+283,2,3,plant,7 E1 LEMA,LEMA
+284,1,1,plant,7 E2 CHFU,CHFU
+285,2,3,plant,7 E2 LEMA,LEMA
+286,10,4,plant,7 E2 ME,ME
+287,1,1,plant,7 E3 CHFU,CHFU
+288,15,3,plant,7 E3 LEMA,LEMA
+289,23,5,plant,7 E3 PUPA,PUPA
+290,1,1,plant,7 E4 CHFU,CHFU
+291,11,3,plant,7 E4 LEMA,LEMA
+292,3,5,plant,7 E4 PUPA,PUPA
+293,1,1,plant,7 E5 CHFU,CHFU
+294,11,1,plant,7 E6 CHFU,CHFU
+295,11,3,plant,7 E6 LEMA,LEMA
+296,3,5,plant,7 E6 PUPA,PUPA
+297,1,1,plant,7 F1 CHFU,CHFU
+298,13,1,plant,7 F2 CHFU,CHFU
+299,1,3,plant,7 F2 LEMA,LEMA
+300,1,1,plant,7 F3 CHFU,CHFU
+301,24,3,plant,7 F3 LEMA,LEMA
+302,3,5,plant,7 F3 PUPA,PUPA
+303,1,1,plant,7 F4 CHFU,CHFU
+304,15,2,plant,7 F4 CHMI,CHMI
+305,24,3,plant,7 F4 LEMA,LEMA
+306,3,5,plant,7 F4 PUPA,PUPA
+307,1,1,plant,7 F5 CHFU,CHFU
+308,15,2,plant,7 F5 CHMI,CHMI
+309,3,5,plant,7 F6 PUPA,PUPA
+310,9,3,plant,8 A1 LEMA,LEMA
+311,4,1,plant,8 A2 CHFU,CHFU
+312,5,3,plant,8 A2 LEMA,LEMA
+313,21,5,plant,8 A2 PUPA,PUPA
+314,13,1,plant,8 A3 CHFU,CHFU
+315,10,3,plant,8 A3 LEMA,LEMA
+316,4,1,plant,8 A4 CHFU,CHFU
+317,6,3,plant,8 A4 LEMA,LEMA
+318,1,1,plant,8 A5 CHFU,CHFU
+319,5,3,plant,8 A5 LEMA,LEMA
+320,13,1,plant,8 A6 CHFU,CHFU
+321,1,1,plant,8 B1 CHFU,CHFU
+322,4,1,plant,8 B2 CHFU,CHFU
+323,9,3,plant,8 B2 LEMA,LEMA
+324,3,5,plant,8 B2 PUPA,PUPA
+325,13,1,plant,8 B3 CHFU,CHFU
+326,22,3,plant,8 B3 LEMA,LEMA
+327,3,5,plant,8 B3 PUPA,PUPA
+328,1,1,plant,8 B4 CHFU,CHFU
+329,1,3,plant,8 B4 LEMA,LEMA
+330,3,5,plant,8 B4 PUPA,PUPA
+331,8,1,plant,8 B5 CHFU,CHFU
+332,26,3,plant,8 B5 LEMA,LEMA
+333,5,4,plant,8 B5 ME,ME
+334,3,5,plant,8 B5 PUPA,PUPA
+335,8,1,plant,8 B6 CHFU,CHFU
+336,2,3,plant,8 B6 LEMA,LEMA
+337,3,5,plant,8 B6 PUPA,PUPA
+338,9,3,plant,8 C1 LEMA,LEMA
+339,25,1,plant,8 C2 CHFU,CHFU
+340,2,3,plant,8 C2 LEMA,LEMA
+341,3,5,plant,8 C2 PUPA,PUPA
+342,11,1,plant,8 C3 CHFU,CHFU
+343,2,3,plant,8 C3 LEMA,LEMA
+344,3,5,plant,8 C3 PUPA,PUPA
+345,1,1,plant,8 C4 CHFU,CHFU
+346,1,3,plant,8 C4 LEMA,LEMA
+347,3,5,plant,8 C4 PUPA,PUPA
+348,10,4,plant,8 C5 ME,ME
+349,3,5,plant,8 C5 PUPA,PUPA
+350,4,1,plant,8 C6 CHFU,CHFU
+351,3,5,plant,8 C6 PUPA,PUPA
+352,16,1,plant,8 D1 CHFU,CHFU
+353,22,3,plant,8 D1 LEMA,LEMA
+354,20,1,plant,8 D2 CHFU,CHFU
+355,22,3,plant,8 D2 LEMA,LEMA
+356,3,5,plant,8 D2 PUPA,PUPA
+357,8,1,plant,8 D3 CHFU,CHFU
+358,2,3,plant,8 D3 LEMA,LEMA
+359,3,5,plant,8 D3 PUPA,PUPA
+360,5,3,plant,8 D4 LEMA,LEMA
+361,3,5,plant,8 D4 PUPA,PUPA
+362,19,1,plant,8 D5 CHFU,CHFU
+363,22,3,plant,8 D5 LEMA,LEMA
+364,3,5,plant,8 D5 PUPA,PUPA
+365,7,1,plant,8 D6 CHFU,CHFU
+366,2,3,plant,8 D6 LEMA,LEMA
+367,3,5,plant,8 D6 PUPA,PUPA
+368,4,1,plant,8 E1 CHFU,CHFU
+369,2,3,plant,8 E1 LEMA,LEMA
+370,21,5,plant,8 E1 PUPA,PUPA
+371,5,1,plant,8 E2 CHFU,CHFU
+372,4,3,plant,8 E2 LEMA,LEMA
+373,6,4,plant,8 E2 ME,ME
+374,3,5,plant,8 E2 PUPA,PUPA
+375,1,1,plant,8 E3 CHFU,CHFU
+376,2,3,plant,8 E3 LEMA,LEMA
+377,3,5,plant,8 E3 PUPA,PUPA
+378,6,1,plant,8 E4 CHFU,CHFU
+379,6,3,plant,8 E4 LEMA,LEMA
+380,10,1,plant,8 E5 CHFU,CHFU
+381,2,3,plant,8 E5 LEMA,LEMA
+382,23,5,plant,8 E5 PUPA,PUPA
+383,22,3,plant,8 E6 LEMA,LEMA
+384,6,4,plant,8 E6 ME,ME
+385,3,5,plant,8 E6 PUPA,PUPA
+386,9,3,plant,8 F1 LEMA,LEMA
+387,3,5,plant,8 F1 PUPA,PUPA
+388,5,3,plant,8 F2 LEMA,LEMA
+389,3,5,plant,8 F2 PUPA,PUPA
+390,8,1,plant,8 F3 CHFU,CHFU
+391,1,3,plant,8 F3 LEMA,LEMA
+392,3,5,plant,8 F3 PUPA,PUPA
+393,1,1,plant,8 F4 CHFU,CHFU
+394,2,3,plant,8 F4 LEMA,LEMA
+395,3,5,plant,8 F4 PUPA,PUPA
+396,12,4,plant,8 F5 ME,ME
+397,3,5,plant,8 F5 PUPA,PUPA
+398,1,1,plant,8 F6 CHFU,CHFU
+399,17,3,plant,8 F6 LEMA,LEMA
+400,1,1,plant,9 A2 CHFU,CHFU
+401,1,1,plant,9 A3 CHFU,CHFU
+402,15,3,plant,9 A3 LEMA,LEMA
+403,1,1,plant,9 A4 CHFU,CHFU
+404,1,3,plant,9 A5 LEMA,LEMA
+405,1,1,plant,9 A6 CHFU,CHFU
+406,10,1,plant,9 B1 CHFU,CHFU
+407,1,1,plant,9 B2 CHFU,CHFU
+408,2,3,plant,9 B2 LEMA,LEMA
+409,20,1,plant,9 B3 CHFU,CHFU
+410,2,3,plant,9 B4 LEMA,LEMA
+411,15,3,plant,9 B5 LEMA,LEMA
+412,2,3,plant,9 B6 LEMA,LEMA
+413,16,1,plant,9 C1 CHFU,CHFU
+414,16,1,plant,9 C3 CHFU,CHFU
+415,1,3,plant,9 C3 LEMA,LEMA
+416,2,3,plant,9 C4 LEMA,LEMA
+417,7,1,plant,9 C5 CHFU,CHFU
+418,30,3,plant,9 C5 LEMA,LEMA
+419,13,1,plant,9 C6 CHFU,CHFU
+420,25,1,plant,9 D2 CHFU,CHFU
+421,2,3,plant,9 D2 LEMA,LEMA
+422,5,1,plant,9 D3 CHFU,CHFU
+423,2,3,plant,9 D3 LEMA,LEMA
+424,1,1,plant,9 D4 CHFU,CHFU
+425,1,3,plant,9 D5 LEMA,LEMA
+426,2,4,plant,9 D5 ME,ME
+427,2,3,plant,9 D6 LEMA,LEMA
+428,1,4,plant,9 D6 ME,ME
+429,1,1,plant,9 E1 CHFU,CHFU
+430,2,3,plant,9 E1 LEMA,LEMA
+431,9,3,plant,9 E2 LEMA,LEMA
+432,18,1,plant,9 E3 CHFU,CHFU
+433,18,3,plant,9 E3 LEMA,LEMA
+434,10,4,plant,9 E3 ME,ME
+435,10,1,plant,9 E4 CHFU,CHFU
+436,14,3,plant,9 E4 LEMA,LEMA
+437,6,1,plant,9 E5 CHFU,CHFU
+438,2,3,plant,9 E5 LEMA,LEMA
+439,29,3,plant,9 E6 LEMA,LEMA
+440,10,4,plant,9 E6 ME,ME
+441,1,1,plant,9 F1 CHFU,CHFU
+442,1,3,plant,9 F1 LEMA,LEMA
+443,2,3,plant,9 F2 LEMA,LEMA
+444,1,1,plant,9 F4 CHFU,CHFU
+445,10,4,plant,9 F4 ME,ME
+446,1,1,plant,9 F5 CHFU,CHFU
+447,2,3,plant,9 F5 LEMA,LEMA
+448,1,1,plant,9 F6 CHFU,CHFU
+449,9,3,plant,9 F6 LEMA,LEMA
+450,6,1,pollinator,Andrena_cinerea,CHFU
+450,6,3,pollinator,Andrena_cinerea,LEMA
+450,6,4,pollinator,Andrena_cinerea,ME
+450,23,5,pollinator,Andrena_cinerea,PUPA
+451,29,3,pollinator,Anthaxia_semicuprea,LEMA
+452,3,5,pollinator,Bombyliidae,PUPA
+453,27,3,pollinator,Brassicogethes_sp.,LEMA
+454,20,1,pollinator,Bruchidae,CHFU
+455,19,1,pollinator,Calliphoridae,CHFU
+455,19,4,pollinator,Calliphoridae,ME
+456,12,1,pollinator,Cantharidae,CHFU
+456,12,3,pollinator,Cantharidae,LEMA
+456,12,4,pollinator,Cantharidae,ME
+456,3,5,pollinator,Cantharidae,PUPA
+457,33,3,pollinator,Chrysomelidae,LEMA
+458,31,3,pollinator,Chrysotoxum_sp.,LEMA
+459,24,3,pollinator,Coleoptera,LEMA
+460,28,5,pollinator,Colias_croceus,PUPA
+461,24,3,pollinator,Curculionidae,LEMA
+462,1,1,pollinator,Dilophus_sp.,CHFU
+462,1,2,pollinator,Dilophus_sp.,CHMI
+462,1,3,pollinator,Dilophus_sp.,LEMA
+462,1,4,pollinator,Dilophus_sp.,ME
+462,1,5,pollinator,Dilophus_sp.,PUPA
+463,4,1,pollinator,Diptera,CHFU
+463,4,3,pollinator,Diptera,LEMA
+463,4,4,pollinator,Diptera,ME
+464,8,1,pollinator,Empididae,CHFU
+464,8,4,pollinator,Empididae,ME
+465,16,1,pollinator,Episyrphus_balteatus,CHFU
+465,16,3,pollinator,Episyrphus_balteatus,LEMA
+466,21,3,pollinator,Eristalis_sp.,LEMA
+466,21,5,pollinator,Eristalis_sp.,PUPA
+467,14,1,pollinator,Eucera_sp.,CHFU
+467,14,3,pollinator,Eucera_sp.,LEMA
+467,3,5,pollinator,Eucera_sp.,PUPA
+468,7,1,pollinator,Eupeodes_corollae,CHFU
+468,7,3,pollinator,Eupeodes_corollae,LEMA
+468,7,4,pollinator,Eupeodes_corollae,ME
+469,30,3,pollinator,Lagorina_sericea,LEMA
+470,3,5,pollinator,Lasiocampa_trifolii,PUPA
+471,12,4,pollinator,Lassioglosum_.immunitum,ME
+472,25,1,pollinator,Lomatia_sp.,CHFU
+473,26,3,pollinator,Malachius_bipustulatus,LEMA
+474,30,3,pollinator,Melanostoma_sp.,LEMA
+475,9,1,pollinator,Meligethes_sp.,CHFU
+475,9,3,pollinator,Meligethes_sp.,LEMA
+475,9,5,pollinator,Meligethes_sp.,PUPA
+476,18,1,pollinator,Melyridae,CHFU
+476,18,3,pollinator,Melyridae,LEMA
+477,15,2,pollinator,Mordellidae,CHMI
+477,15,3,pollinator,Mordellidae,LEMA
+478,10,1,pollinator,Musca_sp.,CHFU
+478,10,3,pollinator,Musca_sp.,LEMA
+478,10,4,pollinator,Musca_sp.,ME
+478,3,5,pollinator,Musca_sp.,PUPA
+479,17,3,pollinator,Nemotelus_sp.,LEMA
+479,17,4,pollinator,Nemotelus_sp.,ME
+480,11,1,pollinator,Odontomyia_sp.,CHFU
+480,11,3,pollinator,Odontomyia_sp.,LEMA
+480,11,4,pollinator,Odontomyia_sp.,ME
+481,22,3,pollinator,Oedemeridae,LEMA
+482,2,1,pollinator,Psilothrix_viridicoerulea,CHFU
+482,2,2,pollinator,Psilothrix_viridicoerulea,CHMI
+482,2,3,pollinator,Psilothrix_viridicoerulea,LEMA
+482,2,4,pollinator,Psilothrix_viridicoerulea,ME
+482,2,5,pollinator,Psilothrix_viridicoerulea,PUPA
+483,13,1,pollinator,Scaeva_sp.,CHFU
+483,13,3,pollinator,Scaeva_sp.,LEMA
+484,5,1,pollinator,Sphaerophoria_scripta,CHFU
+484,5,3,pollinator,Sphaerophoria_scripta,LEMA
+484,5,4,pollinator,Sphaerophoria_scripta,ME
+485,3,5,pollinator,Thymelicus_sp.,PUPA
+486,32,1,pollinator,Ulidiidae,CHFU
