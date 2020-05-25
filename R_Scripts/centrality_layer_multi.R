@@ -130,3 +130,83 @@ ggplot(Centr_ML_ID_Plot %>% filter(ID!="Visitor"))+
   #ggtitle(paste0("Plot ",i)) +
   xlab("Multilayer: PageRank") + ylab("Bipartite: PageRank")
 #labs(Color = "ID",)
+
+ggplot(Centr_ML_ID_Plot)+
+  geom_point(aes(x=(Multi),y=(Aggr),color=ID, fill = ID, size=Strength_Aggr,
+                 shape=ID),
+             position = "jitter")+
+  geom_abline(intercept = 0, slope = 1,color='steelblue', 
+              size=1, alpha=0.4,linetype = "dashed")+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  #scale_shape_manual(values=15:19)+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Multilayer: PageRank") + ylab("Bipartite: PageRank")
+#labs(Color = "ID",)
+
+# La probabilidad total siempre tiene que ser uno. Para que un ID mejore su probabilidad
+# marginal (agregada) otro ID tiene que empeorar
+
+# Una planta con una fenología corta (A) que se superpone mucho tiempo
+# con una de fenología larga (B)
+# en general sale perdiendo: la proporcion de polen que transfiere A a B es mayor que 
+# de B a A.
+# Por otro lado, el polen se quedará retenido más tiempo en las capas en las que 
+# abunden los polinizadores conectados a muchas plantas
+
+
+
+
+for (i in 1:9){
+  
+  file_CML_i <- paste0("Processed_data/Muxviz_Pheno_Overlap/centrality_table_Plot",i)
+  centrality_multilayer <- read_delim(file_CML_i,";")
+  #layer_ID_Multi <- layer_ID
+  #layer_ID_Multi$Layer <- paste0(layer_ID_Multi$Layer,"-Multi")
+  #centrality_multilayer <- centrality_multilayer %>% 
+  #  left_join(layer_ID_Multi,by="Layer") %>% filter(Degree!=0)
+  
+  
+  centrality_multilayer$Layer[centrality_multilayer$Layer!="Aggr"] <- "Multi"
+  
+  centrality_multilayer_fil <- unique(centrality_multilayer)
+  
+  centrality_multilayer_fil %>% group_by(Layer) %>% count(wt=PageRank)
+  
+  # Page rank results from Muxviz are not normalized
+  # We get the layer normalization constant = sum pargerank results
+  Mlayer_norm_const <- centrality_multilayer_fil %>% group_by(Layer) %>% 
+    count(wt=PageRank) %>% rename(sum_weight=n)
+  
+  centrality_multilayer_fil2 <- centrality_multilayer_fil %>% 
+    left_join(Mlayer_norm_const,by="Layer") %>% mutate(Real_PR=PageRank/sum_weight) %>%
+    select(-Node,-Eigenvector,-Hub,-Authority,-Katz,-Multiplexity,-Kcore,-sum_weight,-PageRank)
+  
+  centrality_multilayer_fil2$Plot <- i
+  
+  centrality_multilayer_fil2$ID <- centrality_multilayer_fil2$Label
+  centrality_multilayer_fil2 <-centrality_multilayer_fil2 %>%
+    separate(ID,c("Subplot","ID")," ") %>% select(-Subplot)
+  centrality_multilayer_fil2$ID[is.na(centrality_multilayer_fil2$ID)] <- "Visitor"
+  centrality_multilayer_fil2$ID <- as.factor(centrality_multilayer_fil2$ID)
+  
+  if (i==1){
+    centrality_multilayer_final <- centrality_multilayer_fil2 
+  }else{
+    centrality_multilayer_final <- bind_rows(centrality_multilayer_final,centrality_multilayer_fil2)
+  }
+  
+}
+
+ggplot(centrality_multilayer_final)+
+  geom_point(aes(x=log10(StrengthIn),y=log10(DegreeOut),color=ID, fill = ID, size=Strength,
+                 shape=ID),
+             position = "jitter")+
+  #geom_abline(intercept = 0, slope = 1,color='steelblue', 
+  #            size=1, alpha=0.4,linetype = "dashed")+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)#+
+  #scale_shape_manual(values=15:19)+
+  #ggtitle(paste0("Plot ",i)) +
+  #xlab("Multilayer: PageRank") + ylab("Bipartite: PageRank")
+#labs(Color = "ID",)
+
+# DegreeIn == DegreeOut Por el método de construcción de la red
