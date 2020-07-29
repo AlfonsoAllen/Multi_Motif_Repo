@@ -98,6 +98,18 @@ if (i==1){
 
 }
 
+# En ambos casos el Page Rank del sistema tiene que sumar 1. Por tanto, si unos nodos
+# ganan centralidad es porque otros la pierden
+
+Centr_ML_ID_final %>% select(Aggr,Multi,ID,Plot) %>% mutate(Diff=Multi-Aggr) %>%
+  group_by(Plot,ID) %>% summarise_all(sum)
+
+Centr_ML_ID_final %>% select(Aggr,Multi,ID,Plot) %>% mutate(Diff=Multi-Aggr) %>%
+  group_by(Plot,ID) %>% summarise_all(mean)
+
+Centr_ML_ID_final %>% select(Aggr,Multi,ID) %>% mutate(Diff=Multi-Aggr) %>%
+  group_by(ID) %>% summarise_all(sum)
+
 ggplot(Centr_ML_ID_final)+
   geom_point(aes(x=log10(Multi),y=log10(Aggr),color=ID, size=(1+Delta_Strength),
                  shape=ID),
@@ -108,6 +120,20 @@ ggplot(Centr_ML_ID_final)+
   #ggtitle(paste0("Plot ",i)) +
   xlab("Multilayer: log10(PageRank)") + ylab("Bipartite: log10(PageRank)")
   #labs(Color = "ID",)
+
+means <- aggregate(log10(Multi/Aggr) ~  ID+Plot,
+                   Centr_ML_ID_final%>% filter(ID!="Visitor"), mean)
+
+ggplot(Centr_ML_ID_final%>% filter(ID!="Visitor"),aes(x=ID,y=log10(Multi/Aggr),fill=ID))+
+  geom_boxplot()+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  geom_text(data = means, aes(label = round(`log10(Multi/Aggr)`,3), y = `log10(Multi/Aggr)` + 0.3))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("log10(PageRank{Multilayer}/PageRank{Bipartite})")
+#labs(Color = "Plant Species")
+
 
 
 Centr_ML_ID_Plot <- Centr_ML_ID_final %>% 

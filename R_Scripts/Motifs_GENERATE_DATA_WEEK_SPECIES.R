@@ -255,6 +255,8 @@ for (week_i in unique(fitness2$Week)){
   
   visit_list_week <- fitness_week_i %>% ungroup() %>% select(Plot,ID,Subplot_Plant_Label,Visits_tot)
   
+  #x <- motifs_extraction(visit_list_week)
+  
   visit_list_week <- homo_hete_motifs(visit_list_week)
   visit_list_week <- visit_list_week %>% mutate(Week=week_i)
   

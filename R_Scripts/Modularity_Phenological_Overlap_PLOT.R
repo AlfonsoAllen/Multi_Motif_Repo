@@ -8,9 +8,9 @@ library(tidyverse)
 library(magrittr)
 library(ggalluvial)
 
+
 #Access layers files
 dir_ini <- getwd()
-
 
 #Load data on pollinator visits
 pollination <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
@@ -25,7 +25,7 @@ for (i in 1:nrow(pollination)){
 
 
 for (Plot_i in 1:9){
-
+  
 ##########################
 #ESTIMATE PHENOLOGY
 ##########################
@@ -200,8 +200,7 @@ for (i in 1:length(pollinators)){
 }
 
 S_edge_list_i <- S_edge_list %>% mutate(Plot=Plot_i)
-if (Plot_i==1){S_edge_list_final <- S_edge_list_i}
-else{S_edge_list_final <- bind_rows(S_edge_list_final,S_edge_list_i)}
+if (Plot_i==1){S_edge_list_final <- S_edge_list_i}else{S_edge_list_final <- bind_rows(S_edge_list_final,S_edge_list_i)}
 
 
 # Replace the node names with node_ids
@@ -227,16 +226,19 @@ folder_info <- paste(dir_ini,"/R_Scripts",sep="")
 
 # Check Infomap is running
 setwd(folder_info)
+source("run_infomap_multilayer2.R")
 check_infomap() # Make sure file can be run correctly. Should return TRUE
 
 # Prepare data
 #Plot_multilayer <- create_multilayer_object(extended = Plot_edgelist_complete_ids, nodes = physical_nodes, intra_output_extended = T, inter_output_extended = T)
-Plot_multilayer <- create_multilayer_object(extended = S_edge_list_ID, nodes = physical_nodes, intra_output_extended = T, inter_output_extended = T)
 
+S_edge_list_ID_fil <- S_edge_list_ID %>% filter(weight>0)
+
+Plot_multilayer <- create_multilayer_object(extended = S_edge_list_ID_fil, nodes = physical_nodes, layers = layer_metadata, intra_output_extended = T, inter_output_extended = T)
 
 # Run Infomap
 #modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = F, silent = T, flow_model = 'undirected', trials = 250, seed = 497294, temporal_network = F)
-modules_relax_rate <- run_infomap_multilayer(Plot_multilayer, relax = F, silent = T, flow_model = 'directed', trials = 1000, seed = 497294, temporal_network = F)
+modules_relax_rate <- run_infomap_multilayer2(Plot_multilayer, relax = F, silent = T, flow_model = 'directed', trials = 1000, seed = 497294, temporal_network = F)
 
 # Extract information
 plot_modules_i <- modules_relax_rate$modules %>% left_join(layer_metadata,by="layer_id")

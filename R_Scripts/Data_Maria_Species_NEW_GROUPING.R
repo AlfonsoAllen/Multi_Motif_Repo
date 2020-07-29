@@ -6,7 +6,7 @@ library(tidyverse)
 # Loadind Plant-pollinator dataset (Caracoles) for 2019: visits, abundances, seeds
 ####################################################################
 
-metadata <- read_csv2("Raw_Data/Metadata_Pollinators_Plants_fruits_abundancesmodified.csv")
+metadata <- read_csv2("Raw_Data/Old_files/Metadata_Pollinators_Plants_fruits_abundancesmodified.csv")
 head(as.data.frame(metadata))
 
 metadata_19 <- metadata %>% filter(Year==2019,Subplot!="OUT",!is.na(ID)) %>% #QUITAR OUTS

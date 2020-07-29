@@ -35,14 +35,40 @@ write_csv(pollination_dates_2019, "Processed_data/Phenology/phenology_2019.csv")
 
 #Phenology by plot
 
+plot_labs <-c(
+  "Plot 1",
+  "Plot 2",
+  "Plot 3",
+  "Plot 4",
+  "Plot 5",
+  "Plot 6",
+  "Plot 7",
+  "Plot 8",
+  "Plot 9"
+)
+names(plot_labs) <- c(
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  "6",
+  '7',
+  '8',
+  "9"
+)
+
+
 pdf("Processed_data/Phenology/estimated_phenology_plot.pdf",
     width = 11.69, # The width of the plot in inches
     height = 8.27)
 
 ggplot(pollination_dates_2019)+
   geom_point(aes(x=Week,y=Plant_Simple,size=n,color=n))+
-  facet_wrap(vars(Plot),nrow = 3,ncol = 3)+
-  labs(color = "#visits",size = "#visits")
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  ylab("Plant Species") +
+  labs(color = "#visits",size = "#visits")+ theme(legend.position="bottom")+
+  theme_bw()
 
 dev.off()
 
