@@ -105,6 +105,11 @@ MC_list_fil <- MC_list %>% separate(Label,c("Ind","Plant_Simple")," ") %>% filte
 
 sum(MC_list_fil$Real_PR_Multi[MC_list_fil$Plot==1 & MC_list_fil$Layer=="Multi"])
 
+##################
+
+
+
+
 # Merge LC and MC lists for comparison
 
 MC_list_final <- MC_list_fil %>% filter(Layer!="Aggr") %>% select(Real_PR_Multi, Plot, Label, Plant_Simple)
@@ -141,6 +146,134 @@ names(plot_labs) <- c(
   "9"
 )
 
+
+
+library(RColorBrewer)
+
+ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
+  geom_violin()+ 
+  geom_point(aes(color=Plant_Simple),
+             position = "jitter",alpha=0.2)+
+  geom_boxplot(width=0.1)+
+  scale_fill_brewer(palette = 'Paired')+
+  theme_bw()+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  xlab("Plant Species") + ylab("Multilayer Page Rank") +
+  labs(color = NULL)+ theme(legend.position="bottom")
+
+means <- aggregate((Real_PR_Multi) ~  Plant_Simple + Plot,
+                   PageRank_results, mean)
+
+ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
+  geom_boxplot()+
+  geom_point(aes(color=Plant_Simple),position = "jitter",alpha=0.3)+
+  scale_fill_brewer(palette = 'Paired')+
+  theme_bw()+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  geom_text(data = means, aes(label = round(`(Real_PR_Multi)`,3), y = 0.04))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("PageRank")+ 
+  labs(fill = NULL)+ theme(legend.position="none")+stat_compare_means()
+  
+#Test significance of differences
+library(ggpubr)
+
+PageRank_results1 <- PageRank_results %>% filter(Plot==1)
+PageRank_results2 <- PageRank_results %>% filter(Plot==2)
+PageRank_results3 <- PageRank_results %>% filter(Plot==3)
+PageRank_results4 <- PageRank_results %>% filter(Plot==4)
+PageRank_results5 <- PageRank_results %>% filter(Plot==5)
+PageRank_results6 <- PageRank_results %>% filter(Plot==6)
+PageRank_results7 <- PageRank_results %>% filter(Plot==7)
+PageRank_results8 <- PageRank_results %>% filter(Plot==8)
+PageRank_results9 <- PageRank_results %>% filter(Plot==9)
+
+# Plot1
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results1)
+pairwise.wilcox.test(PageRank_results1$Real_PR_Multi, PageRank_results1$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot2
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results2)
+pairwise.wilcox.test(PageRank_results2$Real_PR_Multi, PageRank_results2$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot3
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results3)
+pairwise.wilcox.test(PageRank_results3$Real_PR_Multi, PageRank_results3$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot4
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results4)
+pairwise.wilcox.test(PageRank_results4$Real_PR_Multi, PageRank_results4$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot5
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results5)
+pairwise.wilcox.test(PageRank_results5$Real_PR_Multi, PageRank_results5$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot6
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results6)
+pairwise.wilcox.test(PageRank_results6$Real_PR_Multi, PageRank_results6$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot7
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results7)
+pairwise.wilcox.test(PageRank_results7$Real_PR_Multi, PageRank_results7$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot8
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results8)
+pairwise.wilcox.test(PageRank_results8$Real_PR_Multi, PageRank_results8$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot9
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results9)
+pairwise.wilcox.test(PageRank_results9$Real_PR_Multi, PageRank_results9$Plant_Simple,
+                     p.adjust.method = "BH")
+
+#############################################
+
+means_caracoles <- aggregate((Real_PR_Multi) ~  Plant_Simple,
+                   PageRank_results, mean)
+
+ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
+  geom_boxplot()+
+  geom_point(aes(color=Plant_Simple),position = "jitter",alpha=0.3)+
+  scale_fill_brewer(palette = 'Paired')+
+  theme_bw()+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  geom_text(data = means_caracoles, aes(label = round(`(Real_PR_Multi)`,3), y = 0.04))+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("PageRank")+ 
+  labs(fill = NULL)+ theme(legend.position="none")+stat_compare_means()
+
+library(ggpubr)
+
+pairwise.wilcox.test(PageRank_results$Real_PR_Multi, PageRank_results$Plot,
+                     p.adjust.method = "BH")
+
+aggregate((Real_PR_Multi) ~ Plot,
+          PageRank_results, mean)
+
+
+
+x <- MC_list %>% separate(Label,c("Sub","Spec")," ")
+x$Spec[is.na(x$Spec)] <- "Visitor"
+
+library(ggpmisc)
+
+ggplot(x %>% filter(Spec!="Visitor"),aes(x=(StrengthIn),y=(Real_PR_Multi)))+
+  geom_point(aes(color=as.factor(Spec)),position = "jitter",alpha=0.5)+
+  geom_smooth(method = "lm")+
+  theme_bw()+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  xlab("In-Strength") + ylab("Multilayer Page Rank") +
+  labs(color = NULL)+ theme(legend.position="bottom")+
+  stat_cor(method = "pearson", label.x = 0.01, label.y = 0.05)
+
+
+
 ggplot(PageRank_results)+
   geom_point(aes(x=log10(Real_PR_Layer),y=log10(Real_PR_Multi),color=Plant_Simple,
                  shape=Plant_Simple),
@@ -154,22 +287,65 @@ ggplot(PageRank_results)+
   xlab("log10(LC)") + ylab("log10(MC)") +
   labs(color = "Plant Species", shape = "Plant Species")+ theme(legend.position="bottom")
 
-means <- aggregate(log10(Ratio) ~  Plant_Simple + Plot,
+means <- aggregate((Ratio) ~  Plant_Simple + Plot,
                    PageRank_results, mean)
 
 
 PageRank_results %>% filter(Real_PR_Layer<Real_PR_Multi)
 
-ggplot(PageRank_results,aes(x=Plant_Simple,y=log10(Ratio),fill=Plant_Simple))+
+ggplot(PageRank_results,aes(x=Plant_Simple,y=(Ratio),fill=Plant_Simple))+
   geom_boxplot()+
   stat_summary(fun.y=mean, colour="darkred", geom="point", 
                shape=18, size=3,show.legend = FALSE) + 
-  geom_text(data = means, aes(label = round(`log10(Ratio)`,3), y = `log10(Ratio)` + 0.3))+
+  geom_text(data = means, aes(label = round(`(Ratio)`,3), y = `(Ratio)` + 0.3))+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   #ggtitle(paste0("Plot ",i)) +
-  xlab("Plant Species") + ylab("log10(MC/LC)")+ theme(legend.position = "none")+
-  theme_bw()
+  xlab("Plant Species") + ylab("R=MC/LC")+
+  theme_bw()+ theme(legend.position = "none")#+stat_compare_means()
 #labs(Color = "Plant Species")
+
+# Test significance
+
+# Plot1
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results1)
+pairwise.wilcox.test(PageRank_results1$Ratio, PageRank_results1$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot2
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results2)
+pairwise.wilcox.test(PageRank_results2$Ratio, PageRank_results2$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot3
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results3)
+pairwise.wilcox.test(PageRank_results3$Ratio, PageRank_results3$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot4
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results4)
+pairwise.wilcox.test(PageRank_results4$Ratio, PageRank_results4$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot5
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results5)
+pairwise.wilcox.test(PageRank_results5$Ratio, PageRank_results5$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot6
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results6)
+pairwise.wilcox.test(PageRank_results6$Ratio, PageRank_results6$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot7
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results7)
+pairwise.wilcox.test(PageRank_results7$Ratio, PageRank_results7$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot8
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results8)
+pairwise.wilcox.test(PageRank_results8$Ratio, PageRank_results8$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot9
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results9)
+pairwise.wilcox.test(PageRank_results9$Ratio, PageRank_results9$Plant_Simple,
+                     p.adjust.method = "BH")
+
 
 PageRank_results %>% filter(Plot==1) %>% summarise(Real_PR_Multi=sum(Real_PR_Multi))
 
@@ -212,6 +388,42 @@ modules_final %>% filter(type=="plant") %>% dplyr::select(Plot,module,layer_name
   xlab("# Layers per module") + ylab("# Modules") + theme(legend.position = "none")
 #Recoge a través de cuantas capas se extiende el módulo
 
+
+# Plant modules data
+
+modules_final %>% filter(type=="plant") %>% dplyr::select(Plot,module,layer_name) %>% 
+  unique() %>% arrange(Plot,module,layer_name) %>% group_by(Plot,module) %>% count() %>%
+  group_by(Plot,n) %>% count()
+################################################
+
+modules <- modules_final %>% 
+  dplyr::select(Plot,module) %>% unique()
+
+modules_spread <- modules %>% group_by(Plot,module) %>% 
+  count() %>% spread(module,n)
+modules_spread[is.na(modules_spread)] <- 0
+modules_spread$total <- rowSums(modules_spread[,c(2:ncol(modules_spread))])
+
+mean(modules_spread$total)
+sd(modules_spread$total)
+
+library(boot)
+b <- boot(modules_spread$total, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+quantile(number_plant_species_per_module_i$n, probs = c(0.025, 0.975), na.rm = FALSE)
+
+descrip_plants <- modules_final %>% filter(type=="plant") %>% dplyr::select(Plot,module,layer_name) %>% 
+  unique() %>% arrange(Plot,module,layer_name) %>% group_by(Plot,module) %>% count() %>%
+  group_by(Plot,n) %>% count()
+
+sum(descrip_plants$nn)
+sum(descrip_plants$nn[descrip_plants$n==1])
+sum(descrip_plants$nn[descrip_plants$n==2])
+sum(descrip_plants$nn[descrip_plants$n==3])
+sum(descrip_plants$nn[descrip_plants$n==4])
+
+#total amount of focal plants
+
 modules_plants <- modules_final %>% filter(type=="plant") %>% 
   dplyr::select(Plot,module,layer_name,species)
 
@@ -219,6 +431,47 @@ species_plants_module <- modules_plants %>% group_by(Plot,module,layer_name) %>%
   count() %>% spread(layer_name,n)
 species_plants_module[is.na(species_plants_module)] <- 0
 species_plants_module$total <- rowSums(species_plants_module[,c(3:ncol(species_plants_module))])
+
+mean(species_plants_module$total)
+sd(species_plants_module$total)
+
+library(boot)
+b <- boot(species_plants_module$total, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+quantile(species_plants_module$total, probs = c(0.025, 0.975), na.rm = FALSE)
+
+# Total Pollinators
+
+descrip_poll <- modules_final %>% filter(type!="plant") %>% dplyr::select(Plot,module,layer_name) %>% 
+  arrange(Plot,module,layer_name) %>% group_by(Plot,module) %>% count() %>%
+  group_by(Plot,n) %>% count()
+
+sum(descrip_poll$nn)
+sum(descrip_poll$nn[descrip_poll$n==1])
+sum(descrip_poll$nn[descrip_poll$n==2])
+sum(descrip_poll$nn[descrip_poll$n==3])
+sum(descrip_poll$nn[descrip_poll$n==4])
+sum(descrip_poll$nn[descrip_poll$n==5])
+
+modules_poll <- modules_final %>% filter(type!="plant") %>% 
+  dplyr::select(Plot,module,layer_name,species)
+
+species_poll_module <- modules_poll %>% group_by(Plot,module,species) %>% 
+  count() %>% spread(species,n)
+species_poll_module[is.na(species_poll_module)] <- 0
+species_poll_module$total <- rowSums(species_poll_module[,c(3:ncol(species_poll_module))])
+
+mean(species_poll_module$total)
+sd(species_poll_module$total)
+
+library(boot)
+b <- boot(species_poll_module$total, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+quantile(number_plant_species_per_module_i$n, probs = c(0.025, 0.975), na.rm = FALSE)
+
+
+
+##################################################################3
 
 perc_sp_plants_mod <- species_plants_module %>% rename(abs_CHFU=CHFU,
                                                        abs_CHMI=CHMI,
@@ -535,6 +788,12 @@ modules_final %>% filter(type!="plant") %>%
 modules_final %>% filter(type!="plant") %>% 
   select(Plot,module,species) %>% unique() %>% group_by(Plot,module) %>% count() %>%
   ungroup() %>% group_by(Plot) %>% summarise(mean_number_pollinator_per_mod=mean(n),
+                                             sd_number_pollinator_per_mod=sd(n))
+
+# Number of pollinator per module
+modules_final %>% filter(type!="plant") %>% 
+  select(Plot,module,species) %>% unique() %>% group_by(Plot,module) %>% count() %>%
+  ungroup() %>% summarise(mean_number_pollinator_per_mod=mean(n),
                                              sd_number_pollinator_per_mod=sd(n))
 
 group_pollinators <- modules_final %>% filter(type!="plant") %>% 

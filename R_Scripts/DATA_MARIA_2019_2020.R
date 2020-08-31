@@ -3,18 +3,24 @@ library(tidyverse)
 # Load raw database
 
 data_19 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
-data_20 <- read_csv2("Raw_Data/Pollinators_2020_unpocomaslimpia.csv") %>% 
+data_20 <- read_csv2("Raw_Data/raw_Pollinators_2020_1.csv") %>% 
   filter(!is.na(Plant),Plant!="0",Subplot!="OUT",Plant!="Ground")
 
 
-data_20 %>% group_by(Plant) %>% count(wt=`#visits`)
+data_20 %>% group_by(Plant) %>% count(wt=Visits)
 
 ID_simple_G_F_19 <- data_19 %>% select(ID_Simple,G_F) %>% unique()
 
-ID_20 <- data_20 %>% select(ID) %>% unique()
+ID_simple_G_F_20_visits <- data_20 %>% select(ID_Simple,G_F,Visits)
 
-ID_20$ID[ID_20$ID %in% ID_simple_G_F_19$ID_Simple]
+ID_simple_G_F_20 <- ID_simple_G_F_20_visits %>% 
+  filter(!ID_Simple %in% ID_simple_G_F_19$ID_Simple) %>% group_by(ID_Simple,G_F) %>%
+  count(wt=Visits) %>% rename(cumulated_visits=n)
 
-new_ID <- ID_20$ID[!ID_20$ID %in% ID_simple_G_F_19$ID_Simple]
+ID_simple_G_F_20 <- ID_simple_G_F_20_visits %>% 
+  filter(!G_F %in% ID_simple_G_F_19$G_F) %>% group_by(ID_Simple,G_F) %>%
+  count(wt=Visits) %>% rename(cumulated_visits=n)
 
-new_IDs_visits <- data_20 %>% filter(ID %in% new_ID) %>% group_by(ID) %>%count(wt=`#visits`)
+data_20 %>% filter(ID_Simple %in% c("1/29/5","2_28_5"))
+
+write_csv(ID_simple_G_F_20,"new_IDs_2020.csv")

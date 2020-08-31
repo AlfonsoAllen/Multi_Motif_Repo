@@ -1,0 +1,93 @@
+nodeID nodeLabel
+1 "A1 LEMA"
+2 "A2 CHFU"
+3 "A2 LEMA"
+4 "A2 PUPA"
+5 "A3 CETE"
+6 "A3 CHFU"
+7 "A3 LEMA"
+8 "A4 BEMA"
+9 "A4 LEMA"
+10 "A5 CETE"
+11 "A5 CHFU"
+12 "A5 LEMA"
+13 "A5 PUPA"
+14 "A6 LEMA"
+15 "A6 PUPA"
+16 "B1 CETE"
+17 "B1 LEMA"
+18 "B1 PUPA"
+19 "B2 CETE"
+20 "B2 CHFU"
+21 "B2 LEMA"
+22 "B3 CHFU"
+23 "B3 LEMA"
+24 "B4 LEMA"
+25 "B5 LEMA"
+26 "B6 LEMA"
+27 "C1 CHFU"
+28 "C2 CHFU"
+29 "C2 LEMA"
+30 "C2 PUPA"
+31 "C3 LEMA"
+32 "C4 LEMA"
+33 "C5 LEMA"
+34 "C5 PUPA"
+35 "C6 CETE"
+36 "C6 LEMA"
+37 "C6 PUPA"
+38 "D1 CHFU"
+39 "D1 LEMA"
+40 "D2 CETE"
+41 "D2 LEMA"
+42 "D3 LEMA"
+43 "D4 CHFU"
+44 "D4 LEMA"
+45 "D5 LEMA"
+46 "D6 LEMA"
+47 "E1 LEMA"
+48 "E2 CETE"
+49 "E2 CHFU"
+50 "E2 LEMA"
+51 "E3 CHFU"
+52 "E3 LEMA"
+53 "E4 CETE"
+54 "E4 LEMA"
+55 "E5 CETE"
+56 "E5 LEMA"
+57 "E6 LEMA"
+58 "E6 PUPA"
+59 "F1 LEMA"
+60 "F2 CHFU"
+61 "F2 LEMA"
+62 "F3 CETE"
+63 "F3 LEMA"
+64 "F4 LEMA"
+65 "F5 LEMA"
+66 "F6 LEMA"
+67 Andrena_jar4
+68 Andrena_sp.
+69 Bee_4.19.5
+70 Big_bee_2_8_7
+71 Black_small_fly
+72 Bombilus_major
+73 Bombyliidae
+74 Brassicogethes_sp.
+75 Cerambycidae
+76 Conophorus_sp.
+77 Cryptocephalus_sp.
+78 Cylindromyia_sp.
+79 Dilophus_sp.
+80 Elateridae
+81 Eristalis_sp.
+82 Eucera_sp.
+83 Mordellidae
+84 Musca_jar_H
+85 Musca_sp.
+86 Oedemeridae
+87 Psilothrix_viridicoerulea
+88 Red_black_fly_6.19.5
+89 Small.bee.1_8_6
+90 Sphaerophoria_scripta
+91 Ulidiidae
+92 X1_29_5

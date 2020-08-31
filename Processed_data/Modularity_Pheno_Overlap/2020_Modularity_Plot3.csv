@@ -1,0 +1,103 @@
+node_id,module,layer_id,type,species,layer_name,Plot
+1,4,2,plant,A1 CHFU,CHFU,3
+2,1,4,plant,A1 LEMA,LEMA,3
+3,2,4,plant,A2 LEMA,LEMA,3
+4,3,1,plant,A3 CETE,CETE,3
+5,2,4,plant,A3 LEMA,LEMA,3
+6,3,5,plant,A3 PUPA,PUPA,3
+7,4,2,plant,A4 CHFU,CHFU,3
+8,11,3,plant,A4 CHMI,CHMI,3
+9,5,4,plant,A4 LEMA,LEMA,3
+10,5,5,plant,A4 PUPA,PUPA,3
+11,18,4,plant,A5 LEMA,LEMA,3
+12,1,4,plant,A6 LEMA,LEMA,3
+13,2,4,plant,B1 LEMA,LEMA,3
+14,7,5,plant,B1 PUPA,PUPA,3
+15,2,4,plant,B2 LEMA,LEMA,3
+16,13,2,plant,B3 CHFU,CHFU,3
+17,2,4,plant,B3 LEMA,LEMA,3
+18,1,4,plant,B4 LEMA,LEMA,3
+19,3,5,plant,B4 PUPA,PUPA,3
+20,5,1,plant,B5 CETE,CETE,3
+21,12,4,plant,B5 LEMA,LEMA,3
+22,3,5,plant,B5 PUPA,PUPA,3
+23,1,2,plant,B6 CHFU,CHFU,3
+24,2,4,plant,B6 LEMA,LEMA,3
+25,4,2,plant,C1 CHFU,CHFU,3
+26,8,3,plant,C1 CHMI,CHMI,3
+27,2,4,plant,C1 LEMA,LEMA,3
+28,11,3,plant,C2 CHMI,CHMI,3
+29,15,4,plant,C2 LEMA,LEMA,3
+30,4,2,plant,C3 CHFU,CHFU,3
+31,2,4,plant,C3 LEMA,LEMA,3
+32,3,5,plant,C3 PUPA,PUPA,3
+33,16,4,plant,C4 LEMA,LEMA,3
+34,2,4,plant,C5 LEMA,LEMA,3
+35,2,2,plant,C6 CHFU,CHFU,3
+36,14,2,plant,D1 CHFU,CHFU,3
+37,4,2,plant,D2 CHFU,CHFU,3
+38,10,4,plant,D2 LEMA,LEMA,3
+39,1,4,plant,D3 LEMA,LEMA,3
+40,4,2,plant,D4 CHFU,CHFU,3
+41,3,5,plant,D4 PUPA,PUPA,3
+42,7,4,plant,D5 LEMA,LEMA,3
+43,10,5,plant,D5 PUPA,PUPA,3
+44,3,4,plant,D6 LEMA,LEMA,3
+45,17,4,plant,E1 LEMA,LEMA,3
+46,7,5,plant,E1 PUPA,PUPA,3
+47,12,4,plant,E2 LEMA,LEMA,3
+48,7,5,plant,E2 PUPA,PUPA,3
+49,6,4,plant,E3 LEMA,LEMA,3
+50,4,2,plant,E4 CHFU,CHFU,3
+51,2,4,plant,E4 LEMA,LEMA,3
+52,2,4,plant,E5 LEMA,LEMA,3
+53,9,4,plant,E6 LEMA,LEMA,3
+54,1,4,plant,F1 LEMA,LEMA,3
+55,3,5,plant,F1 PUPA,PUPA,3
+56,4,2,plant,F2 CHFU,CHFU,3
+57,2,4,plant,F2 LEMA,LEMA,3
+58,1,4,plant,F3 LEMA,LEMA,3
+59,4,2,plant,F4 CHFU,CHFU,3
+60,9,4,plant,F4 LEMA,LEMA,3
+61,3,5,plant,F4 PUPA,PUPA,3
+62,6,4,plant,F5 LEMA,LEMA,3
+63,4,2,plant,F6 CHFU,CHFU,3
+64,8,3,plant,F6 CHMI,CHMI,3
+65,6,4,plant,F6 LEMA,LEMA,3
+66,6,5,plant,F6 PUPA,PUPA,3
+67,5,1,pollinator,Andrena_sp.,CETE,3
+67,5,4,pollinator,Andrena_sp.,LEMA,3
+67,5,5,pollinator,Andrena_sp.,PUPA,3
+68,8,3,pollinator,Bee_sirphid_jarJ,CHMI,3
+69,13,2,pollinator,Black_small_fly,CHFU,3
+70,7,4,pollinator,Bombilus_major,LEMA,3
+70,7,5,pollinator,Bombilus_major,PUPA,3
+71,6,4,pollinator,Bombyliidae,LEMA,3
+71,6,5,pollinator,Bombyliidae,PUPA,3
+72,1,2,pollinator,Brassicogethes_sp.,CHFU,3
+72,1,4,pollinator,Brassicogethes_sp.,LEMA,3
+73,8,3,pollinator,Calliphoridae,CHMI,3
+74,16,4,pollinator,Cerambycidae,LEMA,3
+75,15,4,pollinator,Conophorus_sp.,LEMA,3
+76,4,2,pollinator,Curculionidae_6_10_3,CHFU,3
+77,4,2,pollinator,Dilophus_sp.,CHFU,3
+78,16,4,pollinator,Elateridae,LEMA,3
+79,17,4,pollinator,Geometridae,LEMA,3
+80,12,4,pollinator,Malachius_bipustulatus,LEMA,3
+81,14,2,pollinator,Musca_jar_H,CHFU,3
+82,4,2,pollinator,Musca_sp.,CHFU,3
+82,11,3,pollinator,Musca_sp.,CHMI,3
+83,7,5,pollinator,Pieris_brassicae,PUPA,3
+84,2,2,pollinator,Psilothrix_viridicoerulea,CHFU,3
+84,2,4,pollinator,Psilothrix_viridicoerulea,LEMA,3
+85,15,4,pollinator,Rainbow_beetle,LEMA,3
+86,18,4,pollinator,Sarcophaga_sp.,LEMA,3
+87,3,1,pollinator,Small.bee.1_8_6,CETE,3
+87,3,4,pollinator,Small.bee.1_8_6,LEMA,3
+87,3,5,pollinator,Small.bee.1_8_6,PUPA,3
+88,9,4,pollinator,Sphaerophoria_scripta,LEMA,3
+89,9,4,pollinator,Tabanidae,LEMA,3
+89,9,5,pollinator,Tabanidae,PUPA,3
+90,4,2,pollinator,Ulidiidae,CHFU,3
+91,10,4,pollinator,X1_29_5,LEMA,3
+91,10,5,pollinator,X1_29_5,PUPA,3

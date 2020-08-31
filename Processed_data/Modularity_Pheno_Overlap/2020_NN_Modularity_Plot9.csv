@@ -1,0 +1,113 @@
+node_id,module,species,layer_name,Plot,type
+1,16,C3 BEMA,BEMA,9,plant
+2,11,E6 CETE,CETE,9,plant
+3,2,A1 CHFU,CHFU,9,plant
+4,2,A2 CHFU,CHFU,9,plant
+5,2,A5 CHFU,CHFU,9,plant
+6,2,A6 CHFU,CHFU,9,plant
+7,2,B1 CHFU,CHFU,9,plant
+8,5,B2 CHFU,CHFU,9,plant
+9,2,B3 CHFU,CHFU,9,plant
+10,2,B4 CHFU,CHFU,9,plant
+11,2,B6 CHFU,CHFU,9,plant
+12,2,C1 CHFU,CHFU,9,plant
+13,2,C2 CHFU,CHFU,9,plant
+14,2,C3 CHFU,CHFU,9,plant
+15,2,C4 CHFU,CHFU,9,plant
+16,2,C5 CHFU,CHFU,9,plant
+17,10,D1 CHFU,CHFU,9,plant
+18,1,D2 CHFU,CHFU,9,plant
+19,5,D3 CHFU,CHFU,9,plant
+20,4,D4 CHFU,CHFU,9,plant
+21,5,D5 CHFU,CHFU,9,plant
+22,2,D6 CHFU,CHFU,9,plant
+23,2,E1 CHFU,CHFU,9,plant
+24,6,E2 CHFU,CHFU,9,plant
+25,4,E3 CHFU,CHFU,9,plant
+26,2,E4 CHFU,CHFU,9,plant
+27,4,E5 CHFU,CHFU,9,plant
+28,2,E6 CHFU,CHFU,9,plant
+29,6,F1 CHFU,CHFU,9,plant
+30,10,F2 CHFU,CHFU,9,plant
+31,10,F3 CHFU,CHFU,9,plant
+32,6,F4 CHFU,CHFU,9,plant
+33,5,F5 CHFU,CHFU,9,plant
+34,9,F6 CHFU,CHFU,9,plant
+35,12,B4 CHMI,CHMI,9,plant
+36,1,A1 LEMA,LEMA,9,plant
+37,3,A2 LEMA,LEMA,9,plant
+38,1,A3 LEMA,LEMA,9,plant
+39,1,A4 LEMA,LEMA,9,plant
+40,1,A5 LEMA,LEMA,9,plant
+41,3,B1 LEMA,LEMA,9,plant
+42,1,B2 LEMA,LEMA,9,plant
+43,8,B3 LEMA,LEMA,9,plant
+44,1,B4 LEMA,LEMA,9,plant
+45,4,B5 LEMA,LEMA,9,plant
+46,1,C1 LEMA,LEMA,9,plant
+47,1,C2 LEMA,LEMA,9,plant
+48,1,C3 LEMA,LEMA,9,plant
+49,1,C4 LEMA,LEMA,9,plant
+50,1,C5 LEMA,LEMA,9,plant
+51,2,C6 LEMA,LEMA,9,plant
+52,8,D1 LEMA,LEMA,9,plant
+53,1,D2 LEMA,LEMA,9,plant
+54,1,D3 LEMA,LEMA,9,plant
+55,1,D4 LEMA,LEMA,9,plant
+56,7,D5 LEMA,LEMA,9,plant
+57,1,D6 LEMA,LEMA,9,plant
+58,2,E1 LEMA,LEMA,9,plant
+59,9,E2 LEMA,LEMA,9,plant
+60,1,E3 LEMA,LEMA,9,plant
+61,2,E4 LEMA,LEMA,9,plant
+62,1,E5 LEMA,LEMA,9,plant
+63,1,E6 LEMA,LEMA,9,plant
+64,8,F1 LEMA,LEMA,9,plant
+65,1,F6 LEMA,LEMA,9,plant
+66,13,B6 PUPA,PUPA,9,plant
+67,7,D5 PUPA,PUPA,9,plant
+68,7,D6 PUPA,PUPA,9,plant
+69,7,E1 PUPA,PUPA,9,plant
+70,14,E4 PUPA,PUPA,9,plant
+71,1,C3 SCLA,SCLA,9,plant
+72,15,E2 SCLA,SCLA,9,plant
+73,2,C6 SOAS,SOAS,9,plant
+74,3,D1 SOAS,SOAS,9,plant
+75,16,Bombyliidae,BEMA,9,pollinator
+76,11,Eristalis_sp.,CETE,9,pollinator
+77,2,Eucera_sp.,CHFU,9,pollinator
+78,2,Psilothrix_viridicoerulea,CHFU,9,pollinator
+79,3,Mordellidae,CHFU,9,pollinator
+80,5,Ulidiidae,CHFU,9,pollinator
+81,2,Andrena_2_10_3,CHFU,9,pollinator
+82,10,Andrena.picture.26_3,CHFU,9,pollinator
+83,4,Andrena_sp.,CHFU,9,pollinator
+84,1,Brassicogethes_sp.,CHFU,9,pollinator
+85,6,Syrphidae,CHFU,9,pollinator
+86,5,Andrena_7N,CHFU,9,pollinator
+87,5,Bee_9_20_2,CHFU,9,pollinator
+88,6,Musca_sp.,CHFU,9,pollinator
+89,6,Black_small_fly,CHFU,9,pollinator
+90,9,Cylindromyia_sp.,CHFU,9,pollinator
+91,9,Eristalis_sp.,CHFU,9,pollinator
+92,12,black_Psilothrix,CHMI,9,pollinator
+93,1,Brassicogethes_sp.,LEMA,9,pollinator
+94,3,Mordellidae,LEMA,9,pollinator
+95,2,Psilothrix_viridicoerulea,LEMA,9,pollinator
+96,16,Bombyliidae,LEMA,9,pollinator
+97,3,Cryptocephalus_sp.,LEMA,9,pollinator
+98,8,Sphaerophoria_scripta,LEMA,9,pollinator
+99,8,Oedemeridae,LEMA,9,pollinator
+100,4,Andrena_sp.,LEMA,9,pollinator
+101,1,Lagorina_sericea,LEMA,9,pollinator
+102,1,Euchloe_crameri,LEMA,9,pollinator
+103,7,Small.bee.1_8_6,LEMA,9,pollinator
+104,9,Cylindromyia_sp.,LEMA,9,pollinator
+105,1,Lasioglossum_sp.,LEMA,9,pollinator
+106,13,Calliphoridae,PUPA,9,pollinator
+107,7,Small.bee.1_8_6,PUPA,9,pollinator
+108,14,Lasiocampa_trifolii,PUPA,9,pollinator
+109,1,Brassicogethes_sp.,SCLA,9,pollinator
+110,15,Diptera,SCLA,9,pollinator
+111,2,Psilothrix_viridicoerulea,SOAS,9,pollinator
+112,3,Mordellidae,SOAS,9,pollinator

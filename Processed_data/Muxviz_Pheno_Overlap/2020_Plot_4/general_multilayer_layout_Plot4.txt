@@ -1,0 +1,38 @@
+nodeID nodeLabel
+1 "A1 LEMA"
+2 "A2 LEMA"
+3 "A4 LEMA"
+4 "A4 PUPA"
+5 "A6 LEMA"
+6 "B1 LEMA"
+7 "B2 LEMA"
+8 "B3 LEMA"
+9 "B5 LEMA"
+10 "C1 LEMA"
+11 "C2 LEMA"
+12 "C3 LEMA"
+13 "C4 LEMA"
+14 "C5 LEMA"
+15 "D1 LEMA"
+16 "D2 LEMA"
+17 "D3 LEMA"
+18 "D6 LEMA"
+19 "E1 LEMA"
+20 "E2 LEMA"
+21 "E3 LEMA"
+22 "E5 LEMA"
+23 "F1 LEMA"
+24 "F2 LEMA"
+25 "F3 LEMA"
+26 "F4 LEMA"
+27 bee_1_1_6
+28 Big_bee_2_8_7
+29 Black.small.melyridae
+30 Brassicogethes_sp.
+31 Cryptocephalus_sp.
+32 Elateridae
+33 Lasioglossum_sp.
+34 Oedemeridae
+35 Psilothrix_viridicoerulea
+36 Small.bee.1_8_6
+37 Ulidiidae

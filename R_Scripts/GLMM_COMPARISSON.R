@@ -108,6 +108,12 @@ summary(scale(fitness_LEMA$Ratio))
 summary(scale(fitness_LEMA$pecentage_same_plants))
 
 summary(scale(fitness_PUPA$homo_motif))
+fitness_PUPA %>% filter(Plot=="7") %>% dplyr::select(homo_motif) %>% pull() %>%summary()
+fitness_PUPA %>% filter(Plot=="8") %>% dplyr::select(homo_motif) %>% pull() %>%summary()
+
+hist(fitness_PUPA %>% filter(Plot=="7") %>% dplyr::select(homo_motif) %>% pull() %>% scale())
+hist(fitness_PUPA %>% filter(Plot=="8") %>% dplyr::select(homo_motif) %>% pull()%>% scale(),18)
+
 summary(scale(fitness_PUPA$hete_motif)) # fail
 summary(scale(fitness_PUPA$DegreeIn))
 summary(scale(fitness_PUPA$Real_PR_Layer))

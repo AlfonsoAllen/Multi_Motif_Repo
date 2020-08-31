@@ -1,0 +1,132 @@
+node_id,module,species,layer_name,Plot,type
+1,5,A2 CHFU,CHFU,8,plant
+2,13,A3 CHFU,CHFU,8,plant
+3,2,A4 CHFU,CHFU,8,plant
+4,2,A5 CHFU,CHFU,8,plant
+5,13,A6 CHFU,CHFU,8,plant
+6,2,B1 CHFU,CHFU,8,plant
+7,5,B2 CHFU,CHFU,8,plant
+8,13,B3 CHFU,CHFU,8,plant
+9,2,B4 CHFU,CHFU,8,plant
+10,7,B5 CHFU,CHFU,8,plant
+11,7,B6 CHFU,CHFU,8,plant
+12,11,C2 CHFU,CHFU,8,plant
+13,6,C3 CHFU,CHFU,8,plant
+14,2,C4 CHFU,CHFU,8,plant
+15,5,C6 CHFU,CHFU,8,plant
+16,16,D1 CHFU,CHFU,8,plant
+17,11,D2 CHFU,CHFU,8,plant
+18,7,D3 CHFU,CHFU,8,plant
+19,7,D5 CHFU,CHFU,8,plant
+20,7,D6 CHFU,CHFU,8,plant
+21,5,E1 CHFU,CHFU,8,plant
+22,4,E2 CHFU,CHFU,8,plant
+23,2,E3 CHFU,CHFU,8,plant
+24,2,E4 CHFU,CHFU,8,plant
+25,8,E5 CHFU,CHFU,8,plant
+26,7,F3 CHFU,CHFU,8,plant
+27,2,F4 CHFU,CHFU,8,plant
+28,2,F6 CHFU,CHFU,8,plant
+29,10,A1 LEMA,LEMA,8,plant
+30,4,A2 LEMA,LEMA,8,plant
+31,8,A3 LEMA,LEMA,8,plant
+32,6,A4 LEMA,LEMA,8,plant
+33,4,A5 LEMA,LEMA,8,plant
+34,10,B2 LEMA,LEMA,8,plant
+35,3,B3 LEMA,LEMA,8,plant
+36,2,B4 LEMA,LEMA,8,plant
+37,3,B5 LEMA,LEMA,8,plant
+38,3,B6 LEMA,LEMA,8,plant
+39,10,C1 LEMA,LEMA,8,plant
+40,3,C2 LEMA,LEMA,8,plant
+41,3,C3 LEMA,LEMA,8,plant
+42,3,C4 LEMA,LEMA,8,plant
+43,2,D1 LEMA,LEMA,8,plant
+44,9,D2 LEMA,LEMA,8,plant
+45,3,D3 LEMA,LEMA,8,plant
+46,4,D4 LEMA,LEMA,8,plant
+47,9,D5 LEMA,LEMA,8,plant
+48,3,D6 LEMA,LEMA,8,plant
+49,3,E1 LEMA,LEMA,8,plant
+50,5,E2 LEMA,LEMA,8,plant
+51,3,E3 LEMA,LEMA,8,plant
+52,6,E4 LEMA,LEMA,8,plant
+53,3,E5 LEMA,LEMA,8,plant
+54,9,E6 LEMA,LEMA,8,plant
+55,10,F1 LEMA,LEMA,8,plant
+56,4,F2 LEMA,LEMA,8,plant
+57,2,F3 LEMA,LEMA,8,plant
+58,3,F4 LEMA,LEMA,8,plant
+59,17,F6 LEMA,LEMA,8,plant
+60,4,B5 ME,ME,8,plant
+61,8,C5 ME,ME,8,plant
+62,12,E2 ME,ME,8,plant
+63,6,E6 ME,ME,8,plant
+64,12,F5 ME,ME,8,plant
+65,14,A2 PUPA,PUPA,8,plant
+66,1,B2 PUPA,PUPA,8,plant
+67,1,B3 PUPA,PUPA,8,plant
+68,1,B4 PUPA,PUPA,8,plant
+69,1,B5 PUPA,PUPA,8,plant
+70,1,B6 PUPA,PUPA,8,plant
+71,1,C2 PUPA,PUPA,8,plant
+72,1,C3 PUPA,PUPA,8,plant
+73,1,C4 PUPA,PUPA,8,plant
+74,1,C5 PUPA,PUPA,8,plant
+75,1,C6 PUPA,PUPA,8,plant
+76,1,D2 PUPA,PUPA,8,plant
+77,1,D3 PUPA,PUPA,8,plant
+78,1,D4 PUPA,PUPA,8,plant
+79,1,D5 PUPA,PUPA,8,plant
+80,1,D6 PUPA,PUPA,8,plant
+81,14,E1 PUPA,PUPA,8,plant
+82,1,E2 PUPA,PUPA,8,plant
+83,1,E3 PUPA,PUPA,8,plant
+84,15,E5 PUPA,PUPA,8,plant
+85,1,E6 PUPA,PUPA,8,plant
+86,1,F1 PUPA,PUPA,8,plant
+87,1,F2 PUPA,PUPA,8,plant
+88,1,F3 PUPA,PUPA,8,plant
+89,1,F4 PUPA,PUPA,8,plant
+90,1,F5 PUPA,PUPA,8,plant
+91,5,Diptera,CHFU,8,pollinator
+92,13,Scaeva_sp.,CHFU,8,pollinator
+93,2,Dilophus_sp.,CHFU,8,pollinator
+94,7,Eupeodes_corollae,CHFU,8,pollinator
+95,7,Empididae,CHFU,8,pollinator
+96,11,Lomatia_sp.,CHFU,8,pollinator
+97,6,Andrena_cinerea,CHFU,8,pollinator
+98,6,Odontomyia_sp.,CHFU,8,pollinator
+99,16,Episyrphus_balteatus,CHFU,8,pollinator
+100,11,Bruchidae,CHFU,8,pollinator
+101,7,Calliphoridae,CHFU,8,pollinator
+102,4,Sphaerophoria_scripta,CHFU,8,pollinator
+103,8,Musca_sp.,CHFU,8,pollinator
+104,10,Meligethes_sp.,LEMA,8,pollinator
+105,3,Psilothrix_viridicoerulea,LEMA,8,pollinator
+106,4,Sphaerophoria_scripta,LEMA,8,pollinator
+107,2,Dilophus_sp.,LEMA,8,pollinator
+108,8,Musca_sp.,LEMA,8,pollinator
+109,6,Andrena_cinerea,LEMA,8,pollinator
+110,9,Oedemeridae,LEMA,8,pollinator
+111,3,Malachius_bipustulatus,LEMA,8,pollinator
+112,3,Mordellidae,LEMA,8,pollinator
+113,9,Odontomyia_sp.,LEMA,8,pollinator
+114,5,Diptera,LEMA,8,pollinator
+115,17,Nemotelus_sp.,LEMA,8,pollinator
+116,2,Dilophus_sp.,ME,8,pollinator
+117,4,Sphaerophoria_scripta,ME,8,pollinator
+118,8,Musca_sp.,ME,8,pollinator
+119,6,Andrena_cinerea,ME,8,pollinator
+120,12,Cantharidae,ME,8,pollinator
+121,14,Eristalis_sp.,PUPA,8,pollinator
+122,1,Eucera_sp.,PUPA,8,pollinator
+123,1,Lasiocampa_trifolii,PUPA,8,pollinator
+124,1,Thymelicus_sp.,PUPA,8,pollinator
+125,1,Bombyliidae,PUPA,8,pollinator
+126,1,Musca_sp.,PUPA,8,pollinator
+127,1,Psilothrix_viridicoerulea,PUPA,8,pollinator
+128,1,Meligethes_sp.,PUPA,8,pollinator
+129,15,Andrena_cinerea,PUPA,8,pollinator
+130,1,Cantharidae,PUPA,8,pollinator
+131,1,Dilophus_sp.,PUPA,8,pollinator

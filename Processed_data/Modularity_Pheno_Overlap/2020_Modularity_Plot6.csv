@@ -1,0 +1,22 @@
+node_id,module,layer_id,type,species,layer_name,Plot
+1,1,1,plant,A3 LEMA,LEMA,6
+2,1,1,plant,A5 LEMA,LEMA,6
+3,1,1,plant,B6 LEMA,LEMA,6
+4,1,1,plant,C2 LEMA,LEMA,6
+5,1,1,plant,C3 LEMA,LEMA,6
+6,2,1,plant,C6 LEMA,LEMA,6
+7,2,2,plant,C6 PUPA,PUPA,6
+8,1,1,plant,D6 LEMA,LEMA,6
+9,2,2,plant,E5 PUPA,PUPA,6
+10,1,1,plant,E6 LEMA,LEMA,6
+11,2,2,plant,F3 PUPA,PUPA,6
+12,1,1,plant,F4 LEMA,LEMA,6
+13,1,1,plant,F5 LEMA,LEMA,6
+14,1,1,plant,F6 LEMA,LEMA,6
+15,1,1,pollinator,Brassicogethes_sp.,LEMA,6
+16,2,1,pollinator,Malachius_bipustulatus,LEMA,6
+17,1,1,pollinator,Musca_sp.,LEMA,6
+18,1,1,pollinator,Oedemeridae,LEMA,6
+19,1,1,pollinator,Psilothrix_viridicoerulea,LEMA,6
+20,2,1,pollinator,Small.bee.1_8_6,LEMA,6
+20,2,2,pollinator,Small.bee.1_8_6,PUPA,6

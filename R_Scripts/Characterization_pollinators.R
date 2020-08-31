@@ -148,6 +148,27 @@ ggplot(fitness_orig %>% filter(G_F!="None"), aes(fill=G_F, y=visits_GF, x=Plant_
   labs(x ="Plant species", y = "Percentage",fill=NULL)
   
 
+###########################
+# NUMBER OF PLANTS PER PLOT
+
+plants_PLOT <- fitness_orig  %>% filter(visits_GF>0) %>% select(Plot,Subplot,Plant_Simple) %>% unique() %>%
+  group_by(Plot,Plant_Simple) %>% count()
+
+
+
+ggplot(plants_PLOT, aes(fill=Plant_Simple, y=n, x=Plot)) + 
+  geom_bar(position="stack", stat="identity")+ theme_bw()+
+  scale_fill_brewer(palette = 'Paired')+ 
+  labs(x ="Plot", y = "Number of visited focal individuals",fill=NULL)+ theme(legend.position="bottom")
+
+
+
+
+
+
+
+
+######################
 ggplot(fitness_orig %>% filter(G_F!="None"),aes(x=(G_F),y=scale(Seeds_GF),fill=G_F))+
   geom_boxplot()+theme(axis.text.x = element_blank(),axis.ticks = element_blank())+
   facet_wrap(vars(Plant_Simple),nrow = 3,ncol = 3)+

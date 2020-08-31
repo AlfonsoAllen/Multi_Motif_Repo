@@ -15,7 +15,7 @@ fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_I
 fitness2 <- fitness_data2 %>% filter(Year==2019)
   
 # Calculating week number
-fitness2 <- fitness2 %>% select(Day,Month,Year,Plot,Subplot,Plant_Simple,ID_Simple,Visits) %>%
+fitness2 <- fitness2 %>% dplyr::select(Day,Month,Year,Plot,Subplot,Plant_Simple,ID_Simple,Visits) %>%
   mutate(date_raw=as.Date(paste(Day,Month,Year,sep="/"), "%d/%m/%Y"),
          Week=as.numeric(format(date_raw, "%V")))
 
@@ -241,8 +241,8 @@ visit_list_REAL <- read_csv("Processed_data/Motifs_WEEK/Caracoles_WEEK_SPECIES.c
 pooled_data_REAL <- visit_list_REAL %>% group_by(Plot,Subplot_Plant_Label) %>% 
   summarise(homo_motif_real=sum(homo_motif),hete_motif_real=sum(hete_motif))
 
-homo_table <- pooled_data_REAL %>% select(-hete_motif_real)
-hete_table <- pooled_data_REAL %>% select(-homo_motif_real)
+homo_table <- pooled_data_REAL %>% dplyr::select(-hete_motif_real)
+hete_table <- pooled_data_REAL %>% dplyr::select(-homo_motif_real)
 
 
 for (rep in 1:number_repetitions){
@@ -268,7 +268,7 @@ for (rep in 1:number_repetitions){
     fitness_week_i$Subplot_Plant_Label <- paste(fitness_week_i$Subplot,fitness_week_i$Plant_Simple,sep = " ")
     fitness_week_i <- fitness_week_i
     
-    visit_list_week_REAL <- fitness_week_i %>% ungroup() %>% select(Plot,ID,Subplot_Plant_Label,Visits_tot)
+    visit_list_week_REAL <- fitness_week_i %>% ungroup() %>% dplyr::select(Plot,ID,Subplot_Plant_Label,Visits_tot)
     
     #random visits_week
     
@@ -290,8 +290,8 @@ for (rep in 1:number_repetitions){
   pooled_data_random <- visit_list %>% group_by(Plot,Subplot_Plant_Label) %>% 
     summarise(homo_motif=sum(homo_motif), hete_motif=sum(hete_motif))
   
-  homo_random <- pooled_data_random %>% select(-hete_motif)
-  hete_random <- pooled_data_random %>% select(-homo_motif)
+  homo_random <- pooled_data_random %>% dplyr::select(-hete_motif)
+  hete_random <- pooled_data_random %>% dplyr::select(-homo_motif)
   
   homo_table <- homo_table %>% left_join(homo_random,by=c("Plot","Subplot_Plant_Label"))
   
@@ -376,13 +376,13 @@ for (i in 1:nrow(homo_table)){
 sum(homo_table$significance)/nrow(homo_table) #0.2249443
 
 homo_table <- homo_table %>% mutate(aux_c=Subplot_Plant_Label) %>%
-  separate(aux_c,c("Subplot","Plant_Label")," ") %>% select(-Subplot)
+  separate(aux_c,c("Subplot","Plant_Label")," ") %>% dplyr::select(-Subplot)
 
-homo_table_Plants <- homo_table %>% select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% 
+homo_table_Plants <- homo_table %>% dplyr::select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% 
   count() %>% rename(total_focals=n)
 
 homo_table_SIGNIF_Plants <- homo_table %>% filter(significance==TRUE) %>% 
-  select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% count() %>%
+  dplyr::select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% count() %>%
   rename(significant_focals=n)
 
 homo_significance_Plants <- homo_table_Plants %>% left_join(homo_table_SIGNIF_Plants,by=c("Plot","Plant_Label"))
@@ -405,13 +405,13 @@ homo_significance_Figure$significance[homo_significance_Figure$significance=="si
 sum(hete_table$significance)/nrow(hete_table) #0.8262806
 
 hete_table <- hete_table %>% mutate(aux_c=Subplot_Plant_Label) %>%
-  separate(aux_c,c("Subplot","Plant_Label")," ") %>% select(-Subplot)
+  separate(aux_c,c("Subplot","Plant_Label")," ") %>% dplyr::select(-Subplot)
 
-hete_table_Plants <- hete_table %>% select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% 
+hete_table_Plants <- hete_table %>% dplyr::select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% 
   count() %>% rename(total_focals=n)
 
 hete_table_SIGNIF_Plants <- hete_table %>% filter(significance==TRUE) %>% 
-  select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% count() %>%
+  dplyr::select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% count() %>%
   rename(significant_focals=n)
 
 hete_significance_Plants <- hete_table_Plants %>% left_join(hete_table_SIGNIF_Plants,by=c("Plot","Plant_Label"))
@@ -433,13 +433,13 @@ hete_significance_Figure$significance[hete_significance_Figure$significance=="si
 sum(sum_table$significance)/nrow(sum_table) #0.1804009
 
 sum_table <- sum_table %>% mutate(aux_c=Subplot_Plant_Label) %>%
-  separate(aux_c,c("Subplot","Plant_Label")," ") %>% select(-Subplot)
+  separate(aux_c,c("Subplot","Plant_Label")," ") %>% dplyr::select(-Subplot)
 
-sum_table_Plants <- sum_table %>% select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% 
+sum_table_Plants <- sum_table %>% dplyr::select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% 
   count() %>% rename(total_focals=n)
 
 sum_table_SIGNIF_Plants <- sum_table %>% filter(significance==TRUE) %>% 
-  select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% count() %>%
+  dplyr::select(Plot,Plant_Label) %>%  group_by(Plot,Plant_Label) %>% count() %>%
   rename(significant_focals=n)
 
 sum_significance_Plants <- sum_table_Plants %>% left_join(sum_table_SIGNIF_Plants,by=c("Plot","Plant_Label"))
@@ -485,6 +485,8 @@ names(plot_labs) <- c(
 )
 
 # Homo----
+
+
 
 ggplot(homo_significance_Figure, aes(fill=significance, y=amount_plants, x=Plant_Label)) + 
   geom_bar(position="stack", stat="identity")+
@@ -548,7 +550,39 @@ ggplot(sum_significance_Figure, aes(fill=significance, y=amount_plants, x=Plant_
 # SIGNIFICANT HETEMOTIFS: ARE LARGER OR SMALLER THAN THE OBSERVED VALUES?
 #################################
 
+homo_table$Comparison <- NA
+
+which(homo_table$Plot==2 & homo_table$Subplot_Plant_Label=="F3 LEMA")
+
+for (i in 1:nrow(homo_table)){
+  
+  # confidence interval
+  
+  CI <- quantile(as.numeric(homo_table[i,4:(ncol(homo_table)-3)]), probs = c(0.025, 0.975))
+  
+  if(as.numeric(homo_table[i,1]) < CI[[1]]){
+    homo_table$Comparison[i] <- "Significantly smaller"
+  }else if(as.numeric(homo_table[i,1]) > CI[[2]]){
+    homo_table$Comparison[i] <- "Significantly larger"
+  }else{
+    homo_table$Comparison[i] <- "Non-significant"
+  }
+}
+
+homo_table %>% group_by(Comparison,Plant_Label) %>% count()
+
+homo_table$cant_focal <- 1
+
+ggplot(homo_table, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
+  geom_bar(position="stack", stat="identity")+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  theme_bw()+labs(title="Homo-motifs",
+                  x ="Plant Species", y = "Number of focal individuals",fill=NULL)+
+  theme(legend.position = "bottom")
+
+#Hete----
 hete_table$Comparison <- NA
+
 
 for (i in 1:nrow(hete_table)){
   
@@ -556,15 +590,194 @@ for (i in 1:nrow(hete_table)){
   
   CI <- quantile(as.numeric(hete_table[i,4:(ncol(hete_table)-3)]), probs = c(0.025, 0.975))
   
-  if(hete_table$significance[i] != TRUE){
-    hete_table$Comparison[i] <- NA
-  }else if(as.numeric(hete_table[i,1]) < CI[[1]]){
-    hete_table$Comparison[i] <- "Smaller"
+  if(as.numeric(hete_table[i,1]) < CI[[1]]){
+    hete_table$Comparison[i] <- "Significantly smaller"
   }else if(as.numeric(hete_table[i,1]) > CI[[2]]){
-    hete_table$Comparison[i] <- "Larger"
+    hete_table$Comparison[i] <- "Significantly larger"
+  }else{
+    hete_table$Comparison[i] <- "Non-significant"
   }
- 
-  
 }
 
-hete_table %>% group_by(Comparison) %>% count()
+hete_table %>% group_by(Comparison,Plant_Label) %>% count()
+
+hete_table$cant_focal <- 1
+
+ggplot(hete_table, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
+  geom_bar(position="stack", stat="identity")+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  theme_bw()+labs(title="Hete-motifs",
+                  x ="Plant Species", y = "Number of focal individuals",fill=NULL)+
+  theme(legend.position = "bottom")
+
+
+
+############
+homo_data <- homo_table %>% dplyr::select(Plot,Subplot_Plant_Label,homo_motif_real) %>% 
+  separate(Subplot_Plant_Label,c("Sub","Plant_Simple")," ")%>% rename(motif=homo_motif_real) %>%
+  mutate(type="Homosp. triplet")
+
+hete_data <- hete_table %>% dplyr::select(Plot,Subplot_Plant_Label,hete_motif_real) %>% 
+  separate(Subplot_Plant_Label,c("Sub","Plant_Simple")," ") %>% rename(motif=hete_motif_real) %>%
+  mutate(type="Heterosp. triplet")
+
+data_total <- bind_rows(homo_data,hete_data)
+
+means <- aggregate((motif) ~  Plant_Simple + Plot,
+                   homo_data, mean)
+
+ggplot(homo_data,aes(x=Plant_Simple,y=motif))+
+  geom_boxplot()+
+  geom_point(aes(color=Plant_Simple), position = "jitter", alpha=0.2)+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  geom_text(data = means, aes(label = round(`(motif)`,2), y = 38))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("# Homo-motifs")+
+  theme_bw()+ theme(legend.position = "none")#+stat_compare_means()
+#labs(Color
+
+##########
+# Test significance
+
+# Test significance
+
+# Plot1
+i=1
+homo_data_i <- homo_data %>% filter(Plot==i)#Significant
+kruskal.test(motif ~ Plant_Simple, data = homo_data_i)
+pairwise.wilcox.test(homo_data_i$motif, homo_data_i$Plant_Simple,
+                     p.adjust.method = "BH")#No sig: ME-CHFU
+
+# Plot2
+i=2
+homo_data_i <- homo_data %>% filter(Plot==i) #Significant
+kruskal.test(motif ~ Plant_Simple, data = homo_data_i)
+pairwise.wilcox.test(homo_data_i$motif, homo_data_i$Plant_Simple,
+                     p.adjust.method = "BH") 
+# Plot3
+i=3
+homo_data_i <- homo_data %>% filter(Plot==i)
+kruskal.test(motif ~ Plant_Simple, data = homo_data_i)
+pairwise.wilcox.test(homo_data_i$motif, homo_data_i$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot4
+i=4
+homo_data_i <- homo_data %>% filter(Plot==i) #No significant
+kruskal.test(motif ~ Plant_Simple, data = homo_data_i)
+pairwise.wilcox.test(homo_data_i$motif, homo_data_i$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot5
+i=5
+homo_data_i <- homo_data %>% filter(Plot==i) #Significant
+kruskal.test(motif ~ Plant_Simple, data = homo_data_i)
+pairwise.wilcox.test(homo_data_i$motif, homo_data_i$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot6
+i=6
+homo_data_i <- homo_data %>% filter(Plot==i) 
+kruskal.test(motif ~ Plant_Simple, data = homo_data_i) #significant
+pairwise.wilcox.test(homo_data_i$motif, homo_data_i$Plant_Simple,
+                     p.adjust.method = "BH") #N0: ME-CHFU,ME-LEMA
+# Plot7
+i=7
+homo_data_i <- homo_data %>% filter(Plot==i)
+kruskal.test(motif ~ Plant_Simple, data = homo_data_i) #Significant
+pairwise.wilcox.test(homo_data_i$motif, homo_data_i$Plant_Simple,
+                     p.adjust.method = "BH") #ME-CHMI,PUPA-LEMA
+
+# Plot8
+i=8
+homo_data_i <- homo_data %>% filter(Plot==i)
+kruskal.test(motif ~ Plant_Simple, data = homo_data_i) #significant
+pairwise.wilcox.test(homo_data_i$motif, homo_data_i$Plant_Simple,
+                     p.adjust.method = "BH") #LEMA-CHFU
+
+# Plot9
+i=9
+homo_data_i <- homo_data %>% filter(Plot==i)
+kruskal.test(motif ~ Plant_Simple, data = homo_data_i) #significant
+pairwise.wilcox.test(homo_data_i$motif, homo_data_i$Plant_Simple,
+                     p.adjust.method = "BH") #CHFU-ME
+
+#########
+#HETEROMOTIFS
+
+means_hete <- aggregate((motif) ~  Plant_Simple + Plot,
+                   hete_data, mean)
+
+ggplot(hete_data,aes(x=Plant_Simple,y=motif))+
+  geom_boxplot()+
+  geom_point(aes(color=Plant_Simple), position = "jitter", alpha=0.2)+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  geom_text(data = means_hete, aes(label = round(`(motif)`,2), y = 10))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("# Hete-motifs")+
+  theme_bw()+ theme(legend.position = "none")#+stat_compare_means()
+#labs(Color
+
+##########
+# Test significance
+
+# Test significance
+
+# Plot1
+i=1
+hete_data_i <- hete_data %>% filter(Plot==i)#Significant
+kruskal.test(motif ~ Plant_Simple, data = hete_data_i)
+pairwise.wilcox.test(hete_data_i$motif, hete_data_i$Plant_Simple,
+                     p.adjust.method = "BH")#No sig: LEMA-CHFU, ME-CHFU
+
+# Plot2
+i=2
+hete_data_i <- hete_data %>% filter(Plot==i) # No Significant
+kruskal.test(motif ~ Plant_Simple, data = hete_data_i)
+pairwise.wilcox.test(hete_data_i$motif, hete_data_i$Plant_Simple,
+                     p.adjust.method = "BH") 
+# Plot3
+i=3
+hete_data_i <- hete_data %>% filter(Plot==i)
+kruskal.test(motif ~ Plant_Simple, data = hete_data_i)
+pairwise.wilcox.test(hete_data_i$motif, hete_data_i$Plant_Simple,
+                     p.adjust.method = "BH") #LEMA-CHFU
+# Plot4
+i=4
+hete_data_i <- hete_data %>% filter(Plot==i) #No significant
+kruskal.test(motif ~ Plant_Simple, data = hete_data_i)
+pairwise.wilcox.test(hete_data_i$motif, hete_data_i$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot5
+i=5
+hete_data_i <- hete_data %>% filter(Plot==i) # NO Significant
+kruskal.test(motif ~ Plant_Simple, data = hete_data_i)
+pairwise.wilcox.test(hete_data_i$motif, hete_data_i$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot6
+i=6
+hete_data_i <- hete_data %>% filter(Plot==i) 
+kruskal.test(motif ~ Plant_Simple, data = hete_data_i) # NO significant
+pairwise.wilcox.test(hete_data_i$motif, hete_data_i$Plant_Simple,
+                     p.adjust.method = "BH") 
+# Plot7
+i=7
+hete_data_i <- hete_data %>% filter(Plot==i)
+kruskal.test(motif ~ Plant_Simple, data = hete_data_i) #Significant
+pairwise.wilcox.test(hete_data_i$motif, hete_data_i$Plant_Simple,
+                     p.adjust.method = "BH") #Solo ME y PUPA LEMA son signif
+
+# Plot8
+i=8
+hete_data_i <- hete_data %>% filter(Plot==i)
+kruskal.test(motif ~ Plant_Simple, data = hete_data_i) #significant
+pairwise.wilcox.test(hete_data_i$motif, hete_data_i$Plant_Simple,
+                     p.adjust.method = "BH") #Solo pupa signific
+
+# Plot9
+i=9
+hete_data_i <- hete_data %>% filter(Plot==i)
+kruskal.test(motif ~ Plant_Simple, data = hete_data_i) #NO significant
+pairwise.wilcox.test(hete_data_i$motif, hete_data_i$Plant_Simple,
+                     p.adjust.method = "BH")

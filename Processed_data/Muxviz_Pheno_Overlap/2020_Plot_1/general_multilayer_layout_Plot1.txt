@@ -1,0 +1,73 @@
+nodeID nodeLabel
+1 "A1 LEMA"
+2 "A2 CETE"
+3 "A2 LEMA"
+4 "A3 CETE"
+5 "A3 LEMA"
+6 "A4 LEMA"
+7 "A5 LEMA"
+8 "A6 LEMA"
+9 "B1 CHFU"
+10 "B1 LEMA"
+11 "B2 LEMA"
+12 "B3 LEMA"
+13 "B4 CHFU"
+14 "B4 LEMA"
+15 "B5 LEMA"
+16 "B6 LEMA"
+17 "C1 CHFU"
+18 "C1 LEMA"
+19 "C2 LEMA"
+20 "C2 PUPA"
+21 "C3 LEMA"
+22 "C4 LEMA"
+23 "C5 LEMA"
+24 "C6 LEMA"
+25 "D1 CHFU"
+26 "D1 LEMA"
+27 "D2 LEMA"
+28 "D3 LEMA"
+29 "D4 LEMA"
+30 "D5 LEMA"
+31 "D6 LEMA"
+32 "D6 PUPA"
+33 "E1 LEMA"
+34 "E2 LEMA"
+35 "E3 CHFU"
+36 "E3 LEMA"
+37 "E4 LEMA"
+38 "E5 LEMA"
+39 "E6 LEMA"
+40 "F1 LEMA"
+41 "F2 CHFU"
+42 "F2 LEMA"
+43 "F3 CHFU"
+44 "F3 LEMA"
+45 "F4 CETE"
+46 "F4 LEMA"
+47 "F5 CHFU"
+48 "F5 LEMA"
+49 "F6 LEMA"
+50 "F6 PUPA"
+51 Andrena_sp.
+52 Beetle.black.with.red.end
+53 Black_small_fly_LEMA
+54 Bombilus_major
+55 Bombyliidae
+56 Brassicogethes_sp.
+57 Cylindromyia_sp.
+58 Elateridae
+59 Episyrphus_balteatus
+60 Eucera_sp.
+61 Geometridae
+62 Malachius_bipustulatus
+63 Mordellidae
+64 Musca_sp.
+65 Oedemeridae
+66 Other_Black_small_fly_jarE
+67 Psilothrix_viridicoerulea
+68 Red_black_fly_6.19.5
+69 Small.bee.1_8_6
+70 Sphaerophoria_scripta
+71 Tabanidae
+72 Ulidiidae

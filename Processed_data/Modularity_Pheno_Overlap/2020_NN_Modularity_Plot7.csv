@@ -1,0 +1,69 @@
+node_id,module,species,layer_name,Plot,type
+1,6,C2 BEMA,BEMA,7,plant
+2,8,E6 BEMA,BEMA,7,plant
+3,7,C4 CETE,CETE,7,plant
+4,5,A4 CHFU,CHFU,7,plant
+5,5,E1 CHFU,CHFU,7,plant
+6,5,E4 CHFU,CHFU,7,plant
+7,5,F2 CHFU,CHFU,7,plant
+8,10,A1 LEMA,LEMA,7,plant
+9,3,A2 LEMA,LEMA,7,plant
+10,3,A3 LEMA,LEMA,7,plant
+11,4,A4 LEMA,LEMA,7,plant
+12,4,A5 LEMA,LEMA,7,plant
+13,14,A6 LEMA,LEMA,7,plant
+14,1,B1 LEMA,LEMA,7,plant
+15,13,B2 LEMA,LEMA,7,plant
+16,1,B3 LEMA,LEMA,7,plant
+17,1,B4 LEMA,LEMA,7,plant
+18,1,B5 LEMA,LEMA,7,plant
+19,1,B6 LEMA,LEMA,7,plant
+20,1,C1 LEMA,LEMA,7,plant
+21,1,C2 LEMA,LEMA,7,plant
+22,3,C3 LEMA,LEMA,7,plant
+23,9,C4 LEMA,LEMA,7,plant
+24,3,C5 LEMA,LEMA,7,plant
+25,3,C6 LEMA,LEMA,7,plant
+26,1,D1 LEMA,LEMA,7,plant
+27,12,D4 LEMA,LEMA,7,plant
+28,1,D5 LEMA,LEMA,7,plant
+29,2,D6 LEMA,LEMA,7,plant
+30,10,E1 LEMA,LEMA,7,plant
+31,4,E2 LEMA,LEMA,7,plant
+32,3,E4 LEMA,LEMA,7,plant
+33,7,E5 LEMA,LEMA,7,plant
+34,3,E6 LEMA,LEMA,7,plant
+35,4,F1 LEMA,LEMA,7,plant
+36,1,F2 LEMA,LEMA,7,plant
+37,3,F3 LEMA,LEMA,7,plant
+38,4,F4 LEMA,LEMA,7,plant
+39,3,F5 LEMA,LEMA,7,plant
+40,6,B2 MESU,MESU,7,plant
+41,2,C1 MESU,MESU,7,plant
+42,2,A2 SPRU,SPRU,7,plant
+43,11,F1 SPRU,SPRU,7,plant
+44,6,Musca_sp.,BEMA,7,pollinator
+45,2,Sphaerophoria_scripta,BEMA,7,pollinator
+46,8,Eristalis_jarK,BEMA,7,pollinator
+47,8,SimilarLomatia_jarK,BEMA,7,pollinator
+48,7,Lasioglossum_sp.,CETE,7,pollinator
+49,5,Black_small_fly,CHFU,7,pollinator
+50,5,Ulidiidae,CHFU,7,pollinator
+51,10,Cylindromyia_sp.,LEMA,7,pollinator
+52,4,Psilothrix_viridicoerulea,LEMA,7,pollinator
+53,3,Brassicogethes_sp.,LEMA,7,pollinator
+54,4,Black_beetle_1_10_03,LEMA,7,pollinator
+55,14,Cryptocephalus_sp.,LEMA,7,pollinator
+56,1,Andrena_2_10_3,LEMA,7,pollinator
+57,13,Malachius_bipustulatus,LEMA,7,pollinator
+58,9,Andrena_sp.,LEMA,7,pollinator
+59,7,Lasioglossum_sp.,LEMA,7,pollinator
+60,2,Sphaerophoria_scripta,LEMA,7,pollinator
+61,12,Lagorina_sericea,LEMA,7,pollinator
+62,1,Beetle_orange_3_10_3,LEMA,7,pollinator
+63,2,Nemotelus_sp.,LEMA,7,pollinator
+64,10,Bombyliidae,LEMA,7,pollinator
+65,6,Musca_sp.,MESU,7,pollinator
+66,2,Sphaerophoria_scripta,MESU,7,pollinator
+67,2,Sphaerophoria_scripta,SPRU,7,pollinator
+68,11,Black_small_fly_SPRU,SPRU,7,pollinator

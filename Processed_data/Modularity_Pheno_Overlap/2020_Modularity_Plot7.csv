@@ -1,0 +1,69 @@
+node_id,module,layer_id,type,species,layer_name,Plot
+1,10,4,plant,A1 LEMA,LEMA,7
+2,3,4,plant,A2 LEMA,LEMA,7
+3,2,6,plant,A2 SPRU,SPRU,7
+4,3,4,plant,A3 LEMA,LEMA,7
+5,5,3,plant,A4 CHFU,CHFU,7
+6,4,4,plant,A4 LEMA,LEMA,7
+7,4,4,plant,A5 LEMA,LEMA,7
+8,14,4,plant,A6 LEMA,LEMA,7
+9,1,4,plant,B1 LEMA,LEMA,7
+10,13,4,plant,B2 LEMA,LEMA,7
+11,6,5,plant,B2 MESU,MESU,7
+12,1,4,plant,B3 LEMA,LEMA,7
+13,1,4,plant,B4 LEMA,LEMA,7
+14,1,4,plant,B5 LEMA,LEMA,7
+15,1,4,plant,B6 LEMA,LEMA,7
+16,1,4,plant,C1 LEMA,LEMA,7
+17,2,5,plant,C1 MESU,MESU,7
+18,6,1,plant,C2 BEMA,BEMA,7
+19,1,4,plant,C2 LEMA,LEMA,7
+20,3,4,plant,C3 LEMA,LEMA,7
+21,7,2,plant,C4 CETE,CETE,7
+22,9,4,plant,C4 LEMA,LEMA,7
+23,3,4,plant,C5 LEMA,LEMA,7
+24,3,4,plant,C6 LEMA,LEMA,7
+25,1,4,plant,D1 LEMA,LEMA,7
+26,12,4,plant,D4 LEMA,LEMA,7
+27,1,4,plant,D5 LEMA,LEMA,7
+28,2,4,plant,D6 LEMA,LEMA,7
+29,5,3,plant,E1 CHFU,CHFU,7
+30,10,4,plant,E1 LEMA,LEMA,7
+31,4,4,plant,E2 LEMA,LEMA,7
+32,5,3,plant,E4 CHFU,CHFU,7
+33,3,4,plant,E4 LEMA,LEMA,7
+34,7,4,plant,E5 LEMA,LEMA,7
+35,8,1,plant,E6 BEMA,BEMA,7
+36,3,4,plant,E6 LEMA,LEMA,7
+37,4,4,plant,F1 LEMA,LEMA,7
+38,11,6,plant,F1 SPRU,SPRU,7
+39,5,3,plant,F2 CHFU,CHFU,7
+40,1,4,plant,F2 LEMA,LEMA,7
+41,3,4,plant,F3 LEMA,LEMA,7
+42,4,4,plant,F4 LEMA,LEMA,7
+43,3,4,plant,F5 LEMA,LEMA,7
+44,1,4,pollinator,Andrena_2_10_3,LEMA,7
+45,9,4,pollinator,Andrena_sp.,LEMA,7
+46,1,4,pollinator,Beetle_orange_3_10_3,LEMA,7
+47,4,4,pollinator,Black_beetle_1_10_03,LEMA,7
+48,5,3,pollinator,Black_small_fly,CHFU,7
+49,11,6,pollinator,Black_small_fly_SPRU,SPRU,7
+50,10,4,pollinator,Bombyliidae,LEMA,7
+51,3,4,pollinator,Brassicogethes_sp.,LEMA,7
+52,14,4,pollinator,Cryptocephalus_sp.,LEMA,7
+53,10,4,pollinator,Cylindromyia_sp.,LEMA,7
+54,8,1,pollinator,Eristalis_jarK,BEMA,7
+55,12,4,pollinator,Lagorina_sericea,LEMA,7
+56,7,2,pollinator,Lasioglossum_sp.,CETE,7
+56,7,4,pollinator,Lasioglossum_sp.,LEMA,7
+57,13,4,pollinator,Malachius_bipustulatus,LEMA,7
+58,6,1,pollinator,Musca_sp.,BEMA,7
+58,6,5,pollinator,Musca_sp.,MESU,7
+59,2,4,pollinator,Nemotelus_sp.,LEMA,7
+60,4,4,pollinator,Psilothrix_viridicoerulea,LEMA,7
+61,8,1,pollinator,SimilarLomatia_jarK,BEMA,7
+62,2,1,pollinator,Sphaerophoria_scripta,BEMA,7
+62,2,4,pollinator,Sphaerophoria_scripta,LEMA,7
+62,2,5,pollinator,Sphaerophoria_scripta,MESU,7
+62,2,6,pollinator,Sphaerophoria_scripta,SPRU,7
+63,5,3,pollinator,Ulidiidae,CHFU,7

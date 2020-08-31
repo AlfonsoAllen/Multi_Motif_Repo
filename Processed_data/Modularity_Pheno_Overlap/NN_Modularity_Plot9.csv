@@ -1,0 +1,77 @@
+node_id,module,species,layer_name,Plot,type
+1,1,A2 CHFU,CHFU,9,plant
+2,1,A3 CHFU,CHFU,9,plant
+3,1,A4 CHFU,CHFU,9,plant
+4,1,A6 CHFU,CHFU,9,plant
+5,8,B1 CHFU,CHFU,9,plant
+6,1,B2 CHFU,CHFU,9,plant
+7,9,B3 CHFU,CHFU,9,plant
+8,5,C1 CHFU,CHFU,9,plant
+9,5,C3 CHFU,CHFU,9,plant
+10,5,C5 CHFU,CHFU,9,plant
+11,16,C6 CHFU,CHFU,9,plant
+12,10,D2 CHFU,CHFU,9,plant
+13,3,D3 CHFU,CHFU,9,plant
+14,1,D4 CHFU,CHFU,9,plant
+15,1,E1 CHFU,CHFU,9,plant
+16,14,E3 CHFU,CHFU,9,plant
+17,8,E4 CHFU,CHFU,9,plant
+18,11,E5 CHFU,CHFU,9,plant
+19,1,F1 CHFU,CHFU,9,plant
+20,1,F4 CHFU,CHFU,9,plant
+21,1,F5 CHFU,CHFU,9,plant
+22,1,F6 CHFU,CHFU,9,plant
+23,6,A3 LEMA,LEMA,9,plant
+24,1,A5 LEMA,LEMA,9,plant
+25,2,B2 LEMA,LEMA,9,plant
+26,2,B4 LEMA,LEMA,9,plant
+27,6,B5 LEMA,LEMA,9,plant
+28,2,B6 LEMA,LEMA,9,plant
+29,1,C3 LEMA,LEMA,9,plant
+30,2,C4 LEMA,LEMA,9,plant
+31,13,C5 LEMA,LEMA,9,plant
+32,2,D2 LEMA,LEMA,9,plant
+33,2,D3 LEMA,LEMA,9,plant
+34,1,D5 LEMA,LEMA,9,plant
+35,2,D6 LEMA,LEMA,9,plant
+36,2,E1 LEMA,LEMA,9,plant
+37,2,E2 LEMA,LEMA,9,plant
+38,3,E3 LEMA,LEMA,9,plant
+39,12,E4 LEMA,LEMA,9,plant
+40,2,E5 LEMA,LEMA,9,plant
+41,15,E6 LEMA,LEMA,9,plant
+42,1,F1 LEMA,LEMA,9,plant
+43,2,F2 LEMA,LEMA,9,plant
+44,2,F5 LEMA,LEMA,9,plant
+45,2,F6 LEMA,LEMA,9,plant
+46,4,D5 ME,ME,9,plant
+47,7,D6 ME,ME,9,plant
+48,4,E3 ME,ME,9,plant
+49,4,E6 ME,ME,9,plant
+50,4,F4 ME,ME,9,plant
+51,1,Dilophus_sp.,CHFU,9,pollinator
+52,3,Sphaerophoria_scripta,CHFU,9,pollinator
+53,8,Diptera,CHFU,9,pollinator
+54,8,Musca_sp.,CHFU,9,pollinator
+55,9,Bruchidae,CHFU,9,pollinator
+56,5,Episyrphus_balteatus,CHFU,9,pollinator
+57,5,Eupeodes_corollae,CHFU,9,pollinator
+58,16,Scaeva_sp.,CHFU,9,pollinator
+59,10,Lomatia_sp.,CHFU,9,pollinator
+60,14,Melyridae,CHFU,9,pollinator
+61,11,Andrena_cinerea,CHFU,9,pollinator
+62,6,Mordellidae,LEMA,9,pollinator
+63,2,Psilothrix_viridicoerulea,LEMA,9,pollinator
+64,1,Dilophus_sp.,LEMA,9,pollinator
+65,3,Sphaerophoria_scripta,LEMA,9,pollinator
+66,6,Malachius_bipustulatus,LEMA,9,pollinator
+67,13,Lagorina_sericea,LEMA,9,pollinator
+68,13,Melanostoma_sp.,LEMA,9,pollinator
+69,2,Meligethes_sp.,LEMA,9,pollinator
+70,5,Eupeodes_corollae,LEMA,9,pollinator
+71,3,Melyridae,LEMA,9,pollinator
+72,12,Eucera_sp.,LEMA,9,pollinator
+73,15,Anthaxia_semicuprea,LEMA,9,pollinator
+74,4,Musca_sp.,ME,9,pollinator
+75,2,Psilothrix_viridicoerulea,ME,9,pollinator
+76,7,Dilophus_sp.,ME,9,pollinator
