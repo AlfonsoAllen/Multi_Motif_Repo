@@ -181,7 +181,7 @@ r2(GF_MIX_LIN_intercept_Plot_Plant_ZI)
 
 
 library(visreg)
-visreg(GF_MIX_LIN_intercept_Plot_Plant)
+
 
 visreg(GF_MIX_LIN_intercept_Plot_Plant, "homo_motif", by="Plant_Simple",gg = TRUE, overlay=F, partial=FALSE, rug=FALSE)+
   theme_bw() +
@@ -288,8 +288,8 @@ ggplot(fitness.data %>% filter(G_F!="None"), aes(fill=type_vist, y=visits_GF, x=
 
 GF_MIX_NB_type_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif)*type_vist + 
                                    scale(hete_motif)*type_vist +
-                                   (0+scale(homo_motif)+scale(hete_motif)|Plot)+
-                                   (0+scale(homo_motif)+scale(hete_motif)|Plant_Simple),
+                                   (1|Plot)+
+                                   (1|Plant_Simple),
                                  #ziformula = ~1,
                                  family = nbinom2(),
                                  data = fitness.data %>%
@@ -298,8 +298,8 @@ GF_MIX_NB_type_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif)*type_vist +
 
 GF_MIX_LIN_type_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
                                  scale(hete_motif)*type_vist +
-                                  (0+scale(homo_motif)+scale(hete_motif)|Plot)+
-                                  (0+scale(homo_motif)+scale(hete_motif)|Plant_Simple),
+                                  (1|Plot)+
+                                  (1|Plant_Simple),
                                #ziformula = ~1,
                                family = gaussian(),
                                data = fitness.data %>%
@@ -432,7 +432,7 @@ vif(as.data.frame(dplyr::select(fitness_LEMA,Real_PR_Multi,homo_motif,hete_motif
 GF_LEMA_NB_intercept_Plot <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                         scale(hete_motif) + 
                                         scale(StrengthIn) + scale(Ratio) +
-                                        (0+scale(homo_motif)|Plot) ,
+                                        (1|Plot) ,
                                       #ziformula = ~1,
                                       family = nbinom1(),
                                       data = fitness_LEMA)
@@ -440,7 +440,7 @@ GF_LEMA_NB_intercept_Plot <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
 GF_PUPA_NB_intercept_Plot <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
                                         scale(hete_motif) + 
                                         scale(StrengthIn) + scale(Ratio) +
-                                        (0+scale(homo_motif)|Plot) ,
+                                        (1|Plot) ,
                                       #ziformula = ~1,
                                       family = nbinom1(),
                                       data = fitness_PUPA)
@@ -448,7 +448,7 @@ GF_PUPA_NB_intercept_Plot <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
 GF_CHFU_NB_intercept_Plot <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                         scale(hete_motif) + 
                                         scale(StrengthIn) + scale(Ratio) +
-                                        (0+scale(homo_motif)|Plot) ,
+                                        (1|Plot) ,
                                       #ziformula = ~1,
                                       family = nbinom1(),
                                       data = fitness_CHFU)
@@ -462,7 +462,7 @@ GF_CHFU_NB_intercept_Plot <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
 GF_LEMA_LIN_intercept_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                        scale(hete_motif) + 
                                        scale(StrengthIn) + scale(Ratio) +
-                                       (0+scale(homo_motif)|Plot) ,
+                                       (1|Plot) ,
                                      #ziformula = ~1,
                                      family = gaussian(),
                                      data = fitness_LEMA)
@@ -470,7 +470,7 @@ GF_LEMA_LIN_intercept_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 GF_PUPA_LIN_intercept_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                        scale(hete_motif) + 
                                        scale(StrengthIn) + scale(Ratio) +
-                                       (0+scale(homo_motif)|Plot) ,
+                                       (1|Plot) ,
                                      #ziformula = ~1,
                                      family = gaussian(),
                                      data = fitness_PUPA)
@@ -478,7 +478,7 @@ GF_PUPA_LIN_intercept_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 GF_CHFU_LIN_intercept_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
                                        scale(hete_motif) + 
                                        scale(StrengthIn) + scale(Ratio) +
-                                       (0+scale(homo_motif)|Plot) ,
+                                       (1|Plot) ,
                                      #ziformula = ~1,
                                      family = gaussian(),
                                      data = fitness_CHFU)
@@ -491,7 +491,7 @@ GF_CHFU_LIN_intercept_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 GF_LEMA_NB_intercept_Plot_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
                                            scale(hete_motif) + 
                                            scale(StrengthIn) + scale(Ratio) +
-                                           (0+scale(homo_motif)|Plot) ,
+                                           (1|Plot) ,
                                          ziformula = ~1,
                                          family = nbinom1(),
                                          data = fitness_LEMA)
@@ -499,7 +499,7 @@ GF_LEMA_NB_intercept_Plot_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
 GF_PUPA_NB_intercept_Plot_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
                                            scale(hete_motif) + 
                                            scale(StrengthIn) + scale(Ratio) +
-                                           (0+scale(homo_motif)|Plot) ,
+                                           (1|Plot) ,
                                          ziformula = ~1,
                                          family = nbinom1(),
                                          data = fitness_PUPA)
@@ -507,7 +507,7 @@ GF_PUPA_NB_intercept_Plot_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
 GF_CHFU_NB_intercept_Plot_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                            scale(hete_motif) + 
                                            scale(StrengthIn) + scale(Ratio) +
-                                           (0+scale(homo_motif)|Plot) ,
+                                           (1|Plot) ,
                                          ziformula = ~1,
                                          family = nbinom1(),
                                          data = fitness_CHFU)
@@ -519,7 +519,7 @@ GF_CHFU_NB_intercept_Plot_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
 GF_LEMA_LIN_intercept_Plot_ZI <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                           scale(hete_motif) + 
                                           scale(StrengthIn) + scale(Ratio) +
-                                          (0+scale(homo_motif)|Plot) ,
+                                          (1|Plot) ,
                                         ziformula = ~1,
                                         family = gaussian(),
                                         data = fitness_LEMA)
@@ -527,7 +527,7 @@ GF_LEMA_LIN_intercept_Plot_ZI <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 GF_PUPA_LIN_intercept_Plot_ZI <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                           scale(hete_motif) + 
                                           scale(StrengthIn) + scale(Ratio) +
-                                          (0+scale(homo_motif)|Plot) ,
+                                          (1|Plot) ,
                                         ziformula = ~1,
                                         family = gaussian(),
                                         data = fitness_PUPA)
@@ -535,7 +535,7 @@ GF_PUPA_LIN_intercept_Plot_ZI <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 GF_CHFU_LIN_intercept_Plot_ZI <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
                                           scale(hete_motif) + 
                                           scale(StrengthIn) + scale(Ratio) +
-                                          (0+scale(homo_motif)|Plot) ,
+                                          (1|Plot) ,
                                         ziformula = ~1,
                                         family = gaussian(),
                                         data = fitness_CHFU)
@@ -666,7 +666,7 @@ fitness_CHFU %>% group_by(type_vist) %>%count()
 
 GF_LEMA_LIN_type_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
                                    scale(hete_motif)*type_vist +
-                                   (0+scale(homo_motif)+scale(hete_motif)|Plot),
+                                   (1|Plot),
                                  #ziformula = ~1,
                                  family = gaussian(),
                                  data = fitness_LEMA %>% filter(!is.na(type_vist)))
@@ -674,14 +674,14 @@ GF_LEMA_LIN_type_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif)*type_vist +
 # PUPA HAS NOT ENOUGH GROUPS
 GF_PUPA_LIN_type_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
                                    scale(hete_motif)*type_vist +
-                                   (0+scale(homo_motif)+scale(hete_motif)|Plot),
+                                   (1|Plot),
                                  #ziformula = ~1,
                                  family = gaussian(),
                                  data = fitness_PUPA %>% filter(!is.na(type_vist)))
 
 GF_CHFU_LIN_type_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
                                    scale(hete_motif)*type_vist +
-                                   (0+scale(homo_motif)+scale(hete_motif)|Plot),
+                                   (1|Plot),
                                  #ziformula = ~1,
                                  family = gaussian(),
                                  data = fitness_CHFU %>% filter(!is.na(type_vist)))
@@ -729,14 +729,14 @@ r2(GF_CHFU_LIN_type_Plot)
 
 GF_LEMA_LIN_mutua_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     scale(hete_motif) +
-                                    (0+scale(homo_motif)|Plot),
+                                    (1|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_LEMA %>% filter(type_vist=="mutualist"))
 
 GF_PUPA_LIN_mutua_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
-                                    #scale(hete_motif) +
-                                    (0+scale(homo_motif)|Plot),
+                                    scale(hete_motif) +
+                                    (1|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_PUPA %>% filter(type_vist=="mutualist"))
@@ -744,8 +744,8 @@ GF_PUPA_LIN_mutua_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 # In the case of CHFU, hete-motifs are equal to zero
 
 GF_CHFU_LIN_mutua_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
-                                    #scale(hete_motif) +
-                                    (0+scale(homo_motif)|Plot),
+                                    scale(hete_motif) +
+                                    (1|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_CHFU %>% filter(type_vist=="mutualist"))
@@ -753,7 +753,7 @@ GF_CHFU_LIN_mutua_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 
 GF_LEMA_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     scale(hete_motif) +
-                                    (0+scale(homo_motif)|Plot),
+                                    (1|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_LEMA %>% filter(type_vist=="antagonist"))
@@ -761,7 +761,7 @@ GF_LEMA_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 # In the case of PUPA, homo and hete motifs are equal for antagonist
 # There is only one observation
 
-GF_PUPA_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
+GF_PUPA_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +  #Only one visit
                                     scale(hete_motif) +
                                     (1|Plot),
                                   #ziformula = ~1,
@@ -773,7 +773,7 @@ fitness_PUPA %>% filter(type_vist=="antagonist")
 
 GF_CHFU_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     scale(hete_motif) +
-                                    (0+scale(homo_motif)|Plot),
+                                    (1|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_CHFU %>% filter(type_vist=="antagonist"))
@@ -782,7 +782,7 @@ fitness_CHFU %>% filter(type_vist=="antagonist")
 
 GF_LEMA_LIN_other_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     scale(hete_motif) +
-                                    (0+scale(homo_motif)|Plot),
+                                    (1|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_LEMA %>% filter(type_vist=="other"))
@@ -800,7 +800,7 @@ GF_PUPA_LIN_other_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 
 GF_CHFU_LIN_other_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     scale(hete_motif) +
-                                    (0+scale(homo_motif)|Plot),
+                                    (1|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_CHFU %>% filter(type_vist=="other"))
