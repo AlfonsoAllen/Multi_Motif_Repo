@@ -1,6 +1,7 @@
 
 # Fit GLMMs for multi-motif study in Caracoles (2020)
-# Focal individuals with insect visits have their own value of seeds/fruit
+# Here we use the plant species' mean value of seeds
+
 library(tidyverse)
 library(MASS)
 library(fitdistrplus)
@@ -14,14 +15,17 @@ library(visreg)
 library(RColorBrewer)
 library(nlme)
 library(usdm)
-
 #################################
 # read data ---------------------------------------------------------------
 
-fitness_final_aux <- read.csv(file = "2020_NN_data_models_phenol_overlap.csv",
+fitness_final_aux <- read.csv(file = "2020_AV_NN_data_models_phenol_overlap.csv",
                          header = TRUE,
                          stringsAsFactors = FALSE) %>%
   rename(Plant_Simple=Plant) %>% mutate(Seeds_GF = round(Seeds_GF))
+
+# sanity check: there is only one value of Seeds_GF/Fruit_GF per species
+fitness_final_aux %>% mutate(ratio_seed_fruit=round(Seeds_GF/Fruit_GF)) %>%
+  group_by(Plant_Simple,ratio_seed_fruit) %>% count()
 
 #########################
 # Add G_F
@@ -123,7 +127,7 @@ GF_MIX_LIN_Visits <- lmer(log(Seeds_GF) ~ (visits_GF) +
                             data = fitness.data)
 
 summary(GF_MIX_NB_Visits)
-summary(GF_MIX_LIN_Visits)# Intercept model shows a significant relation between seeds and
+summary(GF_MIX_LIN_Visits) # Intercept model shows a significant relation between seeds and
 # visits
 
 visreg(GF_MIX_LIN_Visits, "visits_GF", by="Plant_Simple",gg = TRUE, overlay=F, partial=FALSE, rug=FALSE)+
@@ -306,6 +310,7 @@ fitness.data$type_vist[!fitness.data$G_F %in% c(mutualist_list,antagonist_list,"
 fitness.data %>% group_by(type_vist,Plant_Simple) %>% count() %>% filter(type_vist=="mutualist") # None and other dominates 
 fitness.data %>% group_by(type_vist,Plant_Simple) %>% count() %>% filter(type_vist=="antagonist") # None and other dominates 
 
+
 ggplot(fitness.data %>% filter(G_F!="None"), aes(fill=type_vist, y=visits_GF, x=Plant_Simple)) + 
   geom_bar(position="stack", stat="identity")+ theme_bw()+
   scale_fill_brewer(palette = 'Paired')+ 
@@ -351,12 +356,10 @@ AIC(
   GF_MIX_NB_type_Plot,
   GF_MIX_LIN_type_Plot)
 
-
 r2(GF_MIX_NB_type_Plot)
 r2(GF_MIX_LIN_type_Plot)
 
 
-# Conditional plots
 visreg(GF_MIX_LIN_type_Plot, "homo_motif", by="type_vist",gg = TRUE, overlay=F, partial=FALSE, rug=FALSE)+
   theme_bw() +
   #geom_point(aes(color=G_F), size=2, alpha=0.3, shape=16)+
@@ -434,6 +437,7 @@ visreg(GF_MIX_LIN_type_Plot, "hete_motif", by="Plot",gg = TRUE, overlay=F, parti
 #########################################
 # INDIVIDUAL MODEL FOR EACH PLANT SPECIES
 #########################################
+
 
 vif(as.data.frame(dplyr::select(fitness_PUPA,homo_motif,hete_motif)))
 cor.test(fitness_PUPA$homo_motif, fitness_PUPA$hete_motif, method=c("pearson", "kendall", "spearman"))
@@ -589,19 +593,20 @@ res_GF_CHFU_LIN_intercept_Plot_ZI<- simulateResiduals(fittedModel = GF_CHFU_LIN_
 
 
 # Checking Residuals 
-plot(res_GF_LEMA_NB_intercept_Plot) #KS +3 Quant desv
-plot(res_GF_LEMA_LIN_intercept_Plot) #KS +3 Quant desv
-plot(res_GF_LEMA_NB_intercept_Plot_ZI) #KS +3 Quant desv
-plot(res_GF_LEMA_LIN_intercept_Plot_ZI) #KS +3 Quant desv
+plot(res_GF_LEMA_NB_intercept_Plot)#KS +3 Quant desv
+plot(res_GF_LEMA_LIN_intercept_Plot)#KS +3 Quant desv
+plot(res_GF_LEMA_NB_intercept_Plot_ZI)#KS +3 Quant desv
+plot(res_GF_LEMA_LIN_intercept_Plot_ZI)#KS +3 Quant desv
 
-plot(res_GF_PUPA_NB_intercept_Plot) #2 Quant desv
+
+plot(res_GF_PUPA_NB_intercept_Plot)#2 Quant desv
 plot(res_GF_PUPA_LIN_intercept_Plot)#1 Quant desv
-plot(res_GF_PUPA_NB_intercept_Plot_ZI) #KS + 2 Quant desv
+plot(res_GF_PUPA_NB_intercept_Plot_ZI)#KS + 2 Quant desv
 plot(res_GF_PUPA_LIN_intercept_Plot_ZI)#1 Quant desv
 
-plot(res_GF_CHFU_NB_intercept_Plot) #KS + 2 Quant desv
+plot(res_GF_CHFU_NB_intercept_Plot)#KS + 2 Quant desv
 plot(res_GF_CHFU_LIN_intercept_Plot)
-plot(res_GF_CHFU_NB_intercept_Plot_ZI) #KS + 2 Quant desv
+plot(res_GF_CHFU_NB_intercept_Plot_ZI)#KS + 2 Quant desv
 plot(res_GF_CHFU_LIN_intercept_Plot_ZI)
 
 summary(GF_LEMA_LIN_intercept_Plot)
@@ -614,7 +619,6 @@ AIC(
   GF_LEMA_NB_intercept_Plot_ZI,
   GF_LEMA_LIN_intercept_Plot,
   GF_LEMA_LIN_intercept_Plot_ZI)
-
 
 r2(GF_LEMA_NB_intercept_Plot)
 r2(GF_LEMA_NB_intercept_Plot_ZI)
@@ -711,7 +715,7 @@ GF_CHFU_LIN_type_Plot <- lmer(log(Seeds_GF) ~ scale(homo_motif)*type_vist +
 
 summary(GF_LEMA_LIN_type_Plot)
 summary(GF_PUPA_LIN_type_Plot) 
-summary(GF_CHFU_LIN_type_Plot) 
+summary(GF_CHFU_LIN_type_Plot)
 
 visreg(GF_LEMA_LIN_type_Plot, "homo_motif", by="type_vist",gg = TRUE, overlay=F, partial=FALSE, rug=FALSE)+
   theme_bw() +
@@ -729,6 +733,38 @@ visreg(GF_LEMA_LIN_type_Plot, "hete_motif", by="type_vist",gg = TRUE, overlay=F,
   #scale_fill_brewer(palette = 'Paired')+ 
   labs(x ="Hetero-triplet", y = "Ln(Seeds per individual)",fill=NULL,color=NULL)
 
+visreg(GF_PUPA_LIN_type_Plot, "homo_motif", by="type_vist",gg = TRUE, overlay=F, partial=FALSE, rug=FALSE)+
+  theme_bw() +
+  #geom_point(aes(color=G_F), size=2, alpha=0.3, shape=16)+
+  geom_point(size=1.5, alpha=0.2, shape=16)+
+  facet_wrap(vars(type_vist),nrow = 2,ncol = 3)+
+  #scale_fill_brewer(palette = 'Paired')+ 
+  labs(x ="Homo-triplet", y = "Ln(Seeds per individual)",fill=NULL,color=NULL)
+
+visreg(GF_PUPA_LIN_type_Plot, "hete_motif", by="type_vist",gg = TRUE, overlay=F, partial=FALSE, rug=FALSE)+
+  theme_bw() +
+  #geom_point(aes(color=G_F), size=2, alpha=0.3, shape=16)+
+  geom_point(size=1.5, alpha=0.2, shape=16)+
+  facet_wrap(vars(type_vist),nrow = 2,ncol = 3)+
+  #scale_fill_brewer(palette = 'Paired')+ 
+  labs(x ="Hetero-triplet", y = "Ln(Seeds per individual)",fill=NULL,color=NULL)
+
+visreg(GF_CHFU_LIN_type_Plot, "homo_motif", by="type_vist",gg = TRUE, overlay=F, partial=FALSE, rug=FALSE)+
+  theme_bw() +
+  #geom_point(aes(color=G_F), size=2, alpha=0.3, shape=16)+
+  geom_point(size=1.5, alpha=0.2, shape=16)+
+  facet_wrap(vars(type_vist),nrow = 2,ncol = 3)+
+  #scale_fill_brewer(palette = 'Paired')+ 
+  labs(x ="Homo-triplet", y = "Ln(Seeds per individual)",fill=NULL,color=NULL)
+
+visreg(GF_CHFU_LIN_type_Plot, "hete_motif", by="type_vist",gg = TRUE, overlay=F, partial=FALSE, rug=FALSE)+
+  theme_bw() +
+  #geom_point(aes(color=G_F), size=2, alpha=0.3, shape=16)+
+  geom_point(size=1.5, alpha=0.2, shape=16)+
+  facet_wrap(vars(type_vist),nrow = 2,ncol = 3)+
+  #scale_fill_brewer(palette = 'Paired')+ 
+  labs(x ="Hetero-triplet", y = "Ln(Seeds per individual)",fill=NULL,color=NULL)
+
 
 # Get models' Residuals
 
@@ -736,7 +772,7 @@ res_GF_LEMA_LIN_type_Plot <- simulateResiduals(fittedModel = GF_LEMA_LIN_type_Pl
 res_GF_CHFU_LIN_type_Plot <- simulateResiduals(fittedModel = GF_CHFU_LIN_type_Plot, n = 500)
 
 # Checking Residuals 
-plot(res_GF_LEMA_LIN_type_Plot)# KS + 3 Quantile deviations
+plot(res_GF_LEMA_LIN_type_Plot)  #KS +3 Quant desv
 plot(res_GF_CHFU_LIN_type_Plot) 
 
 # AIC
@@ -791,7 +827,7 @@ GF_PUPA_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ #scale(homo_motif) +  #Only on
                                   family = gaussian(),
                                   data = fitness_PUPA %>% filter(type_vist=="antagonist"))
 
-fitness_PUPA %>% filter(type_vist=="antagonist")
+fitness_PUPA %>% filter(type_vist=="antagonist")%>% dplyr::select(Plot,homo_motif,hete_motif)
 
 
 GF_CHFU_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
@@ -801,7 +837,7 @@ GF_CHFU_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
                                   family = gaussian(),
                                   data = fitness_CHFU %>% filter(type_vist=="antagonist"))
 
-fitness_CHFU %>% filter(type_vist=="antagonist")
+fitness_CHFU %>% filter(type_vist=="antagonist") %>% dplyr::select(Plot,homo_motif,hete_motif)
 
 GF_LEMA_LIN_other_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     scale(hete_motif) +
@@ -812,7 +848,7 @@ GF_LEMA_LIN_other_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 
 # In the case of PUPA, homo and hete motifs are equal for antagonist
 
-fitness_PUPA %>% filter(type_vist=="other")
+fitness_PUPA %>% filter(type_vist=="other")%>% dplyr::select(Plot,homo_motif,hete_motif)
 
 GF_PUPA_LIN_other_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     scale(hete_motif) +
@@ -832,9 +868,9 @@ summary(GF_LEMA_LIN_mutua_Plot)
 summary(GF_LEMA_LIN_antag_Plot)
 summary(GF_LEMA_LIN_other_Plot)
 
-summary(GF_PUPA_LIN_mutua_Plot) #NO VARIANCE (GROUPING FACTOR)
-summary(GF_PUPA_LIN_antag_Plot) #NA
-summary(GF_PUPA_LIN_other_Plot) #NO VARIANCE (GROUPING FACTOR): 2 groups
+summary(GF_PUPA_LIN_mutua_Plot) #NO VARIANCE (GROUPING FACTOR): 2 groups
+summary(GF_PUPA_LIN_antag_Plot) #NO VARIANCE (GROUPING FACTOR): 1 groups
+summary(GF_PUPA_LIN_other_Plot) 
 
 summary(GF_CHFU_LIN_mutua_Plot) #NO VARIANCE (GROUPING FACTOR): 3 groups
 summary(GF_CHFU_LIN_antag_Plot) #NO VARIANCE (GROUPING FACTOR): 2 groups
@@ -856,7 +892,7 @@ res_GF_PUPA_LIN_other_Plot <- simulateResiduals(fittedModel = GF_PUPA_LIN_other_
 
 
 # Checking Residuals 
-plot(res_GF_LEMA_LIN_mutua_Plot)#2Quant desv
+plot(res_GF_LEMA_LIN_mutua_Plot)#KS +2 Quant desv
 plot(res_GF_LEMA_LIN_antag_Plot)#KS + 3 Quant desv
 plot(res_GF_LEMA_LIN_other_Plot)#KS + 3 Quant desv
 
@@ -935,7 +971,7 @@ GF_LEMA_NB_antag_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) +
 # In the case of PUPA, homo and hete motifs are equal for antagonist
 # There is only one observation
 
-GF_PUPA_NB_antag_Plot <- glmmTMB((Seeds_GF) ~ 
+GF_PUPA_NB_antag_Plot <- glmmTMB((Seeds_GF) ~ #Conv. problem: 1 Observation
                                    (1|Plot),
                                  #ziformula = ~1,
                                  family = nbinom2(),
@@ -951,7 +987,7 @@ GF_CHFU_NB_antag_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) +
                                  family = nbinom2(),
                                  data = fitness_CHFU %>% filter(type_vist=="antagonist"))
 
-fitness_CHFU %>% filter(type_vist=="antagonist") %>% dplyr::select(Plot,homo_motif,hete_motif)
+fitness_CHFU %>% filter(type_vist=="antagonist")
 
 GF_LEMA_NB_other_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
                                    scale(hete_motif) +
@@ -962,7 +998,7 @@ GF_LEMA_NB_other_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) +
 
 # In the case of PUPA, homo and hete motifs are equal for antagonist
 
-fitness_PUPA %>% filter(type_vist=="other") %>% dplyr::select(Plot,homo_motif,hete_motif)
+fitness_PUPA %>% filter(type_vist=="other")
 
 GF_PUPA_NB_other_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
                                    #scale(hete_motif) +
@@ -982,8 +1018,8 @@ summary(GF_LEMA_NB_mutua_Plot)
 summary(GF_LEMA_NB_antag_Plot)
 summary(GF_LEMA_NB_other_Plot)
 
-summary(GF_PUPA_NB_mutua_Plot)
-summary(GF_PUPA_NB_antag_Plot) #NO VARIANCE (GROUPING FACTOR): 1 groups/1obs
+summary(GF_PUPA_NB_mutua_Plot) #
+summary(GF_PUPA_NB_antag_Plot) #NO VARIANCE (GROUPING FACTOR): 1 groups
 summary(GF_PUPA_NB_other_Plot)
 
 summary(GF_CHFU_NB_mutua_Plot) #NO VARIANCE (GROUPING FACTOR): 3 groups
@@ -1008,7 +1044,7 @@ res_GF_PUPA_NB_other_Plot <- simulateResiduals(fittedModel = GF_PUPA_NB_other_Pl
 # Checking Residuals 
 plot(res_GF_LEMA_NB_mutua_Plot)#3 Quant desv
 plot(res_GF_LEMA_NB_antag_Plot)#KS + 3 Quant desv
-plot(res_GF_LEMA_NB_other_Plot)#KS + 3 Quant desv
+plot(res_GF_LEMA_NB_other_Plot)#KS +3 Quant desv
 
 plot(res_GF_PUPA_NB_mutua_Plot)
 plot(res_GF_PUPA_NB_antag_Plot)
@@ -1016,7 +1052,7 @@ plot(res_GF_PUPA_NB_other_Plot)
 
 plot(res_GF_CHFU_NB_mutua_Plot)
 plot(res_GF_CHFU_NB_antag_Plot)
-plot(res_GF_CHFU_NB_other_Plot) #KS + 1 Quant desv
+plot(res_GF_CHFU_NB_other_Plot) #KS +1 Quant desv
 
 testDispersion(res_GF_CHFU_NB_other_Plot)
 
@@ -1040,10 +1076,10 @@ r2(GF_LEMA_NB_mutua_Plot)
 r2(GF_LEMA_NB_antag_Plot)
 r2(GF_LEMA_NB_other_Plot)
 
-r2(GF_PUPA_NB_mutua_Plot) #Some variance components equal zero.
-r2(GF_PUPA_NB_antag_Plot) #Some variance components equal zero.
+r2(GF_PUPA_NB_mutua_Plot) 
+r2(GF_PUPA_NB_antag_Plot) 
 r2(GF_PUPA_NB_other_Plot)
 
 r2(GF_CHFU_NB_mutua_Plot)
-r2(GF_CHFU_NB_antag_Plot) #Some variance components equal zero.
+r2(GF_CHFU_NB_antag_Plot)
 r2(GF_CHFU_NB_other_Plot)

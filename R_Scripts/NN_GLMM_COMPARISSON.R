@@ -1,5 +1,19 @@
+# Fit GLMMs for multi-motif study in Caracoles (2019)
 
 library(tidyverse)
+library(MASS)
+library(fitdistrplus)
+library(lme4)
+library(lmerTest)
+library(glmmTMB)
+#library(bbmle) ## for AICtab
+library(DHARMa)
+library(performance)
+library(visreg)
+library(RColorBrewer)
+library(nlme)
+library(usdm)
+
 
 #####################################
 # Read data ---------------------------------------------------------------
@@ -33,37 +47,12 @@ fitness_orig$Plot <- as.factor(fitness_orig$Plot)
 fitness_orig$ID <- as.factor(fitness_orig$ID)
 fitness_orig$G_F <- as.factor(fitness_orig$G_F)
 
-########################
-# SPATIAL LOCATION 
-##########################
-
-set.seed(123)
-
-x_r <- runif(nrow(fitness_orig), min=0, max=0.001)
-y_r <- runif(nrow(fitness_orig), min=0, max=0.001)
-
-coordinates <- read_csv2("Raw_Data/Caracoles_allplotsposition.csv") %>%
-  rename(x = x_coor2, y = y_coor2) 
-
-
-coordinates$Plot <- as.factor(coordinates$Plot)
-
-fitness_orig <- fitness_orig %>% left_join(coordinates,by=c("Plot","Subplot")) %>% mutate(x=x+x_r,y=y+y_r)
-
-library(MASS)
-library(fitdistrplus)
-library(lme4)
-library(lmerTest)
-library(glmmTMB)
-#library(bbmle) ## for AICtab
-library(DHARMa)
-
 
 # pre-analysis ------------------------------------------------------------
 
 # remove fitness = 0
 
-fitness.data <- subset(fitness_orig,Seeds_GF > 0)
+fitness.data <- subset(fitness_orig,Seeds_GF > 0) # & !Plant_Simple %in% c("ME"))
 #fitness.data <- subset(fitness.data,ID!="None")
 
 fitness.data %>% count(wt=visits_GF)
@@ -82,8 +71,7 @@ fitness_CHFU$G_F  <- as.factor(fitness_CHFU$G_F)
 
 # Data of LEMA plants with R > 1
 
-# x <- fitness_LEMA %>% dplyr::select(Plot,Subplot,G_F,Plant_Simple,Ratio) %>% filter(Ratio>1)
-# write_csv(x,"data_LEMA_PLANTS_R.csv")
+# Number of observations without visits
 
 nrow(fitness_LEMA %>% filter(ID!="None"))
 nrow(fitness_PUPA %>% filter(ID!="None"))
@@ -98,7 +86,7 @@ summary(scale(fitness_LEMA$Ratio))
 
 
 summary(scale(fitness_PUPA$homo_motif))
-summary(scale(fitness_PUPA$hete_motif))
+summary(scale(fitness_PUPA$hete_motif)) # PUPA has no hete-motifs
 summary(scale(fitness_PUPA$DegreeIn))
 summary(scale(fitness_PUPA$Real_PR_Layer))
 summary(scale(fitness_PUPA$Ratio))
@@ -116,6 +104,11 @@ summary(scale(fitness_CHFU$Ratio))
 # (WITH and WITHOUT ZERO INFLATION FACTOR)
 ###############################
 
+#CHECK--------
+vif(as.data.frame(dplyr::select(fitness.data,homo_motif,hete_motif,StrengthIn, Ratio)))
+cor(as.data.frame(dplyr::select(fitness.data,homo_motif,hete_motif,StrengthIn, Ratio)))
+
+
 GF_MIX_NB_intercept_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                             scale(hete_motif) + 
                                             scale(StrengthIn) + scale(Ratio) +
@@ -130,6 +123,14 @@ GF_MIX_LIN_intercept_Plot_Plant <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
                                              (1|Plot) +(1|Plant_Simple) ,
                                            #ziformula = ~1,
                                            family = gaussian(),
+                                           data = fitness.data)
+
+GF_MIX_LIN_intercept_Plot_Plant0 <- lmer(log(Seeds_GF) ~ scale(homo_motif) +
+                                             scale(hete_motif) +
+                                             scale(StrengthIn) + scale(Ratio) +
+                                             (1|Plot) + (1|Plant_Simple) ,
+                                           #ziformula = ~1,
+                                           #family = gaussian(),
                                            data = fitness.data)
 
 GF_MIX_NB_intercept_Plot_Plant_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -152,10 +153,63 @@ GF_MIX_LIN_intercept_Plot_Plant_ZI <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) 
 
 summary(GF_MIX_NB_intercept_Plot_Plant)
 summary(GF_MIX_LIN_intercept_Plot_Plant)
+summary(GF_MIX_LIN_intercept_Plot_Plant0)
 summary(GF_MIX_NB_intercept_Plot_Plant_ZI)
 summary(GF_MIX_LIN_intercept_Plot_Plant_ZI)
 
-# Simulating residuals with Dahrma
+#############################################
+# EXPLORING LMMs hypotheses for GF_MIX_LIN_intercept_Plot_Plant0 model
+
+# linearity : OK
+plot(log(fitness.data$Seeds_GF),residuals(GF_MIX_LIN_intercept_Plot_Plant0))
+
+# homoscedasticity: ?? There are 2 stripes on the left
+
+plot(fitted(GF_MIX_LIN_intercept_Plot_Plant0), resid(GF_MIX_LIN_intercept_Plot_Plant0, type = "pearson"))
+abline(0,0, col="red")
+
+ggplot(fitness.data)+
+  geom_point(aes(x=fitted(GF_MIX_LIN_intercept_Plot_Plant0),
+                 y=resid(GF_MIX_LIN_intercept_Plot_Plant0, type = "pearson"),
+                 color=Plot))
+
+ggplot(fitness.data)+
+  geom_point(aes(x=fitted(GF_MIX_LIN_intercept_Plot_Plant0),
+                 y=resid(GF_MIX_LIN_intercept_Plot_Plant0, type = "pearson"),
+                 color=Plant_Simple))
+
+fitness.data$RES<- residuals(GF_MIX_LIN_intercept_Plot_Plant0) #extracts the residuals and places them in a new column in our original data table
+fitness.data$Abs.Res <-abs(fitness.data$RES) #creates a new column with the absolute value of the residuals
+fitness.data$Model.Res2 <- fitness.data$Abs.Res^2 #squares the absolute values of the residuals to provide the more robust estimate
+
+Levene.Model.Plot<- lm(Model.Res2 ~ Plot, data=fitness.data) #ANOVA of the squared residuals
+anova(Levene.Model.Plot) #Residuals are different for each plot
+
+Levene.Model.Plant<- lm(Model.Res2 ~ Plant_Simple, data=fitness.data) #ANOVA of the squared residuals
+anova(Levene.Model.Plant) #Residuals are different for each plant
+
+
+
+# normality of residuals: bufff... left side departures from normality
+# When ME is removed, normality appears.
+qqnorm(resid(GF_MIX_LIN_intercept_Plot_Plant0)) 
+qqline(resid(GF_MIX_LIN_intercept_Plot_Plant0), col = "red") # add a perfect fit line
+
+qplot(color=Plant_Simple,sample = RES, data = fitness.data)
+qplot(color=Plot,sample = RES, data = fitness.data)
+
+ggplot(fitness.data, aes(sample=fitness.data$RES))+stat_qq()
+
+# normality of residuals random effects: ~OK
+qqnorm(ranef(GF_MIX_LIN_intercept_Plot_Plant0)$Plot[,1] )
+qqline(ranef(GF_MIX_LIN_intercept_Plot_Plant0)$Plot[,1], col = "red")
+
+# normality of residuals random effects: CHMI   0.4593920
+qqnorm(ranef(GF_MIX_LIN_intercept_Plot_Plant0)$Plant_Simple[,1] )
+qqline(ranef(GF_MIX_LIN_intercept_Plot_Plant0)$Plant_Simple[,1], col = "red")
+
+###################################################
+# Simulating residuals with Dahrma (glmmTMB models)
 
 res_GF_MIX_NB_intercept_Plot_Plant <- simulateResiduals(fittedModel = GF_MIX_NB_intercept_Plot_Plant, n = 500)
 res_GF_MIX_LIN_intercept_Plot_Plant <- simulateResiduals(fittedModel = GF_MIX_LIN_intercept_Plot_Plant, n = 500)
@@ -163,10 +217,10 @@ res_GF_MIX_NB_intercept_Plot_Plant_ZI <- simulateResiduals(fittedModel = GF_MIX_
 res_GF_MIX_LIN_intercept_Plot_Plant_ZI <- simulateResiduals(fittedModel = GF_MIX_LIN_intercept_Plot_Plant_ZI, n = 500)
 
 # Checking Residuals 
-plot(res_GF_MIX_NB_intercept_Plot_Plant)
-plot(res_GF_MIX_NB_intercept_Plot_Plant_ZI)
-plot(res_GF_MIX_LIN_intercept_Plot_Plant)
-plot(res_GF_MIX_LIN_intercept_Plot_Plant_ZI)
+plot(res_GF_MIX_NB_intercept_Plot_Plant) #KS + 3 Quantile deviations
+plot(res_GF_MIX_NB_intercept_Plot_Plant_ZI) #KS + 3 Quantile deviations
+plot(res_GF_MIX_LIN_intercept_Plot_Plant) #KS + 3 Quantile deviations
+plot(res_GF_MIX_LIN_intercept_Plot_Plant_ZI) #KS + 3 Quantile deviations
 
 AIC(
   GF_MIX_NB_intercept_Plot_Plant,
@@ -174,7 +228,6 @@ AIC(
   GF_MIX_LIN_intercept_Plot_Plant,
   GF_MIX_LIN_intercept_Plot_Plant_ZI)
 
-library(performance)
 
 r2(GF_MIX_NB_intercept_Plot_Plant)
 r2(GF_MIX_LIN_intercept_Plot_Plant)
@@ -182,7 +235,7 @@ r2(GF_MIX_NB_intercept_Plot_Plant_ZI)
 r2(GF_MIX_LIN_intercept_Plot_Plant_ZI)
 
 
-library(visreg)
+# Conditional plots
 
 visreg(GF_MIX_LIN_intercept_Plot_Plant, "homo_motif", by="Plant_Simple",gg = TRUE, overlay=F, partial=FALSE, rug=FALSE)+
   theme_bw() +
@@ -272,7 +325,6 @@ fitness.data %>% group_by(type_vist) %>% count()
 fitness.data %>% group_by(type_vist,Plant_Simple) %>% count() %>% filter(type_vist=="mutualist") # None and other dominates 
 fitness.data %>% group_by(type_vist,Plant_Simple) %>% count() %>% filter(type_vist=="antagonist") # None and other dominates 
 
-library(RColorBrewer)
 
 
 ggplot(fitness.data %>% filter(G_F!="None"), aes(fill=type_vist, y=visits_GF, x=Plant_Simple)) + 
@@ -296,7 +348,7 @@ GF_MIX_NB_type_Plot0 <- glmmTMB((Seeds_GF) ~ scale(homo_motif)*type_vist +
                                data = fitness.data %>%
                                  filter(!is.na(type_vist)))
 
-GF_MIX_NB_type_Plot <-   glmer.nb((Seeds_GF) ~ scale(homo_motif)*type_vist + 
+GF_MIX_NB_type_Plot <-   glmer.nb((Seeds_GF) ~ scale(homo_motif)*type_vist + #Convergence failed
                                   scale(hete_motif)*type_vist +
                                   (1|Plot)+
                                   (1|Plant_Simple),
@@ -324,7 +376,7 @@ GF_MIX_LIN_type_Plot0 <- lmer(log(Seeds_GF) ~ scale(homo_motif)*type_vist + #bou
                                 data = fitness.data %>%
                                   filter(!is.na(type_vist)))
 
-summary(GF_MIX_LIN_type_Plot) # OVERFITTING: Corr (Plant_Simple,scale(hete))=1
+summary(GF_MIX_LIN_type_Plot) 
 
 GF_MIX_LIN_type_Plot <- lmer(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
                                scale(hete_motif)*type_vist +
@@ -342,32 +394,17 @@ res_GF_MIX_NB_type_Plot <- simulateResiduals(fittedModel = GF_MIX_NB_type_Plot0,
 res_GF_MIX_LIN_type_Plot <- simulateResiduals(fittedModel = GF_MIX_LIN_type_Plot, n = 500)
 
 # Checking Residuals 
-plot(res_GF_MIX_NB_type_Plot)
-plot(res_GF_MIX_LIN_type_Plot)
+plot(res_GF_MIX_NB_type_Plot) #KS + 3 Quantile deviations
+plot(res_GF_MIX_LIN_type_Plot)#KS + 3 Quantile deviations
 
 AIC(
   GF_MIX_NB_type_Plot0,
   GF_MIX_LIN_type_Plot)
 
-library(performance)
 
 r2(GF_MIX_NB_type_Plot0)
 r2(GF_MIX_LIN_type_Plot)
 
-library(effects)
-# Results for lineal model
-ae <- allEffects(GF_MIX_LIN_type_Plot)
-plot(ae)
-summary(allEffects(GF_MIX_LIN_type_Plot))
-
-# Results for neg. bin. model
-ae_NB0 <- allEffects(GF_MIX_NB_type_Plot0)
-plot(ae_NB0)
-summary(allEffects(GF_MIX_NB_type_Plot0))
-
-
-library(visreg)
-library(RColorBrewer)
 
 # Results for lineal model
 visreg(GF_MIX_LIN_type_Plot, "homo_motif", by="type_vist",gg = TRUE,
@@ -453,7 +490,7 @@ visreg(GF_MIX_LIN_type_Plot, "hete_motif", by="Plot",gg = TRUE, overlay=F, parti
 
 
 #################################
-#
+# EXPLORING EFFECT OF A SINGLE TYPE OF VISITOR
 #################################
 
 GF_MIX_LIN_mutua_Plot <- lmer(log(Seeds_GF) ~ scale(homo_motif) + 
@@ -473,17 +510,22 @@ GF_MIX_LIN_antag_Plot <- lmer(log(Seeds_GF) ~ scale(homo_motif) +
                               data = fitness.data %>%
                                 filter(type_vist=="antagonist"))
 
+GF_MIX_LIN_other_Plot <- lmer(log(Seeds_GF) ~ scale(homo_motif) + 
+                                scale(hete_motif) +
+                                (1|Plot),
+                              #ziformula = ~1,
+                              #family = gaussian(),
+                              data = fitness.data %>%
+                                filter(type_vist=="other"))
+
 summary(GF_MIX_LIN_mutua_Plot)
 summary(GF_MIX_LIN_antag_Plot)
-
+summary(GF_MIX_LIN_other_Plot)
 
 
 #########################################
 # INDIVIDUAL MODEL FOR EACH PLANT SPECIES
 #########################################
-
-library(nlme)
-library(usdm)
 
 vif(as.data.frame(dplyr::select(fitness_PUPA,homo_motif,hete_motif)))
 cor.test(fitness_PUPA$homo_motif, fitness_PUPA$hete_motif, method=c("pearson", "kendall", "spearman"))
@@ -571,7 +613,7 @@ GF_LEMA_NB_intercept_Plot_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                         family = nbinom1(),
                                         data = fitness_LEMA)
 
-GF_PUPA_NB_intercept_Plot_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) + 
+GF_PUPA_NB_intercept_Plot_ZI <- glmmTMB(Seeds_GF ~ scale(homo_motif) + #Conv problems
                                           #scale(hete_motif) + 
                                           scale(StrengthIn) + scale(Ratio) +
                                           (1|Plot) ,
@@ -599,7 +641,7 @@ GF_LEMA_LIN_intercept_Plot_ZI <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
                                          family = gaussian(),
                                          data = fitness_LEMA)
 
-GF_PUPA_LIN_intercept_Plot_ZI <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
+GF_PUPA_LIN_intercept_Plot_ZI <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + #Conv probl.
                                            #scale(hete_motif) + 
                                            scale(StrengthIn) + scale(Ratio) +
                                            (1|Plot) ,
@@ -639,20 +681,20 @@ res_GF_CHFU_LIN_intercept_Plot_ZI<- simulateResiduals(fittedModel = GF_CHFU_LIN_
 
 
 # Checking Residuals 
-plot(res_GF_LEMA_NB_intercept_Plot)
+plot(res_GF_LEMA_NB_intercept_Plot)#KS +3 Quant desv
 plot(res_GF_LEMA_LIN_intercept_Plot)#KS +2 Quant desv
-plot(res_GF_LEMA_NB_intercept_Plot_ZI)
+plot(res_GF_LEMA_NB_intercept_Plot_ZI)#KS +3 Quant desv
 plot(res_GF_LEMA_LIN_intercept_Plot_ZI)#KS +2 Quant desv
 
 
 plot(res_GF_PUPA_NB_intercept_Plot)
-plot(res_GF_PUPA_LIN_intercept_Plot)#2 Quant desv
+plot(res_GF_PUPA_LIN_intercept_Plot)
 plot(res_GF_PUPA_NB_intercept_Plot_ZI)
-plot(res_GF_PUPA_LIN_intercept_Plot_ZI)#2 Quant desv
+plot(res_GF_PUPA_LIN_intercept_Plot_ZI)
 
-plot(res_GF_CHFU_NB_intercept_Plot)
+plot(res_GF_CHFU_NB_intercept_Plot)#3 Quant desv
 plot(res_GF_CHFU_LIN_intercept_Plot)#KS + 3 Quant desv
-plot(res_GF_CHFU_NB_intercept_Plot_ZI)
+plot(res_GF_CHFU_NB_intercept_Plot_ZI)#3 Quant desv
 plot(res_GF_CHFU_LIN_intercept_Plot_ZI)#KS + 3 Quant desv
 
 summary(GF_LEMA_LIN_intercept_Plot)
@@ -666,7 +708,6 @@ AIC(
   GF_LEMA_LIN_intercept_Plot,
   GF_LEMA_LIN_intercept_Plot_ZI)
 
-library(performance)
 
 r2(GF_LEMA_NB_intercept_Plot)
 r2(GF_LEMA_NB_intercept_Plot_ZI)
@@ -730,28 +771,27 @@ fitness_CHFU$type_vist[fitness_CHFU$G_F %in% antagonist_list] <- "antagonist"
 fitness_CHFU$type_vist[!fitness_CHFU$G_F %in% c(mutualist_list,antagonist_list,"None")] <- "other"
 #fitness_CHFU$type_vist[is.na(fitness_CHFU$type_vist)] <- "none"
 
-fitness_LEMA %>% group_by(type_vist) %>%count()
-fitness_PUPA %>% group_by(type_vist) %>%count()
-fitness_CHFU %>% group_by(type_vist) %>%count()
+fitness_LEMA %>% group_by(type_vist) %>%count(wt=visits_GF)
+fitness_PUPA %>% group_by(type_vist) %>%count(wt=visits_GF)
+fitness_CHFU %>% group_by(type_vist) %>%count(wt=visits_GF)
 
 #########################################3
 # LINEAL--------RD INTERCEPT---------NO-ZI
 
-# The following models show convergence problems
 
-GF_LEMA_LIN_type_Plot <- lmer(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
+GF_LEMA_LIN_type_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
                                    scale(hete_motif)*type_vist +
                                    (1|Plot),
                                  #ziformula = ~1,
-                                 #family = gaussian(),
+                                 family = gaussian(),
                                  data = fitness_LEMA %>% filter(!is.na(type_vist)))
 
 # PUPA HAS NOT ENOUGH GROUPS
-GF_PUPA_LIN_type_Plot <- lmer(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
-                                   scale(hete_motif)*type_vist +
+GF_PUPA_LIN_type_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
+                                   #scale(hete_motif)*type_vist +
                                    (1|Plot),
                                  #ziformula = ~1,
-                                 #family = gaussian(),
+                                 family = gaussian(),
                                  data = fitness_PUPA %>% filter(!is.na(type_vist)))
 
 GF_CHFU_LIN_type_Plot <- lmer(log(Seeds_GF) ~ scale(homo_motif)*type_vist + 
@@ -804,8 +844,8 @@ res_GF_LEMA_LIN_type_Plot <- simulateResiduals(fittedModel = GF_LEMA_LIN_type_Pl
 res_GF_CHFU_LIN_type_Plot <- simulateResiduals(fittedModel = GF_CHFU_LIN_type_Plot, n = 500)
 
 # Checking Residuals 
-plot(res_GF_LEMA_LIN_type_Plot)
-plot(res_GF_CHFU_LIN_type_Plot) # 3 Quantile deviations
+plot(res_GF_LEMA_LIN_type_Plot)# KS + 2 Quantile deviations
+plot(res_GF_CHFU_LIN_type_Plot) # KS + 3 Quantile deviations
 
 # AIC
 AIC(GF_LEMA_LIN_type_Plot)
@@ -923,9 +963,9 @@ res_GF_PUPA_LIN_other_Plot <- simulateResiduals(fittedModel = GF_PUPA_LIN_other_
 
 
 # Checking Residuals 
-plot(res_GF_LEMA_LIN_mutua_Plot)#KS +2 Quant desv
-plot(res_GF_LEMA_LIN_antag_Plot)#2 Quant desv
-plot(res_GF_LEMA_LIN_other_Plot)#KS +2 Quant desv
+plot(res_GF_LEMA_LIN_mutua_Plot)#2 Quant desv
+plot(res_GF_LEMA_LIN_antag_Plot)#KS +3 Quant desv
+plot(res_GF_LEMA_LIN_other_Plot)#KS +1 Quant desv
 
 plot(res_GF_PUPA_LIN_mutua_Plot)
 plot(res_GF_PUPA_LIN_antag_Plot)
@@ -933,25 +973,23 @@ plot(res_GF_PUPA_LIN_other_Plot)
 
 plot(res_GF_CHFU_LIN_mutua_Plot)
 plot(res_GF_CHFU_LIN_antag_Plot)
-plot(res_GF_CHFU_LIN_other_Plot)
+plot(res_GF_CHFU_LIN_other_Plot)#KS +3 Quant desv
 
 
 # check convergence between models -----
-AIC(
-  GF_LEMA_LIN_mutua_Plot,
-  GF_LEMA_LIN_antag_Plot,
-  GF_LEMA_LIN_other_Plot)
 
-AIC(
-  GF_PUPA_LIN_mutua_Plot,
-  GF_PUPA_LIN_antag_Plot,
-  GF_PUPA_LIN_other_Plot)
+AIC(GF_LEMA_LIN_mutua_Plot)
+AIC( GF_LEMA_LIN_antag_Plot)
+AIC( GF_LEMA_LIN_other_Plot)
+
+AIC(GF_PUPA_LIN_mutua_Plot)
+AIC(  GF_PUPA_LIN_antag_Plot)
+AIC(  GF_PUPA_LIN_other_Plot)
 
 
-AIC(
-  GF_CHFU_LIN_mutua_Plot,
-  GF_CHFU_LIN_antag_Plot,
-  GF_CHFU_LIN_other_Plot)
+AIC(  GF_CHFU_LIN_mutua_Plot)
+AIC(  GF_CHFU_LIN_antag_Plot)
+AIC(  GF_CHFU_LIN_other_Plot)
 
 
 r2(GF_LEMA_LIN_mutua_Plot)
@@ -965,3 +1003,154 @@ r2(GF_PUPA_LIN_other_Plot)
 r2(GF_CHFU_LIN_mutua_Plot)
 r2(GF_CHFU_LIN_antag_Plot)
 r2(GF_CHFU_LIN_other_Plot)
+
+###########################################
+# ONE NEG. BIN. MODEL PER PLANT AND TYPE OF VISITOR 
+
+
+GF_LEMA_NB_mutua_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
+                                   scale(hete_motif) +
+                                   (1|Plot),
+                                 #ziformula = ~1,
+                                 family = nbinom2(),
+                                 data = fitness_LEMA %>% filter(type_vist=="mutualist"))
+
+GF_PUPA_NB_mutua_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
+                                   #scale(hete_motif) +
+                                   (1|Plot),
+                                 #ziformula = ~1,
+                                 family = nbinom2(),
+                                 data = fitness_PUPA %>% filter(type_vist=="mutualist"))
+
+# In the case of CHFU, hete-motifs are equal to zero
+
+GF_CHFU_NB_mutua_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
+                                   #scale(hete_motif) +
+                                   (1|Plot),
+                                 #ziformula = ~1,
+                                 family = nbinom2(),
+                                 data = fitness_CHFU %>% filter(type_vist=="mutualist"))
+
+
+GF_LEMA_NB_antag_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
+                                   scale(hete_motif) +
+                                   (1|Plot),
+                                 #ziformula = ~1,
+                                 family = nbinom2(),
+                                 data = fitness_LEMA %>% filter(type_vist=="antagonist"))
+
+# In the case of PUPA, homo and hete motifs are equal for antagonist
+# There is only one observation
+
+GF_PUPA_NB_antag_Plot <- glmmTMB((Seeds_GF) ~ 
+                                   (1|Plot),
+                                 #ziformula = ~1,
+                                 family = nbinom2(),
+                                 data = fitness_PUPA %>% filter(type_vist=="antagonist"))
+
+fitness_PUPA %>% filter(type_vist=="antagonist")
+
+
+GF_CHFU_NB_antag_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
+                                   #scale(hete_motif) +
+                                   (1|Plot),
+                                 #ziformula = ~1,
+                                 family = nbinom2(),
+                                 data = fitness_CHFU %>% filter(type_vist=="antagonist"))
+
+fitness_CHFU %>% filter(type_vist=="antagonist")
+
+GF_LEMA_NB_other_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
+                                   scale(hete_motif) +
+                                   (1|Plot),
+                                 #ziformula = ~1,
+                                 family = nbinom2(),
+                                 data = fitness_LEMA %>% filter(type_vist=="other"))
+
+# In the case of PUPA, homo and hete motifs are equal for antagonist
+
+fitness_PUPA %>% filter(type_vist=="other")
+
+GF_PUPA_NB_other_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
+                                   #scale(hete_motif) +
+                                   (1|Plot),
+                                 #ziformula = ~1,
+                                 family = nbinom2(),
+                                 data = fitness_PUPA %>% filter(type_vist=="other"))
+
+GF_CHFU_NB_other_Plot <- glmmTMB((Seeds_GF) ~ scale(homo_motif) + 
+                                   scale(hete_motif) +
+                                   (1|Plot),
+                                 #ziformula = ~1,
+                                 family = nbinom2(),
+                                 data = fitness_CHFU %>% filter(type_vist=="other"))
+
+summary(GF_LEMA_NB_mutua_Plot)
+summary(GF_LEMA_NB_antag_Plot)
+summary(GF_LEMA_NB_other_Plot)
+
+summary(GF_PUPA_NB_mutua_Plot) #NO VARIANCE (GROUPING FACTOR): 2 groups
+summary(GF_PUPA_NB_antag_Plot) #NO VARIANCE (GROUPING FACTOR): 1 groups
+summary(GF_PUPA_NB_other_Plot)
+
+summary(GF_CHFU_NB_mutua_Plot) 
+summary(GF_CHFU_NB_antag_Plot) #NO VARIANCE (GROUPING FACTOR): 2 groups
+summary(GF_CHFU_NB_other_Plot)
+
+# Get models' Residuals
+
+res_GF_LEMA_NB_mutua_Plot <- simulateResiduals(fittedModel = GF_LEMA_NB_mutua_Plot, n = 500)
+res_GF_LEMA_NB_antag_Plot <- simulateResiduals(fittedModel = GF_LEMA_NB_antag_Plot, n = 500)
+res_GF_LEMA_NB_other_Plot <- simulateResiduals(fittedModel = GF_LEMA_NB_other_Plot, n = 500)
+
+res_GF_CHFU_NB_mutua_Plot <- simulateResiduals(fittedModel = GF_CHFU_NB_mutua_Plot, n = 500)
+res_GF_CHFU_NB_antag_Plot <- simulateResiduals(fittedModel = GF_CHFU_NB_antag_Plot, n = 500)
+res_GF_CHFU_NB_other_Plot <- simulateResiduals(fittedModel = GF_CHFU_NB_other_Plot, n = 500)
+
+res_GF_PUPA_NB_mutua_Plot <- simulateResiduals(fittedModel = GF_PUPA_NB_mutua_Plot, n = 500)
+res_GF_PUPA_NB_antag_Plot <- simulateResiduals(fittedModel = GF_PUPA_NB_antag_Plot, n = 500)
+res_GF_PUPA_NB_other_Plot <- simulateResiduals(fittedModel = GF_PUPA_NB_other_Plot, n = 500)
+
+
+# Checking Residuals 
+plot(res_GF_LEMA_NB_mutua_Plot)#
+plot(res_GF_LEMA_NB_antag_Plot)#KS + 3 Quant desv
+plot(res_GF_LEMA_NB_other_Plot)#KS +1 Quant desv
+
+plot(res_GF_PUPA_NB_mutua_Plot)
+plot(res_GF_PUPA_NB_antag_Plot)
+plot(res_GF_PUPA_NB_other_Plot)
+
+plot(res_GF_CHFU_NB_mutua_Plot)
+plot(res_GF_CHFU_NB_antag_Plot)
+plot(res_GF_CHFU_NB_other_Plot) #KS +3 Quant desv
+
+testDispersion(res_GF_CHFU_NB_other_Plot)
+
+# check convergence between models -----
+
+AIC(GF_LEMA_NB_mutua_Plot)
+AIC( GF_LEMA_NB_antag_Plot)
+AIC( GF_LEMA_NB_other_Plot)
+
+AIC(GF_PUPA_NB_mutua_Plot)
+AIC(  GF_PUPA_NB_antag_Plot)
+AIC(  GF_PUPA_NB_other_Plot)
+
+
+AIC(  GF_CHFU_NB_mutua_Plot)
+AIC(  GF_CHFU_NB_antag_Plot)
+AIC(  GF_CHFU_NB_other_Plot)
+
+
+r2(GF_LEMA_NB_mutua_Plot)
+r2(GF_LEMA_NB_antag_Plot)
+r2(GF_LEMA_NB_other_Plot)
+
+r2(GF_PUPA_NB_mutua_Plot) #Some variance components equal zero.
+r2(GF_PUPA_NB_antag_Plot) #Some variance components equal zero.
+r2(GF_PUPA_NB_other_Plot)
+
+r2(GF_CHFU_NB_mutua_Plot)
+r2(GF_CHFU_NB_antag_Plot) #Some variance components equal zero.
+r2(GF_CHFU_NB_other_Plot)

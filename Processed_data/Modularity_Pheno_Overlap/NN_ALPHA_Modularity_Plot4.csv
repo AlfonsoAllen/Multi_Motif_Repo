@@ -1,0 +1,55 @@
+node_id,module,species,layer_name,Plot,type
+1,1,A2 CHFU,CHFU,4,plant
+2,4,A5 CHFU,CHFU,4,plant
+3,4,A6 CHFU,CHFU,4,plant
+4,6,B1 CHFU,CHFU,4,plant
+5,6,B2 CHFU,CHFU,4,plant
+6,5,B5 CHFU,CHFU,4,plant
+7,6,B6 CHFU,CHFU,4,plant
+8,3,C2 CHFU,CHFU,4,plant
+9,3,C5 CHFU,CHFU,4,plant
+10,6,D6 CHFU,CHFU,4,plant
+11,6,E5 CHFU,CHFU,4,plant
+12,2,F4 CHFU,CHFU,4,plant
+13,6,F5 CHFU,CHFU,4,plant
+14,8,A1 LEMA,LEMA,4,plant
+15,8,A2 LEMA,LEMA,4,plant
+16,1,B2 LEMA,LEMA,4,plant
+17,1,B4 LEMA,LEMA,4,plant
+18,2,B6 LEMA,LEMA,4,plant
+19,5,C1 LEMA,LEMA,4,plant
+20,10,C2 LEMA,LEMA,4,plant
+21,2,C3 LEMA,LEMA,4,plant
+22,7,C4 LEMA,LEMA,4,plant
+23,7,C5 LEMA,LEMA,4,plant
+24,5,C6 LEMA,LEMA,4,plant
+25,2,D2 LEMA,LEMA,4,plant
+26,8,D5 LEMA,LEMA,4,plant
+27,5,E1 LEMA,LEMA,4,plant
+28,7,E2 LEMA,LEMA,4,plant
+29,4,E4 LEMA,LEMA,4,plant
+30,8,E5 LEMA,LEMA,4,plant
+31,1,F1 LEMA,LEMA,4,plant
+32,3,F2 LEMA,LEMA,4,plant
+33,2,F3 LEMA,LEMA,4,plant
+34,2,F4 LEMA,LEMA,4,plant
+35,11,F6 LEMA,LEMA,4,plant
+36,9,B4 ME,ME,4,plant
+37,1,Andrena_cinerea,CHFU,4,pollinator
+38,6,Empididae,CHFU,4,pollinator
+39,4,Eupeodes_corollae,CHFU,4,pollinator
+40,2,Psilothrix_viridicoerulea,CHFU,4,pollinator
+41,5,Dilophus_sp.,CHFU,4,pollinator
+42,3,Diptera,CHFU,4,pollinator
+43,8,Odontomyia_sp.,LEMA,4,pollinator
+44,2,Psilothrix_viridicoerulea,LEMA,4,pollinator
+45,8,Meligethes_sp.,LEMA,4,pollinator
+46,8,Nemotelus_sp.,LEMA,4,pollinator
+47,1,Andrena_cinerea,LEMA,4,pollinator
+48,5,Dilophus_sp.,LEMA,4,pollinator
+49,10,Chrysotoxum_sp.,LEMA,4,pollinator
+50,7,Sphaerophoria_scripta,LEMA,4,pollinator
+51,4,Eupeodes_corollae,LEMA,4,pollinator
+52,3,Diptera,LEMA,4,pollinator
+53,11,Mordellidae,LEMA,4,pollinator
+54,9,Andrena_cinerea,ME,4,pollinator
