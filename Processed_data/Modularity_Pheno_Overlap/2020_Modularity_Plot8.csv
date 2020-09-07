@@ -120,7 +120,7 @@ node_id,module,layer_id,type,species,layer_name,Plot
 106,3,5,pollinator,Psilothrix_viridicoerulea,PUPA,8
 106,3,6,pollinator,Psilothrix_viridicoerulea,SCLA,8
 107,11,5,pollinator,Sarcophaga_sp.,PUPA,8
-108,10,5,pollinator,Small.bee.1_8_6,PUPA,8
+108,10,5,pollinator,Small bee 1_8_6,PUPA,8
 109,4,1,pollinator,Sphaerophoria_scripta,BEMA,8
 109,4,3,pollinator,Sphaerophoria_scripta,LEMA,8
 110,2,2,pollinator,Syrphidae,CHFU,8

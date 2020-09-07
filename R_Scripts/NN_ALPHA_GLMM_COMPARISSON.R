@@ -34,7 +34,7 @@ G_F_list <- bind_rows(G_F_list,tibble(G_F="None",ID="None"))
 
 # Fix "Odontomyia_sp."
 
-G_F_list$G_F[G_F_list$ID=="Odontomyia_sp."] <- "Small_flies"
+G_F_list$G_F[G_F_list$ID=="Odontomyia_sp."] <- "Hoverflies"
 G_F_list <- unique(G_F_list)
 
 # Sanity check

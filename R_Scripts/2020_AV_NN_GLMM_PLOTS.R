@@ -44,7 +44,7 @@ seed_data <- seed_data_raw %>%
 fitness2_seeds <- fitness2 %>%
   left_join(seed_data,by=c("Plot","Subplot","Plant"))
 
-fitness2_seeds %>% filter(ID=="Small bee 1/18/6") %>% dplyr::select(Plot,Subplot,Plant,Seed,Fruit)
+fitness2_seeds %>% filter(ID=="Small bee 1_8_6") %>% dplyr::select(Plot,Subplot,Plant,Seed,Fruit)
 
 fitness3_aux <- fitness2_seeds %>% group_by(Line,Plot,Subplot,Plant,Week,ID) %>%
   summarize(Seeds_GF = mean(Seed,na.rm = T),
@@ -112,6 +112,8 @@ caracoles_motif <- read_csv("Processed_data/Motifs_WEEK/2020_Caracoles_WEEK_SPEC
 
 caracoles_motif <- caracoles_motif %>% separate(Subplot_Plant_Label,c("Subplot",
                                                                       "Plant")," ")
+
+#unique(caracoles_motif$ID[grep(" ",caracoles_motif$ID,ignore.case = T)])
 
 #####################################
 # Merging motifs data and fitness
@@ -256,5 +258,8 @@ fitness_final$Real_PR_Multi[is.na(fitness_final$Real_PR_Multi)] <- 1
 fitness_final$Real_PR_Layer[is.na(fitness_final$Real_PR_Layer)] <- 1
 fitness_final$Ratio[is.na(fitness_final$Ratio)] <- 1
 fitness_final[is.na(fitness_final)] <- 0
+
+fitness_final <- fitness_final %>% ungroup() %>% dplyr::select(-Line)
+
 
 write_csv(fitness_final,"2020_AV_NN_data_models_phenol_overlap.csv")

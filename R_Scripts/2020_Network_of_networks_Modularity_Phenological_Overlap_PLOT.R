@@ -24,6 +24,9 @@ for (i in 1:nrow(pollination)){
 }
 
 
+unique(pollination$ID_Simple[grep(" ",pollination$ID_Simple,ignore.case = T)])
+  
+  
 for (Plot_i in 1:9){
   
 ##########################
@@ -111,6 +114,11 @@ for (i in 1:length(list_files_field_level)){
   }
 }
 
+# Fix those pollinator names that were modified during the extraction process
+
+plot_edge_list$to[plot_edge_list$to=="Beetle.black.with.red.end"] <- "Beetle black with red end"
+plot_edge_list$to[plot_edge_list$to=="Black.small.melyridae"] <- "Black small melyridae"
+plot_edge_list$to[plot_edge_list$to=="Small.bee.1_8_6"] <- "Small bee 1_8_6"
 
 
 pollinators <- sort(unique(plot_edge_list$to)) 

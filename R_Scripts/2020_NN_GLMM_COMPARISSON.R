@@ -45,24 +45,6 @@ fitness_orig$Plot <- as.factor(fitness_orig$Plot)
 fitness_orig$ID <- as.factor(fitness_orig$ID)
 fitness_orig$G_F <- as.factor(fitness_orig$G_F)
 
-########################
-# SPATIAL LOCATION
-##########################
-
-set.seed(123)
-
-x_r <- runif(nrow(fitness_orig), min=0, max=0.001)
-y_r <- runif(nrow(fitness_orig), min=0, max=0.001)
-
-coordinates <- read_csv2("Raw_Data/Caracoles_allplotsposition.csv") %>%
-  rename(x = x_coor2, y = y_coor2) 
-
-
-coordinates$Plot <- as.factor(coordinates$Plot)
-
-fitness_orig <- fitness_orig %>% left_join(coordinates,by=c("Plot","Subplot")) %>% mutate(x=x+x_r,y=y+y_r)
-
-
 
 #############################
 # pre-analysis ------------------------------------------------------------

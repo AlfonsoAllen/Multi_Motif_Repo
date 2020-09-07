@@ -71,3 +71,22 @@ write_csv(Raw_with_date_final,"Raw_Data/Metadata_Pollinators_Abundances_Seeds_20
 
 
 
+read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")%>% 
+  filter(Year==2019)%>% group_by(G_F) %>%
+  count(wt=Visits) 
+
+read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")%>% 
+  filter(Year==2019)%>% group_by(G_F,Order,Family, Species) %>%
+  count(wt=Visits) 
+
+read_csv2("Raw_Data/Metadata_Pollinators_2019_2016_bueno_MARIA_Sept_2020.csv") %>%
+  filter(Year == 2019,
+         Plant_Simple %in% c("LEMA","CHFU","ME","PUPA", "CHMI"),
+         Plot !="OUT", Subplot != "OUT",
+         Order %in% c("Coleoptera", "Diptera", "Hymenoptera", "Lepidoptera" ),
+         !G_F %in% c("Ants","Mosquitoes"),
+         !ID_Simple %in% c("Coccinella_septempunctata","Larva",
+                           "Chrysididae","Diplazon_sp.") ) %>%
+  group_by(G_F) %>%
+  count(wt=Visits) 
+  

@@ -26,9 +26,9 @@ for (i in 1:nrow(pollination)){
 ############################
 # Preparing list of values of alpha, i.e., the coefficient for visitors' effectiveness
 
-pollination$G_F[pollination$ID_Simple=="Odontomyia_sp."] <- "Small_flies"
+pollination$G_F[pollination$ID_Simple=="Odontomyia_sp."] <- "Hoverflies"
 
-alpha_factor_list <- pollination %>% filter(Year==2019,Subplot!="OUT",!is.na(ID)) %>%
+alpha_factor_list <- pollination %>% filter(Year==2019,Subplot!="OUT",!is.na(ID_Simple)) %>%
   group_by(G_F,ID_Simple) %>% count() %>% ungroup() %>% dplyr::select(-n)
 
 alpha_factor_list %>% group_by(ID_Simple) %>% count() %>% filter(n>1)
@@ -125,6 +125,8 @@ for (i in 1:length(list_files_field_level)){
 
   # Extract the incidence matrix
   inc_matrix <- read.csv(list_files_field_level[i], header=T, row.names=1)
+  # Be carefull because spaces in names have been replaced with dots!!!!!!!!!!!!!!!!!!
+
   
   # Create a graph for each layer
   g_i <- graph_from_incidence_matrix(inc_matrix, directed = FALSE, weighted = T)
@@ -144,7 +146,9 @@ for (i in 1:length(list_files_field_level)){
   }
 }
 
+# Fix those pollinator names that were modified during the extraction process
 
+plot_edge_list$to[plot_edge_list$to=="Lassioglosum_.immunitum"]<- "Lassioglosum_ immunitum"
 
 pollinators <- sort(unique(plot_edge_list$to)) 
 plants <- sort(unique(plot_edge_list$from))

@@ -70,7 +70,7 @@ node_id,module,species,layer_name,Plot,type
 69,2,Bombyliidae,CETE,2,pollinator
 70,6,Andrena_sp.,CETE,2,pollinator
 71,8,X1_29_5,CETE,2,pollinator
-72,4,Small.bee.1_8_6,CETE,2,pollinator
+72,4,Small bee,bee,2,plant
 73,5,Ulidiidae,CHFU,2,pollinator
 74,11,Eucera_sp.,CHFU,2,pollinator
 75,12,Andrena_jar4,CHFU,2,pollinator
@@ -84,7 +84,7 @@ node_id,module,species,layer_name,Plot,type
 83,1,Mordellidae,LEMA,2,pollinator
 84,7,Oedemeridae,LEMA,2,pollinator
 85,7,Musca_jar_H,LEMA,2,pollinator
-86,4,Small.bee.1_8_6,LEMA,2,pollinator
+86,4,Small bee,bee,2,plant
 87,1,Dilophus_sp.,LEMA,2,pollinator
 88,6,Andrena_sp.,LEMA,2,pollinator
 89,8,X1_29_5,LEMA,2,pollinator
@@ -95,7 +95,7 @@ node_id,module,species,layer_name,Plot,type
 94,10,Black_small_fly,LEMA,2,pollinator
 95,1,Cerambycidae,LEMA,2,pollinator
 96,1,Eristalis_sp.,LEMA,2,pollinator
-97,4,Small.bee.1_8_6,PUPA,2,pollinator
+97,4,Small bee,bee,2,plant
 98,3,Bombilus_major,PUPA,2,pollinator
 99,2,Bombyliidae,PUPA,2,pollinator
 100,13,Big_bee_2_8_7,PUPA,2,pollinator

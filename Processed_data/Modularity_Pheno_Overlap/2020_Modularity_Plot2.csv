@@ -93,9 +93,9 @@ node_id,module,layer_id,type,species,layer_name,Plot
 86,7,4,pollinator,Oedemeridae,LEMA,2
 87,1,4,pollinator,Psilothrix_viridicoerulea,LEMA,2
 88,1,4,pollinator,Red_black_fly_6.19.5,LEMA,2
-89,4,2,pollinator,Small.bee.1_8_6,CETE,2
-89,4,4,pollinator,Small.bee.1_8_6,LEMA,2
-89,4,5,pollinator,Small.bee.1_8_6,PUPA,2
+89,4,2,pollinator,Small bee 1_8_6,CETE,2
+89,4,4,pollinator,Small bee 1_8_6,LEMA,2
+89,4,5,pollinator,Small bee 1_8_6,PUPA,2
 90,1,4,pollinator,Sphaerophoria_scripta,LEMA,2
 91,5,3,pollinator,Ulidiidae,CHFU,2
 91,5,4,pollinator,Ulidiidae,LEMA,2

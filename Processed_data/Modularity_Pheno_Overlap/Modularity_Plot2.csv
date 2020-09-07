@@ -54,7 +54,7 @@ node_id,module,layer_id,type,species,layer_name,Plot
 48,11,2,pollinator,Episyrphus_balteatus,LEMA,2
 49,4,2,pollinator,Eupeodes_corollae,LEMA,2
 49,4,3,pollinator,Eupeodes_corollae,ME,2
-50,6,3,pollinator,Lassioglosum_.immunitum,ME,2
+50,6,3,pollinator,Lassioglosum_ immunitum,ME,2
 51,10,2,pollinator,Malachius_bipustulatus,LEMA,2
 52,7,2,pollinator,Meligethes_sp.,LEMA,2
 53,10,2,pollinator,Melyridae,LEMA,2

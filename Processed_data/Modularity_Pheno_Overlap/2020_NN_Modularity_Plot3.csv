@@ -65,7 +65,7 @@ node_id,module,species,layer_name,Plot,type
 64,3,F1 PUPA,PUPA,3,plant
 65,3,F4 PUPA,PUPA,3,plant
 66,7,F6 PUPA,PUPA,3,plant
-67,3,Small.bee.1_8_6,CETE,3,pollinator
+67,3,Small bee,bee,3,plant
 68,5,Andrena_sp.,CETE,3,pollinator
 69,4,Ulidiidae,CHFU,3,pollinator
 70,13,Black_small_fly,CHFU,3,pollinator
@@ -83,7 +83,7 @@ node_id,module,species,layer_name,Plot,type
 82,5,Andrena_sp.,LEMA,3,pollinator
 83,18,Sarcophaga_sp.,LEMA,3,pollinator
 84,12,Malachius_bipustulatus,LEMA,3,pollinator
-85,3,Small.bee.1_8_6,LEMA,3,pollinator
+85,3,Small bee,bee,3,plant
 86,15,Conophorus_sp.,LEMA,3,pollinator
 87,15,Rainbow_beetle,LEMA,3,pollinator
 88,16,Cerambycidae,LEMA,3,pollinator
@@ -94,7 +94,7 @@ node_id,module,species,layer_name,Plot,type
 93,7,Bombyliidae,LEMA,3,pollinator
 94,11,Sphaerophoria_scripta,LEMA,3,pollinator
 95,11,Tabanidae,LEMA,3,pollinator
-96,3,Small.bee.1_8_6,PUPA,3,pollinator
+96,3,Small bee,bee,3,plant
 97,5,Andrena_sp.,PUPA,3,pollinator
 98,6,Bombilus_major,PUPA,3,pollinator
 99,6,Pieris_brassicae,PUPA,3,pollinator

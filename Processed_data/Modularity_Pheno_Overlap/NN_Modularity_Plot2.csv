@@ -62,4 +62,4 @@ node_id,module,species,layer_name,Plot,type
 61,6,Cantharidae,ME,2,pollinator
 62,8,Andrena_cinerea,ME,2,pollinator
 63,5,Nemotelus_sp.,ME,2,pollinator
-64,6,Lassioglosum_.immunitum,ME,2,pollinator
+64,6,Lassioglosum_ immunitum,immunitum,2,plant

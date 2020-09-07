@@ -27,13 +27,13 @@ node_id,module,layer_id,type,species,layer_name,Plot
 26,1,1,plant,F4 LEMA,LEMA,4
 27,4,1,pollinator,bee_1_1_6,LEMA,4
 28,4,1,pollinator,Big_bee_2_8_7,LEMA,4
-29,5,1,pollinator,Black.small.melyridae,LEMA,4
+29,5,1,pollinator,Black small melyridae,LEMA,4
 30,1,1,pollinator,Brassicogethes_sp.,LEMA,4
 31,1,1,pollinator,Cryptocephalus_sp.,LEMA,4
 32,8,1,pollinator,Elateridae,LEMA,4
 33,7,1,pollinator,Lasioglossum_sp.,LEMA,4
 34,2,1,pollinator,Oedemeridae,LEMA,4
 35,2,1,pollinator,Psilothrix_viridicoerulea,LEMA,4
-36,3,1,pollinator,Small.bee.1_8_6,LEMA,4
-36,3,2,pollinator,Small.bee.1_8_6,PUPA,4
+36,3,1,pollinator,Small bee 1_8_6,LEMA,4
+36,3,2,pollinator,Small bee 1_8_6,PUPA,4
 37,6,1,pollinator,Ulidiidae,LEMA,4

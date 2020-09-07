@@ -92,9 +92,9 @@ node_id,module,layer_id,type,species,layer_name,Plot
 84,2,4,pollinator,Psilothrix_viridicoerulea,LEMA,3
 85,15,4,pollinator,Rainbow_beetle,LEMA,3
 86,18,4,pollinator,Sarcophaga_sp.,LEMA,3
-87,3,1,pollinator,Small.bee.1_8_6,CETE,3
-87,3,4,pollinator,Small.bee.1_8_6,LEMA,3
-87,3,5,pollinator,Small.bee.1_8_6,PUPA,3
+87,3,1,pollinator,Small bee 1_8_6,CETE,3
+87,3,4,pollinator,Small bee 1_8_6,LEMA,3
+87,3,5,pollinator,Small bee 1_8_6,PUPA,3
 88,9,4,pollinator,Sphaerophoria_scripta,LEMA,3
 89,9,4,pollinator,Tabanidae,LEMA,3
 89,9,5,pollinator,Tabanidae,PUPA,3

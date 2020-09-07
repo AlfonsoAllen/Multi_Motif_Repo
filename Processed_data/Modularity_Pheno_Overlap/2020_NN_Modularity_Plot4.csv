@@ -26,9 +26,9 @@ node_id,module,species,layer_name,Plot,type
 25,1,F4 LEMA,LEMA,4,plant
 26,3,A4 PUPA,PUPA,4,plant
 27,1,Brassicogethes_sp.,LEMA,4,pollinator
-28,3,Small.bee.1_8_6,LEMA,4,pollinator
+28,3,Small bee,bee,4,plant
 29,8,Elateridae,LEMA,4,pollinator
-30,5,Black.small.melyridae,LEMA,4,pollinator
+30,5,Black small,small,4,plant
 31,2,Psilothrix_viridicoerulea,LEMA,4,pollinator
 32,1,Cryptocephalus_sp.,LEMA,4,pollinator
 33,4,Big_bee_2_8_7,LEMA,4,pollinator
@@ -36,4 +36,4 @@ node_id,module,species,layer_name,Plot,type
 35,6,Ulidiidae,LEMA,4,pollinator
 36,2,Oedemeridae,LEMA,4,pollinator
 37,7,Lasioglossum_sp.,LEMA,4,pollinator
-38,3,Small.bee.1_8_6,PUPA,4,pollinator
+38,3,Small bee,bee,4,plant

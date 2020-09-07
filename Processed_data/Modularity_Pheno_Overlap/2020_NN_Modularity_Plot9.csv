@@ -101,11 +101,11 @@ node_id,module,species,layer_name,Plot,type
 100,4,Andrena_sp.,LEMA,9,pollinator
 101,1,Lagorina_sericea,LEMA,9,pollinator
 102,1,Euchloe_crameri,LEMA,9,pollinator
-103,7,Small.bee.1_8_6,LEMA,9,pollinator
+103,7,Small bee,bee,9,plant
 104,9,Cylindromyia_sp.,LEMA,9,pollinator
 105,1,Lasioglossum_sp.,LEMA,9,pollinator
 106,13,Calliphoridae,PUPA,9,pollinator
-107,7,Small.bee.1_8_6,PUPA,9,pollinator
+107,7,Small bee,bee,9,plant
 108,14,Lasiocampa_trifolii,PUPA,9,pollinator
 109,1,Brassicogethes_sp.,SCLA,9,pollinator
 110,15,Diptera,SCLA,9,pollinator

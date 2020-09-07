@@ -106,8 +106,8 @@ node_id,module,layer_id,type,species,layer_name,Plot
 97,2,3,pollinator,Psilothrix_viridicoerulea,CHFU,9
 97,2,5,pollinator,Psilothrix_viridicoerulea,LEMA,9
 97,2,8,pollinator,Psilothrix_viridicoerulea,SOAS,9
-98,7,5,pollinator,Small.bee.1_8_6,LEMA,9
-98,7,6,pollinator,Small.bee.1_8_6,PUPA,9
+98,7,5,pollinator,Small bee 1_8_6,LEMA,9
+98,7,6,pollinator,Small bee 1_8_6,PUPA,9
 99,8,5,pollinator,Sphaerophoria_scripta,LEMA,9
 100,6,3,pollinator,Syrphidae,CHFU,9
 101,5,3,pollinator,Ulidiidae,CHFU,9

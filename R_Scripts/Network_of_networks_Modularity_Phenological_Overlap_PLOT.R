@@ -110,7 +110,9 @@ for (i in 1:length(list_files_field_level)){
   }
 }
 
+# Fix those pollinator names that were modified during the extraction process
 
+plot_edge_list$to[plot_edge_list$to=="Lassioglosum_.immunitum"] <- "Lassioglosum_ immunitum"
 
 pollinators <- sort(unique(plot_edge_list$to)) 
 plants <- sort(unique(plot_edge_list$from))

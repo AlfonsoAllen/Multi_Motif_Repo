@@ -50,7 +50,7 @@ node_id,module,layer_id,type,species,layer_name,Plot
 49,2,3,plant,F6 LEMA,LEMA,1
 50,2,4,plant,F6 PUPA,PUPA,1
 51,4,3,pollinator,Andrena_sp.,LEMA,1
-52,9,3,pollinator,Beetle.black.with.red.end,LEMA,1
+52,9,3,pollinator,Beetle black with red end,LEMA,1
 53,1,3,pollinator,Black_small_fly_LEMA,LEMA,1
 54,7,1,pollinator,Bombilus_major,CETE,1
 55,6,3,pollinator,Bombyliidae,LEMA,1
@@ -68,9 +68,9 @@ node_id,module,layer_id,type,species,layer_name,Plot
 66,3,3,pollinator,Other_Black_small_fly_jarE,LEMA,1
 67,1,3,pollinator,Psilothrix_viridicoerulea,LEMA,1
 68,5,3,pollinator,Red_black_fly_6.19.5,LEMA,1
-69,2,1,pollinator,Small.bee.1_8_6,CETE,1
-69,2,3,pollinator,Small.bee.1_8_6,LEMA,1
-69,2,4,pollinator,Small.bee.1_8_6,PUPA,1
+69,2,1,pollinator,Small bee 1_8_6,CETE,1
+69,2,3,pollinator,Small bee 1_8_6,LEMA,1
+69,2,4,pollinator,Small bee 1_8_6,PUPA,1
 70,10,3,pollinator,Sphaerophoria_scripta,LEMA,1
 71,2,1,pollinator,Tabanidae,CETE,1
 72,3,2,pollinator,Ulidiidae,CHFU,1
