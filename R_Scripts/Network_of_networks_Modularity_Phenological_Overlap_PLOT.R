@@ -341,7 +341,7 @@ page_rank_layer_i_nodes <- NULL
 
 for (i in 1:length(layer_plant)){
   
-  nodes_layer <- V(graph_Plot_i)[grep(layer_plant[i],V(graph_Plot_i)$name,ignore.case = T)]
+  nodes_layer <- V(graph_Plot_i)[grep(paste0(" ",layer_plant[i]),V(graph_Plot_i)$name,ignore.case = T)]
   
   layer_i <- induced_subgraph(graph_Plot_i, nodes_layer,impl = c("auto"))
 
