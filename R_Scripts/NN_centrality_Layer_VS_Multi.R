@@ -2,13 +2,22 @@
 library(tidyverse)
 
 
-PageRank_results <- read_csv("NN_PageRank_results.csv")
+PageRank_results_ini <- read_csv("NN_PageRank_results.csv")
 
-sum(PageRank_results$Real_PR_Multi[PageRank_results$Plot==1])
-sum(PageRank_results$Real_PR_Layer[PageRank_results$Plot==1])
 
-#write_csv(PageRank_results,"PageRank_results.csv")
+# sanity check
+sum(PageRank_results_ini$Real_PR_Multi[PageRank_results_ini$Plot==1])
+sum(PageRank_results_ini$Real_PR_Layer[PageRank_results_ini$Plot==1])
 
+PageRank_results_Plant_Simple <- PageRank_results_ini %>% mutate(Label=species) %>% 
+  separate(species,c("aux","Plant_Simple")," ") 
+
+
+PageRank_results_Plant_Simple$Plant_Simple[str_length(PageRank_results_Plant_Simple$aux)!=2] <- NA
+
+PageRank_results <- PageRank_results_Plant_Simple %>% filter(!is.na(Plant_Simple))
+
+PageRank_results %>% group_by(Plant_Simple) %>% count()
 
 plot_labs <-c(
   "Plot 1",
@@ -51,6 +60,9 @@ ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
 means <- aggregate((Real_PR_Multi) ~  Plant_Simple + Plot,
                    PageRank_results, mean)
 
+#Test significance of differences
+library(ggpubr)
+
 ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
   geom_boxplot()+
   geom_point(aes(color=Plant_Simple),position = "jitter",alpha=0.3)+
@@ -62,7 +74,8 @@ ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   #ggtitle(paste0("Plot ",i)) +
   xlab("Plant Species") + ylab("PageRank")+ 
-  labs(fill = NULL)+ theme(legend.position="none")+stat_compare_means()
+  labs(fill = NULL)+ theme(legend.position="none")
+#+stat_compare_means()
   
 #Test significance of differences
 library(ggpubr)
@@ -129,7 +142,7 @@ ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
   theme_bw()+
   stat_summary(fun.y=mean, colour="darkred", geom="point", 
                shape=18, size=3,show.legend = FALSE) + 
-  geom_text(data = means_caracoles, aes(label = round(`(Real_PR_Multi)`,3), y = 0.04))+
+  geom_text(data = means_caracoles, aes(label = round(`(Real_PR_Multi)`,3), y = 0.043))+
   #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   #ggtitle(paste0("Plot ",i)) +
   xlab("Plant Species") + ylab("PageRank")+ 
@@ -145,19 +158,19 @@ aggregate((Real_PR_Multi) ~ Plot,
 
 
 
-x <- MC_list %>% separate(Label,c("Sub","Spec")," ")
-x$Spec[is.na(x$Spec)] <- "Visitor"
+x <- PageRank_results_Plant_Simple
+x$Plant_Simple[is.na(x$Plant_Simple)] <- "Visitor"
 
 library(ggpmisc)
 
-ggplot(x %>% filter(Spec!="Visitor"),aes(x=(StrengthIn),y=(Real_PR_Multi)))+
-  geom_point(aes(color=as.factor(Spec)),position = "jitter",alpha=0.5)+
+ggplot(x %>% filter(Plant_Simple!="Visitor"),aes(x=(StrengthIn),y=(Real_PR_Multi)))+
+  geom_point(aes(color=as.factor(Plant_Simple)),position = "jitter",alpha=0.5)+
   geom_smooth(method = "lm")+
   theme_bw()+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   xlab("In-Strength") + ylab("Multilayer Page Rank") +
   labs(color = NULL)+ theme(legend.position="bottom")+
-  stat_cor(method = "pearson", label.x = 0.01, label.y = 0.05)
+  stat_cor(method = "pearson", label.x = 0.01, label.y = 0.04)
 
 
 

@@ -89,10 +89,14 @@ poll_sp_m %>%  ggplot()+
   #ggtitle(paste0("Plot ",i)) +
   xlab("# Animal species and morphospecies per module") + ylab("# Modules") + theme(legend.position = "none")
 
+sum(poll_sp_m$n==0)
 sum(poll_sp_m$n==1)
 sum(poll_sp_m$n==2)
 sum(poll_sp_m$n==3)
 sum(poll_sp_m$n==4)
+sum(poll_sp_m$n==5)
+sum(poll_sp_m$n==6)
+sum(poll_sp_m$n==9)
 
 mean(poll_sp_m$n)
 sd(poll_sp_m$n)

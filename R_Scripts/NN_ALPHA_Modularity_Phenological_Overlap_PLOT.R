@@ -360,9 +360,26 @@ plot_modules_NN_i_aux <- modules_relax_rate_NN$modules %>%
 
 plot_modules_NN_i_aux$Plot <- Plot_i
 
+# PReproccess insect names with spaces 
+
+plot_modules_NN_i_aux$species[grep("Lassioglosum_ immunitum",
+                                   plot_modules_NN_i_aux$species)] <- 
+  gsub("Lassioglosum_ immunitum", 
+       "Lassioglosum_.immunitum", 
+       plot_modules_NN_i_aux$species[grep("Lassioglosum_ immunitum",
+                                          plot_modules_NN_i_aux$species)])
+
 plot_modules_NN_i <- plot_modules_NN_i_aux %>% separate(species,c("species","layer_name")," ") %>% 
   left_join(physical_nodes,by=c("species")) %>% dplyr::select(-node_id.y) %>% 
   rename(node_id=node_id.x)
+
+# Fix problems with those visitors names with spaces
+
+plot_modules_NN_i$type[plot_modules_NN_i$species=="Lassioglosum_.immunitum"] <- "pollinator"
+plot_modules_NN_i$species[plot_modules_NN_i$species=="Lassioglosum_.immunitum"] <- "Lassioglosum_ immunitum"
+
+
+# Add type to plants
 
 for (i in 1:nrow(plot_modules_NN_i)){
   if(is.na(plot_modules_NN_i$type[i])){
@@ -402,7 +419,7 @@ page_rank_layer_i_nodes <- NULL
 
 for (i in 1:length(layer_plant)){
   
-  nodes_layer <- V(graph_Plot_i)[grep(layer_plant[i],V(graph_Plot_i)$name,ignore.case = T)]
+  nodes_layer <- V(graph_Plot_i)[grep(paste0(" ",layer_plant[i]),V(graph_Plot_i)$name,ignore.case = T)]
   
   layer_i <- induced_subgraph(graph_Plot_i, nodes_layer,impl = c("auto"))
 

@@ -861,7 +861,8 @@ r2(GF_CHFU_LIN_type_Plot)
 
 GF_LEMA_LIN_mutua_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     scale(hete_motif) +
-                                    (1|Plot),
+                                    (0+scale(homo_motif) + 
+                                       scale(hete_motif)|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_LEMA %>% filter(type_vist=="mutualist"))
@@ -885,7 +886,8 @@ GF_CHFU_LIN_mutua_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 
 GF_LEMA_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     scale(hete_motif) +
-                                    (1|Plot),
+                                    (0+scale(homo_motif) + 
+                                       scale(hete_motif)|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_LEMA %>% filter(type_vist=="antagonist"))
@@ -904,7 +906,7 @@ fitness_PUPA %>% filter(type_vist=="antagonist")
 
 GF_CHFU_LIN_antag_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
                                     #scale(hete_motif) +
-                                    (1|Plot),
+                                    (0+scale(homo_motif) |Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
                                   data = fitness_CHFU %>% filter(type_vist=="antagonist"))

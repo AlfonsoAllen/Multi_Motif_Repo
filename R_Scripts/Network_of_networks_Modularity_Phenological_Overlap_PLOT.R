@@ -203,7 +203,7 @@ for (i in 1:length(pollinators)){
 }
 
 S_edge_list_i <- S_edge_list %>% mutate(Plot=Plot_i)
-if (Plot_i==1){S_edge_list_final <- S_edge_list_i}else{S_edge_list_final <- bind_rows(S_edge_list_final,S_edge_list_i)}
+#if (Plot_i==1){S_edge_list_final <- S_edge_list_i}else{S_edge_list_final <- bind_rows(S_edge_list_final,S_edge_list_i)}
 
 
 # Replace the node names with node_ids
@@ -299,9 +299,26 @@ plot_modules_NN_i_aux <- modules_relax_rate_NN$modules %>%
 
 plot_modules_NN_i_aux$Plot <- Plot_i
 
+# PReproccess insect names with spaces 
+
+plot_modules_NN_i_aux$species[grep("Lassioglosum_ immunitum",
+                                   plot_modules_NN_i_aux$species)] <- 
+gsub("Lassioglosum_ immunitum", 
+     "Lassioglosum_.immunitum", 
+     plot_modules_NN_i_aux$species[grep("Lassioglosum_ immunitum",
+                                        plot_modules_NN_i_aux$species)])
+
 plot_modules_NN_i <- plot_modules_NN_i_aux %>% separate(species,c("species","layer_name")," ") %>% 
   left_join(physical_nodes,by=c("species")) %>% dplyr::select(-node_id.y) %>% 
   rename(node_id=node_id.x)
+
+# Fix problems with those visitors names with spaces
+
+plot_modules_NN_i$type[plot_modules_NN_i$species=="Lassioglosum_.immunitum"] <- "pollinator"
+plot_modules_NN_i$species[plot_modules_NN_i$species=="Lassioglosum_.immunitum"] <- "Lassioglosum_ immunitum"
+
+
+# Add type to plants
 
 for (i in 1:nrow(plot_modules_NN_i)){
   if(is.na(plot_modules_NN_i$type[i])){

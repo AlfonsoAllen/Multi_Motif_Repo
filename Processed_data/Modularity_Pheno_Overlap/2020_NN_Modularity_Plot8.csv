@@ -120,7 +120,7 @@ node_id,module,species,layer_name,Plot,type
 119,11,Sarcophaga_sp.,PUPA,8,pollinator
 120,8,Andrena_sp.,PUPA,8,pollinator
 121,1,Brassicogethes_sp.,PUPA,8,pollinator
-122,10,Small bee,bee,8,plant
+122,10,Small bee 1_8_6,PUPA,8,pollinator
 123,17,Vanessa_cardui,PUPA,8,pollinator
 124,18,Melyridae,PUPA,8,pollinator
 125,19,bee_1_1_6,PUPA,8,pollinator
