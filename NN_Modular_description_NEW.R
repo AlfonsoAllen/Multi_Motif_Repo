@@ -228,3 +228,230 @@ ggplot(modules_pollinators_label, aes(fill=G_F, y=n, x=as.factor(module))) +
   labs(x = "Module", y = "Number of pollinators",fill=NULL)+theme(legend.position="bottom")
 
 
+############
+
+#Plant species per module----
+
+i=1
+plant_sp_m_i <- plant_sp_m %>% filter(Plot==i)
+mean(plant_sp_m_i$n)
+b <- boot(plant_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=2
+plant_sp_m_i <- plant_sp_m %>% filter(Plot==i)
+mean(plant_sp_m_i$n)
+b <- boot(plant_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=3
+plant_sp_m_i <- plant_sp_m %>% filter(Plot==i)
+mean(plant_sp_m_i$n)
+b <- boot(plant_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=4
+plant_sp_m_i <- plant_sp_m %>% filter(Plot==i)
+mean(plant_sp_m_i$n)
+b <- boot(plant_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=5
+plant_sp_m_i <- plant_sp_m %>% filter(Plot==i)
+mean(plant_sp_m_i$n)
+b <- boot(plant_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=6
+plant_sp_m_i <- plant_sp_m %>% filter(Plot==i)
+mean(plant_sp_m_i$n)
+b <- boot(plant_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=7
+plant_sp_m_i <- plant_sp_m %>% filter(Plot==i)
+mean(plant_sp_m_i$n)
+b <- boot(plant_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=8
+plant_sp_m_i <- plant_sp_m %>% filter(Plot==i)
+mean(plant_sp_m_i$n)
+b <- boot(plant_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=9
+plant_sp_m_i <- plant_sp_m %>% filter(Plot==i)
+mean(plant_sp_m_i$n)
+b <- boot(plant_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+
+# Visitors per module----
+
+i=1
+poll_sp_m_i <- poll_sp_m %>% filter(Plot==i)
+mean(poll_sp_m_i$n)
+b <- boot(poll_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=2
+poll_sp_m_i <- poll_sp_m %>% filter(Plot==i)
+mean(poll_sp_m_i$n)
+b <- boot(poll_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=3
+poll_sp_m_i <- poll_sp_m %>% filter(Plot==i)
+mean(poll_sp_m_i$n)
+b <- boot(poll_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=4
+poll_sp_m_i <- poll_sp_m %>% filter(Plot==i)
+mean(poll_sp_m_i$n)
+b <- boot(poll_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=5
+poll_sp_m_i <- poll_sp_m %>% filter(Plot==i)
+mean(poll_sp_m_i$n)
+b <- boot(poll_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=6
+poll_sp_m_i <- poll_sp_m %>% filter(Plot==i)
+mean(poll_sp_m_i$n)
+b <- boot(poll_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=7
+poll_sp_m_i <- poll_sp_m %>% filter(Plot==i)
+mean(poll_sp_m_i$n)
+b <- boot(poll_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=8
+poll_sp_m_i <- poll_sp_m %>% filter(Plot==i)
+mean(poll_sp_m_i$n)
+b <- boot(poll_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=9
+poll_sp_m_i <- poll_sp_m %>% filter(Plot==i)
+mean(poll_sp_m_i$n)
+b <- boot(poll_sp_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+# Focal plants per module----
+i=1
+plant_ind_m_i <- plant_ind_m %>% filter(Plot==i)
+mean(plant_ind_m_i$n)
+b <- boot(plant_ind_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=2
+plant_ind_m_i <- plant_ind_m %>% filter(Plot==i)
+mean(plant_ind_m_i$n)
+b <- boot(plant_ind_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=3
+plant_ind_m_i <- plant_ind_m %>% filter(Plot==i)
+mean(plant_ind_m_i$n)
+b <- boot(plant_ind_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=4
+plant_ind_m_i <- plant_ind_m %>% filter(Plot==i)
+mean(plant_ind_m_i$n)
+b <- boot(plant_ind_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=5
+plant_ind_m_i <- plant_ind_m %>% filter(Plot==i)
+mean(plant_ind_m_i$n)
+b <- boot(plant_ind_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=6
+plant_ind_m_i <- plant_ind_m %>% filter(Plot==i)
+mean(plant_ind_m_i$n)
+b <- boot(plant_ind_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=7
+plant_ind_m_i <- plant_ind_m %>% filter(Plot==i)
+mean(plant_ind_m_i$n)
+b <- boot(plant_ind_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=8
+plant_ind_m_i <- plant_ind_m %>% filter(Plot==i)
+mean(plant_ind_m_i$n)
+b <- boot(plant_ind_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+i=9
+plant_ind_m_i <- plant_ind_m %>% filter(Plot==i)
+mean(plant_ind_m_i$n)
+b <- boot(plant_ind_m_i$n, function(u,i) u[i], R = 1000)
+boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
+
+
+
+plant_sp_m %>%  ggplot()+
+  geom_histogram(aes(x=n))+theme_bw()+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("# Plant species per module") + ylab("# Modules") + theme(legend.position = "none")
+#Recoge a través de cuantas capas se extiende el módulo
+
+poll_sp_m %>%  ggplot()+
+  geom_histogram(aes(x=n))+theme_bw()+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("# Animal species and morphospecies per module") + ylab("# Modules") + theme(legend.position = "none")
+
+
+plant_ind_m %>%  ggplot()+
+  geom_histogram(aes(x=n))+theme_bw()+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("# Plant individuals per module") + ylab("# Modules") + theme(legend.position = "none")
+#Recoge a través de cuantas capas se extiende el módulo
+
+library(gridExtra)
+library(gtable)
+library(grid)
+
+p1 <- plant_sp_m %>%  ggplot()+
+  geom_histogram(aes(x=n))+theme_bw()+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("# Plant species per module") + ylab("# Modules") + theme(legend.position = "none")
+#Recoge a través de cuantas capas se extiende el módulo
+
+p2 <- poll_sp_m %>%  ggplot()+
+  geom_histogram(aes(x=n))+theme_bw()+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("# Animal species and morphospecies per module") + ylab("# Modules") + theme(legend.position = "none")
+
+
+p3 <- plant_ind_m %>%  ggplot()+
+  geom_histogram(aes(x=n))+theme_bw()+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("# Plant individuals per module") + ylab("# Modules") + theme(legend.position = "none")
+#Recoge a través de cuantas capas se extiende el módulo
+
+
+grid.arrange(
+  grobs = list(p1,p2,p3),
+  widths = c(1),
+  layout_matrix = rbind(c(1),
+                        c(2),
+                        c(3)),
+  #top = textGrob("CPF model", rot = 0, vjust = 1)
+)

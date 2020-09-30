@@ -1,22 +1,58 @@
 
 library(tidyverse)
 
-
 PageRank_results_ini <- read_csv("NN_PageRank_results.csv")
-
 
 # sanity check
 sum(PageRank_results_ini$Real_PR_Multi[PageRank_results_ini$Plot==1])
-sum(PageRank_results_ini$Real_PR_Layer[PageRank_results_ini$Plot==1])
+sum(PageRank_results_ini$Real_PR_Layer[PageRank_results_ini$Plot==1]) #3 layers
 
+# Addapt names with spaces to plant extraction
+
+PageRank_results_ini$species[grep("Lassioglosum_ immunitum",
+                                  PageRank_results_ini$species)] <- 
+  gsub("Lassioglosum_ immunitum", 
+       "Lassioglosum_.immunitum", 
+       PageRank_results_ini$species[grep("Lassioglosum_ immunitum",
+                                         PageRank_results_ini$species)])
+
+# Extract plant layer
 PageRank_results_Plant_Simple <- PageRank_results_ini %>% mutate(Label=species) %>% 
   separate(species,c("aux","Plant_Simple")," ") 
+
+
+# Fix problems with those visitors names with spaces
+
+PageRank_results_Plant_Simple$species[PageRank_results_Plant_Simple$aux=="Lassioglosum_.immunitum"] <- "Lassioglosum_ immunitum"
+
+# Add number of nodes per plot
+
+nodes_per_plot <- PageRank_results_Plant_Simple %>% group_by(Plot) %>%
+  count() %>% rename(nodes_per_plot=n)
+
+PageRank_results_Plant_Simple <- PageRank_results_Plant_Simple %>%
+  left_join(nodes_per_plot,by="Plot")
+
+# Add number of nodes per plot and layer
+
+nodes_per_plot_layer <- PageRank_results_Plant_Simple %>% group_by(Plot,Plant_Simple) %>%
+  count() %>% rename(nodes_per_plot_layer=n)
+
+PageRank_results_Plant_Simple <- PageRank_results_Plant_Simple %>%
+  left_join(nodes_per_plot_layer,by=c("Plot","Plant_Simple"))
+  
+# Corrected pageranks per nodes
+
+PageRank_results_Plant_Simple <- PageRank_results_Plant_Simple %>%
+  mutate(C_Real_PR_Multi=Real_PR_Multi*nodes_per_plot,
+         C_Real_PR_Layer=Real_PR_Layer*nodes_per_plot_layer,
+         C_Delta=C_Real_PR_Multi-C_Real_PR_Layer,
+         C_Ratio=C_Real_PR_Multi/C_Real_PR_Layer)
 
 
 PageRank_results_Plant_Simple$Plant_Simple[str_length(PageRank_results_Plant_Simple$aux)!=2] <- NA
 
 PageRank_results <- PageRank_results_Plant_Simple %>% filter(!is.na(Plant_Simple))
-
 PageRank_results %>% group_by(Plant_Simple) %>% count()
 
 plot_labs <-c(
@@ -76,7 +112,8 @@ ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
   xlab("Plant Species") + ylab("PageRank")+ 
   labs(fill = NULL)+ theme(legend.position="none")
 #+stat_compare_means()
-  
+
+
 #Test significance of differences
 library(ggpubr)
 
@@ -89,6 +126,10 @@ PageRank_results6 <- PageRank_results %>% filter(Plot==6)
 PageRank_results7 <- PageRank_results %>% filter(Plot==7)
 PageRank_results8 <- PageRank_results %>% filter(Plot==8)
 PageRank_results9 <- PageRank_results %>% filter(Plot==9)
+
+# If the p-value is less than the significance level 0.05, 
+# we can conclude that there are significant differences between
+# the plant species.
 
 # Plot1
 kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results1)
@@ -248,6 +289,221 @@ pairwise.wilcox.test(PageRank_results9$Ratio, PageRank_results9$Plant_Simple,
 
 
 PageRank_results %>% filter(Plot==1) %>% summarise(Real_PR_Multi=sum(Real_PR_Multi))
+
+
+###################################3
+# CORRECTED CENTRALITY
+####################################
+
+
+ggplot(PageRank_results,aes(x=Plant_Simple,y=(C_Real_PR_Multi)))+
+  geom_violin()+ 
+  geom_point(aes(color=Plant_Simple),
+             position = "jitter",alpha=0.2)+
+  geom_boxplot(width=0.1)+
+  scale_fill_brewer(palette = 'Paired')+
+  theme_bw()+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  xlab("Plant Species") + ylab("Multilayer Page Rank") +
+  labs(color = NULL)+ theme(legend.position="bottom")
+
+means <- aggregate((C_Real_PR_Multi) ~  Plant_Simple + Plot,
+                   PageRank_results, mean)
+
+
+ggplot(PageRank_results,aes(x=Plant_Simple,y=(C_Real_PR_Multi)))+
+  geom_boxplot()+
+  geom_point(aes(color=Plant_Simple),position = "jitter",alpha=0.3)+
+  scale_fill_brewer(palette = 'Paired')+
+  theme_bw()+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  geom_text(data = means, aes(label = round(`(C_Real_PR_Multi)`,2), y = 2.75))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("PageRank")+ 
+  labs(fill = NULL)+ theme(legend.position="none")+
+  ylim(0, 3)
+#+stat_compare_means()
+
+#Test significance of differences
+library(ggpubr)
+
+PageRank_results1 <- PageRank_results %>% filter(Plot==1)
+PageRank_results2 <- PageRank_results %>% filter(Plot==2)
+PageRank_results3 <- PageRank_results %>% filter(Plot==3)
+PageRank_results4 <- PageRank_results %>% filter(Plot==4)
+PageRank_results5 <- PageRank_results %>% filter(Plot==5)
+PageRank_results6 <- PageRank_results %>% filter(Plot==6)
+PageRank_results7 <- PageRank_results %>% filter(Plot==7)
+PageRank_results8 <- PageRank_results %>% filter(Plot==8)
+PageRank_results9 <- PageRank_results %>% filter(Plot==9)
+
+# If the p-value is less than the significance level 0.05, 
+# we can conclude that there are significant differences between
+# the plant species.
+
+# Plot1
+kruskal.test(C_Real_PR_Multi ~ Plant_Simple, data = PageRank_results1)
+pairwise.wilcox.test(PageRank_results1$C_Real_PR_Multi, PageRank_results1$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot2
+kruskal.test(C_Real_PR_Multi ~ Plant_Simple, data = PageRank_results2)
+pairwise.wilcox.test(PageRank_results2$C_Real_PR_Multi, PageRank_results2$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot3
+kruskal.test(C_Real_PR_Multi ~ Plant_Simple, data = PageRank_results3)
+pairwise.wilcox.test(PageRank_results3$C_Real_PR_Multi, PageRank_results3$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot4
+kruskal.test(C_Real_PR_Multi ~ Plant_Simple, data = PageRank_results4)
+pairwise.wilcox.test(PageRank_results4$C_Real_PR_Multi, PageRank_results4$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot5
+kruskal.test(C_Real_PR_Multi ~ Plant_Simple, data = PageRank_results5)
+pairwise.wilcox.test(PageRank_results5$C_Real_PR_Multi, PageRank_results5$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot6
+kruskal.test(C_Real_PR_Multi ~ Plant_Simple, data = PageRank_results6)
+pairwise.wilcox.test(PageRank_results6$C_Real_PR_Multi, PageRank_results6$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot7
+kruskal.test(C_Real_PR_Multi ~ Plant_Simple, data = PageRank_results7)
+pairwise.wilcox.test(PageRank_results7$C_Real_PR_Multi, PageRank_results7$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot8
+kruskal.test(C_Real_PR_Multi ~ Plant_Simple, data = PageRank_results8)
+pairwise.wilcox.test(PageRank_results8$C_Real_PR_Multi, PageRank_results8$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot9
+kruskal.test(C_Real_PR_Multi ~ Plant_Simple, data = PageRank_results9)
+pairwise.wilcox.test(PageRank_results9$C_Real_PR_Multi, PageRank_results9$Plant_Simple,
+                     p.adjust.method = "BH")
+
+#############################################
+
+means_caracoles <- aggregate((C_Real_PR_Multi) ~  Plant_Simple,
+                             PageRank_results, mean)
+
+ggplot(PageRank_results,aes(x=Plant_Simple,y=(C_Real_PR_Multi)))+
+  geom_boxplot()+
+  geom_point(aes(color=Plant_Simple),position = "jitter",alpha=0.3)+
+  scale_fill_brewer(palette = 'Paired')+
+  theme_bw()+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  geom_text(data = means_caracoles, aes(label = round(`(C_Real_PR_Multi)`,3), y = 0.043))+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("PageRank")+ 
+  labs(fill = NULL)+ theme(legend.position="none")+stat_compare_means()
+
+library(ggpubr)
+
+pairwise.wilcox.test(PageRank_results$C_Real_PR_Multi, PageRank_results$Plot,
+                     p.adjust.method = "BH")
+
+aggregate((C_Real_PR_Multi) ~ Plot,
+          PageRank_results, mean)
+
+
+
+x <- PageRank_results_Plant_Simple
+x$Plant_Simple[is.na(x$Plant_Simple)] <- "Visitor"
+
+library(ggpmisc)
+
+ggplot(x %>% filter(Plant_Simple!="Visitor"),aes(x=(StrengthIn),y=(C_Real_PR_Multi)))+
+  geom_point(aes(color=as.factor(Plant_Simple)),position = "jitter",alpha=0.5)+
+  geom_smooth(method = "lm")+
+  theme_bw()+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  xlab("In-Strength") + ylab("Multilayer Page Rank") +
+  labs(color = NULL)+ theme(legend.position="bottom")+
+  stat_cor(method = "pearson", label.x = 0.01, label.y = 2.75)+
+  ylim(0,3)
+
+
+
+
+means <- aggregate((C_Ratio) ~  Plant_Simple + Plot,
+                   PageRank_results, mean)
+
+
+PageRank_results %>% filter(C_Real_PR_Layer<C_Real_PR_Multi)
+
+ggplot(PageRank_results,aes(x=Plant_Simple,y=(C_Ratio),fill=Plant_Simple))+
+  geom_boxplot()+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  geom_text(data = means, aes(label = round(`(C_Ratio)`,2), y = `(C_Ratio)` + 1))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("R=MC/LC")+
+  theme_bw()+ theme(legend.position = "none")#+stat_compare_means()
+#labs(Color = "Plant Species")
+
+# Test significance
+
+# Plot1
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results1)
+pairwise.wilcox.test(PageRank_results1$Ratio, PageRank_results1$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot2
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results2)
+pairwise.wilcox.test(PageRank_results2$Ratio, PageRank_results2$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot3
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results3)
+pairwise.wilcox.test(PageRank_results3$Ratio, PageRank_results3$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot4
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results4)
+pairwise.wilcox.test(PageRank_results4$Ratio, PageRank_results4$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot5
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results5)
+pairwise.wilcox.test(PageRank_results5$Ratio, PageRank_results5$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot6
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results6)
+pairwise.wilcox.test(PageRank_results6$Ratio, PageRank_results6$Plant_Simple,
+                     p.adjust.method = "BH")
+# Plot7
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results7)
+pairwise.wilcox.test(PageRank_results7$Ratio, PageRank_results7$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot8
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results8)
+pairwise.wilcox.test(PageRank_results8$Ratio, PageRank_results8$Plant_Simple,
+                     p.adjust.method = "BH")
+
+# Plot9
+kruskal.test(Ratio ~ Plant_Simple, data = PageRank_results9)
+pairwise.wilcox.test(PageRank_results9$Ratio, PageRank_results9$Plant_Simple,
+                     p.adjust.method = "BH")
+
+
+PageRank_results %>% filter(Plot==1) %>% summarise(Real_PR_Multi=sum(Real_PR_Multi))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ###########################
 # MODULAR STRUCTURE
