@@ -3,55 +3,57 @@ node_id,module,layer_id,type,species,layer_name,Plot
 2,1,1,plant,A2 CHFU,CHFU,6
 3,1,1,plant,A3 CHFU,CHFU,6
 4,3,2,plant,A3 LEMA,LEMA,6
-5,5,2,plant,A4 LEMA,LEMA,6
-6,8,1,plant,A5 CHFU,CHFU,6
-7,1,1,plant,A6 CHFU,CHFU,6
-8,1,2,plant,A6 LEMA,LEMA,6
-9,3,2,plant,B1 LEMA,LEMA,6
-10,4,2,plant,B2 LEMA,LEMA,6
-11,3,1,plant,B3 CHFU,CHFU,6
-12,9,2,plant,B3 LEMA,LEMA,6
-13,10,2,plant,B4 LEMA,LEMA,6
-14,1,2,plant,B5 LEMA,LEMA,6
-15,2,2,plant,B6 LEMA,LEMA,6
-16,2,2,plant,C1 LEMA,LEMA,6
-17,4,2,plant,C3 LEMA,LEMA,6
-18,7,2,plant,C4 LEMA,LEMA,6
-19,5,2,plant,C6 LEMA,LEMA,6
-20,1,2,plant,D1 LEMA,LEMA,6
-21,6,2,plant,D2 LEMA,LEMA,6
-22,5,2,plant,D3 LEMA,LEMA,6
-23,1,2,plant,D4 LEMA,LEMA,6
-24,2,2,plant,D5 LEMA,LEMA,6
-25,3,2,plant,D6 LEMA,LEMA,6
-26,4,2,plant,E1 LEMA,LEMA,6
-27,5,2,plant,E2 LEMA,LEMA,6
-28,6,1,plant,E3 CHFU,CHFU,6
-29,11,3,plant,E5 ME,ME,6
-30,7,1,plant,F2 CHFU,CHFU,6
-31,2,2,plant,F2 LEMA,LEMA,6
-32,1,2,plant,F3 LEMA,LEMA,6
-33,5,2,plant,F4 LEMA,LEMA,6
-34,2,2,plant,F5 LEMA,LEMA,6
-35,4,2,plant,F6 LEMA,LEMA,6
-36,7,1,pollinator,Andrena_cinerea,CHFU,6
-36,7,2,pollinator,Andrena_cinerea,LEMA,6
-37,1,1,pollinator,Bruchidae,CHFU,6
-38,8,1,pollinator,Cantharidae,CHFU,6
-38,8,2,pollinator,Cantharidae,LEMA,6
-39,10,2,pollinator,Chrysotoxum_sp.,LEMA,6
-40,2,2,pollinator,Coleoptera,LEMA,6
-41,1,1,pollinator,Dilophus_sp.,CHFU,6
-41,1,2,pollinator,Dilophus_sp.,LEMA,6
-42,3,1,pollinator,Diptera,CHFU,6
-42,3,2,pollinator,Diptera,LEMA,6
-43,9,2,pollinator,Eristalis_sp.,LEMA,6
-44,6,1,pollinator,Eucera_sp.,CHFU,6
-44,6,2,pollinator,Eucera_sp.,LEMA,6
-45,10,2,pollinator,Eupeodes_corollae,LEMA,6
-45,11,3,pollinator,Eupeodes_corollae,ME,6
-46,3,1,pollinator,Lomatia_sp.,CHFU,6
-47,4,1,pollinator,Meligethes_sp.,CHFU,6
-47,4,2,pollinator,Meligethes_sp.,LEMA,6
-48,2,2,pollinator,Psilothrix_viridicoerulea,LEMA,6
-49,5,2,pollinator,Sphaerophoria_scripta,LEMA,6
+5,12,4,plant,A3 RAPE,RAPE,6
+6,5,2,plant,A4 LEMA,LEMA,6
+7,8,1,plant,A5 CHFU,CHFU,6
+8,1,1,plant,A6 CHFU,CHFU,6
+9,1,2,plant,A6 LEMA,LEMA,6
+10,3,2,plant,B1 LEMA,LEMA,6
+11,4,2,plant,B2 LEMA,LEMA,6
+12,3,1,plant,B3 CHFU,CHFU,6
+13,9,2,plant,B3 LEMA,LEMA,6
+14,10,2,plant,B4 LEMA,LEMA,6
+15,1,2,plant,B5 LEMA,LEMA,6
+16,2,2,plant,B6 LEMA,LEMA,6
+17,2,2,plant,C1 LEMA,LEMA,6
+18,4,2,plant,C3 LEMA,LEMA,6
+19,7,2,plant,C4 LEMA,LEMA,6
+20,5,2,plant,C6 LEMA,LEMA,6
+21,1,2,plant,D1 LEMA,LEMA,6
+22,6,2,plant,D2 LEMA,LEMA,6
+23,5,2,plant,D3 LEMA,LEMA,6
+24,1,2,plant,D4 LEMA,LEMA,6
+25,2,2,plant,D5 LEMA,LEMA,6
+26,3,2,plant,D6 LEMA,LEMA,6
+27,4,2,plant,E1 LEMA,LEMA,6
+28,5,2,plant,E2 LEMA,LEMA,6
+29,6,1,plant,E3 CHFU,CHFU,6
+30,11,3,plant,E5 ME,ME,6
+31,7,1,plant,F2 CHFU,CHFU,6
+32,2,2,plant,F2 LEMA,LEMA,6
+33,1,2,plant,F3 LEMA,LEMA,6
+34,5,2,plant,F4 LEMA,LEMA,6
+35,2,2,plant,F5 LEMA,LEMA,6
+36,4,2,plant,F6 LEMA,LEMA,6
+37,7,1,pollinator,Andrena_cinerea,CHFU,6
+37,7,2,pollinator,Andrena_cinerea,LEMA,6
+38,1,1,pollinator,Bruchidae,CHFU,6
+39,8,1,pollinator,Cantharidae,CHFU,6
+39,8,2,pollinator,Cantharidae,LEMA,6
+40,10,2,pollinator,Chrysotoxum_sp.,LEMA,6
+40,12,4,pollinator,Chrysotoxum_sp.,RAPE,6
+41,2,2,pollinator,Coleoptera,LEMA,6
+42,1,1,pollinator,Dilophus_sp.,CHFU,6
+42,1,2,pollinator,Dilophus_sp.,LEMA,6
+43,3,1,pollinator,Diptera,CHFU,6
+43,3,2,pollinator,Diptera,LEMA,6
+44,9,2,pollinator,Eristalis_sp.,LEMA,6
+45,6,1,pollinator,Eucera_sp.,CHFU,6
+45,6,2,pollinator,Eucera_sp.,LEMA,6
+46,10,2,pollinator,Eupeodes_corollae,LEMA,6
+46,11,3,pollinator,Eupeodes_corollae,ME,6
+47,3,1,pollinator,Lomatia_sp.,CHFU,6
+48,4,1,pollinator,Meligethes_sp.,CHFU,6
+48,4,2,pollinator,Meligethes_sp.,LEMA,6
+49,2,2,pollinator,Psilothrix_viridicoerulea,LEMA,6
+50,5,2,pollinator,Sphaerophoria_scripta,LEMA,6

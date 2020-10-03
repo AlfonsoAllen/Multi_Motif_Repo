@@ -1,3 +1,6 @@
+
+# Corrected pageranks per nodes
+
 # Load relevant libraries
 library(infomapecology)
 # Infomap installation guide: https://github.com/Ecological-Complexity-Lab/infomap_ecology_package
@@ -13,7 +16,7 @@ library(ggalluvial)
 dir_ini <- getwd()
 
 #Load data on pollinator visits
-pollination <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
+pollination <- read_csv("Raw_data/Metadata_Pollinators_Abundances_Seeds_2019_ID_RAPE.csv")
 
 pollination$Line <- NA
 

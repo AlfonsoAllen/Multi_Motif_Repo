@@ -34,24 +34,26 @@ node_id,module,species,layer_name,Plot,type
 33,2,F5 LEMA,LEMA,6,plant
 34,4,F6 LEMA,LEMA,6,plant
 35,11,E5 ME,ME,6,plant
-36,1,Bruchidae,CHFU,6,pollinator
-37,1,Dilophus_sp.,CHFU,6,pollinator
-38,4,Meligethes_sp.,CHFU,6,pollinator
-39,8,Cantharidae,CHFU,6,pollinator
-40,3,Diptera,CHFU,6,pollinator
-41,3,Lomatia_sp.,CHFU,6,pollinator
-42,6,Eucera_sp.,CHFU,6,pollinator
-43,7,Andrena_cinerea,CHFU,6,pollinator
-44,1,Dilophus_sp.,LEMA,6,pollinator
-45,2,Psilothrix_viridicoerulea,LEMA,6,pollinator
-46,3,Diptera,LEMA,6,pollinator
-47,5,Sphaerophoria_scripta,LEMA,6,pollinator
-48,4,Meligethes_sp.,LEMA,6,pollinator
-49,9,Eristalis_sp.,LEMA,6,pollinator
-50,10,Chrysotoxum_sp.,LEMA,6,pollinator
-51,10,Eupeodes_corollae,LEMA,6,pollinator
-52,8,Cantharidae,LEMA,6,pollinator
-53,2,Coleoptera,LEMA,6,pollinator
-54,7,Andrena_cinerea,LEMA,6,pollinator
-55,6,Eucera_sp.,LEMA,6,pollinator
-56,11,Eupeodes_corollae,ME,6,pollinator
+36,12,A3 RAPE,RAPE,6,plant
+37,1,Bruchidae,CHFU,6,pollinator
+38,1,Dilophus_sp.,CHFU,6,pollinator
+39,4,Meligethes_sp.,CHFU,6,pollinator
+40,8,Cantharidae,CHFU,6,pollinator
+41,3,Diptera,CHFU,6,pollinator
+42,3,Lomatia_sp.,CHFU,6,pollinator
+43,6,Eucera_sp.,CHFU,6,pollinator
+44,7,Andrena_cinerea,CHFU,6,pollinator
+45,1,Dilophus_sp.,LEMA,6,pollinator
+46,2,Psilothrix_viridicoerulea,LEMA,6,pollinator
+47,3,Diptera,LEMA,6,pollinator
+48,5,Sphaerophoria_scripta,LEMA,6,pollinator
+49,4,Meligethes_sp.,LEMA,6,pollinator
+50,9,Eristalis_sp.,LEMA,6,pollinator
+51,10,Chrysotoxum_sp.,LEMA,6,pollinator
+52,10,Eupeodes_corollae,LEMA,6,pollinator
+53,8,Cantharidae,LEMA,6,pollinator
+54,2,Coleoptera,LEMA,6,pollinator
+55,7,Andrena_cinerea,LEMA,6,pollinator
+56,6,Eucera_sp.,LEMA,6,pollinator
+57,11,Eupeodes_corollae,ME,6,pollinator
+58,12,Chrysotoxum_sp.,RAPE,6,pollinator

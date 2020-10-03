@@ -99,7 +99,52 @@ summary(scale(fitness_CHFU$DegreeIn))
 summary(scale(fitness_CHFU$Real_PR_Layer))
 summary(scale(fitness_CHFU$Ratio))
 
+#############################################
+# EXPLORING THE DATA
+##############################################
 
+################################################
+# Exploring relations between seed and individuals
+################################################
+
+# Cleveland dotplot
+
+library(ggpubr)
+
+ggdotchart(fitness.data, x = "Seeds_GF", y = c("StrengthIn"),
+           group = "Plant_Simple", color = "Plant_Simple",
+           rotate = TRUE,
+           combine = TRUE,
+           sorting = "descending",
+           ggtheme = theme_bw(),
+           y.text.col = TRUE )
+
+ggdotchart(fitness.data, x = "Seeds_GF", y = c("homo_motif"),
+           group = "Plant_Simple", color = "Plant_Simple",
+           rotate = TRUE,
+           combine = TRUE,
+           sorting = "descending",
+           ggtheme = theme_bw(),
+           y.text.col = TRUE )
+
+ggdotchart(fitness.data, x = "Seeds_GF", y = c("hete_motif"),
+           group = "Plant_Simple", color = "Plant_Simple",
+           rotate = TRUE,
+           combine = TRUE,
+           sorting = "descending",
+           ggtheme = theme_bw(),
+           y.text.col = TRUE )
+
+ggdotchart(fitness.data, x = "Seeds_GF", y = c("Ratio"),
+           group = "Plant_Simple", color = "Plant_Simple",
+           rotate = TRUE,
+           combine = TRUE,
+           sorting = "descending",
+           ggtheme = theme_bw(),
+           y.text.col = TRUE )
+
+###############################
+# MODELS
 ###############################
 # ALL PLANT SPECIES MODEL: 2 Centrality Index + Homo_motif + Hetero_motifs
 # (WITH and WITHOUT ZERO INFLATION FACTOR)
@@ -242,7 +287,7 @@ visreg(GF_MIX_LIN_intercept_Plot_Plant, "homo_motif", by="Plant_Simple",gg = TRU
   theme_bw() +
   #geom_point(aes(color=G_F), size=2, alpha=0.3, shape=16)+
   geom_point(size=1.5, alpha=0.2, shape=16)+
-  facet_wrap(vars(Plant_Simple),nrow = 1,ncol = 5)+
+  facet_wrap(vars(Plant_Simple),nrow = 1,ncol = 6)+
   #scale_fill_brewer(palette = 'Paired')+ 
   labs(x ="Homo-triplet", y = "Ln(Seeds per individual)",fill=NULL,color=NULL)
 

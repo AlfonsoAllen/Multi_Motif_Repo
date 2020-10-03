@@ -245,7 +245,7 @@ ME,E2 ME,ME,Diptera,0.5,2
 ME,E2 ME,ME,Nemotelus_sp.,0.5,2
 ME,E4 ME,ME,Cantharidae,0.3333333333333333,2
 ME,E4 ME,ME,Diptera,0.3333333333333333,2
-ME,E4 ME,ME,Lassioglosum_.immunitum,0.3333333333333333,2
+ME,E4 ME,ME,Lassioglosum_ immunitum,0.3333333333333333,2
 CHFU,Dilophus_sp.,CHFU,A3 CHFU,0.2,2
 CHFU,Dilophus_sp.,CHFU,A4 CHFU,0.4,2
 CHFU,Dilophus_sp.,CHFU,B1 CHFU,0.2,2
@@ -324,7 +324,7 @@ ME,Diptera,ME,E2 ME,0.14285714285714285,2
 ME,Nemotelus_sp.,ME,E2 ME,1,2
 ME,Cantharidae,ME,E4 ME,0.3333333333333333,2
 ME,Diptera,ME,E4 ME,0.14285714285714285,2
-ME,Lassioglosum_.immunitum,ME,E4 ME,1,2
+ME,Lassioglosum_ immunitum,ME,E4 ME,1,2
 LEMA,Andrena_cinerea,ME,Andrena_cinerea,0.5714285714285714,2
 ME,Andrena_cinerea,LEMA,Andrena_cinerea,1,2
 LEMA,Cantharidae,ME,Cantharidae,0.5714285714285714,2
@@ -547,6 +547,7 @@ LEMA,F4 LEMA,LEMA,Psilothrix_viridicoerulea,1,4
 LEMA,F6 LEMA,LEMA,Mordellidae,0.6666666666666666,4
 LEMA,F6 LEMA,LEMA,Psilothrix_viridicoerulea,0.3333333333333333,4
 ME,B4 ME,ME,Andrena_cinerea,1,4
+RAPE,C5 RAPE,RAPE,Eupeodes_corollae,1,4
 CHFU,Andrena_cinerea,CHFU,A2 CHFU,1,4
 CHFU,Empididae,CHFU,A2 CHFU,0.2,4
 CHFU,Eupeodes_corollae,CHFU,A5 CHFU,0.5,4
@@ -611,6 +612,7 @@ LEMA,Psilothrix_viridicoerulea,LEMA,F4 LEMA,0.08695652173913043,4
 LEMA,Mordellidae,LEMA,F6 LEMA,1,4
 LEMA,Psilothrix_viridicoerulea,LEMA,F6 LEMA,0.043478260869565216,4
 ME,Andrena_cinerea,ME,B4 ME,1,4
+RAPE,Eupeodes_corollae,RAPE,C5 RAPE,1,4
 CHFU,Andrena_cinerea,LEMA,Andrena_cinerea,0.6666666666666666,4
 LEMA,Andrena_cinerea,CHFU,Andrena_cinerea,0.5714285714285714,4
 CHFU,Andrena_cinerea,ME,Andrena_cinerea,0,4
@@ -623,6 +625,10 @@ CHFU,Diptera,LEMA,Diptera,0.6666666666666666,4
 LEMA,Diptera,CHFU,Diptera,0.5714285714285714,4
 CHFU,Eupeodes_corollae,LEMA,Eupeodes_corollae,0.6666666666666666,4
 LEMA,Eupeodes_corollae,CHFU,Eupeodes_corollae,0.5714285714285714,4
+CHFU,Eupeodes_corollae,RAPE,Eupeodes_corollae,0.16666666666666666,4
+RAPE,Eupeodes_corollae,CHFU,Eupeodes_corollae,1,4
+LEMA,Eupeodes_corollae,RAPE,Eupeodes_corollae,0,4
+RAPE,Eupeodes_corollae,LEMA,Eupeodes_corollae,0,4
 CHFU,Psilothrix_viridicoerulea,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,4
 LEMA,Psilothrix_viridicoerulea,CHFU,Psilothrix_viridicoerulea,0.5714285714285714,4
 CHFU,A1 CHFU,CHFU,Dilophus_sp.,1,5
@@ -810,6 +816,7 @@ LEMA,F5 LEMA,LEMA,Meligethes_sp.,0.3333333333333333,6
 LEMA,F5 LEMA,LEMA,Psilothrix_viridicoerulea,0.6666666666666666,6
 LEMA,F6 LEMA,LEMA,Meligethes_sp.,1,6
 ME,E5 ME,ME,Eupeodes_corollae,1,6
+RAPE,A3 RAPE,RAPE,Chrysotoxum_sp.,1,6
 CHFU,Bruchidae,CHFU,A2 CHFU,0.5,6
 CHFU,Dilophus_sp.,CHFU,A2 CHFU,0.3333333333333333,6
 CHFU,Bruchidae,CHFU,A3 CHFU,0.5,6
@@ -877,10 +884,13 @@ LEMA,Meligethes_sp.,LEMA,F5 LEMA,0.1,6
 LEMA,Psilothrix_viridicoerulea,LEMA,F5 LEMA,0.1111111111111111,6
 LEMA,Meligethes_sp.,LEMA,F6 LEMA,0.1,6
 ME,Eupeodes_corollae,ME,E5 ME,1,6
+RAPE,Chrysotoxum_sp.,RAPE,A3 RAPE,1,6
 CHFU,Andrena_cinerea,LEMA,Andrena_cinerea,0.6666666666666666,6
 LEMA,Andrena_cinerea,CHFU,Andrena_cinerea,0.6666666666666666,6
 CHFU,Cantharidae,LEMA,Cantharidae,0.6666666666666666,6
 LEMA,Cantharidae,CHFU,Cantharidae,0.6666666666666666,6
+LEMA,Chrysotoxum_sp.,RAPE,Chrysotoxum_sp.,0,6
+RAPE,Chrysotoxum_sp.,LEMA,Chrysotoxum_sp.,0,6
 CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0.6666666666666666,6
 LEMA,Dilophus_sp.,CHFU,Dilophus_sp.,0.6666666666666666,6
 CHFU,Diptera,LEMA,Diptera,0.6666666666666666,6
@@ -1017,6 +1027,12 @@ PUPA,F3 PUPA,PUPA,Bombyliidae,0.5,7
 PUPA,F3 PUPA,PUPA,Lasiocampa_trifolii,0.5,7
 PUPA,F4 PUPA,PUPA,Lasiocampa_trifolii,1,7
 PUPA,F6 PUPA,PUPA,Lasiocampa_trifolii,1,7
+RAPE,C4 RAPE,RAPE,Dilophus_sp.,1,7
+RAPE,D4 RAPE,RAPE,Dilophus_sp.,1,7
+RAPE,D6 RAPE,RAPE,Dilophus_sp.,1,7
+RAPE,E3 RAPE,RAPE,Scaeva_sp.,1,7
+RAPE,E5 RAPE,RAPE,Andrena_cinerea,1,7
+RAPE,F6 RAPE,RAPE,Lomatia_sp.,1,7
 CHFU,Dilophus_sp.,CHFU,A1 CHFU,0.017543859649122806,7
 CHFU,Dilophus_sp.,CHFU,A5 CHFU,0.12280701754385964,7
 CHFU,Ulidiidae,CHFU,A5 CHFU,0.3333333333333333,7
@@ -1143,12 +1159,24 @@ PUPA,Bombyliidae,PUPA,F3 PUPA,0.1,7
 PUPA,Lasiocampa_trifolii,PUPA,F3 PUPA,0.16666666666666666,7
 PUPA,Lasiocampa_trifolii,PUPA,F4 PUPA,0.16666666666666666,7
 PUPA,Lasiocampa_trifolii,PUPA,F6 PUPA,0.16666666666666666,7
+RAPE,Dilophus_sp.,RAPE,C4 RAPE,0.3333333333333333,7
+RAPE,Dilophus_sp.,RAPE,D4 RAPE,0.3333333333333333,7
+RAPE,Dilophus_sp.,RAPE,D6 RAPE,0.3333333333333333,7
+RAPE,Scaeva_sp.,RAPE,E3 RAPE,1,7
+RAPE,Andrena_cinerea,RAPE,E5 RAPE,1,7
+RAPE,Lomatia_sp.,RAPE,F6 RAPE,1,7
 CHFU,Andrena_cinerea,LEMA,Andrena_cinerea,0.16666666666666666,7
 LEMA,Andrena_cinerea,CHFU,Andrena_cinerea,0.16666666666666666,7
 CHFU,Andrena_cinerea,PUPA,Andrena_cinerea,0,7
 PUPA,Andrena_cinerea,CHFU,Andrena_cinerea,0,7
+CHFU,Andrena_cinerea,RAPE,Andrena_cinerea,0.8333333333333334,7
+RAPE,Andrena_cinerea,CHFU,Andrena_cinerea,0.8333333333333334,7
 LEMA,Andrena_cinerea,PUPA,Andrena_cinerea,0,7
 PUPA,Andrena_cinerea,LEMA,Andrena_cinerea,0,7
+LEMA,Andrena_cinerea,RAPE,Andrena_cinerea,0,7
+RAPE,Andrena_cinerea,LEMA,Andrena_cinerea,0,7
+PUPA,Andrena_cinerea,RAPE,Andrena_cinerea,0,7
+RAPE,Andrena_cinerea,PUPA,Andrena_cinerea,0,7
 CHFU,Dilophus_sp.,CHMI,Dilophus_sp.,0,7
 CHMI,Dilophus_sp.,CHFU,Dilophus_sp.,0,7
 CHFU,Dilophus_sp.,LEMA,Dilophus_sp.,0.16666666666666666,7
@@ -1157,18 +1185,28 @@ CHFU,Dilophus_sp.,ME,Dilophus_sp.,0.16666666666666666,7
 ME,Dilophus_sp.,CHFU,Dilophus_sp.,0.3333333333333333,7
 CHFU,Dilophus_sp.,PUPA,Dilophus_sp.,0,7
 PUPA,Dilophus_sp.,CHFU,Dilophus_sp.,0,7
+CHFU,Dilophus_sp.,RAPE,Dilophus_sp.,0.8333333333333334,7
+RAPE,Dilophus_sp.,CHFU,Dilophus_sp.,0.8333333333333334,7
 CHMI,Dilophus_sp.,LEMA,Dilophus_sp.,1,7
 LEMA,Dilophus_sp.,CHMI,Dilophus_sp.,0.16666666666666666,7
 CHMI,Dilophus_sp.,ME,Dilophus_sp.,0,7
 ME,Dilophus_sp.,CHMI,Dilophus_sp.,0,7
 CHMI,Dilophus_sp.,PUPA,Dilophus_sp.,0,7
 PUPA,Dilophus_sp.,CHMI,Dilophus_sp.,0,7
+CHMI,Dilophus_sp.,RAPE,Dilophus_sp.,0,7
+RAPE,Dilophus_sp.,CHMI,Dilophus_sp.,0,7
 LEMA,Dilophus_sp.,ME,Dilophus_sp.,0.5,7
 ME,Dilophus_sp.,LEMA,Dilophus_sp.,1,7
 LEMA,Dilophus_sp.,PUPA,Dilophus_sp.,0,7
 PUPA,Dilophus_sp.,LEMA,Dilophus_sp.,0,7
+LEMA,Dilophus_sp.,RAPE,Dilophus_sp.,0,7
+RAPE,Dilophus_sp.,LEMA,Dilophus_sp.,0,7
 ME,Dilophus_sp.,PUPA,Dilophus_sp.,0,7
 PUPA,Dilophus_sp.,ME,Dilophus_sp.,0,7
+ME,Dilophus_sp.,RAPE,Dilophus_sp.,0,7
+RAPE,Dilophus_sp.,ME,Dilophus_sp.,0,7
+PUPA,Dilophus_sp.,RAPE,Dilophus_sp.,0,7
+RAPE,Dilophus_sp.,PUPA,Dilophus_sp.,0,7
 CHFU,Eupeodes_corollae,LEMA,Eupeodes_corollae,0.16666666666666666,7
 LEMA,Eupeodes_corollae,CHFU,Eupeodes_corollae,0.16666666666666666,7
 CHMI,Mordellidae,LEMA,Mordellidae,1,7
@@ -1187,6 +1225,8 @@ LEMA,Odontomyia_sp.,ME,Odontomyia_sp.,0.5,7
 ME,Odontomyia_sp.,LEMA,Odontomyia_sp.,1,7
 CHMI,Psilothrix_viridicoerulea,LEMA,Psilothrix_viridicoerulea,1,7
 LEMA,Psilothrix_viridicoerulea,CHMI,Psilothrix_viridicoerulea,0.16666666666666666,7
+CHFU,Scaeva_sp.,RAPE,Scaeva_sp.,0.8333333333333334,7
+RAPE,Scaeva_sp.,CHFU,Scaeva_sp.,0.8333333333333334,7
 CHFU,A2 CHFU,CHFU,Diptera,1,8
 CHFU,A3 CHFU,CHFU,Diptera,0.5,8
 CHFU,A3 CHFU,CHFU,Scaeva_sp.,0.5,8
@@ -1362,6 +1402,7 @@ PUPA,F3 PUPA,PUPA,Lasiocampa_trifolii,0.25,8
 PUPA,F4 PUPA,PUPA,Bombyliidae,0.75,8
 PUPA,F4 PUPA,PUPA,Eucera_sp.,0.25,8
 PUPA,F5 PUPA,PUPA,Thymelicus_sp.,1,8
+RAPE,B4 RAPE,RAPE,Lomatia_sp.,1,8
 CHFU,Diptera,CHFU,A2 CHFU,0.2692307692307692,8
 CHFU,Diptera,CHFU,A3 CHFU,0.038461538461538464,8
 CHFU,Scaeva_sp.,CHFU,A3 CHFU,0.3333333333333333,8
@@ -1537,6 +1578,7 @@ PUPA,Lasiocampa_trifolii,PUPA,F3 PUPA,0.05555555555555555,8
 PUPA,Bombyliidae,PUPA,F4 PUPA,0.07317073170731707,8
 PUPA,Eucera_sp.,PUPA,F4 PUPA,0.05555555555555555,8
 PUPA,Thymelicus_sp.,PUPA,F5 PUPA,0.125,8
+RAPE,Lomatia_sp.,RAPE,B4 RAPE,1,8
 CHFU,Andrena_cinerea,LEMA,Andrena_cinerea,0.375,8
 LEMA,Andrena_cinerea,CHFU,Andrena_cinerea,0.42857142857142855,8
 CHFU,Andrena_cinerea,ME,Andrena_cinerea,0.25,8
@@ -1565,6 +1607,8 @@ ME,Dilophus_sp.,PUPA,Dilophus_sp.,0,8
 PUPA,Dilophus_sp.,ME,Dilophus_sp.,0,8
 CHFU,Diptera,LEMA,Diptera,0.375,8
 LEMA,Diptera,CHFU,Diptera,0.42857142857142855,8
+CHFU,Lomatia_sp.,RAPE,Lomatia_sp.,0.125,8
+RAPE,Lomatia_sp.,CHFU,Lomatia_sp.,1,8
 LEMA,Meligethes_sp.,PUPA,Meligethes_sp.,0.14285714285714285,8
 PUPA,Meligethes_sp.,LEMA,Meligethes_sp.,0.2,8
 CHFU,Musca_sp.,LEMA,Musca_sp.,0.375,8

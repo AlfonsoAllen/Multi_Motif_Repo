@@ -28,7 +28,7 @@ library(tidyverse)
 # Loadind Plant-pollinator dataset (Caracoles) for 2019: visits, abundances, seeds
 ####################################################################
 
-fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv")
+fitness_data2 <- read_csv("Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID_RAPE.csv")
 
 fitness2 <- fitness_data2 %>% filter(Year==2019)
 
@@ -71,7 +71,7 @@ fitness_aux %>% filter(visits_GF!=Visits_tot)
 #####################################
 # COMPETITION
 #####################################
-competition <- read_csv2("Raw_Data/competition.txt")
+competition <- read_csv("Raw_Data/competition_RAPE.csv")
 
 competition$ME_iden <- NA
 competition$ME_iden[competition$focal=="MEEL"] <- "MEEL" # we add this dummy variable to identify ME
@@ -92,10 +92,10 @@ competition$focal[competition$focal=="MESU"] <- "ME"
 
 competition_fil <- competition %>% 
   filter(year==2019,focal %in% c("PUPA","LEMA","CHFU", "CHMI","ME")) %>%
-  dplyr::select(-neighbour,-number) %>% unique() %>% rename(Year=year,Plot=plot,Subplot=subplot,
-                                                     Plant_Simple=focal,
-                                                     Fruit_GF = fruit,
-                                                     Seeds_GF = seed)
+  unique() %>% rename(Year=year,Plot=plot,Subplot=subplot,
+                      Plant_Simple=focal,
+                      Fruit_GF = fruit,
+                      Seeds_GF = seed)
 
 fitness <- competition_fil %>% full_join(fitness_aux,by=c("Plot","Subplot",
                                                           "Plant_Simple"))
