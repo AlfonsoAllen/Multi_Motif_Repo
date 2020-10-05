@@ -23,7 +23,7 @@ fitness_final_aux <- read.csv(file = "NN_data_models_phenol_overlap.csv",
                          stringsAsFactors = FALSE) %>%
   mutate(Seeds_GF = round(Seeds_GF))
 
-
+head(fitness_final_aux)
 ###############
 # Add G_F
 
@@ -41,7 +41,7 @@ G_F_list <- unique(G_F_list)
 G_F_list %>% group_by(ID) %>% count() %>% filter(n>1)
 
 fitness_orig <- fitness_final_aux %>% dplyr::left_join(G_F_list,by = "ID")
-
+head(fitness_orig)
 
 # Turn ID, GF and Plot into factors
 fitness_orig$Plot <- as.factor(fitness_orig$Plot)
@@ -161,7 +161,8 @@ GF_MIX_NB_intercept_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                             (1|Plot) +(1|Plant_Simple) ,
                                           #ziformula = ~1,
                                           family = nbinom2(),
-                                          data = fitness.data)
+                                          data = fitness.data) 
+#Is this model correct? LEMA 1A1 seed set is repsented twice without ranom factor controling for it.
 
 GF_MIX_LIN_intercept_Plot_Plant <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
                                              scale(hete_motif) + 
@@ -1202,3 +1203,5 @@ r2(GF_PUPA_NB_other_Plot)
 r2(GF_CHFU_NB_mutua_Plot)
 r2(GF_CHFU_NB_antag_Plot) #Some variance components equal zero.
 r2(GF_CHFU_NB_other_Plot)
+
+unique()

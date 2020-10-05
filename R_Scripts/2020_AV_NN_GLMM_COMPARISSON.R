@@ -27,6 +27,7 @@ fitness_final_aux <- read.csv(file = "2020_AV_NN_data_models_phenol_overlap.csv"
 fitness_final_aux %>% mutate(ratio_seed_fruit=round(Seeds_GF/Fruit_GF)) %>%
   group_by(Plant_Simple,ratio_seed_fruit) %>% count()
 
+head(fitness_final_aux, 20)
 #########################
 # Add G_F
 

@@ -1,5 +1,8 @@
+#Comprobar si las visitas estan relacionadas con el numero de semillas.
+
 d <- read.csv("Raw_Data/raw_Pollinators_2020_1.csv", sep = ";")
 head(d)
+table(d$Plant, d$Family)
 f <- read.csv("Raw_Data/Fitness_2020.csv", sep = ";")
 head(f)
 
@@ -40,6 +43,7 @@ scatter.smooth(lema$Seeds ~ lema$Bee) # no pattert (outlyer
 scatter.smooth(lema$Seeds ~ lema$Beetle) #largelly positive!
 #scatter.smooth(lema$Seeds ~ lema$Butterfly)
 scatter.smooth(lema$Seeds ~ lema$Fly) #slightly positive?
+
 
 #PUPA
 pupa <- subset(dat, Plant.x == "PUPA")

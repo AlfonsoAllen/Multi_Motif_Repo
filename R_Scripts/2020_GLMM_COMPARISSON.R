@@ -8,6 +8,7 @@ fitness_final_aux0 <- read.csv(file = "2020_data_models_phenol_overlap.csv",
                          header = TRUE,
                          stringsAsFactors = FALSE) %>%
   rename(Plant_Simple=Plant) %>% mutate(Seeds_GF = round(Seeds_GF))
+head(fitness_final_aux0, 20)
 
 PageRank_results <- read.csv(file = "2020_PageRank_results.csv",
                               header = TRUE,
@@ -129,6 +130,18 @@ summary(scale(fitness_CHFU$Ratio))
 ###################################################
 # ALL SPECIES MODELS
 ###################################################
+
+head(fitness.data)
+GF_MIX_LIN_intercept_Plot_Plant <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
+                                             scale(hete_motif) + 
+                                             scale(StrengthIn) + scale(Ratio) +
+                                             (1|Plot) +(1|Plant_Simple) ,
+                                           #ziformula = ~1,
+                                           family = gaussian(),
+                                           data = fitness.data)
+
+summary(GF_MIX_LIN_intercept_Plot_Plant)
+
 
 #########################################
 # INDIVIDUAL MODEL FOR EACH PLANT SPECIES
