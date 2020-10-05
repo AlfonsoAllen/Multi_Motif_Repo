@@ -922,7 +922,7 @@ GF_PUPA_LIN_mutua_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) +
 # In the case of CHFU, hete-motifs are equal to zero
 
 GF_CHFU_LIN_mutua_Plot <- glmmTMB(log(Seeds_GF) ~ scale(homo_motif) + 
-                                    #scale(hete_motif) +
+                                    scale(hete_motif) +
                                     (1|Plot),
                                   #ziformula = ~1,
                                   family = gaussian(),
