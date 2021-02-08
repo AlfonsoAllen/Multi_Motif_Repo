@@ -18,22 +18,21 @@ node_id,module,species,layer_name,Plot,type
 17,1,D6 LEMA,LEMA,4,plant
 18,2,E1 LEMA,LEMA,4,plant
 19,2,E2 LEMA,LEMA,4,plant
-20,8,E3 LEMA,LEMA,4,plant
+20,7,E3 LEMA,LEMA,4,plant
 21,1,E5 LEMA,LEMA,4,plant
 22,2,F1 LEMA,LEMA,4,plant
-23,7,F2 LEMA,LEMA,4,plant
+23,1,F2 LEMA,LEMA,4,plant
 24,2,F3 LEMA,LEMA,4,plant
 25,1,F4 LEMA,LEMA,4,plant
 26,3,A4 PUPA,PUPA,4,plant
-27,1,Brassicogethes_sp.,LEMA,4,pollinator
-28,3,Small bee 1_8_6,LEMA,4,pollinator
-29,8,Elateridae,LEMA,4,pollinator
-30,5,Black small melyridae,LEMA,4,pollinator
+27,1,Brassicogethes_sp,LEMA,4,pollinator
+28,3,Lasioglossum_malachurum,LEMA,4,pollinator
+29,7,Elateridae,LEMA,4,pollinator
+30,5,Anthicidae,LEMA,4,pollinator
 31,2,Psilothrix_viridicoerulea,LEMA,4,pollinator
-32,1,Cryptocephalus_sp.,LEMA,4,pollinator
-33,4,Big_bee_2_8_7,LEMA,4,pollinator
-34,4,bee_1_1_6,LEMA,4,pollinator
+32,1,Cryptocephalus_sp,LEMA,4,pollinator
+33,4,Lasioglossum_immunitum,LEMA,4,pollinator
+34,4,Lasioglossum_sp,LEMA,4,pollinator
 35,6,Ulidiidae,LEMA,4,pollinator
 36,2,Oedemeridae,LEMA,4,pollinator
-37,7,Lasioglossum_sp.,LEMA,4,pollinator
-38,3,Small bee 1_8_6,PUPA,4,pollinator
+37,3,Lasioglossum_malachurum,PUPA,4,pollinator

@@ -1,3 +1,0 @@
-layerID layerLabel
-1 LEMA
-2 PUPA

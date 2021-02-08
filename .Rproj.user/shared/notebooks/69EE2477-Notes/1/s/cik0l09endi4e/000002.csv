@@ -1,0 +1,41 @@
+"0","# Load data and prepare data---------------------------------------------------------------"
+"0",""
+"0","library(tidyverse)"
+"0",""
+"0","fitness_final_aux <- read.csv(file = ""data_models_phenol_overlap.csv"","
+"0","                         header = TRUE)"
+"0",""
+"0","# Add G_F"
+"0",""
+"0","G_F_list <- read_csv(""Raw_Data/Metadata_Pollinators_Abundances_Seeds_2019_ID.csv"") %>%"
+"0","  dplyr::select(G_F,ID_Simple) %>% rename(ID=ID_Simple) %>% unique()"
+"2","Parsed with column specification:
+cols(
+  Day = [32mcol_double()[39m,
+  Month = [32mcol_double()[39m,
+  Year = [32mcol_double()[39m,
+  Plot = [32mcol_double()[39m,
+  Subplot = [31mcol_character()[39m,
+  Group = [31mcol_character()[39m,
+  Order = [31mcol_character()[39m,
+  Superfamily = [31mcol_character()[39m,
+  Family = [31mcol_character()[39m,
+  Species = [31mcol_character()[39m,
+  ID = [31mcol_character()[39m,
+  ID_Simple = [31mcol_character()[39m,
+  G_F = [31mcol_character()[39m,
+  Visits = [32mcol_double()[39m,
+  Plant_Simple = [31mcol_character()[39m,
+  Fruit = [32mcol_double()[39m,
+  Seed = [32mcol_double()[39m
+)
+"
+"0","G_F_list <- bind_rows(G_F_list,tibble(G_F=""None"",ID=""None""))"
+"0",""
+"0","# Fix ""Odontomyia_sp."""
+"0",""
+"0","G_F_list$G_F[G_F_list$ID==""Odontomyia_sp.""] <- ""Small_flies"""
+"0","G_F_list <- unique(G_F_list)"
+"0",""
+"0","# Sanity check"
+"0","G_F_list %>% group_by(ID) %>% count() %>% filter(n>1)"

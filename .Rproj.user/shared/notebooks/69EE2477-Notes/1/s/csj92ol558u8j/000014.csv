@@ -1,0 +1,8 @@
+"0","# get residuals"
+"0",""
+"0","res_LEMA <- simulateResiduals(fittedModel = LEMA, n = 1500)"
+"0","res_LEMA_Plot <- simulateResiduals(fittedModel = LEMA_Plot, n = 1500)"
+"0","res_PUPA <- simulateResiduals(fittedModel = PUPA, n = 1500)"
+"0","res_CHFU <- simulateResiduals(fittedModel = CHFU, n = 1500)"
+"0",""
+"0","plot(res_LEMA) #KS + heter."

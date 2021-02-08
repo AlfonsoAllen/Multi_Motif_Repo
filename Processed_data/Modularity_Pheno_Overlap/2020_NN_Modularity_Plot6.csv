@@ -13,10 +13,10 @@ node_id,module,species,layer_name,Plot,type
 12,3,C6 PUPA,PUPA,6,plant
 13,3,E5 PUPA,PUPA,6,plant
 14,3,F3 PUPA,PUPA,6,plant
-15,1,Brassicogethes_sp.,LEMA,6,pollinator
+15,1,Brassicogethes_sp,LEMA,6,pollinator
 16,1,Psilothrix_viridicoerulea,LEMA,6,pollinator
-17,2,Malachius_bipustulatus,LEMA,6,pollinator
-18,2,Small bee 1_8_6,LEMA,6,pollinator
-19,1,Musca_sp.,LEMA,6,pollinator
+17,2,Lasioglossum_malachurum,LEMA,6,pollinator
+18,2,Malachius_bipustulatus,LEMA,6,pollinator
+19,1,Musca_sp,LEMA,6,pollinator
 20,1,Oedemeridae,LEMA,6,pollinator
-21,3,Small bee 1_8_6,PUPA,6,pollinator
+21,3,Lasioglossum_malachurum,PUPA,6,pollinator

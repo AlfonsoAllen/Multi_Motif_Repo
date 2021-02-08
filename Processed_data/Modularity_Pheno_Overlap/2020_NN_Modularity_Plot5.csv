@@ -19,10 +19,10 @@ node_id,module,species,layer_name,Plot,type
 18,1,F6 LEMA,LEMA,5,plant
 19,4,A6 PUPA,PUPA,5,plant
 20,2,Psilothrix_viridicoerulea,LEMA,5,pollinator
-21,1,Brassicogethes_sp.,LEMA,5,pollinator
-22,6,Musca_sp.,LEMA,5,pollinator
-23,3,Cylindromyia_sp.,LEMA,5,pollinator
-24,5,bee_1_1_6,LEMA,5,pollinator
+21,1,Brassicogethes_sp,LEMA,5,pollinator
+22,6,Musca_sp,LEMA,5,pollinator
+23,3,Cylindromyia_sp,LEMA,5,pollinator
+24,5,Lasioglossum_sp,LEMA,5,pollinator
 25,1,Elateridae,LEMA,5,pollinator
 26,1,Ulidiidae,LEMA,5,pollinator
-27,4,Small bee 1_8_6,PUPA,5,pollinator
+27,4,Lasioglossum_malachurum,PUPA,5,pollinator

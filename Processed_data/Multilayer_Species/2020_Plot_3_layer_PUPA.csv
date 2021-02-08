@@ -1,14 +1,14 @@
-"","1_29_5","Andrena_sp.","Bombilus_major","Bombyliidae","Pieris_brassicae","Small bee 1_8_6","Tabanidae"
-"A3 PUPA",0,0,0,0,0,1,0
-"A4 PUPA",0,2,0,0,0,0,0
-"B1 PUPA",0,0,1,0,1,0,1
-"B4 PUPA",0,0,0,0,0,2,0
-"B5 PUPA",0,0,0,0,0,3,0
-"C3 PUPA",0,0,0,0,0,2,0
-"D4 PUPA",0,0,0,0,0,2,0
-"D5 PUPA",6,0,0,0,0,0,0
-"E1 PUPA",0,0,0,0,1,1,0
-"E2 PUPA",0,0,0,1,1,0,0
-"F1 PUPA",0,0,0,0,0,3,0
-"F4 PUPA",0,0,0,0,0,2,0
-"F6 PUPA",0,0,0,3,0,1,0
+"","Anastoechus_sp","Andrena_sp","Bombilus_major","Lasioglossum_malachurum","Pieris_brassicae"
+"A3 PUPA",0,0,0,1,0
+"A4 PUPA",0,2,0,0,0
+"B1 PUPA",0,0,1,0,1
+"B4 PUPA",0,0,0,2,0
+"B5 PUPA",0,0,0,3,0
+"C3 PUPA",0,0,0,2,0
+"D4 PUPA",0,0,0,2,0
+"D5 PUPA",0,0,0,6,0
+"E1 PUPA",0,0,0,1,1
+"E2 PUPA",1,0,0,0,1
+"F1 PUPA",0,0,0,3,0
+"F4 PUPA",0,0,0,2,0
+"F6 PUPA",3,0,0,1,0

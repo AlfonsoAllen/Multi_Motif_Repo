@@ -4,24 +4,24 @@ node_id,module,species,layer_name,Plot,type
 3,3,A5 CETE,CETE,2,plant
 4,2,B1 CETE,CETE,2,plant
 5,3,B2 CETE,CETE,2,plant
-6,6,C6 CETE,CETE,2,plant
-7,8,D2 CETE,CETE,2,plant
+6,5,C6 CETE,CETE,2,plant
+7,4,D2 CETE,CETE,2,plant
 8,4,E2 CETE,CETE,2,plant
-9,8,E4 CETE,CETE,2,plant
+9,4,E4 CETE,CETE,2,plant
 10,2,E5 CETE,CETE,2,plant
 11,3,F3 CETE,CETE,2,plant
-12,5,A2 CHFU,CHFU,2,plant
-13,5,A3 CHFU,CHFU,2,plant
-14,5,A5 CHFU,CHFU,2,plant
-15,5,B2 CHFU,CHFU,2,plant
-16,5,B3 CHFU,CHFU,2,plant
-17,5,C1 CHFU,CHFU,2,plant
-18,5,C2 CHFU,CHFU,2,plant
-19,11,D1 CHFU,CHFU,2,plant
-20,5,D4 CHFU,CHFU,2,plant
-21,12,E2 CHFU,CHFU,2,plant
-22,5,E3 CHFU,CHFU,2,plant
-23,5,F2 CHFU,CHFU,2,plant
+12,6,A2 CHFU,CHFU,2,plant
+13,6,A3 CHFU,CHFU,2,plant
+14,6,A5 CHFU,CHFU,2,plant
+15,6,B2 CHFU,CHFU,2,plant
+16,6,B3 CHFU,CHFU,2,plant
+17,6,C1 CHFU,CHFU,2,plant
+18,6,C2 CHFU,CHFU,2,plant
+19,8,D1 CHFU,CHFU,2,plant
+20,6,D4 CHFU,CHFU,2,plant
+21,8,E2 CHFU,CHFU,2,plant
+22,6,E3 CHFU,CHFU,2,plant
+23,6,F2 CHFU,CHFU,2,plant
 24,1,A1 LEMA,LEMA,2,plant
 25,1,A2 LEMA,LEMA,2,plant
 26,1,A3 LEMA,LEMA,2,plant
@@ -34,7 +34,7 @@ node_id,module,species,layer_name,Plot,type
 33,1,B4 LEMA,LEMA,2,plant
 34,1,B5 LEMA,LEMA,2,plant
 35,7,B6 LEMA,LEMA,2,plant
-36,4,C2 LEMA,LEMA,2,plant
+36,1,C2 LEMA,LEMA,2,plant
 37,1,C3 LEMA,LEMA,2,plant
 38,1,C4 LEMA,LEMA,2,plant
 39,1,C5 LEMA,LEMA,2,plant
@@ -61,43 +61,37 @@ node_id,module,species,layer_name,Plot,type
 60,4,A5 PUPA,PUPA,2,plant
 61,3,A6 PUPA,PUPA,2,plant
 62,2,B1 PUPA,PUPA,2,plant
-63,13,C2 PUPA,PUPA,2,plant
-64,6,C5 PUPA,PUPA,2,plant
-65,14,C6 PUPA,PUPA,2,plant
+63,11,C2 PUPA,PUPA,2,plant
+64,5,C5 PUPA,PUPA,2,plant
+65,5,C6 PUPA,PUPA,2,plant
 66,3,E6 PUPA,PUPA,2,plant
-67,9,Cylindromyia_sp.,BEMA,2,pollinator
+67,9,Braconidae,BEMA,2,pollinator
 68,3,Bombilus_major,CETE,2,pollinator
-69,2,Bombyliidae,CETE,2,pollinator
-70,6,Andrena_sp.,CETE,2,pollinator
-71,8,X1_29_5,CETE,2,pollinator
-72,4,Small bee 1_8_6,CETE,2,pollinator
-73,5,Ulidiidae,CHFU,2,pollinator
-74,11,Eucera_sp.,CHFU,2,pollinator
-75,12,Andrena_jar4,CHFU,2,pollinator
-76,1,Brassicogethes_sp.,LEMA,2,pollinator
-77,2,Bombyliidae,LEMA,2,pollinator
-78,1,Red_black_fly_6.19.5,LEMA,2,pollinator
-79,9,Cylindromyia_sp.,LEMA,2,pollinator
-80,1,Psilothrix_viridicoerulea,LEMA,2,pollinator
-81,2,Elateridae,LEMA,2,pollinator
-82,1,Musca_sp.,LEMA,2,pollinator
-83,1,Mordellidae,LEMA,2,pollinator
-84,7,Oedemeridae,LEMA,2,pollinator
-85,7,Musca_jar_H,LEMA,2,pollinator
-86,4,Small bee 1_8_6,LEMA,2,pollinator
-87,1,Dilophus_sp.,LEMA,2,pollinator
-88,6,Andrena_sp.,LEMA,2,pollinator
-89,8,X1_29_5,LEMA,2,pollinator
-90,1,Sphaerophoria_scripta,LEMA,2,pollinator
-91,7,Cryptocephalus_sp.,LEMA,2,pollinator
-92,5,Ulidiidae,LEMA,2,pollinator
-93,10,Bee_4.19.5,LEMA,2,pollinator
-94,10,Black_small_fly,LEMA,2,pollinator
-95,1,Cerambycidae,LEMA,2,pollinator
-96,1,Eristalis_sp.,LEMA,2,pollinator
-97,4,Small bee 1_8_6,PUPA,2,pollinator
-98,3,Bombilus_major,PUPA,2,pollinator
-99,2,Bombyliidae,PUPA,2,pollinator
-100,13,Big_bee_2_8_7,PUPA,2,pollinator
-101,6,Andrena_sp.,PUPA,2,pollinator
-102,14,Conophorus_sp.,PUPA,2,pollinator
+69,2,Anastoechus_sp,CETE,2,pollinator
+70,5,Andrena_sp,CETE,2,pollinator
+71,4,Lasioglossum_malachurum,CETE,2,pollinator
+72,6,Ulidiidae,CHFU,2,pollinator
+73,8,Eucera_sp,CHFU,2,pollinator
+74,1,Brassicogethes_sp,LEMA,2,pollinator
+75,2,Anastoechus_sp,LEMA,2,pollinator
+76,9,Braconidae,LEMA,2,pollinator
+77,1,Psilothrix_viridicoerulea,LEMA,2,pollinator
+78,2,Elateridae,LEMA,2,pollinator
+79,7,Sarcophaga_sp,LEMA,2,pollinator
+80,1,Mordellidae,LEMA,2,pollinator
+81,1,Musca_sp,LEMA,2,pollinator
+82,7,Oedemeridae,LEMA,2,pollinator
+83,4,Lasioglossum_malachurum,LEMA,2,pollinator
+84,1,Dilophus_sp,LEMA,2,pollinator
+85,5,Andrena_sp,LEMA,2,pollinator
+86,1,Sphaerophoria_scripta,LEMA,2,pollinator
+87,7,Cryptocephalus_sp,LEMA,2,pollinator
+88,6,Ulidiidae,LEMA,2,pollinator
+89,10,Osmia_ligurica,LEMA,2,pollinator
+90,1,Cerambycidae,LEMA,2,pollinator
+91,1,Eristalis_sp,LEMA,2,pollinator
+92,4,Lasioglossum_malachurum,PUPA,2,pollinator
+93,3,Bombilus_major,PUPA,2,pollinator
+94,2,Anastoechus_sp,PUPA,2,pollinator
+95,11,Lasioglossum_immunitum,PUPA,2,pollinator
+96,5,Andrena_sp,PUPA,2,pollinator
