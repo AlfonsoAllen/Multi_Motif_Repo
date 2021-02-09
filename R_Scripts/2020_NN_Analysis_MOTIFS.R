@@ -312,8 +312,8 @@ for (rep in 1:number_repetitions){
 # write_csv(homo_table, "Processed_data/Motifs_WEEK/2020_HOMO_MOTIFS_WEEK_SPECIES.csv")
 # write_csv(hete_table, "Processed_data/Motifs_WEEK/2020_HETE_MOTIFS_WEEK_SPECIES.csv")
 
-homo_table <- read_csv("Processed_data/Motifs_WEEK/HOMO_MOTIFS_WEEK_SPECIES.csv")
-hete_table <- read_csv("Processed_data/Motifs_WEEK/HETE_MOTIFS_WEEK_SPECIES.csv")
+homo_table <- read_csv("Processed_data/Motifs_WEEK/2020_HOMO_MOTIFS_WEEK_SPECIES.csv")
+hete_table <- read_csv("Processed_data/Motifs_WEEK/2020_HETE_MOTIFS_WEEK_SPECIES.csv")
 
 
 
@@ -832,6 +832,7 @@ ggplot(data_total2,aes(x=homo_motif,y = hete_motif, color = Plant_Simple, shape 
   geom_point(aes(color=Plant_Simple), position = "jitter")+
   scale_shape_manual(values=1:nlevels(data_total2$Plant_Simple))+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  geom_abline(aes(slope=1,intercept=0),linetype = "dashed")+
   scale_color_brewer(palette="Paired")+
   #ggtitle(paste0("Plot ",i)) +
   xlab("# Homospecific motifs") + ylab("# Heterospecific motifs")+
