@@ -1080,26 +1080,36 @@ LEMA_LIN_intercept_Plot_Plant <- lm(log(Seeds_GF) ~ scale(homo_motif) +
                                       scale(hete_motif) + 
                                       scale(StrengthIn) + scale(Ratio)+
                                       Plot,
-                                    data = fitness.data_LEMA %>% filter(!Plot %in% c(4,5,6)))
+                                    data = fitness.data_LEMA)
 CHFU_LIN_intercept_Plot_Plant <- lm(log(Seeds_GF) ~ scale(homo_motif) +
                                       scale(hete_motif) + 
                                       scale(StrengthIn) + scale(Ratio)+
                                       Plot,
-                                    data = fitness.data_CHFU %>% filter(!Plot %in% c(4,5,6)))
-PUPA_LIN_intercept_Plot_Plant <- lm(log(Seeds_GF) ~ scale(homo_motif) +
+                                    data = fitness.data_CHFU)
+PUPA_LIN_intercept_Plot_Plant <- lm(log(Seeds_GF) ~ scale(homo_motif) + 
                                       scale(hete_motif) + 
                                       scale(StrengthIn) + scale(Ratio)+
                                       Plot,
-                                    data = fitness.data_PUPA%>% filter(!Plot %in% c(4,5,6)))
+                                    data = fitness.data_PUPA)
+
+PUPA_LIN_intercept_Plot_Plant_int <- lm(log(Seeds_GF) ~ scale(homo_motif) *
+                                      scale(hete_motif) + 
+                                      scale(StrengthIn) + scale(Ratio)+
+                                      Plot,
+                                    data = fitness.data_PUPA)
 
 summary(LEMA_LIN_intercept_Plot_Plant)
 summary(CHFU_LIN_intercept_Plot_Plant)
 summary(PUPA_LIN_intercept_Plot_Plant)
+summary(PUPA_LIN_intercept_Plot_Plant_int)
 
+
+plot(effects::allEffects(PUPA_LIN_intercept_Plot_Plant_int), multiline=TRUE, ci.style="bars")
 
 drop1(LEMA_LIN_intercept_Plot_Plant, test = "F")
 drop1(CHFU_LIN_intercept_Plot_Plant, test = "F")
 drop1(PUPA_LIN_intercept_Plot_Plant, test = "F")
+drop1(PUPA_LIN_intercept_Plot_Plant_int, test = "F")
 
 car::vif(LEMA_LIN_intercept_Plot_Plant) # All the ( GVIF^(1/(2*Df)) )^2 < 5 
 # (similar to an ordinary VIF smaller than 5 for one-coefficient variables)
@@ -1112,7 +1122,7 @@ car::vif(PUPA_LIN_intercept_Plot_Plant) # OK, although values for scale(homo_mot
 jtools::summ(LEMA_LIN_intercept_Plot_Plant,confint = TRUE,digits = 3)
 jtools::summ(CHFU_LIN_intercept_Plot_Plant,confint = TRUE,digits = 3)
 jtools::summ(PUPA_LIN_intercept_Plot_Plant,confint = TRUE,digits = 3)
-
+jtools::summ(PUPA_LIN_intercept_Plot_Plant_int,confint = TRUE,digits = 3)
 
 ############################
 #Visualization of slopes by using visreg
@@ -1192,3 +1202,7 @@ grid.arrange(
 sjPlot::plot_model(LEMA_LIN_intercept_Plot_Plant, type = "est")
 sjPlot::plot_model(CHFU_LIN_intercept_Plot_Plant, type = "est")
 sjPlot::plot_model(PUPA_LIN_intercept_Plot_Plant, type = "est")
+
+
+#######
+visreg2d(PUPA_LIN_intercept_Plot_Plant_int,"homo_motif","hete_motif",xlab="Homo triplet",ylab="Hetero triplet",zlab ="log(Seeds)")
