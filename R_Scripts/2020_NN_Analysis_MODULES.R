@@ -618,6 +618,21 @@ ggplot(modulos2, aes(fill=Plant, y=Amount, x=as.factor(module))) +
   labs(x = "Module", y = "Number of focal plants",fill=NULL)+
   theme(legend.position="bottom")
 
+# Percentage of modules with PUPA and LEMA
+mod_PUPA_LEMA <- modulos2 %>% filter(LEMA>0 & PUPA >0.5 & Plant == "PUPA") %>% unique() %>% nrow()
+mod_PUPA <- modulos2 %>% filter(PUPA >0 & Plant == "PUPA") %>% unique() %>% nrow()
+100*mod_PUPA_LEMA/mod_PUPA
+
+# Percentage of modules in which at least 50% is LEMA
+mod_LEMA_dom <- modulos2 %>% filter(LEMA>=0.5 & Plant == "LEMA") %>% unique() %>% nrow()
+mod_LEMA <- modulos2 %>% filter(LEMA >0 & Plant == "LEMA") %>% unique() %>% nrow()
+100*mod_LEMA_dom/mod_LEMA
+
+# Percentage of modules in which at least 50% is CHFU
+mod_CHFU_dom <- modulos2 %>% filter(CHFU>=0.5 & Plant == "CHFU") %>% unique() %>% nrow()
+mod_CHFU <- modulos2 %>% filter(CHFU >0 & Plant == "CHFU") %>% unique() %>% nrow()
+100*mod_CHFU_dom/mod_CHFU
+
 ggplot(modulos2 %>% filter(Plot==4), aes(fill=Plant, y=Amount, x=as.factor(module))) + 
   geom_bar(position="stack", stat="identity")+
   theme_bw()+
