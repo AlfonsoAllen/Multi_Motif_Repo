@@ -8,7 +8,7 @@ Given a network, we can decompose it into smaller subgraphs, called motifs (Milo
 
 One novel aspect of our work consisted in downscaling the analysis of interactions based on motifs to the level of conspecific and heterospecific plant individuals. Here we introduced a new triplet classification according to the plant species involved. If both focal plants belong to the same species, the triplet was referred to as homospecific motif (see the bee's motif that is highlighted in panel b); otherwise, the motif was classified as heterospecific (see the butterfly's motif that is highlighted in panel b).
 
-To incorporate species’ phenological overlap in our motif analysis, we calculated both types of triplets from the bipartite networks that arose weekly (see panel a for an example of such networks). Thus, heterospecific triplets only appear when different coflowering species that shared pollinators are present in a given week. Here, we show how to estimate total amount of homo- and of heterospecific triplets per week and floral visitor for a given plant.
+To incorporate speciesâ€™ phenological overlap in our motif analysis, we calculated both types of triplets from the bipartite networks that arose weekly (see panel a for an example of such networks). Thus, heterospecific triplets only appear when different coflowering species that shared pollinators are present in a given week. Here, we show how to estimate total amount of homo- and of heterospecific triplets per week and floral visitor for a given plant.
 
 To run the this example I will use the functions in `R_Scripts/functions.R` and the data in `Raw_Data/example.csv`
 
@@ -57,9 +57,19 @@ for (week_i in unique(example_data$Week)){
 }
 
 aggregate_total
+```
 ---
 editor_options:
   chunk_output_type: console
 ---
-
+```
+# A tibble: 6 x 7
+   Plot ID     Subplot_Plant_Label Visits_tot homo_motif hete_motif  Week
+  <dbl> <chr>  <chr>                    <dbl>      <int>      <int> <dbl>
+1     1 Poll_1 Ind_1 Plant_A                1          1          0     7
+2     1 Poll_2 Ind_1 Plant_B                1          0          0     7
+3     1 Poll_1 Ind_2 Plant_A                1          1          0     7
+4     1 Poll_2 Ind_1 Plant_B                1          0          1     8
+5     1 Poll_1 Ind_2 Plant_A                1          0          0     8
+6     1 Poll_2 Ind_2 Plant_A                1          0          1     8
 ```
