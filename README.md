@@ -10,13 +10,13 @@ One novel aspect of our work consisted in downscaling the analysis of interactio
 
 To incorporate species’ phenological overlap in our motif analysis, we calculated both types of triplets from the bipartite networks that arose weekly (see panel a for an example of such networks). Thus, heterospecific triplets only appear when different coflowering species that shared pollinators are present in a given week. Here, we show how to estimate total amount of homo- and of heterospecific triplets per week and floral visitor for a given plant.
 
-To run the this example I will use the functions in `R_Scripts/functions.R` and the data in `Raw_Data/example.csv`. The metadata in `Raw_Data/example.csv` can be described as follows:
-*Plot: network/site/year ID.
-*Subplot: plant individual ID.
-*Plant: plant species ID.
-*ID: visitor species ID.
-*Visits: number of visits recorded between the plant individual and the visitor species.
-*Week: number of the week.
+To run the this example I will use the functions in `R_Scripts/functions.R` and the data in `Example/example.csv`. The metadata in `Example/example.csv` can be described as follows:
+* Plot: network/site/year ID.
+* Subplot: plant individual ID.
+* Plant: plant species ID.
+* ID: visitor species ID.
+* Visits: number of visits recorded between the plant individual and the visitor species.
+* Week: number of the week.
 
 ![](Example/Example_1.png)
 ```
@@ -30,7 +30,7 @@ source("R_Scripts/functions.R")
 
 # Loadind example dataset
 
-example_data <- read_csv("raw_data/example.csv")
+example_data <- read_csv("Example/example.csv")
 
 aggregate_total <- NULL # tibble that will contain the output
 
