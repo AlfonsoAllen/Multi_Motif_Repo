@@ -97,3 +97,110 @@ other attached packages:
 [13] readr_1.3.1          tidyr_1.0.2          tibble_3.0.3         ggplot2_3.3.2       
 [17] tidyverse_1.3.0  
 ```
+# Calculating modules and centrality metrics: An example.
+
+```
+# Load relevant libraries
+library(infomapecology)
+# Infomap installation guide:
+# https://github.com/Ecological-Complexity-Lab/infomap_ecology_package
+library(attempt)
+library(igraph)
+library(tidyverse)
+source("R_scripts/functions.R")
+source("R_scripts/run_infomap_monolayer2.R") # function to parse infomap's tree files
+
+
+dir_ini <- getwd() # Register working directory
+
+example_raw <- read_csv("Example/example.csv")
+
+# Aggregate visits per plant individual, week and floral visitor
+example <- example_raw %>% group_by(Plot,Subplot,Plant,ID,Week) %>% count(wt = Visits) %>%
+  rename(Visits=n)
+  
+list_sites <- example$Plot %>% unique() # List of networks IDs
+
+centrality_final <- NULL # Variable to save centrality metrics
+plot_modules_NN_final <- NULL # Variable to save module partitions
+
+for (Plot_i in list_sites){
+ 
+  # Create a (Node-Colored) Multilayer (Directed) edge-list
+  
+  plot_edge_list <- example %>% ungroup() %>% filter(Plot==Plot_i) %>%
+    group_by(Plot,Subplot,Plant,ID) %>% count(wt=Visits) %>% ungroup() %>%
+    mutate(from = paste0(Subplot," ",Plant)) %>% 
+    rename(to = ID, weight = n, species = Plant) %>%
+    dplyr::select(from, to, weight, species)
+  
+  
+  # Extract multilayer info
+  
+  pollinators <- sort(unique(plot_edge_list$to)) 
+  plants <- sort(unique(plot_edge_list$from))
+  layer_plant <- sort(unique(plot_edge_list$species))
+  
+  # Sanity check
+  intersect(pollinators, plants)
+  
+  A <- length(pollinators) # Number of pollinators
+  P <- length(plants) # Number of plants
+  S <- A + P
+  
+  # Create a table with node metadata
+  physical_nodes <- tibble(node_id=1:S,
+                           type=c(rep('plant',P),rep('pollinator',A)),
+                           species=c(plants,pollinators))
+  layer_metadata <- tibble(layer_id=1:length(layer_plant), layer_name=layer_plant)
+  
+  
+  # Create a list that contains directed and weighted intra- and inter-links
+  
+  S_edge_list <- create_weighted_link_list(plot_edge_lis)
+  
+  # Extract modules for Plot_i from the network of networks representation with infomap
+  
+  plot_modules_NN_i <- extract_modules_NN_infomapec(S_edge_list)
+  
+  # Extract centrality metrics for Plot_i
+  
+  centrality_i <- centrality_metrics_NN(S_edge_list)
+    
+  # Update final variables with Plot_i results
+  
+  plot_modules_NN_final <- bind_rows(plot_modules_NN_final,plot_modules_NN_i)
+  centrality_final <- bind_rows(centrality_final,centrality_i)
+ 
+  setwd(dir_ini)
+
+}
+
+plot_modules_NN_final
+
+# A tibble: 6 x 6
+  node_id module species          layer_name  Plot type      
+    <dbl>  <dbl> <chr>            <chr>      <dbl> <chr>     
+1       1      1 Ind_1 Plant_Sp_A Plant_Sp_A     1 plant     
+2       2      2 Ind_1 Plant_Sp_B Plant_Sp_B     1 plant     
+3       3      1 Ind_2 Plant_Sp_A Plant_Sp_A     1 plant     
+4       4      1 Poll_Sp_1        Plant_Sp_A     1 pollinator
+5       5      2 Poll_Sp_2        Plant_Sp_B     1 pollinator
+6       6      2 Poll_Sp_2        Plant_Sp_A     1 pollinator
+
+centrality_final
+               species Real_PR_Multi Real_PR_Layer StrengthIn StrengthOut DegreeIn DegreeOut
+1     Ind_1 Plant_Sp_A    0.17439201    0.17416722  0.6666667           1        1         1
+2 Poll_Sp_1 Plant_Sp_A    0.26363296    0.26323627  1.6666667           1        2         2
+3     Ind_1 Plant_Sp_B    0.09558358    0.16666667  1.0000000           1        1         1
+4 Poll_Sp_2 Plant_Sp_B    0.16607901    0.16666667  1.0000000           1        1         1
+5     Ind_2 Plant_Sp_A    0.15952898    0.15916612  1.3333333           1        2         2
+6 Poll_Sp_2 Plant_Sp_A    0.14078346    0.07009707  0.3333333           1        1         1
+          Delta     Ratio Plot
+1  0.0002247944 1.0012907    1
+2  0.0003966960 1.0015070    1
+3 -0.0710830865 0.5735015    1
+4 -0.0005876545 0.9964741    1
+5  0.0003628601 1.0022798    1
+6  0.0706863905 2.0084073    1
+```
