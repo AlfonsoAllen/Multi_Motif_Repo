@@ -204,3 +204,25 @@ centrality_final
 5  0.0003628601 1.0022798    1
 6  0.0706863905 2.0084073    1
 ```
+Session info
+```
+sessionInfo()
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 8.1 x64 (build 9600)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=Spanish_Ecuador.1252  LC_CTYPE=Spanish_Ecuador.1252   
+[3] LC_MONETARY=Spanish_Ecuador.1252 LC_NUMERIC=C                    
+[5] LC_TIME=Spanish_Ecuador.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] forcats_0.4.0          stringr_1.4.0          dplyr_1.0.2            purrr_0.3.3           
+ [5] readr_1.3.1            tidyr_1.0.2            tibble_3.0.3           ggplot2_3.3.2         
+ [9] tidyverse_1.3.0        igraph_1.2.5           attempt_0.3.1          infomapecology_0.1.2.3
+```
