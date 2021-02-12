@@ -1,0 +1,8 @@
+Plot,Subplot,Plant,ID,Visits,Week
+1,Ind_1,Plant_Sp_A,Poll_Sp_1,3,7
+1,Ind_1,Plant_Sp_A,Poll_Sp_1,1,7
+1,Ind_2,Plant_Sp_A,Poll_Sp_1,1,7
+1,Ind_1,Plant_Sp_B,Poll_Sp_2 ,1,7
+1,Ind_2,Plant_Sp_A,Poll_Sp_1,1,8
+1,Ind_2,Plant_Sp_A,Poll_Sp_2,1,8
+1,Ind_1,Plant_Sp_B,Poll_Sp_2,1,8

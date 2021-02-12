@@ -1,7 +1,0 @@
-Day,Month,Year,Plot,Subplot,Plant,ID,Visits,date_raw,Week
-13,2,2020,1,Ind_1,Plant_A,Poll_1,1,2020-02-13,7
-13,2,2020,1,Ind_2,Plant_A,Poll_1,1,2020-02-13,7
-13,2,2020,1,Ind_1,Plant_B,Poll_2,1,2020-02-13,7
-20,2,2020,1,Ind_2,Plant_A,Poll_1,1,2020-02-13,8
-20,2,2020,1,Ind_2,Plant_A,Poll_2,1,2020-02-13,8
-20,2,2020,1,Ind_1,Plant_B,Poll_2,1,2020-02-13,8

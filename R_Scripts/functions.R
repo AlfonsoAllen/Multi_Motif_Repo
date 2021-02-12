@@ -23,9 +23,6 @@ motifs_extraction <- function(visit_list) {
   
   names_plot <- names(list_incid_matrix_19)
   
-  #print(names_plot)
-  #print(length(list_incid_matrix_19))
-  
   first_motif_encuounter <- F
   
   for (plot_i in 1:length(list_incid_matrix_19)){
@@ -39,19 +36,13 @@ motifs_extraction <- function(visit_list) {
     
     graph_i <- graph_from_incidence_matrix(incid_matrix_i, weighted = T, directed = F)
     
-    #plot(graph_i)
-    #E(graph_i)
-    
-    
     # motiv in igraph (triplet is equal to a two-path graph, i.e., a star graph with 2 nodes)
     
     pattern <- make_star(3, mode = "undirected")
-    #E(pattern)
-    #plot(pattern)
     
     iso <- subgraph_isomorphisms(pattern, graph_i)      # takes a while
     
-    #WARNING subgraph_isomorphisms works with directed graphs and
+    # WARNING subgraph_isomorphisms works with directed graphs and
     # at the end of the day it duplicates the motifs in our list
     # check manual: https://igraph.org/r/doc/subgraph_isomorphisms.html
     
@@ -79,8 +70,6 @@ motifs_extraction <- function(visit_list) {
       colnames(motif_3) <- tbl_colnames
       
       motif_3$plot_id <- as.numeric(names_plot[plot_i])
-      
-      #for (i in 1:length(motifs)){print(V(motifs[[i]])$name)}
       
       for (i in 1:length(motifs)){
         
@@ -131,7 +120,6 @@ motifs_extraction <- function(visit_list) {
         }
       }
       print(paste("Triplets_plot",names_plot[plot_i],sep=""))
-      #write_csv(motif_3, paste("Triplets 3_plot",plot_i,".csv",sep=""))
       
       if (plot_i==fist_plot_i){
         motif_3 <- unique(motif_3) #to avoid duplicities due to subgraph isomorphisms	
@@ -187,7 +175,7 @@ homo_hete_motifs <- function(visit_list) {
   
   output_funct <- visit_list %>% mutate(homo_motif=NA,hete_motif=NA)
   
-  # Homo_Motifs: misma especie otros subplots
+  # Homo_Motifs: same plant species in other subplots
   
   for (i in 1:nrow(output_funct)){
     
@@ -206,8 +194,6 @@ homo_hete_motifs <- function(visit_list) {
   }
   return(output_funct)
 }
-
-
 
 
 #------
