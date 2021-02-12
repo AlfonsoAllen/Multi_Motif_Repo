@@ -4,7 +4,7 @@ Analysis of the effect of several macro-, meso- and micro-structural descriptors
 
 # Calculating the total amount of homospecific and heterospecific triplets per week and pollinator: An example.
 
-Given a network, we can decompose it into smaller subgraphs, called motifs (Milo et al., 2002, Delma et. al 2018, Simmons et al. 2019). Here we estimated the amount of undirected triplets that were present in our visitation networks, that is, the pattern of connections of undirected path graphs with length 2 (see panels a and b in the figure above). In addition, we restricted our analysis to triplets with two plant individuals. 
+Given a network, we can decompose it into smaller subgraphs, called motifs. Here we estimated the amount of undirected triplets that were present in our visitation networks, that is, the pattern of connections of undirected path graphs with length 2 (see panels a and b in the figure above). In addition, we restricted our analysis to triplets with two plant individuals. 
 
 One novel aspect of our work consisted in downscaling the analysis of interactions based on motifs to the level of conspecific and heterospecific plant individuals. Here we introduced a new triplet classification according to the plant species involved. If both focal plants belong to the same species, the triplet was referred to as homospecific motif (see the bee's motif that is highlighted in panel b); otherwise, the motif was classified as heterospecific (see the butterfly's motif that is highlighted in panel b).
 
