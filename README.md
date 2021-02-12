@@ -73,3 +73,28 @@ aggregate_total %>% separate(Subplot_Plant_Label,c("Subplot","Plant"), " ")
 5     1 Poll_Sp_1 Ind_2   Plant_Sp_A          1          0          0     8
 6     1 Poll_Sp_2 Ind_2   Plant_Sp_A          1          0          1     8
 ```
+
+Session info
+```
+sessionInfo()
+R version 3.6.3 (2020-02-29)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 8.1 x64 (build 9600)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=Spanish_Ecuador.1252  LC_CTYPE=Spanish_Ecuador.1252   
+[3] LC_MONETARY=Spanish_Ecuador.1252 LC_NUMERIC=C                    
+[5] LC_TIME=Spanish_Ecuador.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] igraph_1.2.5         matlib_0.9.2         bipartite_2.14       sna_2.5             
+ [5] network_1.16.0       statnet.common_4.3.0 vegan_2.5-6          lattice_0.20-38     
+ [9] permute_0.9-5        forcats_0.4.0        stringr_1.4.0        dplyr_1.0.2         
+[13] purrr_0.3.3          readr_1.3.1          tidyr_1.0.2          tibble_3.0.3        
+[17] ggplot2_3.3.2        tidyverse_1.3.0 
+```
