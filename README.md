@@ -37,25 +37,26 @@ aggregate_total <- NULL # tibble that will contain the output
 
 for (week_i in unique(example_data$Week)){
 
-  print("WEEK")
-  print(week_i)
-  
-  
- example_week_i <- example_data %>% filter(Week==week_i)
+  # Extract data of week_i
+
+  example_week_i <- example_data %>% filter(Week==week_i)
  
- # Aggregate visits by week 
+  # Aggregate visits by week 
  
- example_week_i <- example_week_i %>% group_by(Plot,Subplot,Plant,ID) %>%
+  example_week_i <- example_week_i %>% group_by(Plot,Subplot,Plant,ID) %>%
     count(wt=Visits) %>% rename(Visits_tot = n)
   
- example_week_i$Subplot_Plant_Label <- paste(example_week_i$Subplot,example_week_i$Plant,sep = " ")
+  example_week_i$Subplot_Plant_Label <- paste(example_week_i$Subplot,example_week_i$Plant,sep = " ")
   
   aggregate_week_i <- example_week_i %>% ungroup() %>% 
     select(Plot,ID,Subplot_Plant_Label,Visits_tot)
     
+  # Extract homospecific- and heterospecific triplets
+  
   aggregate_week_i <- homo_hete_motifs(aggregate_week_i)
   aggregate_week_i <- aggregate_week_i %>% mutate(Week=week_i)
   
+  # Update the output variable
   aggregate_total <-  bind_rows(aggregate_total, aggregate_week_i) 
   
 }
