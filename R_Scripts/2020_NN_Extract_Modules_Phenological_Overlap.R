@@ -301,18 +301,18 @@ for (Plot_i in 1:9){
     select(node_from,node_to,weight) %>%
     rename(from = node_from, to = node_to)
   
-  graph_Plot_i <- igraph::graph_from_edgelist(as.matrix(NN_edge_list_final_filter[,1:2]), directed = TRUE)
+  graph_Plot_i_fil <- igraph::graph_from_edgelist(as.matrix(NN_edge_list_final_filter[,1:2]), directed = TRUE)
   
-  E(graph_Plot_i)$weight <- pull(NN_edge_list_final_filter[,3])
+  E(graph_Plot_i_fil)$weight <- pull(NN_edge_list_final_filter[,3])
   
   # Sanity check: pull nodes and edge weights
-  igraph::get.data.frame(graph_Plot_i)
+  igraph::get.data.frame(graph_Plot_i_fil)
   
   # PageRAnk Layer (we remove the interlinks)
   
-  saveRDS(graph_Plot_i, file = paste0("../Processed_data/NN_networks/Plot_",Plot_i,"_NN_intra_only.rds"))
+  saveRDS(graph_Plot_i_fil, file = paste0("../Processed_data/NN_networks/Plot_",Plot_i,"_NN_intra_only.rds"))
   
-  page_rank_i <- igraph::page_rank(graph_Plot_i,
+  page_rank_i <- igraph::page_rank(graph_Plot_i_fil,
                                    directed = TRUE, damping = 0.85,
                                    personalized = NULL, weights = NULL, options = NULL)
   
