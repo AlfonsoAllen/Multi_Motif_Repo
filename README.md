@@ -24,7 +24,6 @@ In the figure below we show the information in `Example/example.csv`.
 # load libraries
 library(tidyverse)
 library(bipartite)
-library(matlib)
 library(igraph)
 
 source("R_Scripts/functions.R")
@@ -92,9 +91,9 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] igraph_1.2.5         matlib_0.9.2         bipartite_2.14       sna_2.5             
- [5] network_1.16.0       statnet.common_4.3.0 vegan_2.5-6          lattice_0.20-38     
- [9] permute_0.9-5        forcats_0.4.0        stringr_1.4.0        dplyr_1.0.2         
-[13] purrr_0.3.3          readr_1.3.1          tidyr_1.0.2          tibble_3.0.3        
-[17] ggplot2_3.3.2        tidyverse_1.3.0 
+ [1] bipartite_2.14       sna_2.5              network_1.16.0       statnet.common_4.3.0
+ [5] vegan_2.5-6          lattice_0.20-38      permute_0.9-5        igraph_1.2.5        
+ [9] forcats_0.4.0        stringr_1.4.0        dplyr_1.0.2          purrr_0.3.3         
+[13] readr_1.3.1          tidyr_1.0.2          tibble_3.0.3         ggplot2_3.3.2       
+[17] tidyverse_1.3.0  
 ```
