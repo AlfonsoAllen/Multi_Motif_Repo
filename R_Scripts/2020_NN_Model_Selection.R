@@ -1149,24 +1149,24 @@ p7 <- visreg(PUPA_LIN_intercept_Plot_Plant,"hete_motif",xlab="Hetero triplet",yl
   labs(title ="PUPA")
 
 
-p9 <- visreg(LEMA_LIN_intercept_Plot_Plant,"StrengthIn",xlab="In-Strength",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p9 <- visreg(LEMA_LIN_intercept_Plot_Plant,"StrengthIn",xlab="Within layer\n centrality",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="LEMA")
-p10 <- visreg(CHFU_LIN_intercept_Plot_Plant,"StrengthIn",xlab="In-Strength",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p10 <- visreg(CHFU_LIN_intercept_Plot_Plant,"StrengthIn",xlab="Within layer\n centrality",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="CHFU")
-p11 <- visreg(PUPA_LIN_intercept_Plot_Plant,"StrengthIn",xlab="In-Strength",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p11 <- visreg(PUPA_LIN_intercept_Plot_Plant,"StrengthIn",xlab="Within layer\n centrality",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="PUPA")
 
 
-p13 <- visreg(LEMA_LIN_intercept_Plot_Plant,"Ratio",xlab="Ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p13 <- visreg(LEMA_LIN_intercept_Plot_Plant,"Ratio",xlab="Among layer\n centrality ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="LEMA")
-p14 <- visreg(CHFU_LIN_intercept_Plot_Plant,"Ratio",xlab="Ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p14 <- visreg(CHFU_LIN_intercept_Plot_Plant,"Ratio",xlab="Among layer\n centrality ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="CHFU")
-p15 <- visreg(PUPA_LIN_intercept_Plot_Plant,"Ratio",xlab="Ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p15 <- visreg(PUPA_LIN_intercept_Plot_Plant,"Ratio",xlab="Among layer\n centrality ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="PUPA")
 
