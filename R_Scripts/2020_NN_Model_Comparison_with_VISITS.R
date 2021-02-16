@@ -197,6 +197,7 @@ car::vif(LEMA_LIN_visits) # OK
 car::vif(CHFU_LIN_visits) # OK
 car::vif(PUPA_LIN_visits) # OK
 
+
 ##################################3
 # FINAL MODELS
 
@@ -222,7 +223,7 @@ summary(CHFU_LIN_multi_visits) #R2_adj = 0.1552  (R2_adj_ref = 0.1532)
 summary(PUPA_LIN_multi_visits) #R2_adj = 0.1674 (R2_adj_ref = 0.1577)
 
 
-car::vif(LEMA_LIN_multi_visits) # Homo_motif and visits_GF show collinearity
+car::vif(LEMA_LIN_multi_visits) # Homo_motif 2.629673*2.629673 = 6.91518
 car::vif(CHFU_LIN_multi_visits) # Homo_motif and visits_GF show collinearity
 car::vif(PUPA_LIN_multi_visits) # OK
 
@@ -231,8 +232,17 @@ jtools::summ(LEMA_LIN_multi_visits,confint = TRUE,digits = 3)
 jtools::summ(CHFU_LIN_multi_visits,confint = TRUE,digits = 3)
 jtools::summ(PUPA_LIN_multi_visits,confint = TRUE,digits = 3)
 
+drop1(LEMA_LIN_multi_visits, test = "F") 
+drop1(CHFU_LIN_multi_visits, test = "F")
+drop1(PUPA_LIN_multi_visits, test = "F")
+
 
 ############
+
+AIC(LEMA_LIN_intercept_Plot_Plant,LEMA_LIN_visits,LEMA_LIN_multi_visits)
+AIC(CHFU_LIN_intercept_Plot_Plant,CHFU_LIN_visits,CHFU_LIN_multi_visits)
+AIC(PUPA_LIN_intercept_Plot_Plant,PUPA_LIN_visits,PUPA_LIN_multi_visits)
+
 ############################
 #Visualization of slopes by using visreg
 
@@ -289,24 +299,24 @@ p7 <- visreg(PUPA_LIN_multi_visits,"hete_motif",xlab="Hetero triplet",ylab=NULL,
   labs(title ="PUPA")
 
 
-p9 <- visreg(LEMA_LIN_multi_visits,"StrengthIn",xlab="In-Strength",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p9 <- visreg(LEMA_LIN_multi_visits,"StrengthIn",xlab="Within layer\n centrality",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="LEMA")
-p10 <- visreg(CHFU_LIN_multi_visits,"StrengthIn",xlab="In-Strength",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p10 <- visreg(CHFU_LIN_multi_visits,"StrengthIn",xlab="Within layer\n centrality",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="CHFU")
-p11 <- visreg(PUPA_LIN_multi_visits,"StrengthIn",xlab="In-Strength",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p11 <- visreg(PUPA_LIN_multi_visits,"StrengthIn",xlab="Within layer\n centrality",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="PUPA")
 
 
-p13 <- visreg(LEMA_LIN_multi_visits,"Ratio",xlab="Ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p13 <- visreg(LEMA_LIN_multi_visits,"Ratio",xlab="Among layer\n centrality ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="LEMA")
-p14 <- visreg(CHFU_LIN_multi_visits,"Ratio",xlab="Ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p14 <- visreg(CHFU_LIN_multi_visits,"Ratio",xlab="Among layer\n centrality ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="CHFU")
-p15 <- visreg(PUPA_LIN_multi_visits,"Ratio",xlab="Ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
+p15 <- visreg(PUPA_LIN_multi_visits,"Ratio",xlab="Among layer\n centrality ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
   labs(title ="PUPA")
 
@@ -335,3 +345,4 @@ grid.arrange(
                         c(13, 14, 15)),
   left = textGrob("log(Seeds per individual)", rot = 90, vjust = 1)
 )
+
