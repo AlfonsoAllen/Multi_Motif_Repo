@@ -519,7 +519,7 @@ ggplot(homo_example)+
   theme_bw()+
   geom_vline(aes(xintercept=as.numeric(homo_table[i,3])), colour="deepskyblue",linetype = "dashed",size=1)+
   labs(x="Total amount of homospecific networks", y = "Number of randomized networks",
-       title = paste("Plot",homo_table$Plot[i], homo_table$Subplot_Plant_Label[i],sep=" "))
+       title = expression(paste("Plot ","1 ",italic("L. maroccanus"), sep=" ")))
 
 
 
@@ -580,13 +580,29 @@ homo_table %>% group_by(Comparison,Plant_Label) %>% count()
 
 homo_table$cant_focal <- 1
 
-ggplot(homo_table, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
+homo_table_exp <- homo_table
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "BEMA"] <- "B. macrocarpa"
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "CETE"] <- "C. tenuiflorum"
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "CHFU"] <- "C. fuscatum"
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "CHMI"] <- "C. mixtum"
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "LEMA"] <- "L. maroccanus"
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "MESU"] <- "M. sulcatus"
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "PUPA"] <- "P. paludosa"
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "SCLA"] <- "S. laciniata"
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "SOAS"] <- "S. asper"
+homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "SPRU"] <- "S. rubra"
+
+
+ggplot(homo_table_exp, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
   geom_bar(position="stack", stat="identity")+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   theme_bw()+labs(title="Homo-motifs",
                   x ="Plant Species", y = "Number of focal individuals",fill=NULL)+
   theme(legend.position = "bottom")+
-  theme(axis.text.x = element_text(angle = 90))
+  theme(axis.text.x = element_text(angle = 90,vjust=0.5, hjust=1))+ 
+  theme(axis.text.x = element_text(face = "italic"))
+
+#save 600 x 500
 
 ggplot(homo_table, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
   geom_bar(position="stack", stat="identity")+
@@ -618,13 +634,26 @@ hete_table %>% group_by(Comparison,Plant_Label) %>% count()
 
 hete_table$cant_focal <- 1
 
-ggplot(hete_table, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
+hete_table_exp <- hete_table
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "BEMA"] <- "B. macrocarpa"
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "CETE"] <- "C. tenuiflorum"
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "CHFU"] <- "C. fuscatum"
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "CHMI"] <- "C. mixtum"
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "LEMA"] <- "L. maroccanus"
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "MESU"] <- "M. sulcatus"
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "PUPA"] <- "P. paludosa"
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "SCLA"] <- "S. laciniata"
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "SOAS"] <- "S. asper"
+hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "SPRU"] <- "S. rubra"
+
+ggplot(hete_table_exp, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
   geom_bar(position="stack", stat="identity")+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   theme_bw()+labs(title="Hete-motifs",
                   x ="Plant Species", y = "Number of focal individuals",fill=NULL)+
   theme(legend.position = "bottom")+
-  theme(axis.text.x = element_text(angle = 90))
+  theme(axis.text.x = element_text(angle = 90,vjust=0.5, hjust=1))+
+  theme(axis.text.x = element_text(face = "italic"))
 
 homo_table %>% separate(Subplot_Plant_Label,c("Subplot","Plant_Simple")," ") %>%
   group_by(Comparison,Plant_Simple) %>% count() %>% mutate(percen=100*n/nrow(hete_table))
@@ -840,3 +869,38 @@ ggplot(data_total2,aes(x=homo_motif,y = hete_motif, color = Plant_Simple, shape 
   labs(color=NULL,shape=NULL)+
   theme(legend.position = "bottom")
 #labs(Color
+
+library(scales)
+
+data_total2_exp <- data_total2
+data_total2_exp$Plant_Simple <- as.character(data_total2_exp$Plant_Simple)
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "BEMA"] <- "B. macrocarpa"
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "CETE"] <- "C. tenuiflorum"
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "CHFU"] <- "C. fuscatum"
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "CHMI"] <- "C. mixtum"
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "LEMA"] <- "L. maroccanus"
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "MESU"] <- "M. sulcatus"
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "PUPA"] <- "P. paludosa"
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "SCLA"] <- "S. laciniata"
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "SOAS"] <- "S. asper"
+data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "SPRU"] <- "S. rubra"
+
+data_total2_exp$Plant_Simple <- as.factor(data_total2_exp$Plant_Simple)
+
+ggplot(data_total2_exp,aes(x=homo_motif+0.5,y = hete_motif+0.5))+
+  geom_point(alpha=0.2, position = "jitter")+
+  #scale_shape_manual(values=1:nlevels(data_total2$Plant_Simple))+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  facet_wrap(vars(Plant_Simple),nrow = 2,ncol = 5)+
+  geom_abline(aes(slope=1,intercept=0),linetype = "dashed")+
+  scale_color_brewer(palette="Paired")+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("# Homospecific motifs + 0.5") + ylab("# Heterospecific motifs + 0.5")+
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x))) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  theme_bw()+
+  labs(color=NULL,shape=NULL)+
+  theme(legend.position = "bottom")+ theme(strip.text = element_text(face = "italic"))
+# save 600 x 300
