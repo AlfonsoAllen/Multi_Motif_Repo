@@ -133,21 +133,37 @@ nb.cols <- 11
 mycolors <- colorRampPalette(brewer.pal(11, "Paired"))(nb.cols)
 
 library("scales")
-ggplot(fitness_orig_label %>% filter(G_F!="None"), aes(fill=G_F, y=visits_GF, x=Plant)) + 
+
+
+fitness_orig_label_expl <- fitness_orig_label
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "BEMA"] <- "B. macrocarpa"
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "CETE"] <- "C. tenuiflorum"
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "CHFU"] <- "C. fuscatum"
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "CHMI"] <- "C. mixtum"
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "LEMA"] <- "L. maroccanus"
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "MESU"] <- "M. sulcatus"
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "PUPA"] <- "P. paludosa"
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "SCLA"] <- "S. laciniata"
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "SOAS"] <- "S. asper"
+fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "SPRU"] <- "S. rubra"
+
+ggplot(fitness_orig_label_expl %>% filter(G_F!="None"), aes(fill=G_F, y=visits_GF, x=Plant)) + 
   geom_bar(position="stack", stat="identity")+ theme_bw()+
   #scale_fill_brewer(palette = 'Paired')+ 
   scale_fill_manual(values = mycolors) +
   #scale_y_continuous(trans = scales::pseudo_log_trans(base = 10,sigma = 100))+
-  labs(x ="Plant species", y = "Number of visits",fill=NULL)+ theme(legend.position="bottom")
+  labs(x ="Plant species", y = "Number of visits",fill=NULL)+
+  theme(legend.position="bottom",axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggplot(fitness_orig_label %>% filter(G_F!="None"), aes(fill=G_F, y=visits_GF, x=Plant)) + 
+ggplot(fitness_orig_label_expl %>% filter(G_F!="None"), aes(fill=G_F, y=visits_GF, x=Plant)) + 
   geom_bar(position="stack", stat="identity")+ theme_bw()+
   #scale_fill_brewer(palette = 'Paired')+ 
   scale_fill_manual(values = mycolors) +
   labs(x ="Plant species", y = "Number of visits",fill=NULL)+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   theme(legend.position="bottom")+
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))+
+  theme(axis.text.x = element_text(face = "italic"))
 
 # Stacked + percent
 ggplot(fitness_orig %>% filter(G_F!="None"), aes(fill=G_F, y=visits_GF, x=Plant)) + 
@@ -165,10 +181,22 @@ ggplot(fitness_orig %>% filter(G_F!="None"), aes(fill=G_F, y=visits_GF, x=Plant)
 plants_PLOT <- fitness_orig  %>% filter(visits_GF>0) %>% select(Plot,Subplot,Plant) %>% unique() %>%
   group_by(Plot,Plant) %>% count()
 
+plants_PLOT_expl <- plants_PLOT
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "BEMA"] <- "B. macrocarpa"
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "CETE"] <- "C. tenuiflorum"
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "CHFU"] <- "C. fuscatum"
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "CHMI"] <- "C. mixtum"
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "LEMA"] <- "L. maroccanus"
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "MESU"] <- "M. sulcatus"
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "PUPA"] <- "P. paludosa"
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "SCLA"] <- "S. laciniata"
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "SOAS"] <- "S. asper"
+plants_PLOT_expl$Plant[plants_PLOT_expl$Plant == "SPRU"] <- "S. rubra"
 
 
-ggplot(plants_PLOT, aes(fill=Plant, y=n, x=Plot)) + 
+ggplot(plants_PLOT_expl, aes(fill=Plant, y=n, x=Plot)) + 
   geom_bar(position="stack", stat="identity")+ theme_bw()+
   scale_fill_brewer(palette = 'Paired')+ 
-  labs(x ="Plot", y = "Number of visited focal individuals",fill=NULL)+ theme(legend.position="bottom")
+  labs(x ="Plot", y = "Number of visited focal individuals",fill=NULL)+ theme(legend.position="bottom")+
+  theme(legend.text = element_text(face = "italic"))
 
