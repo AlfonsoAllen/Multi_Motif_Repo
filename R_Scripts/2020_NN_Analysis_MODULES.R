@@ -618,6 +618,31 @@ ggplot(modulos2, aes(fill=Plant, y=Amount, x=as.factor(module))) +
   labs(x = "Module", y = "Number of focal plants",fill=NULL)+
   theme(legend.position="bottom")
 
+# No codes
+modulos2_real <- modulos2
+modulos2_real$Plant[modulos2_real$Plant == "BEMA"] <- "B. macrocarpa"
+modulos2_real$Plant[modulos2_real$Plant == "CETE"] <- "C. tenuiflorum"
+modulos2_real$Plant[modulos2_real$Plant == "CHFU"] <- "C. fuscatum"
+modulos2_real$Plant[modulos2_real$Plant == "CHMI"] <- "C. mixtum"
+modulos2_real$Plant[modulos2_real$Plant == "LEMA"] <- "L. maroccanus"
+modulos2_real$Plant[modulos2_real$Plant == "MESU"] <- "M. sulcatus"
+modulos2_real$Plant[modulos2_real$Plant == "PUPA"] <- "P. paludosa"
+modulos2_real$Plant[modulos2_real$Plant == "SCLA"] <- "S. laciniata"
+modulos2_real$Plant[modulos2_real$Plant == "SOAS"] <- "S. asper"
+modulos2_real$Plant[modulos2_real$Plant == "SPRU"] <- "S. rubra"
+
+
+ggplot(modulos2_real, aes(fill=Plant, y=Amount, x=as.factor(module))) + 
+  geom_bar(position="stack", stat="identity")+
+  theme_bw()+
+  scale_fill_brewer(palette = 'Paired')+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  labs(x = "Module", y = "Number of focal plants",fill=NULL)+
+  theme(legend.position="bottom")+
+  theme(legend.text = element_text(face = "italic"))
+
+# Save 700 x 500
+
 # Percentage of modules with PUPA and LEMA
 mod_PUPA_LEMA <- modulos2 %>% filter(LEMA>0 & PUPA >0.5 & Plant == "PUPA") %>% unique() %>% nrow()
 mod_PUPA <- modulos2 %>% filter(PUPA >0 & Plant == "PUPA") %>% unique() %>% nrow()
@@ -633,7 +658,7 @@ mod_CHFU_dom <- modulos2 %>% filter(CHFU>=0.5 & Plant == "CHFU") %>% unique() %>
 mod_CHFU <- modulos2 %>% filter(CHFU >0 & Plant == "CHFU") %>% unique() %>% nrow()
 100*mod_CHFU_dom/mod_CHFU
 
-ggplot(modulos2 %>% filter(Plot==4), aes(fill=Plant, y=Amount, x=as.factor(module))) + 
+ggplot(modulos2_real %>% filter(Plot==8), aes(fill=Plant, y=Amount, x=as.factor(module))) + 
   geom_bar(position="stack", stat="identity")+
   theme_bw()+
   scale_fill_brewer(palette = 'Paired')+
@@ -683,6 +708,7 @@ modules_pollinators_label$G_F[modules_pollinators_label$G_F=="Small_beetles"] <-
 modules_pollinators_label$G_F[modules_pollinators_label$G_F=="Small_flies"] <- "Small flies"
 modules_pollinators_label$G_F[modules_pollinators_label$G_F=="Solitary_bees"] <- "Solitary bees"
 modules_pollinators_label$G_F[modules_pollinators_label$G_F=="Wasp"] <- "Wasps"
+modules_pollinators_label$G_F[modules_pollinators_label$G_F=="Big_beetles"] <- "Big beetles"
 
 modules_pollinators_label$G_F <- as.factor(modules_pollinators_label$G_F)
 
@@ -693,3 +719,4 @@ ggplot(modules_pollinators_label, aes(fill=G_F, y=n, x=as.factor(module))) +
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   labs(x = "Module", y = "Number of pollinators",fill=NULL)+theme(legend.position="bottom")
 
+# Save 700 x 500
