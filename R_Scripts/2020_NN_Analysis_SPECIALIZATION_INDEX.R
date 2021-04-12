@@ -376,11 +376,24 @@ library(RColorBrewer)
 
 GF_cz_edge_module_info_OUT$G_F %>% unique()
 
-ggplot(GF_cz_edge_module_info_OUT%>% filter(G_F %in% c("LEMA","CETE",
-                                                       "CHFU","PUPA",
-                                                       "BEMA","CHMI",
-                                                       "SPRU","MESU",
-                                                       "SCLA","SOAS")))+
+GF_cz_edge_module_info_OUT_exp <- GF_cz_edge_module_info_OUT
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "BEMA"] <- "B. macrocarpa"
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "CETE"] <- "C. tenuiflorum"
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "CHFU"] <- "C. fuscatum"
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "CHMI"] <- "C. mixtum"
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "LEMA"] <- "L. maroccanus"
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "MESU"] <- "M. sulcatus"
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "PUPA"] <- "P. paludosa"
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "SCLA"] <- "S. laciniata"
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "SOAS"] <- "S. asper"
+GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "SPRU"] <- "S. rubra"
+
+
+ggplot(GF_cz_edge_module_info_OUT_exp%>% filter(G_F %in% c("B. macrocarpa","C. tenuiflorum",
+                                                       "C. fuscatum","C. mixtum",
+                                                       "L. maroccanus","M. sulcatus",
+                                                       "P. paludosa","S. laciniata",
+                                                       "S. asper","S. rubra")))+
   geom_point(aes(x=c,y=z,color=G_F),position = "jitter",alpha=.5)+
   scale_color_brewer(palette = 'Paired')+
   geom_vline(xintercept = 1.0)+
@@ -388,14 +401,17 @@ ggplot(GF_cz_edge_module_info_OUT%>% filter(G_F %in% c("LEMA","CETE",
   theme_bw()+
   #scale_colour_brewer(palette = 'Paired')+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
-  labs(x ="Among module out-strength, out-c", y = "Within module in-strength, out-z",color=NULL)+ theme(legend.position="bottom")
+  labs(x ="Among module out-strength, out-c", y = "Within module in-strength, out-z",color=NULL)+ 
+  theme(legend.position="bottom")+
+  theme(legend.text = element_text(face = "italic"))
 
 
-ggplot(GF_cz_edge_module_info_OUT%>% filter(!G_F %in% c("LEMA","CETE",
-                                                        "CHFU","PUPA",
-                                                        "BEMA","CHMI",
-                                                        "SPRU","MESU",
-                                                        "SCLA","SOAS")))+
+
+ggplot(GF_cz_edge_module_info_OUT_exp%>% filter(!G_F %in% c("B. macrocarpa","C. tenuiflorum",
+                                                            "C. fuscatum","C. mixtum",
+                                                            "L. maroccanus","M. sulcatus",
+                                                            "P. paludosa","S. laciniata",
+                                                            "S. asper","S. rubra")))+
   geom_point(aes(x=c,y=z,color=G_F),position = "jitter",alpha=.5)+
   scale_color_brewer(palette = 'Paired')+
   geom_vline(xintercept = 1.0)+
@@ -516,19 +532,34 @@ hubs_OUT <- GF_cz_edge_module_info_OUT%>% filter(!G_F %in% c("LEMA","CETE",
 
 
 library(RColorBrewer)
+GF_cz_edge_module_info_IN_exp <- GF_cz_edge_module_info_IN
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "BEMA"] <- "B. macrocarpa"
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "CETE"] <- "C. tenuiflorum"
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "CHFU"] <- "C. fuscatum"
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "CHMI"] <- "C. mixtum"
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "LEMA"] <- "L. maroccanus"
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "MESU"] <- "M. sulcatus"
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "PUPA"] <- "P. paludosa"
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "SCLA"] <- "S. laciniata"
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "SOAS"] <- "S. asper"
+GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "SPRU"] <- "S. rubra"
 
-ggplot(GF_cz_edge_module_info_IN%>% filter(G_F %in% c("LEMA","CETE",
-                                                      "CHFU","PUPA",
-                                                      "BEMA","CHMI",
-                                                      "SPRU","MESU",
-                                                      "SCLA","SOAS")))+
+
+ggplot(GF_cz_edge_module_info_IN_exp%>% filter(G_F %in% c("B. macrocarpa","C. tenuiflorum",
+                                                          "C. fuscatum","C. mixtum",
+                                                          "L. maroccanus","M. sulcatus",
+                                                          "P. paludosa","S. laciniata",
+                                                          "S. asper","S. rubra")))+
   geom_point(aes(x=c,y=z,color=G_F),position = "jitter",alpha=.5)+
   geom_vline(xintercept = c_in_threshold)+
   geom_hline(yintercept = z_in_threshold)+
   theme_bw()+
   scale_colour_brewer(palette = 'Paired')+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
-  labs(x ="Among module in-strength, in-c", y = "Within module in-strength, in-z",color=NULL)+ theme(legend.position="bottom")
+  labs(x ="Among module in-strength, in-c", y = "Within module in-strength, in-z",color=NULL)+ 
+  theme(legend.position="bottom")+
+  theme(legend.text = element_text(face = "italic"))
+
 
 
 ggplot(GF_cz_edge_module_info_IN%>% filter(!G_F %in% c("LEMA","CETE",
