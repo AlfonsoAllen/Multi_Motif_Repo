@@ -150,7 +150,26 @@ competition_fil <- competition %>%
                       Fruit_GF = Fruits_unit,
                       Seeds_GF = Seeds_unit)
 
+# In this database they are using mean numbers of seeds per fruit
+competition_fil %>% select(Plant,Seeds_GF) %>% unique() 
 
+#########################################
+#########################################
+# # If possible we used the individual values of seeds
+competition_fil_ind <- competition_fil %>%
+  left_join(seed_data_raw, by = c("Plot", "Subplot", "Plant"))
+
+competition_fil_ind$Seeds_GF[!is.na(competition_fil_ind$`Seeds/Fruit`)] <-
+  competition_fil_ind$`Seeds/Fruit`[!is.na(competition_fil_ind$`Seeds/Fruit`)]
+
+competition_fil_ind$Seeds[!is.na(competition_fil_ind$`Seeds/Fruit`)] <-
+  competition_fil_ind$Seeds_GF[!is.na(competition_fil_ind$`Seeds/Fruit`)] *
+  competition_fil_ind$Fruits[!is.na(competition_fil_ind$`Seeds/Fruit`)]
+
+competition_fil <- competition_fil_ind[,1:8] %>% rename(Year = Year.x)
+
+########################################
+########################################
 # There are plants with several measures
 
 competition_fil %>% dplyr::select(Plot,Subplot,Plant) %>% group_by(Plot,Subplot,Plant)%>%
@@ -293,3 +312,4 @@ fitness_final[is.na(fitness_final)] <- 0
 
 
 write_csv(fitness_final,"Processed_data/2020_NN_NEW_data_models_phenol_overlap.csv")
+
