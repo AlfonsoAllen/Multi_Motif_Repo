@@ -17,7 +17,6 @@ pollination <- pollination %>% filter(ID != "Tabanidae")
 
 pollination_20 <- pollination %>%  filter(!is.na(Plant),Plant!="0",Subplot!="OUT",Plant!="Ground")
 
-
 ####################################################################
 # Estimating phenology from pollinators'visits
 ####################################################################
@@ -37,6 +36,8 @@ for (i in 1:nrow(pollination_dates_2020)){
   else{pollination_dates_2020$Line[i] <- 3}
   
 }
+
+pollination_dates_2020 %>% ungroup() %>% select(Month,Day) %>% unique()
 
 write_csv(pollination_dates_2020, "Processed_data/Plant_experimental_phenologies/phenology_2020.csv")
 
@@ -65,6 +66,16 @@ names(plot_labs) <- c(
   "9"
 )
 
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "BEMA"] <- "B. macrocarpa"
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "CETE"] <- "C. tenuiflorum"
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "CHFU"] <- "C. fuscatum"
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "CHMI"] <- "C. mixtum"
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "LEMA"] <- "L. maroccanus"
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "MESU"] <- "M. sulcatus"
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "PUPA"] <- "P. paludosa"
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "SCLA"] <- "S. laciniata"
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "SOAS"] <- "S. asper"
+pollination_dates_2020$Plant[pollination_dates_2020$Plant == "SPRU"] <- "S. rubra"
 
 pdf("Processed_data/Plant_experimental_phenologies/estimated_phenology_plot_2020.pdf",
     width = 11.69, # The width of the plot in inches
@@ -75,8 +86,10 @@ ggplot(pollination_dates_2020)+
   scale_color_distiller(palette = "Spectral")+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   ylab("Plant Species") +
+  theme_bw()+
   labs(color = "# visits",size = "# visits")+ theme(legend.position="bottom")+
-  theme_bw()
+  theme(axis.text.y = element_text(face = "italic"))
+  
 
 dev.off()
 
@@ -101,7 +114,9 @@ ggplot()+
   geom_point(aes(x=Week,y=Plant,size=n,color=n))+
   scale_color_distiller(palette = "Spectral")+
   labs(color = "#visits",size = "#visits")+
-  theme_bw()
+  theme_bw()+
+  labs(color = "# visits",size = "# visits")+ 
+  theme(axis.text.y = element_text(face = "italic"))
 dev.off()
 
 
@@ -128,16 +143,30 @@ for (i in 1:nrow(pollination_dates_2020_GF)){
   
 }
 
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "BEMA"] <- "B. macrocarpa"
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "CETE"] <- "C. tenuiflorum"
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "CHFU"] <- "C. fuscatum"
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "CHMI"] <- "C. mixtum"
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "LEMA"] <- "L. maroccanus"
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "MESU"] <- "M. sulcatus"
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "PUPA"] <- "P. paludosa"
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "SCLA"] <- "S. laciniata"
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "SOAS"] <- "S. asper"
+pollination_dates_2020_GF$Plant[pollination_dates_2020_GF$Plant == "SPRU"] <- "S. rubra"
+
+
 pdf("Processed_data/Plant_experimental_phenologies/estimated_phenology_Caracoles_by_GF.pdf",
     width = 11.69, # The width of the plot in inches
     height = 8.27)
 pollination_dates_2020_GF %>% group_by(Plant,Week,G_F) %>% count(wt=n) %>%
   ggplot()+
-  geom_point(aes(x=Week,y=Plant,size=n,color=n))+
+  geom_point(aes(x=as.factor(as.numeric(Week)),y=Plant,size=n,color=n))+
   scale_color_distiller(palette = "Spectral")+
-  labs(color = "#visits",size = "#visits")+
+  labs(color = "#visits",size = "#visits", x = "Week")+
   facet_wrap(~G_F)+
-  theme_bw()
+  theme_bw()+
+  labs(color = "# visits",size = "# visits")+ 
+  theme(axis.text.y = element_text(face = "italic"))
 
 dev.off()
 
