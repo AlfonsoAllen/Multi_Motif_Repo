@@ -65,8 +65,27 @@ means <- aggregate((Real_PR_Multi) ~  Plant_Simple + Plot,
 
 #Test significance of differences
 library(ggpubr)
+PageRank_results_exp <- PageRank_results
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "BEMA"] <- "B. macrocarpa"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "CETE"] <- "C. tenuiflorum"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "CHFU"] <- "C. fuscatum"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "CHMI"] <- "C. mixtum"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "LEMA"] <- "L. maroccanus"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "MESU"] <- "M. sulcatus"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "PUPA"] <- "P. paludosa"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "SCLA"] <- "S. laciniata"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "SOAS"] <- "S. asper"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "SPRU"] <- "S. rubra"
 
-ggplot(PageRank_results,
+# We add equiprobability line
+
+
+nodes <- tibble(Plot = c(1:9), nodes = c(49,66,66,26,19,14,43,84,74)+
+                            c(23,30,30,11,8,7,22,41,34))
+
+PageRank_results_exp_nodes <- PageRank_results_exp %>% left_join(nodes, by = "Plot") 
+
+ggplot(PageRank_results_exp_nodes,
        aes(x=Plant_Simple,y=(Real_PR_Multi)))+
   geom_boxplot()+
   geom_point(aes(color=Plant_Simple),position = "jitter",alpha=0.3)+
@@ -76,22 +95,26 @@ ggplot(PageRank_results,
                shape=18, size=3,show.legend = FALSE) + 
   #geom_text(data = means, aes(label = round(`(Real_PR_Multi)`,2), y = 0.1))+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  geom_hline(data = PageRank_results_exp_nodes, aes(yintercept = 1/nodes),linetype ="dashed")+
   #ggtitle(paste0("Plot ",i)) +
-  xlab("Plant Species") + ylab("PageRank")+
+  xlab("Plant Species") + ylab("Pollen arrival probability")+
   labs(fill = NULL)+ theme(legend.position="none")+
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, vjust=0.5, hjust=1))+ 
+  theme(axis.text.x = element_text(face = "italic"))
 #+stat_compare_means()
 
+#Save 600 x 400
+
 aggregate((Real_PR_Multi) ~  Plot,
-          PageRank_results, mean)
+          PageRank_results_exp, mean)
 
 means <- aggregate((Real_PR_Multi) ~  Plant_Simple,
-                   PageRank_results, mean)
+                   PageRank_results_exp, mean)
 
 #Test significance of differences
 library(ggpubr)
 
-ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
+ggplot(PageRank_results_exp,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
   geom_boxplot()+
   geom_point(aes(color=Plant_Simple),position = "jitter",alpha=0.3)+
   scale_fill_brewer(palette = 'Paired')+
@@ -101,12 +124,32 @@ ggplot(PageRank_results,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
   geom_text(data = means, aes(label = round(`(Real_PR_Multi)`,3), y = 0.135))+
   #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   #ggtitle(paste0("Plot ",i)) +
-  xlab("Plant Species") + ylab("PageRank")+ 
+  xlab("Plant Species") + ylab("Pollen arrival probability")+ 
   labs(fill = NULL)+ theme(legend.position="none")+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 #+stat_compare_means()
 
+aggregate((Ratio) ~  Plot,
+          PageRank_results_exp, mean)
 
+means <- aggregate((Ratio) ~  Plant_Simple,
+                   PageRank_results_exp, mean)
+
+
+ggplot(PageRank_results_exp,aes(x=Plant_Simple,y=(Ratio)))+
+  geom_boxplot()+
+  geom_point(aes(color=Plant_Simple),position = "jitter",alpha=0.3)+
+  scale_fill_brewer(palette = 'Paired')+
+  theme_bw()+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  geom_text(data = means, aes(label = round(`(Ratio)`,3), y = 2.5))+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("Among layer centrality ratio")+ 
+  labs(fill = NULL)+ theme(legend.position="none")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+#+stat_compare_means()
 
 #Test significance of differences
 library(ggpubr)
@@ -193,16 +236,29 @@ aggregate((Real_PR_Multi) ~ Plot,
 
 
 library(ggpmisc)
+PageRank_results_exp <- PageRank_results
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "BEMA"] <- "B. macrocarpa"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "CETE"] <- "C. tenuiflorum"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "CHFU"] <- "C. fuscatum"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "CHMI"] <- "C. mixtum"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "LEMA"] <- "L. maroccanus"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "MESU"] <- "M. sulcatus"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "PUPA"] <- "P. paludosa"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "SCLA"] <- "S. laciniata"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "SOAS"] <- "S. asper"
+PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "SPRU"] <- "S. rubra"
 
-ggplot(PageRank_results,aes(x=(StrengthIn),y=(Real_PR_Multi)))+
+ggplot(PageRank_results_exp,aes(x=(StrengthIn),y=(Real_PR_Multi)))+
   geom_point(aes(color=as.factor(Plant_Simple)),position = "jitter",alpha=0.5)+
   geom_smooth(method = "lm")+
   theme_bw()+
   stat_cor(method = "pearson", label.x = 0.01, label.y = 0.04)+
   #coord_trans(y = 'log10')+#scale_y_continuous(trans='log10')+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
-  xlab("In-Strength") + ylab("Multilayer Page Rank") +
-  labs(color = NULL)+ theme(legend.position="bottom")+ylim(0,0.05)
+  xlab("Within layer centrality") + ylab("Pollen arrival probability") +
+  labs(color = NULL)+ theme(legend.position="bottom")+ylim(0,0.05)+
+  theme(legend.text = element_text(face = "italic"))
+
   
 
 
@@ -229,17 +285,18 @@ x <- PageRank_results %>% filter( Ratio > 1)
 means <- aggregate((Ratio) ~  Plant_Simple+Plot,
                    PageRank_results, mean)
 
-ggplot(PageRank_results,aes(x=Plant_Simple,y=(Ratio),fill=Plant_Simple))+
+ggplot(PageRank_results_exp,aes(x=Plant_Simple,y=(Ratio),fill=Plant_Simple))+
   geom_boxplot()+
   stat_summary(fun.y=mean, colour="darkred", geom="point", 
                shape=18, size=3,show.legend = FALSE) + 
-  geom_text(data = means, aes(label = round(`(Ratio)`,2), y = `(Ratio)` + 1.1))+
+  #geom_text(data = means, aes(label = round(`(Ratio)`,2), y = `(Ratio)` + 1.1))+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   #ggtitle(paste0("Plot ",i)) +
   scale_y_continuous(trans='log10')+
-  xlab("Plant Species") + ylab("R=MC/LC")+
+  xlab("Plant Species") + ylab("Among-layer centrality")+
   theme_bw()+ theme(legend.position = "none")+#+stat_compare_means()
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ 
+  theme(axis.text.x = element_text(face = "italic"))
 #labs(Color = "Plant Species")
 
 means_ratio <- aggregate(Ratio ~  Plant_Simple+Plot,
