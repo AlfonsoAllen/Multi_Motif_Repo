@@ -1,6 +1,6 @@
 # Multi-motif analysis
 
-This repo contain all analysis for the paper entitled "Community level individual-based plant-pollinator networks unveil pollen flow dynamics and plant reproductive success" by Alfonso Allen-Perkins, María Hurtado, David García-Callejas, Oscar Godoy, and Ignasi Bartomeus, where we study the effect of several macro-, meso- and microstructural descriptors of Caracoles' individual-based plant-pollinator multilayer networks (2020) on the reproductive success of their focal plant individuals. To do so, we downscaled the analysis of interactions based on motifs to the level of conspecific and heterospecific plant individuals.
+This repo contain all analysis for the paper entitled "Community level individual-based plant-pollinator networks unveil pollen flow dynamics and plant reproductive success" by Alfonso Allen-Perkins, María Hurtado, David García-Callejas, Oscar Godoy, and Ignasi Bartomeus, where we study the effect of several macro-, meso- and microstructural descriptors of individual-based plant-pollinator multilayer networks on the reproductive success of their focal plant individuals. To do so, we downscaled the analysis of interactions based on motifs to the level of conspecific and heterospecific plant individuals.
 ![](Example/Fig1.png)
 
 * Raw data on pollination, fitness and competition at Caracoles can be found in the folder `Raw_Data/`
