@@ -248,13 +248,13 @@ AIC(PUPA_LIN_intercept_Plot_Plant,PUPA_LIN_visits,PUPA_LIN_multi_visits)
 
 p1 <- visreg(LEMA_LIN_visits,"visits_GF",xlab="visits",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="LEMA")
+  labs(title ="L. maroccanus")
 p2 <- visreg(CHFU_LIN_visits,"visits_GF",xlab="visits",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="CHFU")
+  labs(title ="C. fuscatum")
 p3 <- visreg(PUPA_LIN_visits,"visits_GF",xlab="visits",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="PUPA")
+  labs(title ="P. paludosa")
 
 
 library(gridExtra)
@@ -263,7 +263,7 @@ library(grid)
 
 
 grid.arrange(
-  grobs = list(p1, p2, p3),
+  grobs = list(p2, p1, p3),
   widths = c(1, 1, 1),
   layout_matrix = rbind(c(1, 2, 3)),
   left = textGrob("log(Seeds per individual)", rot = 90, vjust = 1),
@@ -279,64 +279,64 @@ grid.arrange(
 
 p1 <- visreg(LEMA_LIN_multi_visits,"homo_motif",xlab="Homo triplet",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="LEMA")
+  labs(title ="L. maroccanus")
 p2 <- visreg(CHFU_LIN_multi_visits,"homo_motif",xlab="Homo triplet",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="CHFU")
+  labs(title ="C. fuscatum")
 p3 <- visreg(PUPA_LIN_multi_visits,"homo_motif",xlab="Homo triplet",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="PUPA")
+  labs(title ="P. paludosa")
 
 
 p5 <- visreg(LEMA_LIN_multi_visits,"hete_motif",xlab="Hetero triplet",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="LEMA")
+  labs(title ="L. maroccanus")
 p6 <- visreg(CHFU_LIN_multi_visits,"hete_motif",xlab="Hetero triplet",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="CHFU")
+  labs(title ="C. fuscatum")
 p7 <- visreg(PUPA_LIN_multi_visits,"hete_motif",xlab="Hetero triplet",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="PUPA")
+  labs(title ="P. paludosa")
 
 
 p9 <- visreg(LEMA_LIN_multi_visits,"StrengthIn",xlab="Within layer\n centrality",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="LEMA")
+  labs(title ="L. maroccanus")
 p10 <- visreg(CHFU_LIN_multi_visits,"StrengthIn",xlab="Within layer\n centrality",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="CHFU")
+  labs(title ="C. fuscatum")
 p11 <- visreg(PUPA_LIN_multi_visits,"StrengthIn",xlab="Within layer\n centrality",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="PUPA")
+  labs(title ="P. paludosa")
 
 
 p13 <- visreg(LEMA_LIN_multi_visits,"Ratio",xlab="Among layer\n centrality ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="LEMA")
+  labs(title ="L. maroccanus")
 p14 <- visreg(CHFU_LIN_multi_visits,"Ratio",xlab="Among layer\n centrality ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="CHFU")
+  labs(title ="C. fuscatum")
 p15 <- visreg(PUPA_LIN_multi_visits,"Ratio",xlab="Among layer\n centrality ratio",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="PUPA")
+  labs(title ="P. paludosa")
 
 
 p17 <- visreg(LEMA_LIN_multi_visits,"visits_GF",xlab="visits",ylab=NULL,gg = TRUE,  partial=T, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="LEMA")
+  labs(title ="L. maroccanus")
 
 p18 <- visreg(CHFU_LIN_multi_visits,"visits_GF",xlab="visits",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="CHFU")
+  labs(title ="C. fuscatum")
 p19 <- visreg(PUPA_LIN_multi_visits,"visits_GF",xlab="visits",ylab=NULL,gg = TRUE, partial=TRUE, rug=FALSE)+
   theme_bw()+#geom_point(size=1.5, alpha=0.2, shape=16)+
-  labs(title ="PUPA")
+  labs(title ="P. paludosa")
 
 
 
 grid.arrange(
-  grobs = list(p1, p2, p3, p5,p6,p7,p9,p10,
-               p11, p13, p14,p15,p17,p18,p19),
+  grobs = list(p2, p1, p3, p6,p5,p7,p10,p9,
+               p11, p14, p13,p15,p18,p17,p19),
   widths = c(1, 1, 1),
   layout_matrix = rbind(c(1, 2, 3),
                         c(4,5, 6),

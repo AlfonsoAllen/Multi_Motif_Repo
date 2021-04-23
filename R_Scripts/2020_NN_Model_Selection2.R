@@ -232,19 +232,19 @@ dev.off()
 
 par(mfrow = c(4,3),mar=c(4,4,2,1)+0.5)
 
-visreg(CHFU_NB_intercept_Plot_Plant,"homo_motif",xlab="Homo triplet",ylab="Seeds",
+visreg(CHFU_NB_intercept_Plot_Plant,"homo_motif",xlab="Homospecific motifs",ylab="Seeds",
        main=expression(italic("C. fuscatum")),scale="response", rug=FALSE)#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
 points(Seeds_GF ~ homo_motif, data = fitness_orig_CHFU, 
        col = rgb(red = 0, green = 0, blue = 0, alpha = 0.5),
        pch = 20) 
 
-visreg(LEMA_NB_intercept_Plot_Plant,"homo_motif",xlab="Homo triplet",ylab="Seeds",
+visreg(LEMA_NB_intercept_Plot_Plant,"homo_motif",xlab="Homospecific motifs",ylab="Seeds",
        main=expression(italic("L. maroccanus")),scale="response", rug=FALSE)#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
 points(Seeds_GF ~ homo_motif, data = fitness_orig_LEMA, 
        col = rgb(red = 0, green = 0, blue = 0, alpha = 0.5),
        pch = 20) 
 
-visreg(PUPA_NB_intercept_Plot_Plant,"homo_motif",xlab="Homo triplet",ylab="Seeds",
+visreg(PUPA_NB_intercept_Plot_Plant,"homo_motif",xlab="Homospecific motifs",ylab="Seeds",
        main=expression(italic("P. paludosa")),scale="response", rug=FALSE)#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
 points(Seeds_GF ~ homo_motif, data = fitness_orig_PUPA, 
        col = rgb(red = 0, green = 0, blue = 0, alpha = 0.5),
@@ -252,13 +252,13 @@ points(Seeds_GF ~ homo_motif, data = fitness_orig_PUPA,
 
 ##############
 
-visreg(CHFU_NB_intercept_Plot_Plant,"hete_motif",xlab="Hetero triplet",ylab="Seeds",
+visreg(CHFU_NB_intercept_Plot_Plant,"hete_motif",xlab="Heterospecific motifs",ylab="Seeds",
        main=expression(italic("C. fuscatum")),scale="response", rug=FALSE)#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
 points(Seeds_GF ~ hete_motif, data = fitness_orig_CHFU, 
        col = rgb(red = 0, green = 0, blue = 0, alpha = 0.5),
        pch = 20) 
 
-visreg(LEMA_NB_intercept_Plot_Plant,"hete_motif",xlab="Hetero triplet",ylab="Seeds",
+visreg(LEMA_NB_intercept_Plot_Plant,"hete_motif",xlab="Heterospecific motifs",ylab="Seeds",
        main=expression(italic("L. maroccanus")),scale="response", rug=FALSE)#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
 points(Seeds_GF ~ hete_motif, data = fitness_orig_LEMA, 
        col = rgb(red = 0, green = 0, blue = 0, alpha = 0.5),
@@ -266,7 +266,7 @@ points(Seeds_GF ~ hete_motif, data = fitness_orig_LEMA,
 
 
 
-visreg(PUPA_NB_intercept_Plot_Plant,"hete_motif",xlab="Hetero triplet",ylab="Seeds",
+visreg(PUPA_NB_intercept_Plot_Plant,"hete_motif",xlab="Heterospecific motifs",ylab="Seeds",
        main=expression(italic("P. paludosa")),scale="response", rug=FALSE)#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
 points(Seeds_GF ~ hete_motif, data = fitness_orig_PUPA, 
        col = rgb(red = 0, green = 0, blue = 0, alpha = 0.5),
