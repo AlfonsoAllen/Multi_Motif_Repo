@@ -105,8 +105,10 @@ ggplot(PageRank_results_exp_nodes,
 
 #Save 600 x 400
 
-aggregate((Real_PR_Multi) ~  Plot,
+means_plot <- aggregate((Real_PR_Multi) ~  Plot,
           PageRank_results_exp, mean)
+
+cor(means_plot,nodes,method = c("spearman"))
 
 means <- aggregate((Real_PR_Multi) ~  Plant_Simple,
                    PageRank_results_exp, mean)
