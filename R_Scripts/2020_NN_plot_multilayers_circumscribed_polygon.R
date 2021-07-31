@@ -131,8 +131,8 @@ circumscribe_polygon <- function(list_nodes){
   x_vertex_aux <- c(x_vertex,x_vertex[1])
   y_vertex_aux <- c(y_vertex,y_vertex[1])
   
-  x_vertex_aux2 <- c(x_vertex2,x_vertex2[1])
-  y_vertex_aux2 <- c(y_vertex2,y_vertex2[1])
+  # x_vertex_aux2 <- c(x_vertex2,x_vertex2[1])
+  # y_vertex_aux2 <- c(y_vertex2,y_vertex2[1])
   
   Cx <- 0
   Cy <- 0
@@ -426,31 +426,74 @@ plot_multilayer <- function(plot_id,between_poll_space, r_ext){
   
   edge_prop$layer <- NA
   edge_prop$type <- NA
+  edge_prop$lty <- NA
   
   edge_prop$type[edge_prop$layer_from==edge_prop$layer_to] <- "intra"
   edge_prop$type[edge_prop$layer_from!=edge_prop$layer_to] <- "inter"
   edge_prop$layer[edge_prop$type=="intra"] <- edge_prop$layer_from[edge_prop$type=="intra"]
   edge_prop$layer[edge_prop$type!="intra"] <- "inter"
   
+  edge_prop$lty [edge_prop$type=="intra"] <- 1
+  edge_prop$lty [edge_prop$type!="intra"] <- 2
+  
   edge_prop_color <- edge_prop %>% left_join(colors_plants, by = "layer")
   edge_prop_color$color[is.na(edge_prop_color$color)] <- "gray20"
   
+  # To avoid overlaping of dashed lines (interlinks) from i to j and j to i, we remove the
+  # edges from j to i
   
+  edge_prop_color_aux <- edge_prop_color
+  
+  edge_prop_color_aux$weight[(edge_prop_color_aux$type == "inter") & c(T,F)] <- -1
+  #edge_prop_color_aux$color[(edge_prop_color_aux$type == "inter") & c(T,F)] <- "white"
+
   V(mult_i)$type[data_net$type=="plant"] <- TRUE
   V(mult_i)$type[data_net$type!="plant"] <- FALSE
   
- result <- plot.igraph(mult_i,
-              vertex.label = NA, vertex.label.color = data_net$color,
-              vertex.size = 5,vertex.size2 = 5,
-              vertex.color = data_net$color, vertex.frame.color = "gray20",
-              vertex.shape = data_net$shape,
-              edge.arrow.size=0.2, edge.color = edge_prop_color$color, 
-              edge.width = E(mult_i)$weight,
-              edge.curved = F, 
-              layout = l)+
-   legend("right",legend=nodes_prop$layer %>% unique,
-         fill=nodes_prop$color %>% unique,
-         bty = "n")
+  sp_plant_names <- tibble(layer = c("CHFU","LEMA","SOAS","SCLA","BEMA",
+                                  "SPRU","CHMI","MESU","CETE","PUPA"),
+                        sp_name = c("Chamaemelum\nfuscatum","Leontodon\nmaroccanus",
+                                 "Sonchus\nasper","Scorzonera\nlaciniata",
+                                 "Beta\nmacrocarpa","Spergularia\nrubra",
+                                 "Chamaemelum\nmixtum","Melilotus\nsulcatus",
+                                 "Centaurium\ntenuiflorum","Pulicaria\npaludosa"))
+  
+ 
+  result <- plot.igraph(mult_i,
+                        vertex.label = NA, vertex.label.color = data_net$color,
+                        vertex.size = 5,vertex.size2 = 5,
+                        vertex.color = data_net$color, vertex.frame.color = "gray20",
+                        vertex.shape = data_net$shape,
+                        edge.arrow.size = 0.2, edge.color = edge_prop_color_aux$color, 
+                        edge.width = edge_prop_color_aux$weight,
+                        edge.curved = F,
+                        edge.lty = edge_prop_color_aux$lty,
+                        edge.arrow.mode = 3, # both arrows
+                        layout = l)+
+    legend("right",inset=c(-0.32,0),legend = nodes_prop %>% left_join(sp_plant_names, by = "layer") %>%
+             select(layer,sp_name) %>% unique() %>% select(sp_name) %>% pull(),
+           fill=nodes_prop$color %>% unique(),
+           bty = "n",
+           y.intersp=1.5,
+           text.font = 3)
+  
+  # result <- plot.igraph(mult_i,
+  #             vertex.label = NA, vertex.label.color = data_net$color,
+  #             vertex.size = 5,vertex.size2 = 5,
+  #             vertex.color = data_net$color, vertex.frame.color = "gray20",
+  #             vertex.shape = data_net$shape,
+  #             edge.arrow.size = 0.2, edge.color = edge_prop_color_aux$color, 
+  #             edge.width = edge_prop_color_aux$weight,
+  #             edge.curved = F,
+  #             edge.lty = edge_prop_color_aux$lty,
+  #             edge.arrow.mode = 3, # both arrows
+  #             layout = l)+
+  #  legend("right",inset=c(-0.32,0),legend = nodes_prop %>% left_join(sp_plant_names, by = "layer") %>%
+  #           select(layer,sp_name) %>% unique() %>% select(sp_name) %>% pull(),
+  #        fill=nodes_prop$color %>% unique(),
+  #        bty = "n",
+  #        y.intersp=1.5,
+  #        text.font = 3)
  
  return(result)
  #
@@ -459,7 +502,7 @@ plot_multilayer <- function(plot_id,between_poll_space, r_ext){
 
 #dev.off()
 #par(mfrow=c(3,3))
-par(mar=c(0,0,0,0)+.1)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
 min_between_poll_space_finder(plot_id=1)
 multi_1 <- plot_multilayer(1,between_poll_space=11, r_ext= 40)
 
@@ -485,4 +528,4 @@ min_between_poll_space_finder(plot_id=8)
 multi_8 <- plot_multilayer(8,between_poll_space=5, r_ext= 40)
 
 min_between_poll_space_finder(plot_id=9)
-multi_9 <- plot_multilayer(9,between_poll_space=5, r_ext= 40)
+multi_9 <- plot_multilayer(9,between_poll_space=3, r_ext= 40)
