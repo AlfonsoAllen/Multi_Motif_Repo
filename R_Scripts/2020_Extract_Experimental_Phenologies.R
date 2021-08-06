@@ -170,6 +170,32 @@ pollination_dates_2020_GF %>% group_by(Plant,Week,G_F) %>% count(wt=n) %>%
 
 dev.off()
 
+png("New_Figures/figA21.png",
+    width = 11.69*0.5, # The width of the plot in inches
+    height = 8.27*0.5, units = "in", res=300*2)
+pollination_dates_2020_GF %>% group_by(Plant,Week) %>% count(wt=n) %>%
+  ggplot()+
+  geom_point(aes(x=as.factor(as.numeric(Week)),y=Plant,size=n,color=n))+
+  scale_color_distiller(palette = "Spectral")+
+  labs(color = "#visits",size = "#visits", x = "Week")+
+  theme_bw()+
+  labs(color = "# visits",size = "# visits")+ 
+  theme(axis.text.y = element_text(face = "italic"))
+dev.off()
+
+png("New_Figures/figA22.png",
+    width = 11.69*0.75, # The width of the plot in inches
+    height = 8.27*0.75, units = "in", res=300*2)
+pollination_dates_2020_GF %>% group_by(Plant,Week,G_F) %>% count(wt=n) %>%
+  ggplot()+
+  geom_point(aes(x=as.factor(as.numeric(Week)),y=Plant,size=n,color=n))+
+  scale_color_distiller(palette = "Spectral")+
+  labs(color = "#visits",size = "#visits", x = "Week")+
+  facet_wrap(~G_F)+
+  theme_bw()+
+  labs(color = "# visits",size = "# visits")+ 
+  theme(axis.text.y = element_text(face = "italic"))
+dev.off()
 # ####################################################################
 # Estimating phenology from pollinators'visits by species (solitary bees, flower beetles and house flies)
 ####################################################################
