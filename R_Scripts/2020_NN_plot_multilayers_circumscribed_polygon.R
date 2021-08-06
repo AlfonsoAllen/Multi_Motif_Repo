@@ -199,7 +199,8 @@ plot_multilayer <- function(plot_id,between_poll_space, r_ext){
   plant_list <- plant_list[!plant_list %in% c("OUT","0")] 
   plant_list <- plant_list[!is.na(plant_list)] 
   
-  colors_plants <- tibble(layer = plant_list,
+  colors_plants <- tibble(layer = c("BEMA","CHFU","CHMI","CETE","LEMA",
+                                    "MESU","PUPA","SOAS","SCLA","SPRU"),#plant_list,
                           color = RColorBrewer::brewer.pal(length(plant_list),"Paired"))
   
   nodes_prop <- nodes_prop %>% left_join(colors_plants, by = "layer")
@@ -444,7 +445,9 @@ plot_multilayer <- function(plot_id,between_poll_space, r_ext){
   
   edge_prop_color_aux <- edge_prop_color
   
-  edge_prop_color_aux$weight[(edge_prop_color_aux$type == "inter") & c(T,F)] <- -1
+  edge_prop_color_aux %>% filter((edge_prop_color_aux$type == "inter"))
+  
+  edge_prop_color_aux$weight[(edge_prop_color_aux$type == "inter") & c(T,F)] <- -0
   #edge_prop_color_aux$color[(edge_prop_color_aux$type == "inter") & c(T,F)] <- "white"
 
   V(mult_i)$type[data_net$type=="plant"] <- TRUE
@@ -465,7 +468,7 @@ plot_multilayer <- function(plot_id,between_poll_space, r_ext){
                         vertex.color = data_net$color, vertex.frame.color = "gray20",
                         vertex.shape = data_net$shape,
                         edge.arrow.size = 0.2, edge.color = edge_prop_color_aux$color, 
-                        edge.width = edge_prop_color_aux$weight,
+                        edge.width = ifelse(edge_prop_color_aux$weight > 0, 1, -1),
                         edge.curved = F,
                         edge.lty = edge_prop_color_aux$lty,
                         edge.arrow.mode = 3, # both arrows
@@ -475,7 +478,8 @@ plot_multilayer <- function(plot_id,between_poll_space, r_ext){
            fill=nodes_prop$color %>% unique(),
            bty = "n",
            y.intersp=1.5,
-           text.font = 3)
+           text.font = 3,
+           cex=0.75, pt.cex = 1)
   
   # result <- plot.igraph(mult_i,
   #             vertex.label = NA, vertex.label.color = data_net$color,
@@ -529,3 +533,52 @@ multi_8 <- plot_multilayer(8,between_poll_space=5, r_ext= 40)
 
 min_between_poll_space_finder(plot_id=9)
 multi_9 <- plot_multilayer(9,between_poll_space=3, r_ext= 40)
+
+
+png("New_Figures/fig2.png", width=1476*2, height = 900*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+plot_multilayer(8,between_poll_space=5, r_ext= 40)
+dev.off()
+
+# Appendix 6
+
+png("New_Figures/figA61.png", width=1476*2, height = 900*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+multi_1 <- plot_multilayer(1,between_poll_space=11, r_ext= 40)
+dev.off()
+
+png("New_Figures/figA62.png", width=1476*2, height = 900*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+multi_2 <- plot_multilayer(2,between_poll_space=5, r_ext= 40)
+dev.off()
+
+png("New_Figures/figA63.png", width=1476*2, height = 900*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+multi_3 <- plot_multilayer(3,between_poll_space=4, r_ext= 40)
+dev.off()
+
+png("New_Figures/figA64.png", width=1476*2, height = 900*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+multi_4 <- plot_multilayer(4,between_poll_space=18, r_ext= 40)
+dev.off()
+
+png("New_Figures/figA65.png", width=1476*2, height = 900*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+multi_5 <- plot_multilayer(5,between_poll_space=13, r_ext= 40)
+dev.off()
+
+png("New_Figures/figA66.png", width=1476*2, height = 900*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+multi_6 <- plot_multilayer(6,between_poll_space=9, r_ext= 40)
+dev.off()
+
+png("New_Figures/figA67.png", width=1476*2, height = 900*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+multi_7 <- plot_multilayer(7,between_poll_space=7, r_ext= 40)
+dev.off()
+
+png("New_Figures/figA68.png", width=1550*2, height = 1030*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+multi_9 <- plot_multilayer(9,between_poll_space=3, r_ext= 40)
+dev.off()
+

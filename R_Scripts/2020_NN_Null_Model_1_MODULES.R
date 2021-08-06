@@ -475,7 +475,7 @@ b_m <- boot(results_test_fil_Plot$m, function(u,i) u[i], R = 10000)
 boot.ci(b_m, type = c("norm", "basic", "perc"),conf = 0.95)
 
 
-
+png("New_Figures/figA91.png", width=1476*2, height = 1476*2*361/515, res=300*2)
 ggplot(results_test_fil)+
   geom_histogram(aes(x=L),binwidth=0.05)+ theme_bw()+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
@@ -489,11 +489,11 @@ ggplot(results_test_fil)+
   geom_vline(data=filter(results_test_fil, Plot==8), aes(xintercept=L_real), colour="deepskyblue",linetype = "dashed",size=1)+
   geom_vline(data=filter(results_test_fil, Plot==9), aes(xintercept=L_real), colour="deepskyblue",linetype = "dashed",size=1)+
   labs(x="Map equation (in bits)", y = "Number of randomized networks")
+dev.off()
 
 
 
-
-
+png("New_Figures/figA92.png", width=1476*2, height = 1476*2*361/515, res=300*2)
 ggplot(results_test)+
   geom_histogram(aes(x=m),binwidth=1)+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+theme_bw()+
@@ -508,7 +508,7 @@ ggplot(results_test)+
   geom_vline(data=filter(results_test_fil, Plot==9), aes(xintercept=m_real), colour="deepskyblue",linetype = "dashed",size=1)+
   
   labs(x="Number of modules", y = "Number of randomized networks")
-
+dev.off()
 
 ggplot(results_test)+
   geom_point(aes(x=m,y=L))+

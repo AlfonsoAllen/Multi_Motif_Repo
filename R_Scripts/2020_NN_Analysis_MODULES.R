@@ -60,11 +60,13 @@ modules_final %>% filter(type!="plant") %>% dplyr::select(Plot,module,layer_name
 plant_sp_m <- modules_final %>% filter(type=="plant") %>% dplyr::select(Plot,module,layer_name) %>% 
   unique() %>% arrange(Plot,module,layer_name)%>% group_by(Plot,module) %>% count()
 
+png("New_Figures/figA75.png", width=1476*2, height = 1476*2*360/515, res=300*2)
 plant_sp_m %>%  ggplot()+
   geom_histogram(aes(x=n))+theme_bw()+
-  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller = labeller(Plot = plot_labs))+
   #ggtitle(paste0("Plot ",i)) +
   xlab("# Plant species per module") + ylab("# Modules") + theme(legend.position = "none")
+dev.off()
 #Recoge a través de cuantas capas se extiende el módulo
 
 plant_sp_m %>% filter(Plot==8) %>%  ggplot()+
@@ -139,6 +141,40 @@ b <- boot(plant_sp_m %>% ungroup() %>% filter(Plot==i) %>% select(n) %>% pull(),
           function(u,i) u[i], R = 1000)
 boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
 
+# Number of modules versus plot richness and number of interlinks
+
+data_modules <- tibble(modules = c(10,11,14,7,6,3,14,16,16),
+                       number_plant_ind = c(49,66,66,26,19,14,43,84,74),
+                       richness = c(4,5,5,2,2,2,6,6,8),
+                       interlinks = c(8,24,24,2,0,2,16,42,26)/number_plant_ind,
+                       average_weight = c(0.711375,0.7378333,0.6444583,0.656,0,0.656,0.734125,0.6350476,0.6830769))
+
+m_modules_richness <- lm(modules~richness, data_modules)
+summary(m_modules_richness)
+
+m_modules_interlinks <- lm(modules~interlinks, data_modules)
+summary(m_modules_interlinks)
+
+m_modules_average_weight <- lm(modules~average_weight, data_modules)
+summary(m_modules_average_weight)
+
+m_modules_richness_interlinks <- lm(modules~richness+interlinks, data_modules)
+summary(m_modules_richness_interlinks)
+
+
+# Get number of average phenological overlap from the interlinks of  a given plot
+library(igraph)
+plot_id <- 9
+file_i <- paste0("Processed_data/NN_networks/Plot_",plot_id,"_NN_intra_inter.rds")
+mult_i <- readRDS(file_i)
+weights_inter <- cbind( get.edgelist(mult_i) , round( E(mult_i)$weight, 3 ))  %>%
+  as_tibble() %>% rename(from = V1, to = V2, weight = V3) %>%
+  mutate(weight = as.numeric(weight)) %>%
+  separate(from,c("node_from","layer_from")," ") %>%
+  separate(to,c("node_to","layer_to")," ") %>% filter(layer_from != layer_to) %>%
+  select(weight) %>% pull()
+
+mean(weights_inter)
 
 
 # Number of poll species
@@ -146,11 +182,13 @@ boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
 poll_sp_m <- modules_final %>%  filter(type !="plant") %>% dplyr::select(Plot,module,species) %>% 
   unique() %>% arrange(Plot,module,species)%>% group_by(Plot,module) %>% count()
 
+png("New_Figures/figA76.png", width=1476*2, height = 1476*2*360/515, res=300*2)
 poll_sp_m %>%  ggplot()+
   geom_histogram(aes(x=n))+theme_bw()+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   #ggtitle(paste0("Plot ",i)) +
   xlab("# Animal species and morphospecies per module") + ylab("# Modules") + theme(legend.position = "none")
+dev.off()
 
 sum(poll_sp_m$n==0)
 sum(poll_sp_m$n==1)
@@ -321,9 +359,11 @@ p3 <- plant_ind_m %>%  ggplot()+
   xlab("# Plant individuals per module") + ylab("# Modules") + theme(legend.position = "none")
 
 library(ggpubr)
+png("New_Figures/figA74.png", width=1476*2, height = 1476*2*350/240, res=300*2)
 ggarrange(p1,p2,p3,
           #labels = c("A", "B", "C"),
           ncol = 1, nrow = 3)
+dev.off()
 
 # Number of poll individuals per module
 
@@ -346,11 +386,13 @@ boot.ci(b, type = c("norm", "basic", "perc"),conf = .95)
 ind_m <- modules_final %>% dplyr::select(Plot,module) %>% 
  group_by(Plot,module) %>% count()
 
+png("New_Figures/figA77.png", width=1476*2, height = 1476*2*360/515, res=300*2)
 ind_m %>%  ggplot()+
   geom_histogram(aes(x=n))+theme_bw()+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   #ggtitle(paste0("Plot ",i)) +
   xlab("# Individuals per module") + ylab("# Modules") + theme(legend.position = "none")
+dev.off()
 
 sum(ind_m$n==2)
 sum(ind_m$n==3)
@@ -642,6 +684,16 @@ ggplot(modulos2_real, aes(fill=Plant, y=Amount, x=as.factor(module))) +
   theme(legend.text = element_text(face = "italic"))
 
 # Save 700 x 500
+png("New_Figures/fig3.png", width=1961*2, height = 1961*2*500/700, res=300*2)
+ggplot(modulos2_real, aes(fill=Plant, y=Amount, x=as.factor(module))) + 
+  geom_bar(position="stack", stat="identity")+
+  theme_bw()+
+  scale_fill_brewer(palette = 'Paired')+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  labs(x = "Module", y = "Number of focal plants",fill=NULL)+
+  theme(legend.position="bottom")+
+  theme(legend.text = element_text(face = "italic"))
+dev.off()
 
 # Percentage of modules with PUPA and LEMA
 mod_PUPA_LEMA <- modulos2 %>% filter(LEMA>0 & PUPA >0.5 & Plant == "PUPA") %>% unique() %>% nrow()
@@ -712,11 +764,12 @@ modules_pollinators_label$G_F[modules_pollinators_label$G_F=="Big_beetles"] <- "
 
 modules_pollinators_label$G_F <- as.factor(modules_pollinators_label$G_F)
 
+png("New_Figures/figA73.png", width=1961*2, height = 1961*2*500/700, res=300*2)
 ggplot(modules_pollinators_label, aes(fill=G_F, y=n, x=as.factor(module))) + 
   geom_bar(position="stack", stat="identity")+
   theme_bw()+
   scale_fill_brewer(palette = 'Paired')+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   labs(x = "Module", y = "Number of pollinators",fill=NULL)+theme(legend.position="bottom")
-
+dev.off()
 # Save 700 x 500

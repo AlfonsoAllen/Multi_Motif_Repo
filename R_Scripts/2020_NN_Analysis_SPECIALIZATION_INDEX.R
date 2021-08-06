@@ -388,7 +388,7 @@ GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "SCLA"]
 GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "SOAS"] <- "S. asper"
 GF_cz_edge_module_info_OUT_exp$G_F[GF_cz_edge_module_info_OUT_exp$G_F == "SPRU"] <- "S. rubra"
 
-
+png("New_Figures/figA83.png", width=1961*2, height = 1961*2*361/595, res=300*2)
 ggplot(GF_cz_edge_module_info_OUT_exp%>% filter(G_F %in% c("B. macrocarpa","C. tenuiflorum",
                                                        "C. fuscatum","C. mixtum",
                                                        "L. maroccanus","M. sulcatus",
@@ -404,9 +404,9 @@ ggplot(GF_cz_edge_module_info_OUT_exp%>% filter(G_F %in% c("B. macrocarpa","C. t
   labs(x ="Among module out-strength, out-c", y = "Within module in-strength, out-z",color=NULL)+ 
   theme(legend.position="bottom")+
   theme(legend.text = element_text(face = "italic"))
+dev.off()
 
-
-
+png("New_Figures/figA84.png", width=1961*2, height = 1961*2*361/595, res=300*2)
 ggplot(GF_cz_edge_module_info_OUT_exp%>% filter(!G_F %in% c("B. macrocarpa","C. tenuiflorum",
                                                             "C. fuscatum","C. mixtum",
                                                             "L. maroccanus","M. sulcatus",
@@ -420,6 +420,7 @@ ggplot(GF_cz_edge_module_info_OUT_exp%>% filter(!G_F %in% c("B. macrocarpa","C. 
   scale_colour_brewer(palette = 'Paired')+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   labs(x ="Among module out-strength, out-c", y = "Within module out-strength, out-z",color=NULL)+ theme(legend.position="bottom")
+dev.off()
 
 total_num_plants <- GF_cz_edge_module_info_OUT %>% filter(G_F %in% c("LEMA","CETE",
                                                  "CHFU","PUPA",
@@ -544,7 +545,7 @@ GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "SCLA"] <
 GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "SOAS"] <- "S. asper"
 GF_cz_edge_module_info_IN_exp$G_F[GF_cz_edge_module_info_IN_exp$G_F == "SPRU"] <- "S. rubra"
 
-
+png("New_Figures/figA81.png", width=1961*2, height = 1961*2*361/595, res=300*2)
 ggplot(GF_cz_edge_module_info_IN_exp%>% filter(G_F %in% c("B. macrocarpa","C. tenuiflorum",
                                                           "C. fuscatum","C. mixtum",
                                                           "L. maroccanus","M. sulcatus",
@@ -559,9 +560,9 @@ ggplot(GF_cz_edge_module_info_IN_exp%>% filter(G_F %in% c("B. macrocarpa","C. te
   labs(x ="Among module in-strength, in-c", y = "Within module in-strength, in-z",color=NULL)+ 
   theme(legend.position="bottom")+
   theme(legend.text = element_text(face = "italic"))
+dev.off()
 
-
-
+png("New_Figures/figA82.png", width=1961*2, height = 1961*2*361/595, res=300*2)
 ggplot(GF_cz_edge_module_info_IN%>% filter(!G_F %in% c("LEMA","CETE",
                                                        "CHFU","PUPA",
                                                        "BEMA","CHMI",
@@ -574,6 +575,7 @@ ggplot(GF_cz_edge_module_info_IN%>% filter(!G_F %in% c("LEMA","CETE",
   scale_colour_brewer(palette = 'Paired')+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   labs(x ="Among module in-strength, in-c", y = "Within module in-strength, in-z",color=NULL)+ theme(legend.position="bottom")
+dev.off()
 
 GF_cz_edge_module_info_IN %>% filter(G_F %in% c("LEMA","CETE",
                                                 "CHFU","PUPA",

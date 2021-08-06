@@ -105,10 +105,30 @@ ggplot(PageRank_results_exp_nodes,
 
 #Save 600 x 400
 
+png("New_Figures/fig4.png", width=1961*2, height = 1961*2*400/600, res=300*2)
+ggplot(PageRank_results_exp_nodes,
+       aes(x=Plant_Simple,y=(Real_PR_Multi)))+
+  geom_boxplot()+
+  geom_point(aes(color=Plant_Simple),position = "jitter",alpha=0.3)+
+  scale_fill_brewer(palette = 'Paired')+
+  theme_bw()+scale_y_continuous(trans='log10')+
+  stat_summary(fun.y=mean, colour="darkred", geom="point", 
+               shape=18, size=3,show.legend = FALSE) + 
+  #geom_text(data = means, aes(label = round(`(Real_PR_Multi)`,2), y = 0.1))+
+  facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  geom_hline(data = PageRank_results_exp_nodes, aes(yintercept = 1/nodes),linetype ="dashed")+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Plant Species") + ylab("Pollen arrival probability")+
+  labs(fill = NULL)+ theme(legend.position="none")+
+  theme(axis.text.x = element_text(angle = 90, vjust=0.5, hjust=1))+ 
+  theme(axis.text.x = element_text(face = "italic"))
+dev.off()
+
 means_plot <- aggregate((Real_PR_Multi) ~  Plot,
           PageRank_results_exp, mean)
 
-cor(means_plot,nodes,method = c("spearman"))
+cor(means_plot$`(Real_PR_Multi)`,nodes$nodes,method = "spearman")
+cor.test(means_plot$`(Real_PR_Multi)`,nodes$nodes,method = "spearman")
 
 means <- aggregate((Real_PR_Multi) ~  Plant_Simple,
                    PageRank_results_exp, mean)
@@ -131,6 +151,155 @@ ggplot(PageRank_results_exp,aes(x=Plant_Simple,y=(Real_PR_Multi)))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 #+stat_compare_means()
 
+# Calculate within group variances and between group variances
+Plant_Simple_labels_exp <- PageRank_results_exp$Plant_Simple %>% unique()
+
+run1 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[1]]
+group1 <- rep(Plant_Simple_labels_exp[1],length(run1))
+plot1 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[1]]
+
+run2 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[2]]
+group2 <- rep(Plant_Simple_labels_exp[2],length(run2))
+plot2 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[2]]
+
+run3 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[3]]
+group3 <- rep(Plant_Simple_labels_exp[3],length(run3))
+plot3 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[3]]
+
+run4 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[4]]
+group4 <- rep(Plant_Simple_labels_exp[4],length(run4))
+plot4 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[4]]
+
+run5 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[5]]
+group5 <- rep(Plant_Simple_labels_exp[5],length(run5))
+plot5 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[5]]
+
+run6 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[6]]
+group6 <- rep(Plant_Simple_labels_exp[6],length(run6))
+plot6 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[6]]
+
+run7 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[7]]
+group7 <- rep(Plant_Simple_labels_exp[7],length(run7))
+plot7 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[7]]
+
+run8 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[8]]
+group8 <- rep(Plant_Simple_labels_exp[8],length(run8))
+plot8 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[8]]
+
+run9 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[9]]
+group9 <- rep(Plant_Simple_labels_exp[9],length(run9))
+plot9 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[9]]
+
+run10 = PageRank_results_exp$Real_PR_Multi[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[10]]
+group10 <- rep(Plant_Simple_labels_exp[10],length(run10))
+plot10 = PageRank_results_exp$Plot[
+  PageRank_results_exp$Plant_Simple==Plant_Simple_labels_exp[10]]
+
+runs = c(run1, run2, run3, run4, run5,
+         run6, run7, run8, run9, run10)
+group = c(group1, group2, group3, group4, group5,
+         group6, group7, group8, group9, group10)
+plot = c(plot1, plot2, plot3, plot4, plot5,
+          plot6, plot7, plot8, plot9, plot10)
+
+withinRunStats = function(x) c(sum = sum(x), mean = mean(x), var = var(x), n = length(x))
+tapply(runs, group, withinRunStats)
+
+data = data.frame(logPageRank = log(runs), Plant = factor(group),plot = factor(plot))
+fit = lm(logPageRank ~ Plant, data)
+fit
+anova(fit)
+
+# Error or within-group variance:
+anova(fit)["Residuals", "Mean Sq"]
+
+#Treatment or between-group variance:
+anova(fit)["Plant", "Mean Sq"]
+
+aovModel <- aov(logPageRank ~ Plant,data)
+aovModel
+summary(aovModel)
+
+
+
+group_by(data , Plant) %>%
+  summarise(
+    count = n(),
+    mean = mean(logPageRank, na.rm = TRUE),
+    sd = sd(logPageRank, na.rm = TRUE)
+  )
+
+ggboxplot(data, x = "Plant", y = "logPageRank", 
+          color = "Plant",
+          ylab = "log PageRank", xlab = "Plant")
+ggline(data, x = "Plant", y = "logPageRank", 
+       add = c("mean_se", "jitter"),
+       ylab = "log PageRank", xlab = "Plant")
+
+res.aov <- aov(logPageRank ~ Plant, data = data)
+# Summary of the analysis
+summary(res.aov)
+# As the p-value is less than the significance level 0.05, we can conclude that there are 
+# significant differences between the groups highlighted with “*" in the model summary.
+
+TukeyHSD(res.aov)
+# It can be seen from the output, that the difference between
+# L. maroccanus and C. fuscatum is significant with an adjusted p-value of 0.0000003,
+# and that of P. paludosa-L. maroccanus with an adjusted p-value of 0.0016098
+
+# 1. Homogeneity of variances
+plot(res.aov, 1) # There are some outlayer that may affect the result
+library(car)
+leveneTest(logPageRank ~ Plant, data = data)
+# From the output above we can see that the p-value is less than the significance level 
+# of 0.05. This means that there is evidence to suggest that the variance across groups 
+# is statistically significantly different. Therefore, we can not assume the homogeneity 
+# of variances in the different treatment groups.
+
+# ANOVA test with no assumption of equal variances
+oneway.test(logPageRank ~ Plant, data = data)
+
+pairwise.t.test(data$logPageRank, data$Plant,
+                p.adjust.method = "BH", pool.sd = FALSE)
+
+# 2. Normality
+plot(res.aov, 2) # No normality
+ks.test(res.aov)
+plot(res.aov)
+
+png("New_Figures/figA121.png", width=1461*2, height = 1461*2*361/515, res=300*2)
+plot(res.aov,2)
+dev.off()
+#
+kruskal.test(exp(y) ~ group, data = data)
+# As the p-value is less than the significance level 0.05, we can conclude that there are 
+# significant differences between the treatment groups.
+
+pairwise.wilcox.test(data$y, data$group,
+                     p.adjust.method = "BH")
+
+pairwise.wilcox.test(exp(data$y), data$group,
+                     p.adjust.method = "BH")
+########
 aggregate((Ratio) ~  Plot,
           PageRank_results_exp, mean)
 
@@ -155,6 +324,8 @@ ggplot(PageRank_results_exp,aes(x=Plant_Simple,y=(Ratio)))+
 
 #Test significance of differences
 library(ggpubr)
+
+kruskal.test(Real_PR_Multi ~ Plant_Simple, data = PageRank_results)
 
 PageRank_results1 <- PageRank_results %>% filter(Plot==1)
 PageRank_results2 <- PageRank_results %>% filter(Plot==2)
@@ -250,6 +421,7 @@ PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "SCLA"] <
 PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "SOAS"] <- "S. asper"
 PageRank_results_exp$Plant_Simple[PageRank_results_exp$Plant_Simple == "SPRU"] <- "S. rubra"
 
+png("New_Figures/figA101.png", width=1961*2, height = 1961*2*361/595, res=300*2)
 ggplot(PageRank_results_exp,aes(x=(StrengthIn),y=(Real_PR_Multi)))+
   geom_point(aes(color=as.factor(Plant_Simple)),position = "jitter",alpha=0.5)+
   geom_smooth(method = "lm")+
@@ -260,7 +432,7 @@ ggplot(PageRank_results_exp,aes(x=(StrengthIn),y=(Real_PR_Multi)))+
   xlab("Within layer centrality") + ylab("Pollen arrival probability") +
   labs(color = NULL)+ theme(legend.position="bottom")+ylim(0,0.05)+
   theme(legend.text = element_text(face = "italic"))
-
+dev.off()
   
 
 
@@ -287,6 +459,7 @@ x <- PageRank_results %>% filter( Ratio > 1)
 means <- aggregate((Ratio) ~  Plant_Simple+Plot,
                    PageRank_results, mean)
 
+png("New_Figures/figA102.png", width=1961*2, height = 1961*2*441/515, res=300*2)
 ggplot(PageRank_results_exp,aes(x=Plant_Simple,y=(Ratio),fill=Plant_Simple))+
   geom_boxplot()+
   stat_summary(fun.y=mean, colour="darkred", geom="point", 
@@ -299,7 +472,7 @@ ggplot(PageRank_results_exp,aes(x=Plant_Simple,y=(Ratio),fill=Plant_Simple))+
   theme_bw()+ theme(legend.position = "none")+#+stat_compare_means()
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ 
   theme(axis.text.x = element_text(face = "italic"))
-#labs(Color = "Plant Species")
+dev.off()
 
 means_ratio <- aggregate(Ratio ~  Plant_Simple+Plot,
                    PageRank_results, mean)

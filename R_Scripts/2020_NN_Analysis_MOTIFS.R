@@ -514,13 +514,15 @@ i=5
 
 homo_example  <-  tibble(triplets=as.numeric(homo_table[i,4:(ncol(homo_table)-1)]))
 
+# Save 700 x 500
+png("New_Figures/figA111.png", width=1961*2, height = 1961*2*362/517, res=300*2)
 ggplot(homo_example)+
   geom_histogram(aes(x=triplets),binwidth=1)+
   theme_bw()+
   geom_vline(aes(xintercept=as.numeric(homo_table[i,3])), colour="deepskyblue",linetype = "dashed",size=1)+
   labs(x="Total amount of homospecific networks", y = "Number of randomized networks",
        title = expression(paste("Plot ","1 ",italic("L. maroccanus"), sep=" ")))
-
+dev.off()
 
 
 # Hete----
@@ -592,7 +594,7 @@ homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "SCLA"] <- "S. laciniat
 homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "SOAS"] <- "S. asper"
 homo_table_exp$Plant_Label[homo_table_exp$Plant_Label == "SPRU"] <- "S. rubra"
 
-
+png("New_Figures/figA112.png", width=1961*2, height = 1961*2*500/600, res=300*2)
 ggplot(homo_table_exp, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
   geom_bar(position="stack", stat="identity")+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
@@ -601,7 +603,7 @@ ggplot(homo_table_exp, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) +
   theme(legend.position = "bottom")+
   theme(axis.text.x = element_text(angle = 90,vjust=0.5, hjust=1))+ 
   theme(axis.text.x = element_text(face = "italic"))
-
+dev.off()
 #save 600 x 500
 
 ggplot(homo_table, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
@@ -646,6 +648,7 @@ hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "SCLA"] <- "S. laciniat
 hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "SOAS"] <- "S. asper"
 hete_table_exp$Plant_Label[hete_table_exp$Plant_Label == "SPRU"] <- "S. rubra"
 
+png("New_Figures/figA113.png", width=1961*2, height = 1961*2*500/600, res=300*2)
 ggplot(hete_table_exp, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
   geom_bar(position="stack", stat="identity")+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
@@ -654,6 +657,7 @@ ggplot(hete_table_exp, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) +
   theme(legend.position = "bottom")+
   theme(axis.text.x = element_text(angle = 90,vjust=0.5, hjust=1))+
   theme(axis.text.x = element_text(face = "italic"))
+dev.off()
 
 homo_table %>% separate(Subplot_Plant_Label,c("Subplot","Plant_Simple")," ") %>%
   group_by(Comparison,Plant_Simple) %>% count() %>% mutate(percen=100*n/nrow(hete_table))
@@ -887,6 +891,7 @@ data_total2_exp$Plant_Simple[data_total2_exp$Plant_Simple == "SPRU"] <- "S. rubr
 
 data_total2_exp$Plant_Simple <- as.factor(data_total2_exp$Plant_Simple)
 
+png("New_Figures/fig5.png", width=1961*2, height = 1961*2*300/600, res=300*2)
 ggplot(data_total2_exp,aes(x=homo_motif+0.5,y = hete_motif+0.5))+
   geom_point(alpha=0.2, position = "jitter")+
   #scale_shape_manual(values=1:nlevels(data_total2$Plant_Simple))+
@@ -903,4 +908,76 @@ ggplot(data_total2_exp,aes(x=homo_motif+0.5,y = hete_motif+0.5))+
   theme_bw()+
   labs(color=NULL,shape=NULL)+
   theme(legend.position = "bottom")+ theme(strip.text = element_text(face = "italic"))
+dev.off()
+
 # save 600 x 300
+
+plant <- "L. maroccanus"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value < 2.2e-16
+
+plant <- "C. fuscatum"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value < 2.2e-16
+
+plant <- "P. paludosa"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.1356
+
+plant <- "B. macrocarpa"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.05791
+
+plant <- "C. mixtum"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.07186
+
+plant <- "C. tenuiflorum"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.0035
+
+plant <- "M. sulcatus"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.5862
+
+plant <- "S. asper"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.5
+
+plant <- "S. laciniata"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.05906
+
+plant <- "S. rubra"
+homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(homo_motif) %>% pull()
+hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
+  select(hete_motif) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 1

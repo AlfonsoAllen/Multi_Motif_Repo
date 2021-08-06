@@ -167,12 +167,27 @@ cor(fitness.data$visits_GF,fitness.data$Ratio,method = "spearman") #This looks o
 
 cor(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
     fitness.data$homo_motif[fitness.data$DegreeIn!=0],method = "spearman")
+cor.test(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
+         fitness.data$homo_motif[fitness.data$DegreeIn!=0],method = "spearman")
 cor(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
     fitness.data$hete_motif[fitness.data$DegreeIn!=0],method = "spearman")
+cor.test(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
+    fitness.data$hete_motif[fitness.data$DegreeIn!=0],method = "spearman")
+
 cor(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
     fitness.data$StrengthIn[fitness.data$DegreeIn!=0],method = "spearman")
+cor.test(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
+    fitness.data$StrengthIn[fitness.data$DegreeIn!=0],method = "spearman")
+
+cor(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
+    fitness.data$Real_PR_Multi[fitness.data$DegreeIn!=0],method = "spearman") #OK!
+cor.test(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
+         fitness.data$Real_PR_Multi[fitness.data$DegreeIn!=0],method = "spearman")
+
 cor(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
     fitness.data$Ratio[fitness.data$DegreeIn!=0],method = "spearman") #OK!
+cor.test(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
+    fitness.data$Ratio[fitness.data$DegreeIn!=0],method = "spearman")
 
 plot(fitness.data$visits_GF[fitness.data$DegreeIn!=0],
      fitness.data$homo_motif[fitness.data$DegreeIn!=0])

@@ -43,6 +43,25 @@ fitness2 %>% filter(Plot==6) %>% select(Subplot,ID) %>% unique()
 
 seed_data_raw <- read_csv2("Raw_Data/Fitness_2020.csv")
 
+seed_data_raw %>% group_by(Plot, Subplot, Plant) %>% count() %>% filter(n==1)
+seed_data_raw %>% group_by(Plot, Subplot, Plant) %>% count() %>% filter(n==2)
+seed_data_raw %>% group_by(Plot, Subplot, Plant) %>% count() %>% filter(n==3)
+seed_data_raw %>% group_by(Plot, Subplot, Plant) %>% count() %>% filter(n>3)
+seed_data_raw %>% group_by(Plot, Subplot, Plant) %>% count() %>% ungroup() %>% 
+  select(n) %>% pull() %>% mean()
+seed_data_raw %>% group_by(Plot, Subplot, Plant) %>% count() %>% ungroup() %>% 
+  select(n) %>% pull() %>% sd()
+
+seed_data_raw %>% group_by(Plot, Subplot) %>% count() %>% filter(n==1)
+seed_data_raw %>% group_by(Plot, Subplot) %>% count() %>% filter(n==2)
+seed_data_raw %>% group_by(Plot, Subplot) %>% count() %>% filter(n==3)
+seed_data_raw %>% group_by(Plot, Subplot) %>% count() %>% filter(n==4)
+seed_data_raw %>% group_by(Plot, Subplot) %>% count() %>% filter(n==5)
+seed_data_raw %>% group_by(Plot, Subplot) %>% count() %>% filter(n>5)
+seed_data_raw %>% group_by(Plot, Subplot) %>% count() %>% ungroup() %>% 
+  select(n) %>% pull() %>% mean()
+seed_data_raw %>% group_by(Plot, Subplot) %>% count() %>% ungroup() %>% 
+  select(n) %>% pull() %>% sd()
 
 seed_data <- seed_data_raw %>% 
   dplyr::select(Plot,Subplot,Plant,`Seeds/Fruit`,`Fruits/Panicle`) %>% unique() %>%
