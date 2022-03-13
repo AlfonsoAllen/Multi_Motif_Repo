@@ -77,7 +77,7 @@ for(number_intralinks in list_number_intralinks){
 # Variation in the number of interlinks while keeping constant the number_intralinks and
 # total number of plant individuals
 
-list_number_interlinks <- c(35,70,105)
+list_number_interlinks <- c(50,75,100)
 number_intralinks <- 125
 
 #The total number of plant individuals should be between (intralinks - interlinks) and intralinks
@@ -129,13 +129,13 @@ for(number_interlinks in list_number_interlinks){
 # and the number of interlinks
 
 
-number_intralinks <- 150
+number_intralinks <- 120
 number_interlinks <- 75
 
 #The total number of plant individuals should be between (intralinks - interlinks) and intralinks
 # number_pollinator_sp <- number_intralinks - number_interlinks
 
-list_number_plant_individuals <- c(90,115,140)
+list_number_plant_individuals <- c(60,85,110)
 
 set.seed(101)
 
