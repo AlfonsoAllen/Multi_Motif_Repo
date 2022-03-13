@@ -69,7 +69,7 @@ motifs_extraction <- function(visit_list) {
       motif_3 <- as_tibble(data.frame(matrix(nrow=length(motifs),ncol=length(tbl_colnames))))
       colnames(motif_3) <- tbl_colnames
       
-      motif_3$plot_id <- as.numeric(names_plot[plot_i])
+      motif_3$plot_id <- as.character(names_plot[plot_i])
       
       for (i in 1:length(motifs)){
         
@@ -230,7 +230,7 @@ plant_pheno_overlap <- function(plant1,plant2,pollination_20_i) {
 
 #------
 
-create_weighted_link_list <- function(plot_edge_lis){
+create_weighted_link_list <- function(plot_edge_list){
   
   # Replace the node names with node_ids
   
@@ -271,7 +271,7 @@ create_weighted_link_list <- function(plot_edge_lis){
   # Here we can extract information on interlayer connections
   
   for (i in 1:length(pollinators)){
-    
+    print(pollinators[i])
     polinator_edges <- Plot_edgelist_complete %>% filter(node_to==pollinators[i])
     polinator_layers <- unique(polinator_edges$layer_to)
     

@@ -21,23 +21,63 @@ for (week_i in unique(example_data$Week)){
   print(week_i)
   
   
- example_week_i <- example_data %>% filter(Week==week_i)
- 
- # Aggregate visits by week 
- 
- example_week_i <- example_week_i %>% group_by(Plot,Subplot,Plant,ID) %>%
+  example_week_i <- data_simulation %>% filter(Week==week_i)
+  
+  # Aggregate visits by week 
+  
+  example_week_i <- example_week_i %>% group_by(Plot,Subplot,Plant,ID) %>%
     count(wt=Visits) %>% rename(Visits_tot = n)
   
- example_week_i$Subplot_Plant_Label <- paste(example_week_i$Subplot,example_week_i$Plant,sep = " ")
+  list_visitors_week_i <- example_week_i$ID %>% unique()
   
-  aggregate_week_i <- example_week_i %>% ungroup() %>% 
-    select(Plot,ID,Subplot_Plant_Label,Visits_tot)
+  if((nrow(example_week_i)>length(list_visitors_week_i))&
+     (length(list_visitors_week_i)>1)){
+    
+    example_week_i$Subplot_Plant_Label <- paste(example_week_i$Subplot,example_week_i$Plant,sep = " ")
+    
+    aggregate_week_i <- example_week_i %>% ungroup() %>% 
+      select(Plot,ID,Subplot_Plant_Label,Visits_tot)
+    
+    
+    aggregate_week_i <- homo_hete_motifs(aggregate_week_i)
+    aggregate_week_i <- aggregate_week_i %>% mutate(Week=week_i)
+    
+  }else if(length(list_visitors_week_i)==1){
+    
+    example_week_i$Subplot_Plant_Label <- paste(example_week_i$Subplot,
+                                                example_week_i$Plant,sep = " ")
+    
+    example_week_i$Week <- week_i
+    example_week_i$homo_motif <- 0
+    example_week_i$hete_motif <- 0
+    
+    for(i.plant_ind in 1:nrow(example_week_i)){
+      
+      number_homo_ind <- example_week_i %>% filter(Plant==example_week_i$Plant[i.plant_ind]) %>%
+        nrow()
+      
+      number_hete_ind <- example_week_i %>% filter(Plant!=example_week_i$Plant[i.plant_ind]) %>%
+        nrow()
+      
+      example_week_i$homo_motif[i.plant_ind] <- number_homo_ind-1
+      example_week_i$hete_motif[i.plant_ind] <- number_hete_ind
+      
+    }
+    
+    aggregate_week_i <- example_week_i[,c("Plot","ID","Subplot_Plant_Label","Visits_tot",
+                                          "homo_motif","hete_motif","Week")]
+    
+  }else{
+    example_week_i$Subplot_Plant_Label <- paste(example_week_i$Subplot,
+                                                example_week_i$Plant,sep = " ")
+    example_week_i$Week <- week_i
+    example_week_i$homo_motif <- 0
+    example_week_i$hete_motif <- 0
+    aggregate_week_i <- example_week_i[,c("Plot","ID","Subplot_Plant_Label","Visits_tot",
+                                          "homo_motif","hete_motif","Week")]
+  }
   
-  
-  
-  aggregate_week_i <- homo_hete_motifs(aggregate_week_i)
-  aggregate_week_i <- aggregate_week_i %>% mutate(Week=week_i)
-  
+
   aggregate_total <-  bind_rows(aggregate_total, aggregate_week_i) 
   
 }
