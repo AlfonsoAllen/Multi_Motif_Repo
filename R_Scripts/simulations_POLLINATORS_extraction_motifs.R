@@ -8,11 +8,11 @@ source("R_Scripts/functions.R")
 ####################################################################
 # Loadind example dataset
 
-data_simulation_raw <- read_csv("Processed_data/Data_simulation/data_changing_intralinks_V2.csv")
+data_simulation_raw <- read_csv("Processed_data/Data_simulation/data_changing_pollinators_V2.csv")
 
 list_plots <- data_simulation_raw$Plot %>% unique()
 
-data_changing_intralinks_MOTIFS <- NULL
+data_changing_pollinators_MOTIFS <- NULL
 
 for(i.plot in 1:length(list_plots)){
   
@@ -90,12 +90,12 @@ for(i.plot in 1:length(list_plots)){
   aggregate_total_plot <- aggregate_total %>% 
     separate(Subplot_Plant_Label,c("Subplot","Plant"), " ")
   
-  data_changing_intralinks_MOTIFS <- bind_rows(data_changing_intralinks_MOTIFS,
+  data_changing_pollinators_MOTIFS <- bind_rows(data_changing_pollinators_MOTIFS,
                                                aggregate_total_plot)
   
   # Commented for security reasons
-  # write_csv(data_changing_intralinks_MOTIFS,
-  #           "Processed_data/Data_simulation/data_changing_intralinks_MOTIFS_V2.csv")
+  # write_csv(data_changing_pollinators_MOTIFS,
+  #           "Processed_data/Data_simulation/data_changing_pollinators_MOTIFS_V2.csv")
   
 }
 

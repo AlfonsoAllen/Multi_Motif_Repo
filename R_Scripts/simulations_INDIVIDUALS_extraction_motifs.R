@@ -8,7 +8,7 @@ source("R_Scripts/functions.R")
 ####################################################################
 # Loadind example dataset
 
-data_simulation_raw <- read_csv("Processed_data/Data_simulation/data_changing_individuals.csv")
+data_simulation_raw <- read_csv("Processed_data/Data_simulation/data_changing_individuals_V2.csv")
 
 list_plots <- data_simulation_raw$Plot %>% unique()
 
@@ -20,7 +20,7 @@ for(i.plot in 1:length(list_plots)){
   
   aggregate_total <- NULL
   
-  for (week_i in unique(data_simulation$Week)){
+  for (week_i in sort(unique(data_simulation$Week))){
     
     print("WEEK")
     print(week_i)
@@ -95,7 +95,7 @@ for(i.plot in 1:length(list_plots)){
   
   # Commented for security reasons
   # write_csv(data_changing_individuals_MOTIFS,
-  #           "Processed_data/Data_simulation/data_changing_individuals_MOTIFS.csv")
+  #           "Processed_data/Data_simulation/data_changing_individuals_MOTIFS_V2.csv")
   
 }
 

@@ -11,7 +11,7 @@ source("R_scripts/run_infomap_monolayer2.R") # function to parse infomap's tree 
 
 dir_ini <- getwd() # Register working directory
 
-data_simulation_raw <- read_csv("Processed_data/Data_simulation/data_changing_individuals.csv")
+data_simulation_raw <- read_csv("Processed_data/Data_simulation/data_changing_individuals_V2.csv")
 
 # Aggregate visits per plant individual, week and floral visitor
 example <- data_simulation_raw %>% group_by(Plot,Subplot,Plant,ID,Week) %>% count(wt = Visits) %>%
@@ -77,8 +77,8 @@ for (Plot_i in list_sites){
   setwd(dir_ini)
   
   # Commented for security reasons
-  # write_csv(plot_modules_NN_final,"Processed_data/Data_simulation/data_changing_individuals_MODULES.csv")
-  # write_csv(centrality_final,"Processed_data/Data_simulation/data_changing_individuals_CENTRALITY.csv")
+  # write_csv(plot_modules_NN_final,"Processed_data/Data_simulation/data_changing_individuals_MODULES_V2.csv")
+  # write_csv(centrality_final,"Processed_data/Data_simulation/data_changing_individuals_CENTRALITY_V2.csv")
 
 }
 

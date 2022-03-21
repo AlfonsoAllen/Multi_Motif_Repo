@@ -416,10 +416,10 @@ generate_interaction_list_with_phen <- function(number_plant_individuals,
   
   
   if(!number_plant_individuals %in% (number_intralinks - number_interlinks):number_intralinks){
-    
+
     cat(paste0("The total number of plant individuals should be between ",
                number_intralinks - number_interlinks," and ",number_intralinks,"\n"))
-    
+
   }else{
     
     interaction_list_without_phen <- generate_interaction_list_without_phen(number_plant_individuals,
