@@ -135,3 +135,121 @@ png("New_Figures/simulations_HOMO.png",
     height = 11.69, units = "in", res=300*2)
 p_indiv/p_intra/p_inter/p_polli
 dev.off()
+
+
+#---------
+
+total_homo_intralinks_MOTIFS_deco$Plant[total_homo_intralinks_MOTIFS_deco$Plant=="plant_sp_1"] <- "Sp. 1"
+total_homo_intralinks_MOTIFS_deco$Plant[total_homo_intralinks_MOTIFS_deco$Plant=="plant_sp_2"] <- "Sp. 2"
+total_homo_intralinks_MOTIFS_deco$Plant[total_homo_intralinks_MOTIFS_deco$Plant=="plant_sp_3"] <- "Sp. 3"
+total_homo_intralinks_MOTIFS_deco$Plant[total_homo_intralinks_MOTIFS_deco$Plant=="plant_sp_4"] <- "Sp. 4"
+total_homo_intralinks_MOTIFS_deco$Plant[total_homo_intralinks_MOTIFS_deco$Plant=="plant_sp_5"] <- "Sp. 5"
+
+total_homo_interlinks_MOTIFS_deco$Plant[total_homo_interlinks_MOTIFS_deco$Plant=="plant_sp_1"] <- "Sp. 1"
+total_homo_interlinks_MOTIFS_deco$Plant[total_homo_interlinks_MOTIFS_deco$Plant=="plant_sp_2"] <- "Sp. 2"
+total_homo_interlinks_MOTIFS_deco$Plant[total_homo_interlinks_MOTIFS_deco$Plant=="plant_sp_3"] <- "Sp. 3"
+total_homo_interlinks_MOTIFS_deco$Plant[total_homo_interlinks_MOTIFS_deco$Plant=="plant_sp_4"] <- "Sp. 4"
+total_homo_interlinks_MOTIFS_deco$Plant[total_homo_interlinks_MOTIFS_deco$Plant=="plant_sp_5"] <- "Sp. 5"
+
+total_homo_individuals_MOTIFS_deco$Plant[total_homo_individuals_MOTIFS_deco$Plant=="plant_sp_1"] <- "Sp. 1"
+total_homo_individuals_MOTIFS_deco$Plant[total_homo_individuals_MOTIFS_deco$Plant=="plant_sp_2"] <- "Sp. 2"
+total_homo_individuals_MOTIFS_deco$Plant[total_homo_individuals_MOTIFS_deco$Plant=="plant_sp_3"] <- "Sp. 3"
+total_homo_individuals_MOTIFS_deco$Plant[total_homo_individuals_MOTIFS_deco$Plant=="plant_sp_4"] <- "Sp. 4"
+total_homo_individuals_MOTIFS_deco$Plant[total_homo_individuals_MOTIFS_deco$Plant=="plant_sp_5"] <- "Sp. 5"
+
+total_homo_pollinators_MOTIFS_deco$Plant[total_homo_pollinators_MOTIFS_deco$Plant=="plant_sp_1"] <- "Sp. 1"
+total_homo_pollinators_MOTIFS_deco$Plant[total_homo_pollinators_MOTIFS_deco$Plant=="plant_sp_2"] <- "Sp. 2"
+total_homo_pollinators_MOTIFS_deco$Plant[total_homo_pollinators_MOTIFS_deco$Plant=="plant_sp_3"] <- "Sp. 3"
+total_homo_pollinators_MOTIFS_deco$Plant[total_homo_pollinators_MOTIFS_deco$Plant=="plant_sp_4"] <- "Sp. 4"
+total_homo_pollinators_MOTIFS_deco$Plant[total_homo_pollinators_MOTIFS_deco$Plant=="plant_sp_5"] <- "Sp. 5"
+
+p_intra_box <- ggplot(total_homo_intralinks_MOTIFS_deco, aes(x=Plant, y=homo_motif))+
+  facet_wrap(~number_intra)+
+  geom_jitter(aes(color=Plant),shape=16, position=position_jitter(0.2), alpha=0.3)+
+  geom_boxplot(alpha = 0.0)+
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3,fill="red")+
+  scale_color_brewer(palette = "Paired")+theme_bw()+theme(legend.position="none")+
+  labs(y=NULL,title="Dependence of the number of homospecific motifs on the number of intralinks\n(30 interlinks, 50 plant individuals , 10 pollinator sps.)")
+
+p_inter_box <- ggplot(total_homo_interlinks_MOTIFS_deco, aes(x=Plant, y=homo_motif))+
+  facet_wrap(~number_inter)+
+  geom_jitter(aes(color=Plant),shape=16, position=position_jitter(0.2), alpha=0.3)+
+  geom_boxplot(alpha = 0.0)+
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3,fill="red")+
+  scale_color_brewer(palette = "Paired")+theme_bw()+theme(legend.position="none")+
+  labs(y=NULL,title="Dependence of the number of homospecific motifs on the number of interlinks\n(125 intralinks, 50 plant individuals , 10 pollinator sps.)")
+
+p_indiv_box <- ggplot(total_homo_individuals_MOTIFS_deco, aes(x=Plant, y=homo_motif))+
+  facet_wrap(~number_individuals)+
+  geom_jitter(aes(color=Plant),shape=16, position=position_jitter(0.2), alpha=0.3)+
+  geom_boxplot(alpha = 0.0)+
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3,fill="red")+
+  scale_color_brewer(palette = "Paired")+theme_bw()+theme(legend.position="none")+
+  labs(y=NULL,title="Dependence of the number of homospecific motifs on the total number of plant individuals\n(125 intralinks, 30 interlinks, 10 pollinator sps.)")
+
+p_polli_box <- ggplot(total_homo_pollinators_MOTIFS_deco, aes(x=Plant, y=homo_motif))+
+  facet_wrap(~number_pollinators)+
+  geom_jitter(aes(color=Plant),shape=16, position=position_jitter(0.2), alpha=0.3)+
+  geom_boxplot(alpha = 0.0)+
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3,fill="red")+
+  scale_color_brewer(palette = "Paired")+theme_bw()+theme(legend.position="none")+
+  labs(y=NULL,title="Dependence of the number of homospecific motifs on the total number of pollinator sp.\n(125 intralinks, 30 interlinks, 50 plant individuals)")
+
+
+
+png("New_Figures/simulations_HOMO_boxplot.png",
+    width = 11.69*0.75, # The width of the plot in inches
+    height = 11.69, units = "in", res=300*2)
+p_indiv_box/p_intra_box/p_inter_box/p_polli_box
+dev.off()
+
+
+#----------------------------------
+
+p_intra_box2 <- ggplot(total_homo_intralinks_MOTIFS_deco,
+                       aes(x=number_intra, y=homo_motif, group=number_intra))+
+  geom_jitter(aes(color=as.factor(number_intra)),shape=16, position=position_jitter(9), alpha=0.3)+
+  geom_boxplot(alpha = 0.0,lwd=1.3)+
+  stat_summary(fun.y = mean, color = "red", geom = "line", aes(group = 1),lwd=1.5)+
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3,fill="red")+
+  scale_color_brewer(palette = "Set2")+theme_bw()+theme(legend.position="none")+
+  labs(y=NULL,x="Number of intralinks",
+       title="Dependence of the number of homospecific motifs on the number of intralinks\n(30 interlinks, 50 plant individuals , 10 pollinator sps.)")
+
+p_inter_box2 <- ggplot(total_homo_interlinks_MOTIFS_deco,
+                       aes(x=number_inter, y=homo_motif, group=number_inter))+
+  geom_jitter(aes(color=as.factor(number_inter)),shape=16, position=position_jitter(5.5), alpha=0.3)+
+  geom_boxplot(alpha = 0.0,lwd=1.3)+
+  stat_summary(fun.y = mean, color = "red", geom = "line", aes(group = 1),lwd=1.5)+
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3,fill="red")+
+  scale_color_brewer(palette = "Set2")+theme_bw()+theme(legend.position="none")+
+  labs(y=NULL,x="Number of interlinks",
+       title="Dependence of the number of homospecific motifs on the number of interlinks\n(125 intralinks, 50 plant individuals , 10 pollinator sps.)")
+
+p_indiv_box2 <- ggplot(total_homo_individuals_MOTIFS_deco, 
+                       aes(x=number_individuals, y=homo_motif, group=number_individuals))+
+  geom_jitter(aes(color=as.factor(number_individuals)),shape=16, position=position_jitter(3.8), alpha=0.3)+
+  geom_boxplot(alpha = 0.0,lwd=1.3)+
+  stat_summary(fun.y = mean, color = "red", geom = "line", aes(group = 1),lwd=1.5)+
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3,fill="red")+
+  scale_color_brewer(palette = "Set2")+theme_bw()+theme(legend.position="none")+
+  labs(y=NULL,x="Number of individual plants",
+       title="Dependence of the number of homospecific motifs on the total number of plant individuals\n(125 intralinks, 30 interlinks, 10 pollinator sps.)")
+
+p_polli_box2 <- ggplot(total_homo_pollinators_MOTIFS_deco, 
+                       aes(x=number_pollinators, y=homo_motif, group=number_pollinators))+
+  geom_jitter(aes(color=as.factor(number_pollinators)),shape=16, position=position_jitter(1.9), alpha=0.3)+
+  geom_boxplot(alpha = 0.0,lwd=1.3)+
+  stat_summary(fun.y = mean, color = "red", geom = "line", aes(group = 1),lwd=1.5)+
+  stat_summary(fun.y=mean, geom="point", shape=23, size=3,fill="red")+
+  scale_color_brewer(palette = "Set2")+theme_bw()+theme(legend.position="none")+
+  labs(y=NULL,x="Number of pollinator species",
+       title="Dependence of the number of homospecific motifs on the total number of pollinator sp.\n(125 intralinks, 30 interlinks, 50 plant individuals)")
+
+
+
+png("New_Figures/simulations_HOMO_boxplot2.png",
+    width = 11.69*0.75, # The width of the plot in inches
+    height = 11.69, units = "in", res=300*2)
+p_indiv_box2/p_intra_box2/p_inter_box2/p_polli_box2
+dev.off()

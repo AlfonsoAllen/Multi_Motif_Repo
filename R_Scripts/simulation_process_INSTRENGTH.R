@@ -149,3 +149,5 @@ png("New_Figures/simulations_INSTRENGTH.png",
     height = 11.69, units = "in", res=300*2)
 p_indiv/p_intra/p_inter/p_polli
 dev.off()
+  
+  
