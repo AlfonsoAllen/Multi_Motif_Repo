@@ -568,7 +568,7 @@ generate_interaction_list_without_phen <- function(number_plant_individuals,
   test2 <- sum(weighted_interaction_matrix > 0) == number_intralinks
   test3 <- number_interlinks == real_interlinks
   
-  if(all(test1,test2,test3)==FALSE){
+  while(all(test1,test2,test3)==FALSE){
     
     data_weighted_interaction_matrix <- weighted_interaction_matrix_generator(number_plant_individuals,
                                                                               number_pollinator_sp,

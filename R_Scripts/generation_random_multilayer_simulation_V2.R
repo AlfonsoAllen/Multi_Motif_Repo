@@ -41,14 +41,14 @@ repetitions <- 100
 # Variation in the number of intralinks while keeping constant the number_interlinks and
 # total number of plant individuals
 
-list_number_intralinks <- c(100,125,150)
-number_interlinks <- 30
+list_number_intralinks <- c(100,200,300)
+number_interlinks <- 20
 
 #The total number of plant individuals should be between (intralinks - interlinks) and intralinks
 # number_pollinator_sp <- number_intralinks - number_interlinks
 
 number_plant_individuals <- 50
-number_pollinator_sp <- 10
+number_pollinator_sp <- 25
 
 set.seed(121)
 
@@ -98,10 +98,10 @@ for(number_intralinks in list_number_intralinks){
 # Variation in the number of interlinks while keeping constant the number_intralinks and
 # total number of plant individuals
 
-list_number_interlinks <- c(15,30,45)
-number_intralinks <- 125
+list_number_interlinks <- c(5,20,60)
+number_intralinks <- 200
 number_plant_individuals <- 50
-number_pollinator_sp <- 10
+number_pollinator_sp <- 25
 
 set.seed(121)
 
@@ -145,11 +145,11 @@ for(number_interlinks in list_number_interlinks){
 
 # SIMULATIONS CHANGING PLANT INDIVIDUALS--------------
 
-number_interlinks <- 30
-number_intralinks <- 125
-number_pollinator_sp <- 10
+number_interlinks <- 20
+number_intralinks <- 200
+number_pollinator_sp <- 25
 
-list_number_plant_individuals <- c(40,50,60)
+list_number_plant_individuals <- c(15,50,100)
 
 set.seed(121)
 
@@ -193,11 +193,11 @@ for(number_plant_individuals in list_number_plant_individuals){
 
 # SIMULATIONS CHANGING POLLINATOR SPECIES--------------
 
-number_interlinks <- 30
-number_intralinks <- 125
+number_interlinks <- 20
+number_intralinks <- 200
 number_plant_individuals <- 50
 
-list_number_pollinator_sp <- c(5,10,15)
+list_number_pollinator_sp <- c(5,25,75)
 
 set.seed(112)
 
