@@ -149,7 +149,7 @@ number_interlinks <- 20
 number_intralinks <- 200
 number_pollinator_sp <- 25
 
-list_number_plant_individuals <- c(15,50,100)
+list_number_plant_individuals <- c(30,50,100)
 
 set.seed(121)
 
@@ -197,7 +197,7 @@ number_interlinks <- 20
 number_intralinks <- 200
 number_plant_individuals <- 50
 
-list_number_pollinator_sp <- c(5,25,75)
+list_number_pollinator_sp <- c(65,25,12)
 
 set.seed(112)
 

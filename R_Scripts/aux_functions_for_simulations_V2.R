@@ -517,11 +517,11 @@ interlink_tester <- function(weighted_interaction_matrix,
   poll_plant_sp_4_aux <- weighted_interaction_matrix[plant_sp_4,]
   poll_plant_sp_5_aux <- weighted_interaction_matrix[plant_sp_5,]
   
-  poll_plant_sp_1 <- poll_names[colSums(poll_plant_sp_1_aux)>0]
-  poll_plant_sp_2 <- poll_names[colSums(poll_plant_sp_2_aux)>0]
-  poll_plant_sp_3 <- poll_names[colSums(poll_plant_sp_3_aux)>0]
-  poll_plant_sp_4 <- poll_names[colSums(poll_plant_sp_4_aux)>0]
-  poll_plant_sp_5 <- poll_names[colSums(poll_plant_sp_5_aux)>0]
+  poll_plant_sp_1 <- poll_names[colSums(as.matrix(poll_plant_sp_1_aux))>0]
+  poll_plant_sp_2 <- poll_names[colSums(as.matrix(poll_plant_sp_2_aux))>0]
+  poll_plant_sp_3 <- poll_names[colSums(as.matrix(poll_plant_sp_3_aux))>0]
+  poll_plant_sp_4 <- poll_names[colSums(as.matrix(poll_plant_sp_4_aux))>0]
+  poll_plant_sp_5 <- poll_names[colSums(as.matrix(poll_plant_sp_5_aux))>0]
   
   poll_plant_sp_12 <- poll_plant_sp_1[poll_plant_sp_1 %in% poll_plant_sp_2]
   poll_plant_sp_13 <- poll_plant_sp_1[poll_plant_sp_1 %in% poll_plant_sp_3]
