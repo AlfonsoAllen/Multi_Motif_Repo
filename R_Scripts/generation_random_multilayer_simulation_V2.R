@@ -98,7 +98,7 @@ for(number_intralinks in list_number_intralinks){
 # Variation in the number of interlinks while keeping constant the number_intralinks and
 # total number of plant individuals
 
-list_number_interlinks <- c(5,20,60)
+list_number_interlinks <- c(5,20,50)
 number_intralinks <- 200
 number_plant_individuals <- 50
 number_pollinator_sp <- 25
