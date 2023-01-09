@@ -336,13 +336,44 @@ PUPA_NB_intercept_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                         family = nbinom2(),
                                         data = fitness_orig_PUPA)
 
+LEMA_NB_intercept_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                          scale(hete_motif) +
+                                          scale(consp_prob_UNCOUPLED) +
+                                          (1|Plot),
+                                        ziformula = ~1,
+                                        family = nbinom2(),
+                                        data = fitness_orig_LEMA)
+
+
+CHFU_NB_intercept_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                          scale(hete_motif) +
+                                          scale(consp_prob_UNCOUPLED) +
+                                          (1|Plot),
+                                        ziformula = ~1,
+                                        family = nbinom2(),
+                                        data = fitness_orig_CHFU)
+
+PUPA_NB_intercept_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                          scale(hete_motif) +
+                                          scale(consp_prob_UNCOUPLED) +
+                                          (1|Plot),
+                                        ziformula = ~1,
+                                        family = nbinom2(),
+                                        data = fitness_orig_PUPA)
+
 summary(LEMA_NB_intercept_Plot_Plant)
 summary(CHFU_NB_intercept_Plot_Plant)
 summary(PUPA_NB_intercept_Plot_Plant)
+summary(LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
+summary(CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
+summary(PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 
 res_LEMA_NB_intercept_Plot_Plant <- simulateResiduals(fittedModel = LEMA_NB_intercept_Plot_Plant, n = 500)
 res_CHFU_NB_intercept_Plot_Plant <- simulateResiduals(fittedModel = CHFU_NB_intercept_Plot_Plant, n = 500)
 res_PUPA_NB_intercept_Plot_Plant <- simulateResiduals(fittedModel = PUPA_NB_intercept_Plot_Plant, n = 500)
+res_LEMA_NB_intercept_Plot_Plant_UNCOUPLED <- simulateResiduals(fittedModel = LEMA_NB_intercept_Plot_Plant_UNCOUPLED, n = 500)
+res_CHFU_NB_intercept_Plot_Plant_UNCOUPLED <- simulateResiduals(fittedModel = CHFU_NB_intercept_Plot_Plant_UNCOUPLED, n = 500)
+res_PUPA_NB_intercept_Plot_Plant_UNCOUPLED <- simulateResiduals(fittedModel = PUPA_NB_intercept_Plot_Plant_UNCOUPLED, n = 500)
 
 testZeroInflation(res_LEMA_NB_intercept_Plot_Plant)
 testDispersion(res_LEMA_NB_intercept_Plot_Plant)
@@ -353,20 +384,36 @@ testDispersion(res_CHFU_NB_intercept_Plot_Plant)
 testZeroInflation(res_PUPA_NB_intercept_Plot_Plant)
 testDispersion(res_PUPA_NB_intercept_Plot_Plant)
 
+testZeroInflation(res_LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
+testDispersion(res_LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
+
+testZeroInflation(res_CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
+testDispersion(res_CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
+
+testZeroInflation(res_PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
+testDispersion(res_PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
+
 plot(res_LEMA_NB_intercept_Plot_Plant)
 plot(res_CHFU_NB_intercept_Plot_Plant)
 plot(res_PUPA_NB_intercept_Plot_Plant)
+plot(res_LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
+plot(res_CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
+plot(res_PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 
 performance::r2(LEMA_NB_intercept_Plot_Plant)
 performance::r2(CHFU_NB_intercept_Plot_Plant)
 performance::r2(PUPA_NB_intercept_Plot_Plant)
+performance::r2(LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
+performance::r2(CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
+performance::r2(PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 
 
-
-coefficients(LEMA_NB_intercept_Plot_Plant)
 performance::check_collinearity(LEMA_NB_intercept_Plot_Plant,component = "conditional") # All the ( GVIF^(1/(2*Df)) )^2 < 5 
 performance::check_collinearity(CHFU_NB_intercept_Plot_Plant,component = "conditional")
 performance::check_collinearity(PUPA_NB_intercept_Plot_Plant,component = "conditional")
+performance::check_collinearity(LEMA_NB_intercept_Plot_Plant_UNCOUPLED,component = "conditional") # All the ( GVIF^(1/(2*Df)) )^2 < 5 
+performance::check_collinearity(CHFU_NB_intercept_Plot_Plant_UNCOUPLED,component = "conditional")
+performance::check_collinearity(PUPA_NB_intercept_Plot_Plant_UNCOUPLED,component = "conditional")
 
 ############################
 ###############################
@@ -526,6 +573,14 @@ LEMA_NB_intercept_Line_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                              family = nbinom2(),
                                              data = fitness_orig_LEMA_line)
 
+LEMA_NB_intercept_Line_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                               scale(hete_motif) +
+                                               scale(consp_prob_UNCOUPLED) +
+                                               (1|Line/Plot),
+                                             ziformula = ~1,
+                                             family = nbinom2(),
+                                             data = fitness_orig_LEMA_line)
+
 fitness_orig_CHFU_line <-  fitness_orig_CHFU
 fitness_orig_CHFU_line$Line <- NA
 fitness_orig_CHFU_line$Line[fitness_orig_CHFU_line$Plot %in% c(1,2,3)] <- 1
@@ -536,6 +591,14 @@ fitness_orig_CHFU_line$Line <- as.factor(fitness_orig_CHFU_line$Line)
 CHFU_NB_intercept_Line_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                scale(hete_motif) +
                                                scale(consp_prob) + scale(heter_prob) +
+                                               (1|Line/Plot),
+                                             ziformula = ~1,
+                                             family = nbinom2(),
+                                             data = fitness_orig_CHFU_line)
+
+CHFU_NB_intercept_Line_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                               scale(hete_motif) +
+                                               scale(consp_prob_UNCOUPLED) +
                                                (1|Line/Plot),
                                              ziformula = ~1,
                                              family = nbinom2(),
@@ -556,16 +619,33 @@ PUPA_NB_intercept_Line_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                              family = nbinom2(),
                                              data = fitness_orig_PUPA_line)
 
+PUPA_NB_intercept_Line_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                               scale(hete_motif) +
+                                               scale(consp_prob_UNCOUPLED) +
+                                               (1|Line/Plot),
+                                             ziformula = ~1,
+                                             family = nbinom2(),
+                                             data = fitness_orig_PUPA_line)
+
 
 r2(CHFU_NB_intercept_Line_Plot_Plant)
 r2(LEMA_NB_intercept_Line_Plot_Plant)
 r2(PUPA_NB_intercept_Line_Plot_Plant)
+r2(CHFU_NB_intercept_Line_Plot_Plant_UNCOUPLED)
+r2(LEMA_NB_intercept_Line_Plot_Plant_UNCOUPLED)
+r2(PUPA_NB_intercept_Line_Plot_Plant_UNCOUPLED)
 summary(CHFU_NB_intercept_Plot_Plant)
 summary(CHFU_NB_intercept_Line_Plot_Plant)
+summary(CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
+summary(CHFU_NB_intercept_Line_Plot_Plant_UNCOUPLED)
 summary(LEMA_NB_intercept_Plot_Plant)
 summary(LEMA_NB_intercept_Line_Plot_Plant)
+summary(LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
+summary(LEMA_NB_intercept_Line_Plot_Plant_UNCOUPLED)
 summary(PUPA_NB_intercept_Plot_Plant)
 summary(PUPA_NB_intercept_Line_Plot_Plant)
+summary(PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
+summary(PUPA_NB_intercept_Line_Plot_Plant_UNCOUPLED)
 
 
 ########################################
@@ -582,10 +662,26 @@ LEMA_NB_intercept_Plot_Plant_vist <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                              family = nbinom2(),
                                              data = fitness_orig_LEMA)
 
+LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                               scale(hete_motif) +
+                                               scale(consp_prob_UNCOUPLED) +
+                                               scale(visits_GF)+(1|Plot),
+                                             ziformula = ~1,
+                                             family = nbinom2(),
+                                             data = fitness_orig_LEMA)
+
 
 CHFU_NB_intercept_Plot_Plant_vist <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                scale(hete_motif) +
                                                scale(consp_prob) + scale(heter_prob) +
+                                               scale(visits_GF)+(1|Plot),
+                                             ziformula = ~1,
+                                             family = nbinom2(),
+                                             data = fitness_orig_CHFU)
+
+CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                               scale(hete_motif) +
+                                               scale(consp_prob_UNCOUPLED) + 
                                                scale(visits_GF)+(1|Plot),
                                              ziformula = ~1,
                                              family = nbinom2(),
@@ -599,46 +695,85 @@ PUPA_NB_intercept_Plot_Plant_vist <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                              family = nbinom2(),
                                              data = fitness_orig_PUPA)
 
+PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                               scale(hete_motif) +
+                                               scale(consp_prob_UNCOUPLED) +
+                                               scale(visits_GF)+(1|Plot),
+                                             ziformula = ~1,
+                                             family = nbinom2(),
+                                             data = fitness_orig_PUPA)
+
 summary(CHFU_NB_intercept_Plot_Plant_vist)
+summary(CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 summary(LEMA_NB_intercept_Plot_Plant_vist)
+summary(LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 summary(PUPA_NB_intercept_Plot_Plant_vist)
+summary(PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 
 r2(LEMA_NB_intercept_Plot_Plant_vist)
+r2(LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 r2(CHFU_NB_intercept_Plot_Plant_vist)
+r2(CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 r2(PUPA_NB_intercept_Plot_Plant_vist)
-
+r2(PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 
 res_LEMA_NB_intercept_Plot_Plant_vist <- simulateResiduals(fittedModel = LEMA_NB_intercept_Plot_Plant_vist, n = 500)
 res_CHFU_NB_intercept_Plot_Plant_vist <- simulateResiduals(fittedModel = CHFU_NB_intercept_Plot_Plant_vist, n = 500)
 res_PUPA_NB_intercept_Plot_Plant_vist <- simulateResiduals(fittedModel = PUPA_NB_intercept_Plot_Plant_vist, n = 500)
+res_LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED <- simulateResiduals(fittedModel = LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED, n = 500)
+res_CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED <- simulateResiduals(fittedModel = CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED, n = 500)
+res_PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED <- simulateResiduals(fittedModel = PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED, n = 500)
 
 testZeroInflation(res_LEMA_NB_intercept_Plot_Plant_vist)
 testDispersion(res_LEMA_NB_intercept_Plot_Plant_vist)
+testZeroInflation(res_LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
+testDispersion(res_LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 
 testZeroInflation(res_CHFU_NB_intercept_Plot_Plant_vist)
 testDispersion(res_CHFU_NB_intercept_Plot_Plant_vist)
+testZeroInflation(res_CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED)
+testDispersion(res_CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 
 testZeroInflation(res_PUPA_NB_intercept_Plot_Plant_vist)
 testDispersion(res_PUPA_NB_intercept_Plot_Plant_vist)
+testZeroInflation(res_PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
+testDispersion(res_PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 
 plot(res_LEMA_NB_intercept_Plot_Plant_vist)
+plot(res_LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 plot(res_CHFU_NB_intercept_Plot_Plant_vist)
+plot(res_CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 plot(res_PUPA_NB_intercept_Plot_Plant_vist)
+plot(res_PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 
 performance::r2(LEMA_NB_intercept_Plot_Plant_vist)
 performance::r2(LEMA_NB_intercept_Plot_Plant)
+performance::r2(LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
+performance::r2(LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
 performance::r2(CHFU_NB_intercept_Plot_Plant_vist)
 performance::r2(CHFU_NB_intercept_Plot_Plant)
+performance::r2(CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED)
+performance::r2(CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
 performance::r2(PUPA_NB_intercept_Plot_Plant_vist)
 performance::r2(PUPA_NB_intercept_Plot_Plant)
+performance::r2(PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
+performance::r2(PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 
-AIC(LEMA_NB_intercept_Plot_Plant,LEMA_NB_intercept_Plot_Plant_vist)
-AIC(CHFU_NB_intercept_Plot_Plant,CHFU_NB_intercept_Plot_Plant_vist)
-AIC(PUPA_NB_intercept_Plot_Plant,PUPA_NB_intercept_Plot_Plant_vist)
+AIC(LEMA_NB_intercept_Plot_Plant,LEMA_NB_intercept_Plot_Plant_vist,
+    LEMA_NB_intercept_Plot_Plant_UNCOUPLED,LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
+AIC(CHFU_NB_intercept_Plot_Plant,CHFU_NB_intercept_Plot_Plant_vist,
+    LEMA_NB_intercept_Plot_Plant_UNCOUPLED,LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
+AIC(PUPA_NB_intercept_Plot_Plant,PUPA_NB_intercept_Plot_Plant_vist,
+    PUPA_NB_intercept_Plot_Plant_UNCOUPLED,PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED)
 
 performance::check_collinearity(LEMA_NB_intercept_Plot_Plant_vist,component = "conditional") # All the ( GVIF^(1/(2*Df)) )^2 < 5 
+performance::check_collinearity(LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED,component = "conditional") # All the ( GVIF^(1/(2*Df)) )^2 < 5 
+
 performance::check_collinearity(CHFU_NB_intercept_Plot_Plant_vist,component = "conditional")
+performance::check_collinearity(CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED,component = "conditional")
+
 performance::check_collinearity(PUPA_NB_intercept_Plot_Plant_vist,component = "conditional")
+performance::check_collinearity(PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED,component = "conditional")
 
 ########################################
 ############################
@@ -808,10 +943,13 @@ summary(PUPA_NB_vist)
 
 performance::r2(LEMA_NB_vist)
 performance::r2(LEMA_NB_intercept_Plot_Plant)
+performance::r2(LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
 performance::r2(CHFU_NB_vist)
 performance::r2(CHFU_NB_intercept_Plot_Plant)
+performance::r2(CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
 performance::r2(PUPA_NB_vist)
 performance::r2(PUPA_NB_intercept_Plot_Plant)
+performance::r2(PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 
 
 ##############
@@ -907,10 +1045,28 @@ LEMA_NB_intercept_Plot_Plant_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                 data = fitness_orig_LEMA %>%ungroup() %>%
                                                   filter(DegreeIn>0))
 
+LEMA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                                  scale(hete_motif) +
+                                                  scale(consp_prob_UNCOUPLED) + 
+                                                  (1|Plot),
+                                                ziformula = ~1,
+                                                family = nbinom2(),
+                                                data = fitness_orig_LEMA %>%ungroup() %>%
+                                                  filter(DegreeIn>0))
+
 
 CHFU_NB_intercept_Plot_Plant_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                   scale(hete_motif) +
                                                   scale(consp_prob) + scale(heter_prob) +
+                                                  (1|Plot),
+                                                ziformula = ~1,
+                                                family = nbinom2(),
+                                                data = fitness_orig_CHFU %>%ungroup() %>%
+                                                  filter(DegreeIn>0))
+
+CHFU_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                                  scale(hete_motif) +
+                                                  scale(consp_prob_UNCOUPLED) + 
                                                   (1|Plot),
                                                 ziformula = ~1,
                                                 family = nbinom2(),
@@ -926,31 +1082,60 @@ PUPA_NB_intercept_Plot_Plant_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                 data = fitness_orig_PUPA %>%ungroup() %>%
                                                   filter(DegreeIn>0))
 
+PUPA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                                  scale(hete_motif) +
+                                                  scale(consp_prob_UNCOUPLED) +
+                                                  (1|Plot),
+                                                ziformula = ~1,
+                                                family = nbinom2(),
+                                                data = fitness_orig_PUPA %>%ungroup() %>%
+                                                  filter(DegreeIn>0))
+
+
 summary(LEMA_NB_intercept_Plot_Plant_pos_deg)
+summary(LEMA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 summary(CHFU_NB_intercept_Plot_Plant_pos_deg)
+summary(CHFU_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 summary(PUPA_NB_intercept_Plot_Plant_pos_deg)
+summary(PUPA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 
 res_LEMA_NB_intercept_Plot_Plant_pos_deg <- simulateResiduals(fittedModel = LEMA_NB_intercept_Plot_Plant_pos_deg, n = 500)
+res_LEMA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED <- simulateResiduals(fittedModel = LEMA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED, n = 500)
 res_CHFU_NB_intercept_Plot_Plant_pos_deg <- simulateResiduals(fittedModel = CHFU_NB_intercept_Plot_Plant_pos_deg, n = 500)
+res_CHFU_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED <- simulateResiduals(fittedModel = CHFU_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED, n = 500)
 res_PUPA_NB_intercept_Plot_Plant_pos_deg <- simulateResiduals(fittedModel = PUPA_NB_intercept_Plot_Plant_pos_deg, n = 500)
+res_PUPA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED <- simulateResiduals(fittedModel = PUPA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED, n = 500)
 
 testZeroInflation(res_LEMA_NB_intercept_Plot_Plant_pos_deg)
 testDispersion(res_LEMA_NB_intercept_Plot_Plant_pos_deg)
+testZeroInflation(res_LEMA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
+testDispersion(res_LEMA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 
 testZeroInflation(res_CHFU_NB_intercept_Plot_Plant_pos_deg)
 testDispersion(res_CHFU_NB_intercept_Plot_Plant_pos_deg)
+testZeroInflation(res_CHFU_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
+testDispersion(res_CHFU_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 
 testZeroInflation(res_PUPA_NB_intercept_Plot_Plant_pos_deg)
 testDispersion(res_PUPA_NB_intercept_Plot_Plant_pos_deg)
+testZeroInflation(res_PUPA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
+testDispersion(res_PUPA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 
 plot(res_LEMA_NB_intercept_Plot_Plant_pos_deg)
+plot(res_LEMA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
+
 plot(res_CHFU_NB_intercept_Plot_Plant_pos_deg)
+plot(res_CHFU_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
+
 plot(res_PUPA_NB_intercept_Plot_Plant_pos_deg)
+plot(res_PUPA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 
 performance::r2(LEMA_NB_intercept_Plot_Plant_pos_deg)
+performance::r2(LEMA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 performance::r2(CHFU_NB_intercept_Plot_Plant_pos_deg)
+performance::r2(CHFU_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 performance::r2(PUPA_NB_intercept_Plot_Plant_pos_deg)
-
+performance::r2(PUPA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED)
 
 
 
@@ -967,10 +1152,28 @@ LEMA_NB_intercept_Plot_Plant_vist_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif
                                                      data = fitness_orig_LEMA %>%ungroup() %>%
                                                        filter(DegreeIn>0))
 
+LEMA_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                                       scale(hete_motif) +
+                                                       scale(consp_prob_UNCOUPLED) +
+                                                       scale(visits_GF)+(1|Plot),
+                                                     ziformula = ~1,
+                                                     family = nbinom2(),
+                                                     data = fitness_orig_LEMA %>%ungroup() %>%
+                                                       filter(DegreeIn>0))
+
 
 CHFU_NB_intercept_Plot_Plant_vist_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                        scale(hete_motif) +
                                                        scale(consp_prob) + scale(heter_prob) +
+                                                       scale(visits_GF)+(1|Plot),
+                                                     ziformula = ~1,
+                                                     family = nbinom2(),
+                                                     data = fitness_orig_CHFU %>%ungroup() %>%
+                                                       filter(DegreeIn>0))
+
+CHFU_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                                       scale(hete_motif) +
+                                                       scale(consp_prob_UNCOUPLED) + 
                                                        scale(visits_GF)+(1|Plot),
                                                      ziformula = ~1,
                                                      family = nbinom2(),
@@ -986,13 +1189,28 @@ PUPA_NB_intercept_Plot_Plant_vist_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif
                                                      data = fitness_orig_PUPA %>%ungroup() %>%
                                                        filter(DegreeIn>0))
 
+PUPA_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                                       scale(hete_motif) +
+                                                       scale(consp_prob_UNCOUPLED) +
+                                                       scale(visits_GF)+(1|Plot),
+                                                     ziformula = ~1,
+                                                     family = nbinom2(),
+                                                     data = fitness_orig_PUPA %>%ungroup() %>%
+                                                       filter(DegreeIn>0))
+
 summary(LEMA_NB_intercept_Plot_Plant_vist_pos_deg)
+summary(LEMA_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED)
 summary(CHFU_NB_intercept_Plot_Plant_vist_pos_deg)
+summary(CHFU_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED)
 summary(PUPA_NB_intercept_Plot_Plant_vist_pos_deg)
+summary(PUPA_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED)
 
 r2(LEMA_NB_intercept_Plot_Plant_vist_pos_deg)
+r2(LEMA_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED)
 r2(CHFU_NB_intercept_Plot_Plant_vist_pos_deg)
+r2(CHFU_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED)
 r2(PUPA_NB_intercept_Plot_Plant_vist_pos_deg)
+r2(PUPA_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED)
 
 
 ###############################################
