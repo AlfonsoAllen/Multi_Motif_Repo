@@ -3,7 +3,7 @@ library(tidyverse)
 source("R_Scripts/functions.R")
 
 # Load data for models
-fitness.data.GF <- load_data_models_2020_without_agg()
+#fitness.data.GF <- load_data_models_2020_without_agg()
 fitness_orig <- load_data_models_2020() 
 fitness.data <- subset(fitness_orig,Seeds_GF > 0)
 
@@ -646,10 +646,12 @@ summary(CHFU_NB_intercept_Plot_Plant)
 summary(CHFU_NB_intercept_Line_Plot_Plant)
 summary(CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
 summary(CHFU_NB_intercept_Line_Plot_Plant_UNCOUPLED)
+
 summary(LEMA_NB_intercept_Plot_Plant)
 summary(LEMA_NB_intercept_Line_Plot_Plant)
 summary(LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
 summary(LEMA_NB_intercept_Line_Plot_Plant_UNCOUPLED)
+
 summary(PUPA_NB_intercept_Plot_Plant)
 summary(PUPA_NB_intercept_Line_Plot_Plant)
 summary(PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
