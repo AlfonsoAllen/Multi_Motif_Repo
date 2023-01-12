@@ -84,8 +84,22 @@ mean_seed <- seed_data_raw %>%
   dplyr::select(Plant,`Mean Seeds/Fruit`,`Mean Fruits/panicle`) %>% unique() %>%
   rename(Seed=`Mean Seeds/Fruit`,Fruit=`Mean Fruits/panicle`)
 
+mean_seed_plot <- seed_data_raw %>% 
+  dplyr::select(Plot,Plant,`Seeds/Fruit`,`Fruits/Panicle`) %>% unique() %>%
+  rename(Seed=`Seeds/Fruit`,Fruit=`Fruits/Panicle`) %>% group_by(Plot,Plant) %>%
+  summarize(Seed = mean(Seed,na.rm = T),
+            Fruit = mean(Fruit,na.rm = T)
+  ) %>% arrange(Plot) #%>% filter(Plant=="CHFU")
+
+# fitness2_seeds_without_ind_data <- fitness2_seeds_without_ind_data %>%
+#   left_join(mean_seed,by="Plant")
+
+
 fitness2_seeds_without_ind_data <- fitness2_seeds_without_ind_data %>%
-  left_join(mean_seed,by="Plant")
+  left_join(mean_seed_plot,by=c("Plot","Plant"))
+
+sum(is.na(fitness2_seeds_without_ind_data$Seed))
+sum(fitness2_seeds_without_ind_data$Seed==0)
 
 # Merge data with individual values and mean values, respectively
 
