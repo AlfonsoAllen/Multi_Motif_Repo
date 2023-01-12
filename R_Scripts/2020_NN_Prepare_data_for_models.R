@@ -91,12 +91,13 @@ mean_seed_plot <- seed_data_raw %>%
             Fruit = mean(Fruit,na.rm = T)
   ) %>% arrange(Plot) #%>% filter(Plant=="CHFU")
 
-# fitness2_seeds_without_ind_data <- fitness2_seeds_without_ind_data %>%
-#   left_join(mean_seed,by="Plant")
-
 
 fitness2_seeds_without_ind_data <- fitness2_seeds_without_ind_data %>%
-  left_join(mean_seed_plot,by=c("Plot","Plant"))
+  left_join(mean_seed,by="Plant")
+
+# 
+# fitness2_seeds_without_ind_data <- fitness2_seeds_without_ind_data %>%
+#   left_join(mean_seed_plot,by=c("Plot","Plant"))
 
 sum(is.na(fitness2_seeds_without_ind_data$Seed))
 sum(fitness2_seeds_without_ind_data$Seed==0)
@@ -157,7 +158,7 @@ fitness_aux <- fitness_aux %>% group_by(Line,Plot,Subplot,Plant,ID) %>%
     hete_motif = sum(hete_motif,na.rm = T)
   )
 
-# sanity chek
+# sanity check
 
 fitness_aux %>% dplyr::select(Plot,Subplot,Plant,ID) %>% group_by(Plot,Subplot,Plant,ID)%>%
   count() %>% filter(n>1)
@@ -269,8 +270,8 @@ for (i in 1:nrow(fitness)){
     
   }
   
-  # If there are no data for a given subplot, we will use data 
-  # the average number of fruit of the species in the plot
+  # If there are no data for a plot, we will use data 
+  # the average number of fruit of the species in Caracoles
   if (is.na(fitness$Fruits[i]) | is.nan(fitness$Fruits[i])){
     
     
@@ -296,6 +297,7 @@ fitness_final <- fitness %>% ungroup() %>%
   dplyr::select(Plot,Subplot,Plant,Seeds_GF.x,
                 Fruit_GF.x,visits_GF,ID,homo_motif,hete_motif) %>%
   rename(Seeds_GF = Seeds_GF.x, Fruit_GF = Fruit_GF.x)
+
 
 # Removing NAs from motifs, animals and visits
 fitness_final$visits_GF[is.na(fitness_final$visits_GF)] <- 0
