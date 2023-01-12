@@ -362,10 +362,12 @@ PUPA_NB_intercept_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                         data = fitness_orig_PUPA)
 
 summary(LEMA_NB_intercept_Plot_Plant)
-summary(CHFU_NB_intercept_Plot_Plant)
-summary(PUPA_NB_intercept_Plot_Plant)
 summary(LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
+
+summary(CHFU_NB_intercept_Plot_Plant)
 summary(CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
+
+summary(PUPA_NB_intercept_Plot_Plant)
 summary(PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 
 res_LEMA_NB_intercept_Plot_Plant <- simulateResiduals(fittedModel = LEMA_NB_intercept_Plot_Plant, n = 500)
@@ -394,25 +396,31 @@ testZeroInflation(res_PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 testDispersion(res_PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 
 plot(res_LEMA_NB_intercept_Plot_Plant)
-plot(res_CHFU_NB_intercept_Plot_Plant)
-plot(res_PUPA_NB_intercept_Plot_Plant)
 plot(res_LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
+
+plot(res_CHFU_NB_intercept_Plot_Plant)
 plot(res_CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
+
+plot(res_PUPA_NB_intercept_Plot_Plant)
 plot(res_PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 
 performance::r2(LEMA_NB_intercept_Plot_Plant)
-performance::r2(CHFU_NB_intercept_Plot_Plant)
-performance::r2(PUPA_NB_intercept_Plot_Plant)
 performance::r2(LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
+
+performance::r2(CHFU_NB_intercept_Plot_Plant)
 performance::r2(CHFU_NB_intercept_Plot_Plant_UNCOUPLED)
+
+performance::r2(PUPA_NB_intercept_Plot_Plant)
 performance::r2(PUPA_NB_intercept_Plot_Plant_UNCOUPLED)
 
 
 performance::check_collinearity(LEMA_NB_intercept_Plot_Plant,component = "conditional") # All the ( GVIF^(1/(2*Df)) )^2 < 5 
-performance::check_collinearity(CHFU_NB_intercept_Plot_Plant,component = "conditional")
-performance::check_collinearity(PUPA_NB_intercept_Plot_Plant,component = "conditional")
 performance::check_collinearity(LEMA_NB_intercept_Plot_Plant_UNCOUPLED,component = "conditional") # All the ( GVIF^(1/(2*Df)) )^2 < 5 
+
+performance::check_collinearity(CHFU_NB_intercept_Plot_Plant,component = "conditional")
 performance::check_collinearity(CHFU_NB_intercept_Plot_Plant_UNCOUPLED,component = "conditional")
+
+performance::check_collinearity(PUPA_NB_intercept_Plot_Plant,component = "conditional")
 performance::check_collinearity(PUPA_NB_intercept_Plot_Plant_UNCOUPLED,component = "conditional")
 
 ############################
