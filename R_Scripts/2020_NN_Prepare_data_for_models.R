@@ -89,7 +89,7 @@ mean_seed_plot <- seed_data_raw %>%
   rename(Seed=`Seeds/Fruit`,Fruit=`Fruits/Panicle`) %>% group_by(Plot,Plant) %>%
   summarize(Seed = mean(Seed,na.rm = T),
             Fruit = mean(Fruit,na.rm = T)
-  ) %>% arrange(Plot) #%>% filter(Plant=="CHFU")
+  ) %>% arrange(Plot) # %>% filter(Plant=="LEMA")
 
 
 # fitness2_seeds_without_ind_data <- fitness2_seeds_without_ind_data %>%
@@ -347,3 +347,4 @@ fitness_final[is.na(fitness_final)] <- 0
 
 
 write_csv(fitness_final,"Processed_data/2020_NN_NEW_data_models_phenol_overlap.csv")
+
