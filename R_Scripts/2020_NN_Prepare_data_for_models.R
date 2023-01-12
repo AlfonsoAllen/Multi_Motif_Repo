@@ -92,12 +92,12 @@ mean_seed_plot <- seed_data_raw %>%
   ) %>% arrange(Plot) #%>% filter(Plant=="CHFU")
 
 
-fitness2_seeds_without_ind_data <- fitness2_seeds_without_ind_data %>%
-  left_join(mean_seed,by="Plant")
-
-# 
 # fitness2_seeds_without_ind_data <- fitness2_seeds_without_ind_data %>%
-#   left_join(mean_seed_plot,by=c("Plot","Plant"))
+#   left_join(mean_seed,by="Plant")
+
+
+fitness2_seeds_without_ind_data <- fitness2_seeds_without_ind_data %>%
+  left_join(mean_seed_plot,by=c("Plot","Plant"))
 
 sum(is.na(fitness2_seeds_without_ind_data$Seed))
 sum(fitness2_seeds_without_ind_data$Seed==0)
@@ -347,4 +347,3 @@ fitness_final[is.na(fitness_final)] <- 0
 
 
 write_csv(fitness_final,"Processed_data/2020_NN_NEW_data_models_phenol_overlap.csv")
-
