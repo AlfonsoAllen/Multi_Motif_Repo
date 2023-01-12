@@ -85,7 +85,7 @@ mean_seed <- seed_data_raw %>%
   rename(Seed=`Mean Seeds/Fruit`,Fruit=`Mean Fruits/panicle`)
 
 mean_seed_plot <- seed_data_raw %>% 
-  dplyr::select(Plot,Plant,`Seeds/Fruit`,`Fruits/Panicle`) %>% unique() %>%
+  dplyr::select(Plot,Subplot,Plant,`Seeds/Fruit`,`Fruits/Panicle`) %>% unique() %>%
   rename(Seed=`Seeds/Fruit`,Fruit=`Fruits/Panicle`) %>% group_by(Plot,Plant) %>%
   summarize(Seed = mean(Seed,na.rm = T),
             Fruit = mean(Fruit,na.rm = T)
