@@ -70,7 +70,7 @@ ggplot(fitness_orig %>% filter(DegreeIn>0),aes(x=Fruit_GF,y=Seeds_GF))+
 
 
 ##########################################
-#
+# ALL PLANT SPECIES
 ##########################################
 
 ALL_SP_NB_intercept_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -78,16 +78,16 @@ ALL_SP_NB_intercept_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                           scale(consp_prob) + scale(heter_prob) +
                                           (1|Plot)+Plant_Simple,
                                         ziformula = ~1,
-                                        family = nbinom1(),
-                                        data = fitness_orig %>% filter(type_seed_per_fruit=="Individual",type_fruit=="Individual"))
+                                        family = nbinom2(),
+                                        data = fitness_orig %>% filter(DegreeIn>0)) #Only visited data is considered here
 
 ALL_SP_NB_intercept_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                             scale(hete_motif) +
                                             scale(consp_prob_UNCOUPLED) +
                                             (1|Plot)+Plant_Simple,
                                           ziformula = ~1,
-                                          family = nbinom1(),
-                                          data = fitness_orig %>% filter(type_seed_per_fruit=="Individual",type_fruit=="Individual"))
+                                          family = nbinom2(),
+                                          data = fitness_orig %>% filter(DegreeIn>0)) #Only visited data is considered here
 
 
 
@@ -264,8 +264,8 @@ LEMA_NB_intercept_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                           scale(consp_prob) + scale(heter_prob) +
                                           (1|Plot),
                                         ziformula = ~1,
-                                        family = nbinom1(),
-                                        data = fitness_orig_LEMA %>% filter(type_seed_per_fruit=="Individual",type_fruit=="Individual"))
+                                        family = nbinom2(),
+                                        data = fitness_orig_LEMA)
 
 
 CHFU_NB_intercept_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -273,24 +273,24 @@ CHFU_NB_intercept_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                           scale(consp_prob) + scale(heter_prob) +
                                           (1|Plot),
                                         ziformula = ~1,
-                                        family = nbinom1(),
-                                        data = fitness_orig_CHFU %>% filter(type_seed_per_fruit=="Individual",type_fruit=="Individual"))
+                                        family = nbinom2(),
+                                        data = fitness_orig_CHFU)
 
 PUPA_NB_intercept_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                           scale(hete_motif) +
                                           scale(consp_prob) + scale(heter_prob) +
                                           (1|Plot),
                                         ziformula = ~1,
-                                        family = nbinom1(),
-                                        data = fitness_orig_PUPA %>% filter(type_seed_per_fruit=="Individual",type_fruit=="Individual"))
+                                        family = nbinom2(),
+                                        data = fitness_orig_PUPA)
 
 LEMA_NB_intercept_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                           scale(hete_motif) +
                                           scale(consp_prob_UNCOUPLED) +
                                           (1|Plot),
                                         ziformula = ~1,
-                                        family = nbinom1(),
-                                        data = fitness_orig_LEMA %>% filter(type_seed_per_fruit=="Individual",type_fruit=="Individual"))
+                                        family = nbinom2(),
+                                        data = fitness_orig_LEMA)
 
 
 CHFU_NB_intercept_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -298,16 +298,16 @@ CHFU_NB_intercept_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                           scale(consp_prob_UNCOUPLED ) +
                                           (1|Plot),
                                         ziformula = ~1,
-                                        family = nbinom1(),
-                                        data = fitness_orig_CHFU %>% filter(type_seed_per_fruit=="Individual",type_fruit=="Individual"))
+                                        family = nbinom2(),
+                                        data = fitness_orig_CHFU)
 
 PUPA_NB_intercept_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                           scale(hete_motif) +
                                           scale(consp_prob_UNCOUPLED) +
                                           (1|Plot),
                                         ziformula = ~1,
-                                        family = nbinom1(),
-                                        data = fitness_orig_PUPA %>% filter(type_seed_per_fruit=="Individual",type_fruit=="Individual"))
+                                        family = nbinom2(),
+                                        data = fitness_orig_PUPA)
 
 summary(LEMA_NB_intercept_Plot_Plant)
 summary(LEMA_NB_intercept_Plot_Plant_UNCOUPLED)
@@ -376,7 +376,7 @@ performance::check_collinearity(PUPA_NB_intercept_Plot_Plant_UNCOUPLED,component
 LEMA_NB_visits<- glmmTMB(Seeds_GF ~ scale(visits_GF)+
                            (1|Plot),
                          ziformula = ~1,
-                         family = nbinom1(),
+                         family = nbinom2(),
                          data = fitness_orig_LEMA)
 performance::r2(LEMA_NB_visits)
 
@@ -526,7 +526,7 @@ LEMA_NB_intercept_Line_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                scale(consp_prob) + scale(heter_prob) +
                                                (1|Line/Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_LEMA_line)
 
 LEMA_NB_intercept_Line_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -534,7 +534,7 @@ LEMA_NB_intercept_Line_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_mot
                                                scale(consp_prob_UNCOUPLED) +
                                                (1|Line/Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_LEMA_line)
 
 fitness_orig_CHFU_line <-  fitness_orig_CHFU
@@ -549,7 +549,7 @@ CHFU_NB_intercept_Line_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                scale(consp_prob) + scale(heter_prob) +
                                                (1|Line/Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_CHFU_line)
 
 CHFU_NB_intercept_Line_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -557,7 +557,7 @@ CHFU_NB_intercept_Line_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_mot
                                                scale(consp_prob_UNCOUPLED) +
                                                (1|Line/Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_CHFU_line)
 
 fitness_orig_PUPA_line <-  fitness_orig_PUPA
@@ -572,7 +572,7 @@ PUPA_NB_intercept_Line_Plot_Plant <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                scale(consp_prob) + scale(heter_prob) +
                                                (1|Line/Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_PUPA_line)
 
 PUPA_NB_intercept_Line_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -580,7 +580,7 @@ PUPA_NB_intercept_Line_Plot_Plant_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_mot
                                                scale(consp_prob_UNCOUPLED) +
                                                (1|Line/Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_PUPA_line)
 
 
@@ -617,7 +617,7 @@ LEMA_NB_intercept_Plot_Plant_vist <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                scale(consp_prob) + scale(heter_prob) +
                                                scale(visits_GF)+(1|Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_LEMA)
 
 LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -625,7 +625,7 @@ LEMA_NB_intercept_Plot_Plant_vist_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_mot
                                                scale(consp_prob_UNCOUPLED) +
                                                scale(visits_GF)+(1|Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_LEMA)
 
 
@@ -634,7 +634,7 @@ CHFU_NB_intercept_Plot_Plant_vist <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                scale(consp_prob) + scale(heter_prob) +
                                                scale(visits_GF)+(1|Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_CHFU)
 
 CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -642,7 +642,7 @@ CHFU_NB_intercept_Plot_Plant_vist_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_mot
                                                scale(consp_prob_UNCOUPLED) + 
                                                scale(visits_GF)+(1|Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_CHFU)
 
 PUPA_NB_intercept_Plot_Plant_vist <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -650,7 +650,7 @@ PUPA_NB_intercept_Plot_Plant_vist <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                scale(consp_prob) + scale(heter_prob) +
                                                scale(visits_GF)+(1|Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_PUPA)
 
 PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -658,7 +658,7 @@ PUPA_NB_intercept_Plot_Plant_vist_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_mot
                                                scale(consp_prob_UNCOUPLED) +
                                                scale(visits_GF)+(1|Plot),
                                              ziformula = ~1,
-                                             family = nbinom1(),
+                                             family = nbinom2(),
                                              data = fitness_orig_PUPA)
 
 summary(CHFU_NB_intercept_Plot_Plant_vist)
@@ -881,18 +881,18 @@ hist(fitness_orig_PUPA$visits_GF)
 
 LEMA_NB_vist <- glmmTMB(Seeds_GF~ scale(visits_GF)+(1|Plot),
                         ziformula = ~1,
-                        family = nbinom1(),
+                        family = nbinom2(),
                         data = fitness_orig_LEMA)
 
 
 CHFU_NB_vist <- glmmTMB(Seeds_GF ~ scale(visits_GF)+(1|Plot),
                         ziformula = ~1,
-                        family = nbinom1(),
+                        family = nbinom2(),
                         data = fitness_orig_CHFU)
 
 PUPA_NB_vist <- glmmTMB(Seeds_GF ~ scale(visits_GF)+(1|Plot),
                         ziformula = ~1,
-                        family = nbinom1(),
+                        family = nbinom2(),
                         data = fitness_orig_PUPA)
 
 summary(CHFU_NB_vist)
@@ -947,34 +947,34 @@ fitness_orig_PUPA %>% group_by(Plot) %>% count()
 
 LEMA_NB_int <- glmmTMB(Seeds_GF~ (1|Plot),
                        ziformula = ~1,
-                       family = nbinom1(),
+                       family = nbinom2(),
                        data = fitness_orig_LEMA)
 
 
 CHFU_NB_int <- glmmTMB(Seeds_GF ~ (1|Plot),
                        ziformula = ~1,
-                       family = nbinom1(),
+                       family = nbinom2(),
                        data = fitness_orig_CHFU)
 
 PUPA_NB_int <- glmmTMB(Seeds_GF ~ (1|Plot),
                        ziformula = ~1,
-                       family = nbinom1(),
+                       family = nbinom2(),
                        data = fitness_orig_PUPA)
 
 LEMA_NB_int_nopool <- glmmTMB(Seeds_GF~ (Plot),
                               ziformula = ~1,
-                              family = nbinom1(),
+                              family = nbinom2(),
                               data = fitness_orig_LEMA)
 
 
 CHFU_NB_int_nopool <- glmmTMB(Seeds_GF ~ (Plot),
                               ziformula = ~1,
-                              family = nbinom1(),
+                              family = nbinom2(),
                               data = fitness_orig_CHFU)
 
 PUPA_NB_int_nopool <- glmmTMB(Seeds_GF ~ (Plot),
                               ziformula = ~1,
-                              family = nbinom1(),
+                              family = nbinom2(),
                               data = fitness_orig_PUPA)
 
 summary(CHFU_NB_int)
@@ -999,7 +999,7 @@ LEMA_NB_intercept_Plot_Plant_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                   scale(consp_prob) + scale(heter_prob) +
                                                   (1|Plot),
                                                 ziformula = ~1,
-                                                family = nbinom1(),
+                                                family = nbinom2(),
                                                 data = fitness_orig_LEMA %>% ungroup() %>%
                                                   filter(DegreeIn>0))
 
@@ -1008,7 +1008,7 @@ LEMA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_
                                                   scale(consp_prob_UNCOUPLED) + 
                                                   (1|Plot),
                                                 ziformula = ~1,
-                                                family = nbinom1(),
+                                                family = nbinom2(),
                                                 data = fitness_orig_LEMA %>%ungroup() %>%
                                                   filter(DegreeIn>0))
 
@@ -1018,7 +1018,7 @@ CHFU_NB_intercept_Plot_Plant_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                   scale(consp_prob) + scale(heter_prob) +
                                                   (1|Plot),
                                                 ziformula = ~1,
-                                                family = nbinom1(),
+                                                family = nbinom2(),
                                                 data = fitness_orig_CHFU %>%ungroup() %>%
                                                   filter(DegreeIn>0))
 
@@ -1027,7 +1027,7 @@ CHFU_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_
                                                   scale(consp_prob_UNCOUPLED) + 
                                                   (1|Plot),
                                                 ziformula = ~1,
-                                                family = nbinom1(),
+                                                family = nbinom2(),
                                                 data = fitness_orig_CHFU %>%ungroup() %>%
                                                   filter(DegreeIn>0))
 
@@ -1036,7 +1036,7 @@ PUPA_NB_intercept_Plot_Plant_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                                   scale(consp_prob) + scale(heter_prob) +
                                                   (1|Plot),
                                                 ziformula = ~1,
-                                                family = nbinom1(),
+                                                family = nbinom2(),
                                                 data = fitness_orig_PUPA %>%ungroup() %>%
                                                   filter(DegreeIn>0))
 
@@ -1045,7 +1045,7 @@ PUPA_NB_intercept_Plot_Plant_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(homo_
                                                   scale(consp_prob_UNCOUPLED) +
                                                   (1|Plot),
                                                 ziformula = ~1,
-                                                family = nbinom1(),
+                                                family = nbinom2(),
                                                 data = fitness_orig_PUPA %>%ungroup() %>%
                                                   filter(DegreeIn>0))
 
@@ -1106,7 +1106,7 @@ LEMA_NB_intercept_Plot_Plant_vist_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif
                                                        scale(consp_prob) + scale(heter_prob) +
                                                        scale(visits_GF)+(1|Plot),
                                                      ziformula = ~1,
-                                                     family = nbinom1(),
+                                                     family = nbinom2(),
                                                      data = fitness_orig_LEMA %>%ungroup() %>%
                                                        filter(DegreeIn>0))
 
@@ -1115,7 +1115,7 @@ LEMA_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(
                                                        scale(consp_prob_UNCOUPLED) +
                                                        scale(visits_GF)+(1|Plot),
                                                      ziformula = ~1,
-                                                     family = nbinom1(),
+                                                     family = nbinom2(),
                                                      data = fitness_orig_LEMA %>%ungroup() %>%
                                                        filter(DegreeIn>0))
 
@@ -1125,7 +1125,7 @@ CHFU_NB_intercept_Plot_Plant_vist_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif
                                                        scale(consp_prob) + scale(heter_prob) +
                                                        scale(visits_GF)+(1|Plot),
                                                      ziformula = ~1,
-                                                     family = nbinom1(),
+                                                     family = nbinom2(),
                                                      data = fitness_orig_CHFU %>%ungroup() %>%
                                                        filter(DegreeIn>0))
 
@@ -1134,7 +1134,7 @@ CHFU_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(
                                                        scale(consp_prob_UNCOUPLED) + 
                                                        scale(visits_GF)+(1|Plot),
                                                      ziformula = ~1,
-                                                     family = nbinom1(),
+                                                     family = nbinom2(),
                                                      data = fitness_orig_CHFU %>%ungroup() %>%
                                                        filter(DegreeIn>0))
 
@@ -1143,7 +1143,7 @@ PUPA_NB_intercept_Plot_Plant_vist_pos_deg <- glmmTMB(Seeds_GF ~ scale(homo_motif
                                                        scale(consp_prob) + scale(heter_prob) +
                                                        scale(visits_GF)+(1|Plot),
                                                      ziformula = ~1,
-                                                     family = nbinom1(),
+                                                     family = nbinom2(),
                                                      data = fitness_orig_PUPA %>%ungroup() %>%
                                                        filter(DegreeIn>0))
 
@@ -1152,7 +1152,7 @@ PUPA_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED <- glmmTMB(Seeds_GF ~ scale(
                                                        scale(consp_prob_UNCOUPLED) +
                                                        scale(visits_GF)+(1|Plot),
                                                      ziformula = ~1,
-                                                     family = nbinom1(),
+                                                     family = nbinom2(),
                                                      data = fitness_orig_PUPA %>%ungroup() %>%
                                                        filter(DegreeIn>0))
 
@@ -1177,20 +1177,20 @@ r2(PUPA_NB_intercept_Plot_Plant_vist_pos_deg_UNCOUPLED)
 
 LEMA_NB_vist_pos_deg <- glmmTMB(Seeds_GF~ scale(visits_GF)+(1|Plot),
                                 ziformula = ~1,
-                                family = nbinom1(),
+                                family = nbinom2(),
                                 data = fitness_orig_LEMA%>%ungroup() %>%
                                   filter(DegreeIn>0))
 
 
 CHFU_NB_vist_pos_deg <- glmmTMB(Seeds_GF ~ scale(visits_GF)+(1|Plot),
                                 ziformula = ~1,
-                                family = nbinom1(),
+                                family = nbinom2(),
                                 data = fitness_orig_CHFU%>%ungroup() %>%
                                   filter(DegreeIn>0))
 
 PUPA_NB_vist_pos_deg <- glmmTMB(Seeds_GF ~ scale(visits_GF)+(1|Plot),
                                 ziformula = ~1,
-                                family = nbinom1(),
+                                family = nbinom2(),
                                 data = fitness_orig_PUPA%>%ungroup() %>%
                                   filter(DegreeIn>0))
 
