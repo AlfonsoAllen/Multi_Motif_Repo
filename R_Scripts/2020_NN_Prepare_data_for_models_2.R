@@ -116,15 +116,15 @@ fitness2_seeds_with_mean_plot_data <- fitness2_seeds_without_ind_data %>%
 
 # Merge data with individual values and mean values, respectively
 
-fitness2_seeds <- bind_rows(fitness2_seeds_with_ind_data,
-                            fitness2_seeds_with_mean_plot_data,
-                            fitness2_seeds_with_mean_Caracoles_data)
+fitness2_seeds <- bind_rows(fitness2_seeds_with_ind_data %>% mutate(type_seed_per_fruit = "Individual"),
+                            fitness2_seeds_with_mean_plot_data %>% mutate(type_seed_per_fruit = "Plot"),
+                            fitness2_seeds_with_mean_Caracoles_data %>% mutate(type_seed_per_fruit = "Caracoles"))
 
 # Sanity check
 fitness2_seeds %>% filter(is.na(Seed))
 
 
-fitness3_aux <- fitness2_seeds %>% group_by(Line,Plot,Subplot,Plant,Week,ID) %>%
+fitness3_aux <- fitness2_seeds %>% group_by(Line,Plot,Subplot,Plant,Week,ID,type_seed_per_fruit) %>%
   summarize(Seeds_GF = mean(Seed,na.rm = T),
             visits_GF = sum(Visits,na.rm = T))
 
@@ -134,7 +134,7 @@ fitness3$Plant %>% unique()
 
 # Sanity check
 
-fitness3 %>% dplyr::select(Plot,Subplot,Plant,ID,Week) %>% group_by(Plot,Subplot,Plant,ID,Week)%>%
+fitness3 %>% dplyr::select(Plot,Subplot,Plant,ID,Week,type_seed_per_fruit) %>% group_by(Plot,Subplot,Plant,ID,Week,type_seed_per_fruit)%>%
   count() %>% filter(n>1)
 
 #####################################
@@ -159,7 +159,7 @@ fitness_aux_motifs %>% filter(visits_GF!=Visits_tot)
 # Agregating by week
 ##################################
 
-fitness_aux <- fitness_aux_motifs %>% group_by(Line,Plot,Subplot,Plant,ID) %>%
+fitness_aux <- fitness_aux_motifs %>% group_by(Line,Plot,Subplot,Plant,ID,type_seed_per_fruit) %>%
   summarise(
     Seeds_GF = mean(Seeds_GF,na.rm = T),
     visits_GF = sum(visits_GF,na.rm = T),
@@ -170,7 +170,7 @@ fitness_aux <- fitness_aux_motifs %>% group_by(Line,Plot,Subplot,Plant,ID) %>%
 
 # sanity check
 
-fitness_aux %>% dplyr::select(Plot,Subplot,Plant,ID) %>% group_by(Plot,Subplot,Plant,ID)%>%
+fitness_aux %>% dplyr::select(Plot,Subplot,Plant,ID,type_seed_per_fruit) %>% group_by(Plot,Subplot,Plant,ID,type_seed_per_fruit)%>%
   count() %>% filter(n>1)
 
 #####################################
@@ -241,9 +241,9 @@ fitness_4_fruit_with_mean_caracoles_data <- fitness_4_fruit_with_mean_plot_data 
 fitness_4_fruit_with_mean_plot_data <- fitness_4_fruit_with_mean_plot_data %>% 
   filter(!is.na(Fruit_GF))
 
-fitness_5 <- bind_rows(fitness_4_fruit_with_ind_data,
-                       fitness_4_fruit_with_mean_caracoles_data,
-                       fitness_4_fruit_with_mean_plot_data) %>%
+fitness_5 <- bind_rows(fitness_4_fruit_with_ind_data %>% mutate(type_fruit = "Individual"),
+                       fitness_4_fruit_with_mean_caracoles_data %>% mutate(type_fruit = "Caracoles"),
+                       fitness_4_fruit_with_mean_plot_data  %>% mutate(type_fruit = "Plot")) %>%
   dplyr::select(-Visits_tot) %>%
   mutate(seed_per_fruit = Seeds_GF,
     Seeds_GF = seed_per_fruit * Fruit_GF)
@@ -296,10 +296,10 @@ fitness_5_seeds_with_mean_plot_data <- fitness_5_mean_seeds %>%
 
 # Merge data with individual values and mean values, respectively
 
-fitness_5_final <- bind_rows(fitness_5_with_seeds,
-                       fitness_5_with_seeds_2,
-                       fitness_5_seeds_with_mean_plot_data,
-                       fitness_5_seeds_with_mean_Caracoles_data)
+fitness_5_final <- bind_rows(fitness_5_with_seeds %>% mutate(type_seed_per_fruit = "Individual"),
+                       fitness_5_with_seeds_2  %>% mutate(type_seed_per_fruit = "Individual"),
+                       fitness_5_seeds_with_mean_plot_data  %>% mutate(type_seed_per_fruit = "Plot"),
+                       fitness_5_seeds_with_mean_Caracoles_data %>% mutate(type_seed_per_fruit = "Caracoles"))
 
 
 fitness_5_final %>% filter(is.na(Seeds_GF))
