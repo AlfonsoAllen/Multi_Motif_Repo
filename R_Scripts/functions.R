@@ -801,7 +801,7 @@ load_data_models_2020_2 <- function(path_data_models_overlap="Processed_data/202
   
   fitness_orig <- fitness_orig1 %>% #filter(Plant_Simple %in% c("CHFU","LEMA","PUPA",
     #                          "CETE","CHMI","SPRU")) %>% 
-    group_by(Plot,Subplot,Plant_Simple) %>%
+    group_by(Plot,Subplot,Plant_Simple,type_fruit,type_seed_per_fruit) %>%
     summarise(Seeds_GF=mean(Seeds_GF),
               Fruit_GF=mean(Fruit_GF),
               visits_GF=sum(visits_GF),
