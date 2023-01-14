@@ -765,8 +765,71 @@ cz_values_function_OUT <- function(edge_module_info_i){
 #----
 
 
-load_data_models_2020 <- function(path_data_models_overlap="Processed_data/2020_NN_NEW_data_models_phenol_overlap.csv",
+load_data_models_2020_2 <- function(path_data_models_overlap="Processed_data/2020_NN_NEW_data_models_phenol_overlap_2.csv",
                            path_raw_data_poll="Raw_Data/final_Pollinators_2020.csv"){
+  
+  fitness_final_aux <- read.csv(file = path_data_models_overlap,
+                                header = TRUE,
+                                stringsAsFactors = FALSE) %>%
+    rename(Plant_Simple=Plant) %>% mutate(Seeds_GF = round(Seeds_GF))
+  
+  fitness_final_aux %>% group_by(Plant_Simple) %>% count()
+  fitness_final_aux %>% filter(ID != "None") %>% group_by(Plant_Simple) %>% count()
+  
+  #########################
+  # Add G_F
+  
+  G_F_list <- read_csv2(path_raw_data_poll) %>%
+    filter(ID != "Tabanidae") %>%
+    dplyr::select(G_F,ID_Simple) %>% unique() %>% rename(ID=ID_Simple)
+  
+  # Remove points from ID names
+  G_F_list$ID <- sub("\\.", "", G_F_list$ID)
+  
+  G_F_list <- bind_rows(G_F_list,tibble(G_F="None",ID="None"))
+  
+  G_F_list <- unique(G_F_list)
+  
+  G_F_list$G_F %>% unique() %>% sort()
+  
+  # Sanity check
+  G_F_list %>% group_by(ID) %>% count() %>% filter(n>1)
+  
+  
+  fitness_orig1 <- fitness_final_aux %>% dplyr::left_join(G_F_list,by = "ID")
+  
+  
+  fitness_orig <- fitness_orig1 %>% #filter(Plant_Simple %in% c("CHFU","LEMA","PUPA",
+    #                          "CETE","CHMI","SPRU")) %>% 
+    group_by(Plot,Subplot,Plant_Simple) %>%
+    summarise(Seeds_GF=mean(Seeds_GF),
+              Fruit_GF=mean(Fruit_GF),
+              visits_GF=sum(visits_GF),
+              homo_motif=sum(homo_motif),
+              hete_motif=sum(hete_motif),
+              Real_PR_Multi=mean(Real_PR_Multi),
+              Real_PR_Layer=mean(Real_PR_Layer),
+              StrengthIn=mean(StrengthIn),
+              StrengthOut=mean(StrengthOut),
+              DegreeIn=mean(DegreeIn),
+              DegreeOut=mean(DegreeOut),
+              Delta=mean(Delta),
+              Ratio=mean(Ratio))
+  
+  
+  # Turn ID, GF and Plot into factors
+  fitness_orig$Plot <- as.factor(fitness_orig$Plot)
+  fitness_orig$Plant_Simple <- as.factor(fitness_orig$Plant_Simple)
+  #fitness_orig$ID <- as.factor(fitness_orig$ID)
+  #fitness_orig$G_F <- as.factor(fitness_orig$G_F)
+  
+  return(fitness_orig)
+
+
+}
+
+load_data_models_2020 <- function(path_data_models_overlap="Processed_data/2020_NN_NEW_data_models_phenol_overlap.csv",
+                                  path_raw_data_poll="Raw_Data/final_Pollinators_2020.csv"){
   
   fitness_final_aux <- read.csv(file = "Processed_data/2020_NN_NEW_data_models_phenol_overlap.csv",
                                 header = TRUE,
@@ -841,9 +904,10 @@ load_data_models_2020 <- function(path_data_models_overlap="Processed_data/2020_
   #fitness_orig$G_F <- as.factor(fitness_orig$G_F)
   
   return(fitness_orig)
-
-
+  
+  
 }
+
 
 # Data without aggregation
 
@@ -943,6 +1007,68 @@ corrections_pagerank <- function(){
     
   }
 
+  return(correction)
+  
+}
+
+corrections_pagerank_2 <- function(){
+  
+  fitness_orig <- load_data_models_2020_2()
+  
+  fitness.data <- subset(fitness_orig,Seeds_GF > 0)
+  
+  ##################
+  
+  correction <- tibble(Plot=1:9)
+  
+  correction$PR_isolated <- NA
+  correction$PR_extra_VS_PR <- NA
+  
+  for(Plot_i in 1:9){
+    
+    # Multilayer----
+    graph_Plot_i_all_links <- readRDS(file = paste0("Processed_data/NN_networks/Plot_",Plot_i,"_NN_intra_inter.rds"))
+    page_rank_i <- igraph::page_rank(graph_Plot_i_all_links,
+                                     directed = TRUE, damping = 0.85,
+                                     personalized = NULL, weights = NULL, options = NULL)
+    
+    page_rank_i_nodes_all_links <-
+      data.frame(species=names(page_rank_i[[1]]),
+                 Real_PR_Multi=page_rank_i[[1]], row.names=NULL)
+    
+    # Add extra nodes----
+    
+    # Number of extra nodes
+    
+    isolated_nodes <- fitness.data %>% filter(Plot==as.character(Plot_i),DegreeIn==0) %>%
+      mutate(isolated_nodes = paste0(Plant_Simple," ",Subplot)) %>% ungroup() %>%
+      dplyr::select(isolated_nodes) %>% nrow()
+    
+    graph_Plot_i_all_links_extra_nodes <- graph_Plot_i_all_links %>%
+      igraph::add_vertices(isolated_nodes, color = "red")
+    
+    page_rank_i_extra_nodes <- igraph::page_rank(graph_Plot_i_all_links_extra_nodes,
+                                                 directed = TRUE, damping = 0.85,
+                                                 personalized = NULL, weights = NULL, options = NULL)
+    
+    page_rank_i_nodes_all_links_extra_nodes <-
+      data.frame(species=names(page_rank_i_extra_nodes[[1]]),
+                 Real_PR_Multi_extra=page_rank_i_extra_nodes[[1]], row.names=NULL)
+    
+    PR_isolated <- page_rank_i_nodes_all_links_extra_nodes$Real_PR_Multi_extra[
+      is.na(page_rank_i_nodes_all_links_extra_nodes$species)] %>% unique()
+    
+    # Compare
+    page_rank_i_nodes_all_links <- page_rank_i_nodes_all_links %>%
+      left_join(page_rank_i_nodes_all_links_extra_nodes,by="species") %>%
+      mutate(PR_extra_VS_PR = Real_PR_Multi_extra/Real_PR_Multi)
+    
+    correction$PR_isolated[Plot_i] <- PR_isolated
+    correction$PR_extra_VS_PR[Plot_i] <- 
+      unique(round(page_rank_i_nodes_all_links$PR_extra_VS_PR,8))
+    
+  }
+  
   return(correction)
   
 }
