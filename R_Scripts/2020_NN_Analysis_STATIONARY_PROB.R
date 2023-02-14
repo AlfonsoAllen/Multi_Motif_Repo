@@ -52,7 +52,7 @@ means <- aggregate((consp_prob) ~  layer + Plot,
 
 #Test significance of differences
 library(ggpubr)
-Prob_results_exp <- Prob_results_ini
+Prob_results_exp <- Prob_results
 Prob_results_exp$layer[Prob_results_exp$layer == "BEMA"] <- "B. macrocarpa"
 Prob_results_exp$layer[Prob_results_exp$layer == "CETE"] <- "C. tenuiflorum"
 Prob_results_exp$layer[Prob_results_exp$layer == "CHFU"] <- "C. fuscatum"
@@ -211,4 +211,26 @@ ggplot(Prob_results_exp_nodes,# %>% filter(heter_prob>1e-20),
   # theme(strip.text.x = element_text(size = 15))+
   # theme(legend.text = element_text(size=15),legend.title=element_text(size=15))+ 
   # guides(fill = guide_legend(override.aes = list(size=2)))
+dev.off()
+
+
+library(scales)
+
+png("New_Figures/fig_Probabilities.png", width=1961*2, height = 1961*2*300/600, res=300*2)
+ggplot(Prob_results_exp_nodes,aes(x=consp_prob,y = heter_prob, color = as.factor(Plot)))+
+  geom_point(alpha=0.2, position = "jitter")+
+  #scale_shape_manual(values=1:nlevels(stationary_prob_final$Plant_Simple))+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  facet_wrap(vars(layer),nrow = 2,ncol = 5)+
+  geom_abline(aes(slope=1,intercept=0),linetype = "dashed")+
+  scale_color_brewer(palette="Paired")+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Conspecific arrival prob.") + ylab("Heterospecific  arrival prob.")+
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x))) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  theme_bw()+
+  labs(color=NULL,shape=NULL)+
+  theme(legend.position = "bottom")+ theme(strip.text = element_text(face = "italic"))
 dev.off()
