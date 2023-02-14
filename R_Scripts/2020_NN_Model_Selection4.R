@@ -36,7 +36,7 @@ fitness_orig$heter_prob_UNCOUPLED[is.na(fitness_orig$heter_prob_UNCOUPLED)] <- 0
 
 fitness_orig$consp_prob[fitness_orig$DegreeIn != 0] <-
   fitness_orig$consp_prob[fitness_orig$DegreeIn != 0]*fitness_orig$number_plant_nodes_with_visits[fitness_orig$DegreeIn != 0]/fitness_orig$total_number_plant_nodes[fitness_orig$DegreeIn != 0]
-fitness_orig$heter_prob[fitness_orig$DegreeIn != 0] <- 
+fitness_orig$heter_prob[fitness_orig$DegreeIn != 0] <-
   fitness_orig$heter_prob[fitness_orig$DegreeIn != 0]*fitness_orig$number_plant_nodes_with_visits[fitness_orig$DegreeIn != 0]/fitness_orig$total_number_plant_nodes[fitness_orig$DegreeIn != 0]
 
 
@@ -431,8 +431,7 @@ points(Seeds_GF ~ hete_motif, data = fitness_orig_LEMA,
 
 
 visreg(PUPA_NB_intercept_Plot_Plant,"hete_motif",xlab="Heterospecific motifs",ylab="Seeds",
-       main=expression(italic("P. paludosa")),scale="response", rug=FALSE,
-       line.par = list(lty = "dashed"))#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
+       main=expression(italic("P. paludosa")),scale="response", rug=FALSE)#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
 points(Seeds_GF ~ hete_motif, data = fitness_orig_PUPA, 
        col = rgb(red = 0, green = 0, blue = 0, alpha = 0.5),
        pch = 20) 
@@ -458,7 +457,8 @@ points(Seeds_GF ~ consp_prob, data = fitness_orig_LEMA,
 
 
 visreg(PUPA_NB_intercept_Plot_Plant,"consp_prob",xlab="Probability of receiving\nconspecific pollen",ylab="Seeds",
-       main=expression(italic("P. paludosa")),scale="response", rug=FALSE)#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
+       main=expression(italic("P. paludosa")),scale="response", rug=FALSE,
+       line.par = list(lty = "dashed"))#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
 points(Seeds_GF ~ consp_prob, data = fitness_orig_PUPA, 
        col = rgb(red = 0, green = 0, blue = 0, alpha = 0.5),
        pch = 20) 
@@ -483,7 +483,8 @@ points(Seeds_GF ~ heter_prob, data = fitness_orig_LEMA,
 
 
 visreg(PUPA_NB_intercept_Plot_Plant,"heter_prob",xlab="Probability of receiving\nheterospecific pollen",ylab="Seeds",
-       main=expression(italic("P. paludosa")),scale="response", rug=FALSE)#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
+       main=expression(italic("P. paludosa")),scale="response", rug=FALSE,
+       line.par = list(lty = "dashed"))#,gg = TRUE, partial=TRUE)#, rug=FALSE)+
 points(Seeds_GF ~ heter_prob, data = fitness_orig_PUPA, 
        col = rgb(red = 0, green = 0, blue = 0, alpha = 0.5),
        pch = 20) 
@@ -1308,3 +1309,187 @@ performance::r2(LEMA_intercept_Plot_Plant_pos_deg_RD)
 performance::r2(LEMA_vist_RD)
 performance::r2(LEMA_vist_pos_deg_RD)
 
+
+
+####################################
+# NEW MODELS
+
+###################
+
+LEMA_NB_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                          scale(hete_motif) +
+                                         scale(consp_prob_UNCOUPLED) +scale(heter_prob),
+                                        #ziformula = ~1,
+                                        family = nbinom2(),
+                                        data = fitness_orig_LEMA%>%ungroup() %>%
+                                          filter(DegreeIn>0))
+
+
+CHFU_NB_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                          scale(hete_motif) +
+                                   scale(consp_prob_UNCOUPLED) + scale(heter_prob),
+                                        #ziformula = ~1,
+                                        family = nbinom2(),
+                                        data = fitness_orig_CHFU%>%ungroup() %>%
+                                          filter(DegreeIn>0))
+
+PUPA_NB_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                          scale(hete_motif) +
+                                   scale(consp_prob_UNCOUPLED) + scale(heter_prob),
+                                        #ziformula = ~1,
+                                        family = nbinom2(),
+                                        data = fitness_orig_PUPA%>%ungroup() %>%
+                                          filter(DegreeIn>0))
+
+PUPA_NB_deg_uncoupled2 <- glm.nb(Seeds_GF ~ scale(homo_motif) +
+                                   scale(hete_motif) +
+                                   scale(consp_prob_UNCOUPLED) + scale(heter_prob),
+                                 control = glm.control(maxit = 50),
+                                 data = fitness_orig_PUPA %>% ungroup() %>%
+                                   filter(DegreeIn>0))
+
+
+summary(LEMA_NB_deg_uncoupled)
+
+summary(CHFU_NB_deg_uncoupled)
+
+summary(PUPA_NB_deg_uncoupled)
+summary(PUPA_NB_deg_uncoupled2)
+res_LEMA_NB_deg_uncoupled <- simulateResiduals(fittedModel = LEMA_NB_deg_uncoupled, n = 1500)
+res_CHFU_NB_deg_uncoupled <- simulateResiduals(fittedModel = CHFU_NB_deg_uncoupled, n = 1500)
+res_PUPA_NB_deg_uncoupled <- simulateResiduals(fittedModel = PUPA_NB_deg_uncoupled, n = 1500)
+res_PUPA_NB_deg_uncoupled2 <- simulateResiduals(fittedModel = PUPA_NB_deg_uncoupled2, n = 1500)
+
+plot(res_LEMA_NB_deg_uncoupled)
+plot(res_CHFU_NB_deg_uncoupled)
+plot(res_PUPA_NB_deg_uncoupled)
+plot(res_PUPA_NB_deg_uncoupled2)
+
+performance::r2(LEMA_NB_deg_uncoupled)
+performance::r2(CHFU_NB_deg_uncoupled)
+performance::r2(PUPA_NB_deg_uncoupled)
+performance::r2(PUPA_NB_deg_uncoupled2)
+
+performance::check_collinearity(LEMA_NB_deg_uncoupled,component = "conditional") # All the ( GVIF^(1/(2*Df)) )^2 < 5 
+performance::check_collinearity(CHFU_NB_deg_uncoupled,component = "conditional")
+performance::check_collinearity(PUPA_NB_deg_uncoupled,component = "conditional")
+
+#####################################
+dev.off()
+png("New_Figures/fig6_2.png", width=1961*2, height = 1961*2*800/600, res=300*2)
+
+jtools::plot_summs(CHFU_NB_deg_uncoupled, LEMA_NB_deg_uncoupled,PUPA_NB_deg_uncoupled,inner_ci_level = .9,
+                   coefs = c("Homo-triplets" = "scale(homo_motif)", 
+                             "Hetero-triplets" = "scale(hete_motif)",
+                             "Conspecific pollen\narrival probability\n(uncoupled layers)" = "scale(consp_prob_UNCOUPLED)", 
+                             "Heterospecific pollen\narrival probability" = "scale(heter_prob)"),
+                   model.names = c("C. Fuscatum", "L. Maroccanus", "P. Paludosa"),legend.title = "Plant sp.")+ 
+  theme(legend.text = element_text(face = "italic"))
+
+dev.off()
+library(ggtext)
+library(scales)
+
+My_Theme = theme(
+  axis.title.x = element_text(size = 14),
+  axis.text.x = element_text(size = 14),
+  axis.title.y = element_text(size = 14),
+  axis.text.y = element_text(size = 14),
+  plot.title = element_text(size = 16))
+
+p1 <- jtools::effect_plot(CHFU_NB_deg_uncoupled, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
+                    x.label = "Homo-triplets",
+                    y.label = "Seeds",
+            jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. Fuscatum")))+My_Theme
+p2 <- jtools::effect_plot(LEMA_NB_deg_uncoupled, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
+                    x.label = "Homo-triplets",
+                    y.label = "Seeds",
+                    jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. Maroccanus")))+My_Theme
+p3 <- jtools::effect_plot(PUPA_NB_deg_uncoupled, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
+                    x.label = "Homo-triplets",
+                    y.label = "Seeds",
+                    jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. Paludosa")))+My_Theme
+
+
+
+p4 <- jtools::effect_plot(CHFU_NB_deg_uncoupled, pred = "hete_motif", interval = TRUE, plot.points = TRUE,
+                    x.label = "Hetero-triplets",
+                    y.label = "Seeds",
+                    jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+labs(title=expression(italic("C. Fuscatum")))+My_Theme
+p5 <- jtools::effect_plot(LEMA_NB_deg_uncoupled, pred = "hete_motif", interval = TRUE, plot.points = TRUE,
+                    x.label = "Hetero-triplets",
+                    y.label = "Seeds",
+                    jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. Maroccanus")))+My_Theme
+p6 <- jtools::effect_plot(PUPA_NB_deg_uncoupled, pred = "hete_motif", interval = TRUE, plot.points = TRUE,
+                    x.label = "Hetero-triplets",
+                    y.label = "Seeds",
+                    jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. Paludosa")))+My_Theme
+
+
+
+p7 <- jtools::effect_plot(CHFU_NB_deg_uncoupled, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
+                    x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
+                    y.label = "Seeds", 
+                    jitter = 0.0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. Fuscatum")))+My_Theme
+p8 <- jtools::effect_plot(LEMA_NB_deg_uncoupled, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
+                    x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
+                    y.label = "Seeds", 
+                    jitter = 0.0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. Maroccanus")))+My_Theme
+p9 <- jtools::effect_plot(PUPA_NB_deg_uncoupled, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
+                    x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
+                    y.label = "Seeds", 
+                    jitter = 0.0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. Paludosa")))+My_Theme
+
+
+
+p10 <- jtools::effect_plot(CHFU_NB_deg_uncoupled, pred = heter_prob, interval = TRUE, plot.points = TRUE,
+                    x.label = "Heterospecific pollen\narrival probability",
+                    y.label = "Seeds", 
+                    jitter = 0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. Fuscatum")))+My_Theme
+p11 <- jtools::effect_plot(LEMA_NB_deg_uncoupled, pred = heter_prob, interval = TRUE, plot.points = TRUE,
+                    x.label = "Heterospecific pollen\narrival probability",
+                    y.label = "Seeds", 
+                    jitter = 0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. Maroccanus")))+My_Theme
+p12 <- jtools::effect_plot(PUPA_NB_deg_uncoupled, pred = heter_prob, interval = TRUE, plot.points = TRUE,
+                    x.label = "Heterospecific pollen\narrival probability",
+                    y.label = "Seeds", 
+                    jitter = 0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. Paludosa")))+My_Theme
+
+library(patchwork)
+(p1+p2+p3)/(p4+p5+p6)/(p7+p8+p9)/(p10+p11+p12)
