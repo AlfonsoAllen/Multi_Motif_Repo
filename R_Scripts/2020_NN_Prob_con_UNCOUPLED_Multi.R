@@ -6,7 +6,7 @@ library(igraph)
 library(expm)
 source("R_scripts/functions.R")
 
-
+use_efficiency <- T
 
 #Access layers files
 dir_ini <- getwd()
@@ -32,6 +32,32 @@ for (i in 1:nrow(pollination)){
 
 unique(pollination$ID_Simple[grep(" ",pollination$ID_Simple,ignore.case = T)])
 #No labels with spaces -> Good!
+
+
+# Load GF info -------------
+G_F_list <- read_csv2("Raw_Data/final_Pollinators_2020.csv") %>%
+  filter(ID != "Tabanidae") %>%
+  dplyr::select(G_F,ID_Simple) %>% unique() %>% rename(ID=ID_Simple)
+
+# Remove points from ID names
+G_F_list$ID <- sub("\\.", "", G_F_list$ID)
+G_F_list <- bind_rows(G_F_list,tibble(G_F="None",ID="None"))
+G_F_list <- unique(G_F_list)
+G_F_list$G_F %>% unique() %>% sort()
+
+# Add efficiencies
+G_F_list$efficiency <- NA
+
+if(use_efficiency != T){
+  G_F_list$efficiency <- 1
+  plant_stationary_prob_results_file <- "Processed_data/2020_NN_plant_stationary_prob_results_UNCOUPLED.csv"
+}else{
+  G_F_list$efficiency[grep("_bee",G_F_list$G_F,ignore.case = T)] <- 1.0
+  G_F_list$efficiency[grep("beetles",G_F_list$G_F,ignore.case = T)] <- 0.5
+  G_F_list$efficiency[grep("flie",G_F_list$G_F,ignore.case = T)] <- 0.75
+  G_F_list$efficiency[grep("Wasp",G_F_list$G_F,ignore.case = T)] <- 0.75
+  plant_stationary_prob_results_file <- "Processed_data/2020_NN_plant_stationary_prob_results_efficiency_UNCOUPLED.csv"
+}
 
 
 for (Plot_i in 1:9){
@@ -135,7 +161,20 @@ for (Plot_i in 1:9){
     rename(node_from=node_to,node_to=node_from)
   
   
-  S_edge_list <- bind_rows(S_Links_Plant_Poll,S_Links_Poll_Plant)
+  G_F_list_Plant_Poll <- G_F_list %>% rename(node_to = ID)
+  G_F_list_Poll_Plant <- G_F_list %>% rename(node_from = ID)
+  
+  S_Links_Plant_Poll_eff <- S_Links_Plant_Poll %>% 
+    left_join(G_F_list_Plant_Poll, by ="node_to") %>% 
+    mutate(weight = weight * efficiency) %>% 
+    dplyr::select(-G_F,-efficiency)
+  
+  S_Links_Poll_Plant_eff <- S_Links_Poll_Plant %>% 
+    left_join(G_F_list_Poll_Plant, by ="node_from") %>% 
+    mutate(weight = weight * efficiency) %>% 
+    dplyr::select(-G_F,-efficiency)
+  
+  S_edge_list <- bind_rows(S_Links_Plant_Poll_eff,S_Links_Poll_Plant_eff)
   
   S_edge_list_i <- S_edge_list %>% mutate(Plot=Plot_i)
   
@@ -272,4 +311,4 @@ for (Plot_i in 1:9){
   
 }
 
-write_csv(stationary_prob_final,"Processed_data/2020_NN_plant_stationary_prob_results_UNCOUPLED.csv")
+write_csv(stationary_prob_final,plant_stationary_prob_results_file)

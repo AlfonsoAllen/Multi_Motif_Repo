@@ -1,10 +1,18 @@
 
 library(tidyverse)
 
-Prob_results <- read_csv("Processed_data/2020_NN_plant_stationary_prob_results.csv")
+Prob_results_aux <- read_csv("Processed_data/2020_NN_plant_stationary_prob_results_efficiency.csv")
+Prob_results_UNCOUPLED_aux <- read_csv("Processed_data/2020_NN_plant_stationary_prob_results_efficiency_UNCOUPLED.csv")
 
-Prob_results$consp_prob <- round(Prob_results$consp_prob,10)
-Prob_results$heter_prob <- round(Prob_results$heter_prob,10)
+Prob_results_aux$consp_prob <- round(Prob_results_aux$consp_prob,10)
+Prob_results_aux$heter_prob <- round(Prob_results_aux$heter_prob,10)
+
+Prob_results_UNCOUPLED_aux$consp_prob_UNCOUPLED <- round(Prob_results_UNCOUPLED_aux$consp_prob_UNCOUPLED,10)
+
+Prob_results <- Prob_results_aux %>%
+  left_join(Prob_results_UNCOUPLED_aux, by=c("name","Plot","type","layer","number_plant_nodes_with_visits"))
+
+
 
 plot_labs <-c(
   "Plot 1",
@@ -217,9 +225,47 @@ dev.off()
 library(scales)
 
 png("New_Figures/fig_Probabilities.png", width=1961*2, height = 1961*2*300/600, res=300*2)
-ggplot(Prob_results_exp_nodes,aes(x=consp_prob,y = heter_prob, color = as.factor(Plot)))+
+ggplot(Prob_results_exp_nodes,aes(x=consp_prob_UNCOUPLED,y = heter_prob))+
   geom_point(alpha=0.2, position = "jitter")+
-  #scale_shape_manual(values=1:nlevels(stationary_prob_final$Plant_Simple))+
+  #scale_shape_manual(values=1:nlevels(stationary_prob_final$layer))+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  facet_wrap(vars(layer),nrow = 2,ncol = 5)+
+  geom_abline(aes(slope=1,intercept=0),linetype = "dashed")+
+  scale_color_brewer(palette="Paired")+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Average probability of receiving\ninformation from consp. (uncoupled layers)") + ylab("Average probability of receiving\ninformation from heterosp.")+
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x))) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  theme_bw()+
+  labs(color=NULL,shape=NULL)+
+  theme(legend.position = "bottom")+ theme(strip.text = element_text(face = "italic"))
+dev.off()
+
+
+png("New_Figures/fig_Probabilities.png", width=1961*2, height = 1961*2*300/600, res=300*2)
+ggplot(Prob_results_exp_nodes,aes(x=consp_prob_UNCOUPLED,y = consp_prob))+
+  geom_point(alpha=0.2, position = "jitter")+
+  #scale_shape_manual(values=1:nlevels(stationary_prob_final$layer))+
+  #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
+  facet_wrap(vars(layer),nrow = 2,ncol = 5)+
+  geom_abline(aes(slope=1,intercept=0),linetype = "dashed")+
+  scale_color_brewer(palette="Paired")+
+  #ggtitle(paste0("Plot ",i)) +
+  xlab("Average probability of receiving\ninformation from consp. (uncoupled layers)") + ylab("Average probability of receiving\ninformation from consp.")+
+  scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x))) +
+  scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)))+
+  theme_bw()+
+  labs(color=NULL,shape=NULL)+
+  theme(legend.position = "bottom")+ theme(strip.text = element_text(face = "italic"))
+dev.off()
+
+ggplot(Prob_results_exp_nodes,aes(x=consp_prob_UNCOUPLED,y = heter_prob, color = as.factor(Plot)))+
+  geom_point(alpha=0.2, position = "jitter")+
+  #scale_shape_manual(values=1:nlevels(stationary_prob_final$layer))+
   #facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
   facet_wrap(vars(layer),nrow = 2,ncol = 5)+
   geom_abline(aes(slope=1,intercept=0),linetype = "dashed")+
@@ -233,4 +279,74 @@ ggplot(Prob_results_exp_nodes,aes(x=consp_prob,y = heter_prob, color = as.factor
   theme_bw()+
   labs(color=NULL,shape=NULL)+
   theme(legend.position = "bottom")+ theme(strip.text = element_text(face = "italic"))
-dev.off()
+
+
+plant <- "L. maroccanus"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value < 2.2e-16
+
+plant <- "C. fuscatum"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value < 2.2e-16
+
+plant <- "P. paludosa"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.1356
+
+plant <- "B. macrocarpa"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.05791
+
+plant <- "C. mixtum"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.07186
+
+plant <- "C. tenuiflorum"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.0035
+
+plant <- "M. sulcatus"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.5862
+
+plant <- "S. asper"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.5
+
+plant <- "S. laciniata"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 0.05906
+
+plant <- "S. rubra"
+homo_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(consp_prob_UNCOUPLED) %>% pull()
+hete_plant <- Prob_results_exp_nodes %>% filter(layer == plant) %>% 
+  select(heter_prob) %>% pull()
+wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 1

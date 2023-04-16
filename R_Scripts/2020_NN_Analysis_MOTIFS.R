@@ -598,7 +598,7 @@ png("New_Figures/figA112.png", width=1961*2, height = 1961*2*500/600, res=300*2)
 ggplot(homo_table_exp, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
   geom_bar(position="stack", stat="identity")+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
-  theme_bw()+labs(title="Homo-motifs",
+  theme_bw()+labs(title="Homospecific subgraphs",
                   x ="Plant Species", y = "Number of focal individuals",fill=NULL)+
   theme(legend.position = "bottom")+
   theme(axis.text.x = element_text(angle = 90,vjust=0.5, hjust=1))+ 
@@ -652,7 +652,7 @@ png("New_Figures/figA113.png", width=1961*2, height = 1961*2*500/600, res=300*2)
 ggplot(hete_table_exp, aes(fill=Comparison, y=cant_focal, x=Plant_Label)) + 
   geom_bar(position="stack", stat="identity")+
   facet_wrap(vars(Plot),nrow = 3,ncol = 3,labeller=labeller(Plot= plot_labs))+
-  theme_bw()+labs(title="Hete-motifs",
+  theme_bw()+labs(title="Heterospecific subgraphs",
                   x ="Plant Species", y = "Number of focal individuals",fill=NULL)+
   theme(legend.position = "bottom")+
   theme(axis.text.x = element_text(angle = 90,vjust=0.5, hjust=1))+
@@ -900,7 +900,7 @@ ggplot(data_total2_exp,aes(x=homo_motif+0.5,y = hete_motif+0.5))+
   geom_abline(aes(slope=1,intercept=0),linetype = "dashed")+
   scale_color_brewer(palette="Paired")+
   #ggtitle(paste0("Plot ",i)) +
-  xlab("# Homospecific motifs + 0.5") + ylab("# Heterospecific motifs + 0.5")+
+  xlab("# Homospecific subgraphs + 0.5") + ylab("# Heterospecific subgraphs + 0.5")+
   scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
                 labels = trans_format("log10", math_format(10^.x))) +
   scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
@@ -981,3 +981,4 @@ homo_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>%
 hete_plant <- data_total2_exp %>% filter(Plant_Simple == plant) %>% 
   select(hete_motif) %>% pull()
 wilcox.test(homo_plant, hete_plant, paired = TRUE) #p-value = 1
+
