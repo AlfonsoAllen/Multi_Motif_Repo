@@ -763,7 +763,67 @@ cz_values_function_OUT <- function(edge_module_info_i){
 
 
 #----
-
+load_data_models_2020_3 <- function(path_data_models_overlap="Processed_data/2020_NN_NEW_data_models_phenol_overlap_3.csv",
+                                    path_raw_data_poll="Raw_Data/final_Pollinators_2020.csv"){
+  
+  fitness_final_aux <- read.csv(file = path_data_models_overlap,
+                                header = TRUE,
+                                stringsAsFactors = FALSE) %>%
+    rename(Plant_Simple=Plant) %>% mutate(Seeds_GF = round(Seeds_GF))
+  
+  fitness_final_aux %>% group_by(Plant_Simple) %>% count()
+  fitness_final_aux %>% filter(ID != "None") %>% group_by(Plant_Simple) %>% count()
+  
+  #########################
+  # Add G_F
+  
+  G_F_list <- read_csv2(path_raw_data_poll) %>%
+    filter(ID != "Tabanidae") %>%
+    dplyr::select(G_F,ID_Simple) %>% unique() %>% rename(ID=ID_Simple)
+  
+  # Remove points from ID names
+  G_F_list$ID <- sub("\\.", "", G_F_list$ID)
+  
+  G_F_list <- bind_rows(G_F_list,tibble(G_F="None",ID="None"))
+  
+  G_F_list <- unique(G_F_list)
+  
+  G_F_list$G_F %>% unique() %>% sort()
+  
+  # Sanity check
+  G_F_list %>% group_by(ID) %>% count() %>% filter(n>1)
+  
+  
+  fitness_orig1 <- fitness_final_aux %>% dplyr::left_join(G_F_list,by = "ID")
+  
+  
+  fitness_orig <- fitness_orig1 %>% #filter(Plant_Simple %in% c("CHFU","LEMA","PUPA",
+    #                          "CETE","CHMI","SPRU")) %>% 
+    group_by(Plot,Subplot,Plant_Simple,type_seed_per_fruit) %>%
+    summarise(Seeds_GF=mean(Seeds_GF),
+              visits_GF=sum(visits_GF),
+              homo_motif=sum(homo_motif),
+              hete_motif=sum(hete_motif),
+              Real_PR_Multi=mean(Real_PR_Multi),
+              Real_PR_Layer=mean(Real_PR_Layer),
+              StrengthIn=mean(StrengthIn),
+              StrengthOut=mean(StrengthOut),
+              DegreeIn=mean(DegreeIn),
+              DegreeOut=mean(DegreeOut),
+              Delta=mean(Delta),
+              Ratio=mean(Ratio))
+  
+  
+  # Turn ID, GF and Plot into factors
+  fitness_orig$Plot <- as.factor(fitness_orig$Plot)
+  fitness_orig$Plant_Simple <- as.factor(fitness_orig$Plant_Simple)
+  #fitness_orig$ID <- as.factor(fitness_orig$ID)
+  #fitness_orig$G_F <- as.factor(fitness_orig$G_F)
+  
+  return(fitness_orig)
+  
+  
+}
 
 load_data_models_2020_2 <- function(path_data_models_overlap="Processed_data/2020_NN_NEW_data_models_phenol_overlap_2.csv",
                            path_raw_data_poll="Raw_Data/final_Pollinators_2020.csv"){
