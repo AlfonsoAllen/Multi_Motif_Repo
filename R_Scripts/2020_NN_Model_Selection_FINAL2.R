@@ -137,12 +137,13 @@ ALL_NB_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
 
 
 LEMA_NB_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
-                                          scale(hete_motif) +
-                                         scale(consp_prob_UNCOUPLED)+scale(heter_prob),
-                                        #ziformula = ~1,
-                                        family = nbinom1(),
-                                        data = fitness_orig_LEMA%>%ungroup() %>%
-                                          filter(DegreeIn>0))
+                                            scale(hete_motif) +
+                                            scale(consp_prob_UNCOUPLED) + 
+                                            scale(heter_prob),
+                                            #ziformula = ~1,
+                                            family = nbinom1(),
+                                            data = fitness_orig_LEMA%>%ungroup() %>%
+                                                  filter(DegreeIn>0))
 
 LEMA_NB_deg_uncoupled2 <- glm.nb(Seeds_GF ~ scale(homo_motif) +
                                    scale(hete_motif) +
@@ -713,3 +714,135 @@ performance::check_collinearity(ALL_NB_deg_uncoupled_plot_RF) # OK
 performance::check_collinearity(LEMA_NB_deg_uncoupled_plot_RF) # OK # OK # All the ( GVIF^(1/(2*Df)) )^2 < 5 
 performance::check_collinearity(CHFU_NB_deg_uncoupled_plot_RF) # OK
 performance::check_collinearity(PUPA_NB_deg_uncoupled_plot_RF) # OK
+
+
+
+
+###nacho
+
+head(as.data.frame(fitness_orig_LEMA))
+
+plot(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$homo_motif)
+m <- lm(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$homo_motif)
+plot(m)
+summary(m)
+plot(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$homo_motif, las = 1)
+abline(m) #ok
+
+plot(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$hete_motif)
+m <- lm(fitness_orig_LEMA$Seeds_GF+1 ~ fitness_orig_LEMA$hete_motif) 
+plot(m) #Terrible nb needed.
+summary(m)
+plot(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$hete_motif, las = 1)
+abline(m) #ok
+
+plot(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$consp_prob_UNCOUPLED)
+m <- lm(fitness_orig_LEMA$Seeds_GF[-c(110, 112)] ~ fitness_orig_LEMA$consp_prob_UNCOUPLED[-c(110, 112)]) 
+plot(m) #Bad, nb?
+summary(m)
+plot(fitness_orig_LEMA$Seeds_GF[-c(110, 112)] ~ fitness_orig_LEMA$consp_prob_UNCOUPLED[-c(110, 112)], las = 1)
+abline(m) #Al reves
+
+plot(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$heter_prob)
+m <- lm(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$heter_prob) 
+which(fitness_orig_LEMA$heter_prob > 0.02) #110, 112
+m <- lm(fitness_orig_LEMA$Seeds_GF[-c(110, 112)] ~ fitness_orig_LEMA$heter_prob[-c(110, 112)]) 
+plot(m) #good without outlyers
+summary(m)
+plot(fitness_orig_LEMA$Seeds_GF[-c(110, 112)] ~ fitness_orig_LEMA$heter_prob[-c(110, 112)], las = 1)
+abline(m) #Al reves
+ 
+
+head(as.data.frame(fitness_orig_PUPA))
+
+plot(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$homo_motif)
+m <- lm(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$homo_motif)
+plot(m)
+summary(m)
+plot(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$homo_motif, las = 1)
+abline(m) #ok 
+
+plot(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$hete_motif)
+m <- lm(fitness_orig_PUPA$Seeds_GF+1 ~ fitness_orig_PUPA$hete_motif) 
+plot(m) #pasables
+summary(m)
+plot(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$hete_motif, las = 1)
+abline(m) #ok
+
+plot(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$consp_prob_UNCOUPLED)
+which(fitness_orig_PUPA$consp_prob_UNCOUPLED > 0.025) #23, 24
+m <- lm(fitness_orig_PUPA$Seeds_GF[-c(23, 24)] ~ fitness_orig_PUPA$consp_prob_UNCOUPLED[-c(23, 24)]) 
+plot(m) #Not bad
+summary(m)
+plot(fitness_orig_PUPA$Seeds_GF[-c(23, 24)] ~ fitness_orig_PUPA$consp_prob_UNCOUPLED[-c(23, 24)], las = 1)
+abline(m) #De libro
+
+plot(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$heter_prob)
+m <- lm(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$heter_prob) 
+plot(m) #good without outlyers
+summary(m)
+plot(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$heter_prob, las = 1)
+abline(m) #Al reves pero ns
+
+
+
+head(as.data.frame(fitness_orig_CHFU))
+
+plot(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$homo_motif)
+m <- lm(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$homo_motif)
+plot(m)
+summary(m)
+plot(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$homo_motif, las = 1)
+abline(m) #ok 
+
+plot(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$hete_motif)
+m <- lm(fitness_orig_CHFU$Seeds_GF+1 ~ fitness_orig_CHFU$hete_motif) 
+plot(m) #terribles
+summary(m)
+plot(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$hete_motif, las = 1)
+abline(m) #ok
+
+plot(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$consp_prob_UNCOUPLED)
+m <- lm(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$consp_prob_UNCOUPLED) 
+plot(m) #malillos
+summary(m)
+plot(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$consp_prob_UNCOUPLED, las = 1)
+abline(m) #De libro
+
+plot(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$heter_prob)
+m <- lm(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$heter_prob) 
+plot(m) #terribles
+summary(m)
+plot(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$heter_prob, las = 1)
+abline(m) #Al reves pero ns
+
+#joint models
+
+m <- lm(fitness_orig_CHFU$Seeds_GF ~ fitness_orig_CHFU$heter_prob +
+                                     fitness_orig_CHFU$consp_prob_UNCOUPLED+ 
+                                     fitness_orig_CHFU$homo_motif + 
+                                     fitness_orig_CHFU$hete_motif) 
+plot(m) #good
+summary(m) # nada sig, pero tendencias logicas.
+
+m <- lm(fitness_orig_PUPA$Seeds_GF[-c(23, 24)] ~ fitness_orig_PUPA$heter_prob[-c(23, 24)] +
+                      fitness_orig_PUPA$consp_prob_UNCOUPLED[-c(23, 24)]+ 
+                      fitness_orig_PUPA$homo_motif[-c(23, 24)] + 
+                      fitness_orig_PUPA$hete_motif[-c(23, 24)]) 
+plot(m) #pasables
+summary(m) # Cons prob sig. Algunas tendencias raras.
+
+m <- lm(fitness_orig_LEMA$Seeds_GF[-c(110, 112)] ~ fitness_orig_LEMA$heter_prob[-c(110, 112)] +
+          fitness_orig_LEMA$consp_prob_UNCOUPLED[-c(110, 112)] + 
+          fitness_orig_LEMA$homo_motif[-c(110, 112)] + 
+          fitness_orig_LEMA$hete_motif[-c(110, 112)]) 
+plot(m) #buenos
+summary(m) # homo sig. Algunas tendencias raras.
+
+#heter_pron near sig...
+m <- lm(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$heter_prob +
+          fitness_orig_LEMA$consp_prob_UNCOUPLED + 
+          fitness_orig_LEMA$homo_motif + 
+          fitness_orig_LEMA$hete_motif) 
+plot(m) #buenos
+summary(m) # homo sig. Algunas tendencias raras.
