@@ -154,13 +154,16 @@ fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "SCLA"] <- "S. la
 fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "SOAS"] <- "S. asper"
 fitness_orig_label_expl$Plant[fitness_orig_label_expl$Plant == "SPRU"] <- "S. rubra"
 
+#png("New_Figures/Ecoflor_visits.png", width=1476*3, height = 1476*2.5, res=300*2)
 ggplot(fitness_orig_label_expl %>% filter(G_F!="None"), aes(fill=G_F, y=visits_GF, x=Plant)) + 
   geom_bar(position="stack", stat="identity")+ theme_bw()+
   #scale_fill_brewer(palette = 'Paired')+ 
   scale_fill_manual(values = mycolors) +
   #scale_y_continuous(trans = scales::pseudo_log_trans(base = 10,sigma = 100))+
   labs(x ="Plant species", y = "Number of visits",fill=NULL)+
-  theme(legend.position="bottom",axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(legend.position="bottom",axis.text.x = element_text(angle = 45, hjust = 1))+
+  guides(fill=guide_legend(nrow=2,byrow=TRUE))
+#dev.off()
 
 png("New_Figures/figA71.png", width=1476*2, height = 1476*2*800/600, res=300*2)
 ggplot(fitness_orig_label_expl %>% filter(G_F!="None"), aes(fill=G_F, y=visits_GF, x=Plant)) + 
