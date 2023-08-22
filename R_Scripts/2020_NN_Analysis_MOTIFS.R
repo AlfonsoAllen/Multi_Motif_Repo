@@ -520,7 +520,7 @@ ggplot(homo_example)+
   geom_histogram(aes(x=triplets),binwidth=1)+
   theme_bw()+
   geom_vline(aes(xintercept=as.numeric(homo_table[i,3])), colour="deepskyblue",linetype = "dashed",size=1)+
-  labs(x="Total amount of homospecific networks", y = "Number of randomized networks",
+  labs(x="Total amount of homospecific subgraphs", y = "Number of randomized networks",
        title = expression(paste("Plot ","1 ",italic("L. maroccanus"), sep=" ")))
 dev.off()
 
