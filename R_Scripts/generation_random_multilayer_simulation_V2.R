@@ -240,3 +240,102 @@ for(number_pollinator_sp in list_number_pollinator_sp){
 # Commented for security reasons
 # write_csv(data_changing_pollinators,"Processed_data/Data_simulation/data_changing_pollinators_V2.csv")
 
+
+# SIMULATIONS INCREASING INDIVIDUALS AND INTRA--------------
+
+number_interlinks <- 20
+number_intralinks <- 160
+number_plant_individuals <- 80
+number_pollinator_sp <- 25
+
+set.seed(114)
+
+data_increasing_mix <- NULL
+
+
+  
+for(rep in 1:repetitions){
+    
+  source("R_Scripts/data2generate_plant_phenologies_simulations.R")
+  interaction_list_with_phen <- generate_interaction_list_with_phen(number_plant_individuals,
+                                                                      number_pollinator_sp,
+                                                                      number_intralinks,
+                                                                      average_intralink_strenght,
+                                                                      number_interlinks,
+                                                                      mean_phenology_plant_sp_1,
+                                                                      sd_phenology_plant_sp_1,
+                                                                      mean_phenology_plant_sp_2,
+                                                                      sd_phenology_plant_sp_2,
+                                                                      mean_phenology_plant_sp_3,
+                                                                      sd_phenology_plant_sp_3,
+                                                                      mean_phenology_plant_sp_4,
+                                                                      sd_phenology_plant_sp_4,
+                                                                      mean_phenology_plant_sp_5,
+                                                                      sd_phenology_plant_sp_5)
+    
+  interaction_list_with_phen$Plot <- paste0(rep,"_",number_intralinks,"_intralinks",
+                                              number_interlinks,"_interlinks",
+                                              number_plant_individuals,"_individuals",
+                                              number_pollinator_sp,"_pollinators")
+    
+  interaction_list_with_phen <- interaction_list_with_phen[,c("Plot","Subplot","Plant","ID",
+                                                                "Visits","Week")]
+    
+  data_increasing_mix <- bind_rows(data_increasing_mix,interaction_list_with_phen)
+}
+  
+
+
+# Commented for security reasons
+# write_csv(data_increasing_mix,"Processed_data/Data_simulation/data_increasing_mix_V2.csv")
+
+
+
+# SIMULATIONS DECREASING INDIVIDUALS AND INTRA--------------
+
+number_interlinks <- 20
+number_intralinks <- 120
+number_plant_individuals <- 60
+number_pollinator_sp <- 25
+
+set.seed(112)
+
+data_decreasing_mix <- NULL
+
+
+
+for(rep in 1:repetitions){
+  
+  source("R_Scripts/data2generate_plant_phenologies_simulations.R")
+  interaction_list_with_phen <- generate_interaction_list_with_phen(number_plant_individuals,
+                                                                    number_pollinator_sp,
+                                                                    number_intralinks,
+                                                                    average_intralink_strenght,
+                                                                    number_interlinks,
+                                                                    mean_phenology_plant_sp_1,
+                                                                    sd_phenology_plant_sp_1,
+                                                                    mean_phenology_plant_sp_2,
+                                                                    sd_phenology_plant_sp_2,
+                                                                    mean_phenology_plant_sp_3,
+                                                                    sd_phenology_plant_sp_3,
+                                                                    mean_phenology_plant_sp_4,
+                                                                    sd_phenology_plant_sp_4,
+                                                                    mean_phenology_plant_sp_5,
+                                                                    sd_phenology_plant_sp_5)
+  
+  interaction_list_with_phen$Plot <- paste0(rep,"_",number_intralinks,"_intralinks",
+                                            number_interlinks,"_interlinks",
+                                            number_plant_individuals,"_individuals",
+                                            number_pollinator_sp,"_pollinators")
+  
+  interaction_list_with_phen <- interaction_list_with_phen[,c("Plot","Subplot","Plant","ID",
+                                                              "Visits","Week")]
+  
+  data_decreasing_mix <- bind_rows(data_decreasing_mix,interaction_list_with_phen)
+}
+
+
+
+# Commented for security reasons
+# write_csv(data_decreasing_mix,"Processed_data/Data_simulation/data_decreasing_mix_V2.csv")
+
