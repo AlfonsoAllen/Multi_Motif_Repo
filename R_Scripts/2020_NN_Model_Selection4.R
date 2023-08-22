@@ -8,14 +8,29 @@ fitness_orig_init <- load_data_models_2020_2()
 
 # Add consespecific and heterospecific probabilities
 
-Prob_results <- read_csv("Processed_data/2020_NN_plant_stationary_prob_results.csv") %>%
+use_efficiency <- T
+
+if(use_efficiency != T){
+  
+  plant_stationary_prob_results_file <- "Processed_data/2020_NN_plant_stationary_prob_results.csv"
+  plant_stationary_prob_results_file_UNCOUPLED <- "Processed_data/2020_NN_plant_stationary_prob_results_UNCOUPLED.csv"
+
+  }else{
+    
+    plant_stationary_prob_results_file <- "Processed_data/2020_NN_plant_stationary_prob_results_efficiency.csv"
+    plant_stationary_prob_results_file_UNCOUPLED <- "Processed_data/2020_NN_plant_stationary_prob_results_efficiency_UNCOUPLED.csv"
+    
+}
+
+
+Prob_results <- read_csv(plant_stationary_prob_results_file) %>%
   separate(name,sep=" ",c("Subplot","Plant_Simple")) %>% dplyr::select(-type,-layer)
 
 number_plant_nodes <- fitness_orig_init %>% group_by(Plot) %>% count() %>%
   rename(total_number_plant_nodes=n)
 
 
-Prob_results_UNCOUPLED <- read_csv("Processed_data/2020_NN_plant_stationary_prob_results_UNCOUPLED.csv") %>%
+Prob_results_UNCOUPLED <- read_csv(plant_stationary_prob_results_file_UNCOUPLED) %>%
   separate(name,sep=" ",c("Subplot","Plant_Simple")) %>% 
   dplyr::select(-type,-layer,- number_plant_nodes_with_visits)
 
