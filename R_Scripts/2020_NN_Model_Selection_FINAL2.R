@@ -62,6 +62,16 @@ fitness_orig <- fitness_orig  %>% mutate(ratio=heter_prob/(consp_prob_UNCOUPLED)
 fitness.data <- subset(fitness_orig,Seeds_GF > 0)
 
 fitness_orig %>% filter(type_seed_per_fruit=="Individual")
+
+cor.test(fitness_orig$consp_prob_UNCOUPLED,fitness_orig$consp_prob, method = "spearman")
+
+ggplot(fitness_orig_PUPA, aes(x=Seeds_GF))+
+  geom_histogram(bins = 110)+
+  labs(title ="PUPA")
+
+ggplot(fitness_orig_CHFU, aes(x=Seeds_GF))+
+  geom_histogram(bins = 110)+
+  labs(title ="CHFU")
 #########
 
 # Load libraries for analysis-----
@@ -86,6 +96,7 @@ ggplot(fitness_orig %>% filter(DegreeIn>0),aes(x=Seeds_GF,y=visits_GF))+
   facet_wrap(~Plant_Simple)+
   labs(title = "With visits")
 
+cor.test(fitness_orig$consp_prob_UNCOUPLED,fitness_orig$consp_prob,method="spearman")
 
 ################
 # LEMA
@@ -114,7 +125,7 @@ fitness.data_CHFU$Plot <- as.factor(as.numeric(fitness.data_CHFU$Plot))
 
 fitness_orig_PUPA <- fitness_orig %>% filter(Plant_Simple=="PUPA")
 fitness.data_PUPA <- fitness.data %>% filter(Plant_Simple=="PUPA")
-
+fitness_orig_PUPA <- fitness_orig_PUPA[c(-23,-24),]
 fitness.data_PUPA$Plot %>% unique() 
 
 ###################################
@@ -123,8 +134,117 @@ length(fitness_orig_LEMA$visits_GF)
 length(fitness_orig_PUPA$visits_GF)
 ###################
 
+
+cor.test(fitness_orig_LEMA$Seeds_GF,fitness_orig_LEMA$visits_GF,method="spearman")
+cor.test(fitness_orig_PUPA$Seeds_GF,fitness_orig_PUPA$visits_GF,method="spearman")
 ####################################
-# NEW MODELS
+# LINEAR MODELS
+###################
+
+ALL_LM_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                  scale(hete_motif) +
+                                  scale(consp_prob_UNCOUPLED)+scale(heter_prob) + Plant_Simple,
+                                #ziformula = ~1,
+                                family = gaussian(),
+                                data = fitness_orig %>% ungroup() %>%
+                                  filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
+
+
+LEMA_LM_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                   scale(hete_motif) +
+                                   scale(consp_prob_UNCOUPLED) + 
+                                   scale(heter_prob),
+                                 #ziformula = ~1,
+                                 family = gaussian(),
+                                 data = fitness_orig_LEMA%>%ungroup() %>%
+                                   filter(DegreeIn>0))
+
+LEMA_LM_deg_uncoupled2 <- lm(Seeds_GF ~ scale(homo_motif) +
+                                   scale(hete_motif) +
+                                   scale(consp_prob_UNCOUPLED)+scale(heter_prob) ,
+                                 data = fitness_orig_LEMA%>%ungroup() %>%
+                                   filter(DegreeIn>0))
+
+
+CHFU_LM_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                   scale(hete_motif) +
+                                   scale(consp_prob_UNCOUPLED)+scale(heter_prob),
+                                 #ziformula = ~1,
+                                 family = gaussian(),
+                                 data = fitness_orig_CHFU%>%ungroup() %>%
+                                   filter(DegreeIn>0))
+
+CHFU_LM_deg_uncoupled2 <- lm(Seeds_GF ~ scale(homo_motif) +
+                                   scale(hete_motif) +
+                                   scale(consp_prob_UNCOUPLED)+scale(heter_prob) ,
+                                 data = fitness_orig_CHFU%>%ungroup() %>%
+                                   filter(DegreeIn>0))
+
+PUPA_LM_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                   scale(hete_motif) +
+                                   scale(consp_prob_UNCOUPLED)+scale(heter_prob),
+                                 #ziformula = ~1,
+                                 family = gaussian(),
+                                 data = fitness_orig_PUPA%>%ungroup() %>%
+                                   filter(DegreeIn>0))
+
+PUPA_LM_deg_uncoupled2 <- lm(Seeds_GF ~ scale(homo_motif) +
+                                   scale(hete_motif) +
+                                   scale(consp_prob_UNCOUPLED)+scale(heter_prob) ,
+                                 data = fitness_orig_PUPA %>% ungroup() %>%
+                                   filter(DegreeIn>0))
+
+summary(ALL_LM_deg_uncoupled)
+summary(LEMA_LM_deg_uncoupled)
+summary(LEMA_LM_deg_uncoupled2)
+summary(CHFU_LM_deg_uncoupled)
+summary(CHFU_LM_deg_uncoupled2)
+summary(PUPA_LM_deg_uncoupled)
+summary(PUPA_LM_deg_uncoupled2)
+
+plot(hatvalues(LEMA_LM_deg_uncoupled2))
+plot(hatvalues(CHFU_LM_deg_uncoupled2))
+plot(hatvalues(PUPA_LM_deg_uncoupled2))
+
+res_ALL_LM_deg_uncoupled <- simulateResiduals(fittedModel = ALL_LM_deg_uncoupled, n = 1500)
+res_LEMA_LM_deg_uncoupled <- simulateResiduals(fittedModel = LEMA_LM_deg_uncoupled, n = 1500)
+res_CHFU_LM_deg_uncoupled <- simulateResiduals(fittedModel = CHFU_LM_deg_uncoupled, n = 1500)
+res_PUPA_LM_deg_uncoupled <- simulateResiduals(fittedModel = PUPA_LM_deg_uncoupled, n = 1500)
+res_LEMA_LM_deg_uncoupled2 <- simulateResiduals(fittedModel = LEMA_LM_deg_uncoupled2, n = 1500)
+res_CHFU_LM_deg_uncoupled2 <- simulateResiduals(fittedModel = CHFU_LM_deg_uncoupled2, n = 1500)
+res_PUPA_LM_deg_uncoupled2 <- simulateResiduals(fittedModel = PUPA_LM_deg_uncoupled2, n = 1500)
+
+plot(res_ALL_LM_deg_uncoupled) #Not OK
+plot(res_LEMA_LM_deg_uncoupled) # Outliers
+plot(res_LEMA_LM_deg_uncoupled2) # OK
+plot(res_CHFU_LM_deg_uncoupled) # OK
+plot(res_CHFU_LM_deg_uncoupled2) # OK
+plot(res_PUPA_LM_deg_uncoupled) # OK
+plot(res_PUPA_LM_deg_uncoupled2) # OK
+
+performance::check_model(LEMA_LM_deg_uncoupled2) # OK
+performance::check_model(CHFU_LM_deg_uncoupled2)# OK
+performance::check_model(PUPA_LM_deg_uncoupled2)# OK
+
+performance::r2(ALL_LM_deg_uncoupled)
+performance::r2(LEMA_LM_deg_uncoupled) # 0.52????
+performance::r2(LEMA_LM_deg_uncoupled2) # adj. R2: 0.152
+performance::r2(CHFU_LM_deg_uncoupled)
+performance::r2(CHFU_LM_deg_uncoupled2) #  adj. R2: -0.036
+performance::r2(PUPA_LM_deg_uncoupled)
+performance::r2(PUPA_LM_deg_uncoupled2) #  adj. R2: 0.303
+
+performance::check_collinearity(LEMA_LM_deg_uncoupled) # OK 
+performance::check_collinearity(CHFU_LM_deg_uncoupled) # OK
+performance::check_collinearity(PUPA_LM_deg_uncoupled) # OK
+
+performance::check_collinearity(LEMA_LM_deg_uncoupled2) # OK
+performance::check_collinearity(CHFU_LM_deg_uncoupled2)# OK
+performance::check_collinearity(PUPA_LM_deg_uncoupled2)# OK
+
+
+####################################
+# NEGATIVE BINOMIAL MODELS
 ###################
 
 ALL_NB_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
@@ -140,7 +260,7 @@ LEMA_NB_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                             scale(hete_motif) +
                                             scale(consp_prob_UNCOUPLED) + 
                                             scale(heter_prob),
-                                            #ziformula = ~1,
+                                            ziformula = ~1,
                                             family = nbinom1(),
                                             data = fitness_orig_LEMA%>%ungroup() %>%
                                                   filter(DegreeIn>0))
@@ -155,7 +275,7 @@ LEMA_NB_deg_uncoupled2 <- glm.nb(Seeds_GF ~ scale(homo_motif) +
 CHFU_NB_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                           scale(hete_motif) +
                                    scale(consp_prob_UNCOUPLED)+scale(heter_prob),
-                                        #ziformula = ~1,
+                                        ziformula = ~1,
                                         family = nbinom1(),
                                         data = fitness_orig_CHFU%>%ungroup() %>%
                                           filter(DegreeIn>0))
@@ -169,7 +289,7 @@ CHFU_NB_deg_uncoupled2 <- glm.nb(Seeds_GF ~ scale(homo_motif) +
 PUPA_NB_deg_uncoupled <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                           scale(hete_motif) +
                                    scale(consp_prob_UNCOUPLED)+scale(heter_prob),
-                                        #ziformula = ~1,
+                                        ziformula = ~1,
                                         family = nbinom1(),
                                         data = fitness_orig_PUPA%>%ungroup() %>%
                                           filter(DegreeIn>0))
@@ -205,161 +325,92 @@ plot(res_CHFU_NB_deg_uncoupled2) # OK
 plot(res_PUPA_NB_deg_uncoupled) # OK
 plot(res_PUPA_NB_deg_uncoupled2) # OK
 
+performance::check_model(LEMA_NB_deg_uncoupled2) # Not OK
+performance::check_model(CHFU_NB_deg_uncoupled2)# Not OK
+performance::check_model(PUPA_NB_deg_uncoupled2)# Not OK
+
+
+# Marginal R2 of NB models fitted with glmmtmb does not make sense
+
 performance::r2(ALL_NB_deg_uncoupled)
-performance::r2(LEMA_NB_deg_uncoupled) # 0.52????
+performance::r2(LEMA_NB_deg_uncoupled) #  Conditional R2: N0.22
 performance::r2(LEMA_NB_deg_uncoupled2) # Nagelkerke's R2: 0.272
-performance::r2(CHFU_NB_deg_uncoupled)
+performance::r2(CHFU_NB_deg_uncoupled) #  Conditional R2: 106
 performance::r2(CHFU_NB_deg_uncoupled2) # Nagelkerke's R2: 0.046
-performance::r2(PUPA_NB_deg_uncoupled)
+performance::r2(PUPA_NB_deg_uncoupled) #  Conditional R2: 206
 performance::r2(PUPA_NB_deg_uncoupled2) # Nagelkerke's R2: 0.100
 
 performance::check_collinearity(LEMA_NB_deg_uncoupled) # OK 
 performance::check_collinearity(CHFU_NB_deg_uncoupled) # OK
-performance::check_collinearity(PUPA_NB_deg_uncoupled) # OK
+performance::check_collinearity(PUPA_NB_deg_uncoupled) # Modetare correlation hete
 
 performance::check_collinearity(LEMA_NB_deg_uncoupled2) # OK
 performance::check_collinearity(CHFU_NB_deg_uncoupled2)# OK
 performance::check_collinearity(PUPA_NB_deg_uncoupled2)# OK
 
 #####################################
-dev.off()
-png("New_Figures/fig6_3.png", width=1961*2, height = 1961*2*800/600, res=300*2)
+####################################
+# LINEAR MODELS WITH VISITS
+####################################
 
-jtools::plot_summs(CHFU_NB_deg_uncoupled2, LEMA_NB_deg_uncoupled2,PUPA_NB_deg_uncoupled2,inner_ci_level = .9,
-                   coefs = c("Homo-triplets" = "scale(homo_motif)", 
-                             "Hetero-triplets" = "scale(hete_motif)",
-                             "Conspecific pollen\narrival probability\n(uncoupled layers)" = "scale(consp_prob_UNCOUPLED)", 
-                             "Heterospecific pollen\narrival probability" = "scale(heter_prob)"),
-                   model.names = c("C. fuscatum", "L. maroccanus", "P. paludosa"),legend.title = "Plant sp.")+ 
-  theme(legend.text = element_text(face = "italic"))
-
-dev.off()
-
-library(ggtext)
-library(scales)
-
-My_Theme = theme(
-  axis.title.x = element_text(size = 14),
-  axis.text.x = element_text(size = 14),
-  axis.title.y = element_text(size = 14),
-  axis.text.y = element_text(size = 14),
-  plot.title = element_text(size = 16))
-
-p1 <- jtools::effect_plot(CHFU_NB_deg_uncoupled, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
-                    x.label = "Homo-triplets",
-                    y.label = "Seeds/Flower",
-                    colors = "gray",line.thickness = 1.1,
-            jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("C. fuscatum")))+My_Theme
-p2 <- jtools::effect_plot(LEMA_NB_deg_uncoupled, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
-                    x.label = "Homo-triplets",
-                    y.label = "Seeds/Flower",
-                    colors = "black",line.thickness = 2.2,
-                    jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("L. maroccanus")))+My_Theme
-p3 <- jtools::effect_plot(PUPA_NB_deg_uncoupled, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
-                    x.label = "Homo-triplets",
-                    y.label = "Seeds/Flower",
-                    colors = "gray",line.thickness = 1.1,
-                    jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("P. paludosa")))+My_Theme
+ALL_LM_deg_uncoupled_visits <- lm(Seeds_GF ~ scale(homo_motif) +
+                                        scale(hete_motif) +
+                                        scale(consp_prob_UNCOUPLED)+scale(heter_prob) +
+                                        scale(visits_GF),
+                                      data = fitness_orig %>% ungroup() %>%
+                                        filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
 
 
+LEMA_LM_deg_uncoupled_visits <- lm(Seeds_GF ~ scale(homo_motif) +
+                                         scale(hete_motif) +
+                                         scale(consp_prob_UNCOUPLED)+scale(heter_prob) +
+                                         scale(visits_GF),
+                                       data = fitness_orig_LEMA%>%ungroup() %>%
+                                         filter(DegreeIn>0))
 
-p4 <- jtools::effect_plot(CHFU_NB_deg_uncoupled, pred = "hete_motif", interval = TRUE, plot.points = TRUE,
-                    x.label = "Hetero-triplets",
-                    y.label = "Seeds/Flower",
-                    colors = "gray",line.thickness = 1,
-                    jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-labs(title=expression(italic("C. fuscatum")))+My_Theme
-p5 <- jtools::effect_plot(LEMA_NB_deg_uncoupled, pred = "hete_motif", interval = TRUE, plot.points = TRUE,
-                    x.label = "Hetero-triplets",
-                    y.label = "Seeds/Flower",
-                    colors = "gray",line.thickness = 1,
-                    jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("L. maroccanus")))+My_Theme
-p6 <- jtools::effect_plot(PUPA_NB_deg_uncoupled, pred = "hete_motif", interval = TRUE, plot.points = TRUE,
-                    x.label = "Hetero-triplets",
-                    y.label = "Seeds/Flower",
-                    colors = "black",line.thickness = 2.2,
-                    jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("P. paludosa")))+My_Theme
+CHFU_LM_deg_uncoupled_visits <- lm(Seeds_GF ~ scale(homo_motif) +
+                                         scale(hete_motif) +
+                                         scale(consp_prob_UNCOUPLED)+scale(heter_prob) +
+                                         scale(visits_GF),
+                                       data = fitness_orig_CHFU%>%ungroup() %>%
+                                         filter(DegreeIn>0))
 
+PUPA_LM_deg_uncoupled_visits <- lm(Seeds_GF ~ scale(homo_motif) +
+                                         scale(hete_motif) +
+                                         scale(consp_prob_UNCOUPLED)+scale(heter_prob) +
+                                         scale(visits_GF),
+                                       data = fitness_orig_PUPA %>% ungroup() %>%
+                                         filter(DegreeIn>0))
 
+summary(ALL_LM_deg_uncoupled_visits)
+summary(LEMA_LM_deg_uncoupled_visits)
+summary(CHFU_LM_deg_uncoupled_visits)
+summary(PUPA_LM_deg_uncoupled_visits)
 
-p7 <- jtools::effect_plot(CHFU_NB_deg_uncoupled, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
-                    x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
-                    y.label = "Seeds/Flower", 
-                    colors = "gray",line.thickness = 1,
-                    jitter = 0.0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("C. fuscatum")))+My_Theme
-p8 <- jtools::effect_plot(LEMA_NB_deg_uncoupled, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
-                    x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
-                    y.label = "Seeds/Flower", 
-                    colors = "gray",line.thickness = 1,
-                    jitter = 0.0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("L. maroccanus")))+My_Theme
-p9 <- jtools::effect_plot(PUPA_NB_deg_uncoupled, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
-                    x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
-                    y.label = "Seeds/Flower", 
-                    colors = "gray",line.thickness = 1,
-                    jitter = 0.0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("P. paludosa")))+My_Theme
+res_ALL_LM_deg_uncoupled_visits <- simulateResiduals(fittedModel = ALL_LM_deg_uncoupled_visits, n = 1500)
+res_LEMA_LM_deg_uncoupled_visits <- simulateResiduals(fittedModel = LEMA_LM_deg_uncoupled_visits, n = 1500)
+res_CHFU_LM_deg_uncoupled_visits <- simulateResiduals(fittedModel = CHFU_LM_deg_uncoupled_visits, n = 1500)
+res_PUPA_LM_deg_uncoupled_visits <- simulateResiduals(fittedModel = PUPA_LM_deg_uncoupled_visits, n = 1500)
 
+plot(res_ALL_LM_deg_uncoupled_visits) # almost OK
+plot(res_LEMA_LM_deg_uncoupled_visits) # almost OK
+plot(res_CHFU_LM_deg_uncoupled_visits) # OK 
+plot(res_PUPA_LM_deg_uncoupled_visits) # Almost OK
 
+performance::r2(ALL_LM_deg_uncoupled_visits) # adj. R2: 0.211
+performance::r2(LEMA_LM_deg_uncoupled_visits) # adj. R2: 0.174
+performance::r2(CHFU_LM_deg_uncoupled_visits) #  adj. R2: -0.056
+performance::r2(PUPA_LM_deg_uncoupled_visits) #  adj. R2: 0.283
 
-p10 <- jtools::effect_plot(CHFU_NB_deg_uncoupled, pred = heter_prob, interval = TRUE, plot.points = TRUE,
-                    x.label = "Heterospecific pollen\narrival probability",
-                    y.label = "Seeds/Flower", 
-                    colors = "gray",line.thickness = 1,
-                    jitter = 0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("C. fuscatum")))+My_Theme
-p11 <- jtools::effect_plot(LEMA_NB_deg_uncoupled, pred = heter_prob, interval = TRUE, plot.points = TRUE,
-                    x.label = "Heterospecific pollen\narrival probability",
-                    y.label = "Seeds/Flower", 
-                    colors = "black",line.thickness = 2.2,
-                    jitter = 0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("L. maroccanus")))+My_Theme
-p12 <- jtools::effect_plot(PUPA_NB_deg_uncoupled, pred = heter_prob, interval = TRUE, plot.points = TRUE,
-                    x.label = "Heterospecific pollen\narrival probability",
-                    y.label = "Seeds/Flower", 
-                    colors = "gray",line.thickness = 1,
-                    jitter = 0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("P. paludosa")))+My_Theme
+performance::check_collinearity(ALL_LM_deg_uncoupled_visits) #OK
+performance::check_collinearity(LEMA_LM_deg_uncoupled_visits) #OK # All the ( GVIF^(1/(2*Df)) )^2 < 5 
+performance::check_collinearity(CHFU_LM_deg_uncoupled_visits) #OK
+performance::check_collinearity(PUPA_LM_deg_uncoupled_visits) #OK
 
-library(patchwork)
-png("New_Figures/fig6_3.png", width=2000*4, height = 2000*2*2, res=300*2)
-(p7+p8+p9)/(p10+p11+p12)/(p1+p2+p3)/(p4+p5+p6)
-dev.off()
-
-
+#####################################
 
 ####################################
-# NEW MODELS WITH VISITS
+# NEGATIVE BINOMIAL MODELS WITH VISITS
 ####################################
 
 ALL_NB_deg_uncoupled_visits <- glm.nb(Seeds_GF ~ scale(homo_motif) +
@@ -405,7 +456,7 @@ res_PUPA_NB_deg_uncoupled_visits <- simulateResiduals(fittedModel = PUPA_NB_deg_
 plot(res_ALL_NB_deg_uncoupled_visits) # NOT OK
 plot(res_LEMA_NB_deg_uncoupled_visits) # OK
 plot(res_CHFU_NB_deg_uncoupled_visits) # OK 
-plot(res_PUPA_NB_deg_uncoupled_visits) # Almost OK
+plot(res_PUPA_NB_deg_uncoupled_visits) # OK
 
 performance::r2(ALL_NB_deg_uncoupled_visits) # Nagelkerke's R2: 0.210
 performance::r2(LEMA_NB_deg_uncoupled_visits) # Nagelkerke's R2: 0.317
@@ -417,158 +468,48 @@ performance::check_collinearity(LEMA_NB_deg_uncoupled_visits) #OK # All the ( GV
 performance::check_collinearity(CHFU_NB_deg_uncoupled_visits) #OK
 performance::check_collinearity(PUPA_NB_deg_uncoupled_visits) #OK
 
-#####################################
-
-library(ggtext)
-library(scales)
-
-My_Theme = theme(
-  axis.title.x = element_text(size = 14),
-  axis.text.x = element_text(size = 14),
-  axis.title.y = element_text(size = 14),
-  axis.text.y = element_text(size = 14),
-  plot.title = element_text(size = 16))
-
-p1_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_visits, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
-                          x.label = "Homo-triplets",
-                          y.label = "Seeds/Flower", 
-                          colors = "gray",line.thickness = 1,
-                          jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("C. fuscatum")))+My_Theme
-p2_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_visits, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
-                          x.label = "Homo-triplets",
-                          y.label = "Seeds/Flower", 
-                          colors = "black",line.thickness = 2.2,
-                          jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("L. maroccanus")))+My_Theme
-p3_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_visits, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
-                          x.label = "Homo-triplets",
-                          y.label = "Seeds/Flower", 
-                          colors = "gray",line.thickness = 1,
-                          jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("P. paludosa")))+My_Theme
-
-
-
-p4_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_visits, pred = "hete_motif", interval = TRUE, plot.points = TRUE,
-                          x.label = "Hetero-triplets",
-                          y.label = "Seeds/Flower", 
-                          colors = "gray",line.thickness = 1,
-                          jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("C. fuscatum")))+My_Theme
-p5_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_visits, pred = "hete_motif", interval = TRUE, plot.points = TRUE,
-                          x.label = "Hetero-triplets",
-                          y.label = "Seeds/Flower", 
-                          colors = "gray",line.thickness = 1,
-                          jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("L. maroccanus")))+My_Theme
-p6_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_visits, pred = "hete_motif", interval = TRUE, plot.points = TRUE,
-                          x.label = "Hetero-triplets",
-                          y.label = "Seeds/Flower", 
-                          colors = "gray",line.thickness = 1,
-                          jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("P. paludosa")))+My_Theme
-
-
-
-p7_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_visits, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
-                          x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
-                          y.label = "Seeds/Flower",  
-                          colors = "gray",line.thickness = 1,
-                          jitter = 0.0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("C. fuscatum")))+My_Theme
-p8_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_visits, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
-                          x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
-                          y.label = "Seeds/Flower",  
-                          colors = "gray",line.thickness = 1,
-                          jitter = 0.0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("L. maroccanus")))+My_Theme
-p9_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_visits, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
-                          x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
-                          y.label = "Seeds/Flower",  
-                          colors = "gray",line.thickness = 1,
-                          jitter = 0.0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("P. paludosa")))+My_Theme
-
-
-
-p10_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_visits, pred = heter_prob, interval = TRUE, plot.points = TRUE,
-                           x.label = "Heterospecific pollen\narrival probability",
-                           y.label = "Seeds/Flower",  
-                           colors = "gray",line.thickness = 1,
-                           jitter = 0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("C. fuscatum")))+My_Theme
-p11_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_visits, pred = heter_prob, interval = TRUE, plot.points = TRUE,
-                           x.label = "Heterospecific pollen\narrival probability",
-                           y.label = "Seeds/Flower",  
-                           colors = "black",line.thickness = 2.2,
-                           jitter = 0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("L. maroccanus")))+My_Theme
-p12_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_visits, pred = heter_prob, interval = TRUE, plot.points = TRUE,
-                           x.label = "Heterospecific pollen\narrival probability",
-                           y.label = "Seeds/Flower", 
-                           colors = "gray", line.thickness = 1,
-                           jitter = 0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("P. paludosa")))+My_Theme
-
-
-p13_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_visits, pred = visits_GF, interval = TRUE, plot.points = TRUE,
-                                  x.label = "Visits",
-                                  y.label = "Seeds/Flower",  
-                                  colors = "gray",line.thickness = 1,
-                                  jitter = 0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("C. fuscatum")))+My_Theme
-p14_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_visits, pred = visits_GF, interval = TRUE, plot.points = TRUE,
-                                  x.label = "Visits",
-                                  y.label = "Seeds/Flower",  
-                                  colors = "black",line.thickness = 2.2,
-                                  jitter = 0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("L. maroccanus")))+My_Theme
-p15_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_visits, pred = visits_GF, interval = TRUE, plot.points = TRUE,
-                                  x.label = "Visits",
-                                  y.label = "Seeds/Flower",  
-                                  colors = "black",line.thickness = 2.2,
-                                  jitter = 0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
-  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
-  #               labels = trans_format("log10", math_format(10^.x)))+
-  labs(title=expression(italic("P. paludosa")))+My_Theme
-
-library(patchwork)
-png("New_Figures/figA16_NEW2.png", width=2000*4, height = 2000*5, res=300*2)
-(p7_visits+p8_visits+p9_visits)/(p10_visits+p11_visits+p12_visits)/(p1_visits+p2_visits+p3_visits)/(p4_visits+p5_visits+p6_visits)/(p13_visits+p14_visits+p15_visits)
-dev.off()
-
 
 ####################################
-# ONLY VISITS MODEL
+# LINEAR ONLY VISITS MODEL
+####################################
+ALL_LM_visits <- lm(Seeds_GF ~ scale(visits_GF),
+                     data = fitness_orig %>%ungroup() %>%
+                       filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
+
+LEMA_LM_visits <- lm(Seeds_GF ~ scale(visits_GF),
+                      data = fitness_orig_LEMA%>%ungroup() %>%
+                        filter(DegreeIn>0))
+
+CHFU_LM_visits <- lm(Seeds_GF ~ scale(visits_GF),
+                      data = fitness_orig_CHFU%>%ungroup() %>%
+                        filter(DegreeIn>0))
+
+PUPA_LM_visits <- lm(Seeds_GF ~ scale(visits_GF),
+                      data = fitness_orig_PUPA %>% ungroup() %>%
+                        filter(DegreeIn>0))
+
+summary(ALL_LM_visits)
+summary(LEMA_LM_visits)
+summary(CHFU_LM_visits)
+summary(PUPA_LM_visits)
+
+res_ALL_LM_visits <- simulateResiduals(fittedModel = ALL_LM_visits, n = 1500)
+res_LEMA_LM_visits <- simulateResiduals(fittedModel = LEMA_LM_visits, n = 1500)
+res_CHFU_LM_visits <- simulateResiduals(fittedModel = CHFU_LM_visits, n = 1500)
+res_PUPA_LM_visits <- simulateResiduals(fittedModel = PUPA_LM_visits, n = 1500)
+
+plot(res_ALL_LM_visits) # NOT OK
+plot(res_LEMA_LM_visits) # OK
+plot(res_CHFU_LM_visits) # OK
+plot(res_PUPA_LM_visits) # OK
+
+performance::r2(ALL_LM_visits) # adj. R2: 0.128
+performance::r2(LEMA_LM_visits) # adj. R2: 0.031
+performance::r2(CHFU_LM_visits) # adj. R2: -0.004
+performance::r2(PUPA_LM_visits) # adj. R2: 0.217
+
+####################################
+# NEGATIVE BINOMIAL ONLY VISITS MODEL
 ####################################
 ALL_visits <- glm.nb(Seeds_GF ~ scale(visits_GF),
                       data = fitness_orig %>%ungroup() %>%
@@ -608,17 +549,120 @@ performance::r2(CHFU_visits) # Nagelkerke's R2: 0.015
 performance::r2(PUPA_visits) # Nagelkerke's R2: 0.142
 
 
+###################################
+# LINEAR MODELS THAT INCLUDE PLOT AS VARIABLE OR RANDOM FACTOR
+
+###################
+
+ALL_LM_deg_uncoupled_plot_RF <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                          scale(hete_motif) +
+                                          scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
+                                        #ziformula = ~1,
+                                        family = gaussian(),
+                                        data = fitness_orig%>%ungroup() %>%
+                                          filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
+
+ALL_LM_deg_uncoupled2_plot <- lm(Seeds_GF ~ scale(homo_motif) +
+                                       scale(hete_motif) +
+                                       scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + Plot,
+                                     data = fitness_orig%>%ungroup() %>%
+                                       filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
+
+LEMA_LM_deg_uncoupled_plot_RF <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                           scale(hete_motif) +
+                                           scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
+                                         #ziformula = ~1,
+                                         family = gaussian(),
+                                         data = fitness_orig_LEMA%>%ungroup() %>%
+                                           filter(DegreeIn>0))
+
+LEMA_LM_deg_uncoupled2_plot <- lm(Seeds_GF ~ scale(homo_motif) +
+                                        scale(hete_motif) +
+                                        scale(consp_prob_UNCOUPLED) + scale(heter_prob)  + Plot,
+                                      data = fitness_orig_LEMA%>%ungroup() %>%
+                                        filter(DegreeIn>0))
+
+
+CHFU_LM_deg_uncoupled_plot_RF <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                           scale(hete_motif) +
+                                           scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
+                                         #ziformula = ~1,
+                                         family = gaussian(),
+                                         data = fitness_orig_CHFU%>%ungroup() %>%
+                                           filter(DegreeIn>0))
+
+CHFU_LM_deg_uncoupled2_plot <- lm(Seeds_GF ~ scale(homo_motif) +
+                                        scale(hete_motif) +
+                                        scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + Plot,
+                                      data = fitness_orig_CHFU%>%ungroup() %>%
+                                        filter(DegreeIn>0))
+
+PUPA_LM_deg_uncoupled_plot_RF <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                           scale(hete_motif) +
+                                           scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
+                                         #ziformula = ~1,
+                                         family = gaussian(),
+                                         data = fitness_orig_PUPA%>%ungroup() %>%
+                                           filter(DegreeIn>0))
+
+PUPA_LM_deg_uncoupled2_plot <- lm(Seeds_GF ~ scale(homo_motif) +
+                                        scale(hete_motif) +
+                                        scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + Plot,
+                                      data = fitness_orig_PUPA %>% ungroup() %>%
+                                        filter(DegreeIn>0))
+
+summary(ALL_LM_deg_uncoupled_plot_RF)
+summary(ALL_LM_deg_uncoupled2_plot)
+summary(LEMA_LM_deg_uncoupled_plot_RF)
+summary(LEMA_LM_deg_uncoupled2_plot)
+summary(CHFU_LM_deg_uncoupled_plot_RF)
+summary(CHFU_LM_deg_uncoupled2_plot)
+summary(PUPA_LM_deg_uncoupled_plot_RF)
+summary(PUPA_LM_deg_uncoupled2_plot)
+
+
+res_ALL_LM_deg_uncoupled_plot_RF <- simulateResiduals(fittedModel = ALL_LM_deg_uncoupled_plot_RF, n = 1500)
+res_LEMA_LM_deg_uncoupled_plot_RF <- simulateResiduals(fittedModel = LEMA_LM_deg_uncoupled_plot_RF, n = 1500)
+res_CHFU_LM_deg_uncoupled_plot_RF <- simulateResiduals(fittedModel = CHFU_LM_deg_uncoupled_plot_RF, n = 1500)
+res_PUPA_LM_deg_uncoupled_plot_RF <- simulateResiduals(fittedModel = PUPA_LM_deg_uncoupled_plot_RF, n = 1500)
+res_ALL_LM_deg_uncoupled2_plot <- simulateResiduals(fittedModel = ALL_LM_deg_uncoupled2_plot, n = 1500)
+res_LEMA_LM_deg_uncoupled2_plot <- simulateResiduals(fittedModel = LEMA_LM_deg_uncoupled2_plot, n = 1500)
+res_CHFU_LM_deg_uncoupled2_plot <- simulateResiduals(fittedModel = CHFU_LM_deg_uncoupled2_plot, n = 1500)
+res_PUPA_LM_deg_uncoupled2_plot <- simulateResiduals(fittedModel = PUPA_LM_deg_uncoupled2_plot, n = 1500)
+
+plot(res_ALL_LM_deg_uncoupled_plot_RF) # not OK
+plot(res_ALL_LM_deg_uncoupled2_plot) #  OK
+plot(res_LEMA_LM_deg_uncoupled_plot_RF) # OK
+plot(res_LEMA_LM_deg_uncoupled2_plot) # OK
+plot(res_CHFU_LM_deg_uncoupled_plot_RF) # OK
+plot(res_CHFU_LM_deg_uncoupled2_plot) # OK
+plot(res_PUPA_LM_deg_uncoupled_plot_RF) # OK
+plot(res_PUPA_LM_deg_uncoupled2_plot) # OK
+
+performance::r2(ALL_LM_deg_uncoupled_plot_RF) #Conditional R2: 0.228
+performance::r2(ALL_LM_deg_uncoupled2_plot) # adj. R2: 0.269
+performance::r2(LEMA_LM_deg_uncoupled_plot_RF) #Conditional R2: 0.219 Marginal R2: 0.140
+performance::r2(LEMA_LM_deg_uncoupled2_plot) # adj. R2: 0.224
+performance::r2(CHFU_LM_deg_uncoupled_plot_RF, tolerance = 1e-10) # Conditional R2: 0.037
+performance::r2(CHFU_LM_deg_uncoupled2_plot) # adj. R2: -0.045
+performance::r2(PUPA_LM_deg_uncoupled_plot_RF, tolerance = 1e-10) # Conditional R2: 0.378
+performance::r2(PUPA_LM_deg_uncoupled2_plot) # adj. R2: 0.242
+
+performance::check_collinearity(ALL_LM_deg_uncoupled_plot_RF) # OK
+performance::check_collinearity(LEMA_LM_deg_uncoupled_plot_RF) # OK # OK # All the ( GVIF^(1/(2*Df)) )^2 < 5 
+performance::check_collinearity(CHFU_LM_deg_uncoupled_plot_RF) # OK
+performance::check_collinearity(PUPA_LM_deg_uncoupled_plot_RF) # OK
+
 
 
 ####################################
-# MODELS THAT INCLUDE PLOT AS VARIABLE OR RANDOM FACTOR
-
+# NEGATIVE BINOMIAL MODELS THAT INCLUDE PLOT AS VARIABLE OR RANDOM FACTOR
 ###################
 
 ALL_NB_deg_uncoupled_plot_RF <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                         scale(hete_motif) +
                                         scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
-                                      #ziformula = ~1,
+                                      ziformula = ~1,
                                       family = nbinom1(),
                                       data = fitness_orig%>%ungroup() %>%
                                         filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
@@ -629,10 +673,16 @@ ALL_NB_deg_uncoupled2_plot <- glm.nb(Seeds_GF ~ scale(homo_motif) +
                                       data = fitness_orig%>%ungroup() %>%
                                         filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
 
+ALL_NB_deg_uncoupled2_plot_RF <- glmer.nb(Seeds_GF ~ scale(homo_motif) +
+                                       scale(hete_motif) +
+                                       scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
+                                     data = fitness_orig%>%ungroup() %>%
+                                       filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
+
 LEMA_NB_deg_uncoupled_plot_RF <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                    scale(hete_motif) +
                                    scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
-                                 #ziformula = ~1,
+                                 ziformula = ~1,
                                  family = nbinom1(),
                                  data = fitness_orig_LEMA%>%ungroup() %>%
                                    filter(DegreeIn>0))
@@ -643,11 +693,16 @@ LEMA_NB_deg_uncoupled2_plot <- glm.nb(Seeds_GF ~ scale(homo_motif) +
                                  data = fitness_orig_LEMA%>%ungroup() %>%
                                    filter(DegreeIn>0))
 
+LEMA_NB_deg_uncoupled2_plot_RF <- glmer.nb(Seeds_GF ~ scale(homo_motif) +
+                                            scale(hete_motif) +
+                                            scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
+                                          data = fitness_orig_LEMA%>%ungroup() %>%
+                                            filter(DegreeIn>0))
 
 CHFU_NB_deg_uncoupled_plot_RF <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                    scale(hete_motif) +
                                    scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
-                                 #ziformula = ~1,
+                                 ziformula = ~1,
                                  family = nbinom1(),
                                  data = fitness_orig_CHFU%>%ungroup() %>%
                                    filter(DegreeIn>0))
@@ -658,10 +713,17 @@ CHFU_NB_deg_uncoupled2_plot <- glm.nb(Seeds_GF ~ scale(homo_motif) +
                                  data = fitness_orig_CHFU%>%ungroup() %>%
                                    filter(DegreeIn>0))
 
+CHFU_NB_deg_uncoupled2_plot_RF <- glmer.nb(Seeds_GF ~ scale(homo_motif) +
+                                             scale(hete_motif) +
+                                             scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
+                                           data = fitness_orig_CHFU%>%ungroup() %>%
+                                             filter(DegreeIn>0))
+
 PUPA_NB_deg_uncoupled_plot_RF <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
                                    scale(hete_motif) +
-                                   scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
-                                 #ziformula = ~1,
+                                   scale(consp_prob_UNCOUPLED)+ scale(heter_prob)  + 
+                                     (1|Plot),
+                                 ziformula = ~1,
                                  family = nbinom1(),
                                  data = fitness_orig_PUPA%>%ungroup() %>%
                                    filter(DegreeIn>0))
@@ -673,15 +735,23 @@ PUPA_NB_deg_uncoupled2_plot <- glm.nb(Seeds_GF ~ scale(homo_motif) +
                                  data = fitness_orig_PUPA %>% ungroup() %>%
                                    filter(DegreeIn>0))
 
+PUPA_NB_deg_uncoupled2_plot_RF <- glmer.nb(Seeds_GF ~ scale(homo_motif) +
+                                             scale(hete_motif) +
+                                             scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + (1|Plot),
+                                           data = fitness_orig_PUPA%>%ungroup() %>%
+                                             filter(DegreeIn>0))
 summary(ALL_NB_deg_uncoupled_plot_RF)
 summary(ALL_NB_deg_uncoupled2_plot)
-summary(LEMA_NB_deg_uncoupled_plot)
+summary(ALL_NB_deg_uncoupled2_plot_RF)
+summary(LEMA_NB_deg_uncoupled_plot_RF)
 summary(LEMA_NB_deg_uncoupled2_plot)
+summary(LEMA_NB_deg_uncoupled2_plot_RF)
 summary(CHFU_NB_deg_uncoupled_plot_RF)
 summary(CHFU_NB_deg_uncoupled2_plot)
+summary(CHFU_NB_deg_uncoupled2_plot_RF) # fit: see help('isSingular')
 summary(PUPA_NB_deg_uncoupled_plot_RF)
 summary(PUPA_NB_deg_uncoupled2_plot)
-
+summary(PUPA_NB_deg_uncoupled2_plot_RF) # fit: see help('isSingular')
 
 res_ALL_NB_deg_uncoupled_plot_RF <- simulateResiduals(fittedModel = ALL_NB_deg_uncoupled_plot_RF, n = 1500)
 res_LEMA_NB_deg_uncoupled_plot_RF <- simulateResiduals(fittedModel = LEMA_NB_deg_uncoupled_plot_RF, n = 1500)
@@ -701,19 +771,435 @@ plot(res_CHFU_NB_deg_uncoupled2_plot) # OK
 plot(res_PUPA_NB_deg_uncoupled_plot_RF) # OK
 plot(res_PUPA_NB_deg_uncoupled2_plot) # Almost OK
 
-performance::r2(ALL_NB_deg_uncoupled_plot_RF)
-performance::r2(ALL_NB_deg_uncoupled2_plot)
-performance::r2(LEMA_NB_deg_uncoupled_plot_RF)
-performance::r2(LEMA_NB_deg_uncoupled2_plot)
-performance::r2(CHFU_NB_deg_uncoupled_plot_RF)
-performance::r2(CHFU_NB_deg_uncoupled2_plot)
-performance::r2(PUPA_NB_deg_uncoupled_plot_RF)
-performance::r2(PUPA_NB_deg_uncoupled2_plot)
+performance::r2(ALL_NB_deg_uncoupled_plot_RF)  # Conditional R2: 0.248 Marginal R2: 0.183
+performance::r2(ALL_NB_deg_uncoupled2_plot) # Nagelkerke's R2: 0.298
+performance::r2(LEMA_NB_deg_uncoupled_plot_RF) #  Conditional R2: 0.208 Marginal R2: 0.116
+performance::r2(LEMA_NB_deg_uncoupled2_plot) # Nagelkerke's R2: 0.505
+performance::r2(CHFU_NB_deg_uncoupled_plot_RF, tolerance = 1e-10) # Conditional R2: 0.106
+performance::r2(CHFU_NB_deg_uncoupled2_plot) # Nagelkerke's R2: 0.158
+performance::r2(PUPA_NB_deg_uncoupled_plot_RF, tolerance = 1e-10) # Conditional R2: 0.198
+performance::r2(PUPA_NB_deg_uncoupled2_plot) # Nagelkerke's R2: 0.208
+
 
 performance::check_collinearity(ALL_NB_deg_uncoupled_plot_RF) # OK
 performance::check_collinearity(LEMA_NB_deg_uncoupled_plot_RF) # OK # OK # All the ( GVIF^(1/(2*Df)) )^2 < 5 
 performance::check_collinearity(CHFU_NB_deg_uncoupled_plot_RF) # OK
-performance::check_collinearity(PUPA_NB_deg_uncoupled_plot_RF) # OK
+performance::check_collinearity(PUPA_NB_deg_uncoupled_plot_RF) # Moderate
+
+
+library(ggtext)
+library(scales)
+
+My_Theme = theme(
+  axis.title.x = element_text(size = 14),
+  axis.text.x = element_text(size = 14),
+  axis.title.y = element_text(size = 14),
+  axis.text.y = element_text(size = 14),
+  plot.title = element_text(size = 16))
+
+p1 <- jtools::effect_plot(CHFU_NB_deg_uncoupled_plot_RF, pred = "homo_motif", interval = FALSE, plot.points = TRUE,
+                          x.label = "Homo-triplets",
+                          y.label = "Seeds/Fruit",
+                          colors = "gray",line.thickness = 0,
+                          jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. fuscatum")))+My_Theme
+p2 <- jtools::effect_plot(LEMA_NB_deg_uncoupled_plot_RF, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
+                          x.label = "Homo-triplets",
+                          y.label = "Seeds/Fruit",
+                          colors = "black",line.thickness = 2.2,
+                          jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. maroccanus")))+My_Theme
+p3 <- jtools::effect_plot(PUPA_NB_deg_uncoupled_plot_RF, pred = "homo_motif", interval = FALSE, plot.points = TRUE,
+                          x.label = "Homo-triplets",
+                          y.label = "Seeds/Fruit",
+                          colors = "gray",line.thickness = 0,
+                          jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. paludosa")))+My_Theme
+
+
+
+p4 <- jtools::effect_plot(CHFU_NB_deg_uncoupled_plot_RF, pred = "hete_motif", interval = FALSE, plot.points = TRUE,
+                          x.label = "Hetero-triplets",
+                          y.label = "Seeds/Fruit",
+                          colors = "gray",line.thickness = 0,
+                          jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. fuscatum")))+My_Theme
+p5 <- jtools::effect_plot(LEMA_NB_deg_uncoupled_plot_RF, pred = "hete_motif", interval = FALSE, plot.points = TRUE,
+                          x.label = "Hetero-triplets",
+                          y.label = "Seeds/Fruit",
+                          colors = "gray",line.thickness = 0,
+                          jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. maroccanus")))+My_Theme
+p6 <- jtools::effect_plot(PUPA_NB_deg_uncoupled_plot_RF, pred = "hete_motif", interval = FALSE, plot.points = TRUE,
+                          x.label = "Hetero-triplets",
+                          y.label = "Seeds/Fruit",
+                          colors = "gray",line.thickness = 0,
+                          jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. paludosa")))+My_Theme
+
+
+
+p7 <- jtools::effect_plot(CHFU_NB_deg_uncoupled_plot_RF, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
+                          x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
+                          y.label = "Seeds/Fruit", 
+                          colors = "black",line.thickness = 2.2,
+                          jitter = 0.0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. fuscatum")))+My_Theme
+p8 <- jtools::effect_plot(LEMA_NB_deg_uncoupled_plot_RF, pred = consp_prob_UNCOUPLED, interval = FALSE, plot.points = TRUE,
+                          x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
+                          y.label = "Seeds/Fruit", 
+                          colors = "gray",line.thickness = 0,
+                          jitter = 0.0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. maroccanus")))+My_Theme
+p9 <- jtools::effect_plot(PUPA_NB_deg_uncoupled_plot_RF, pred = consp_prob_UNCOUPLED, interval = TRUE, plot.points = TRUE,
+                          x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
+                          y.label = "Seeds/Fruit", 
+                          colors = "black",line.thickness = 2.2,
+                          jitter = 0.0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. paludosa")))+My_Theme
+
+
+
+p10 <- jtools::effect_plot(CHFU_NB_deg_uncoupled_plot_RF, pred = heter_prob, interval = FALSE, plot.points = TRUE,
+                           x.label = "Heterospecific pollen\narrival probability",
+                           y.label = "Seeds/Fruit", 
+                           colors = "gray",line.thickness = 0,
+                           jitter = 0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. fuscatum")))+My_Theme
+p11 <- jtools::effect_plot(LEMA_NB_deg_uncoupled_plot_RF, pred = heter_prob, interval = FALSE, plot.points = TRUE,
+                           x.label = "Heterospecific pollen\narrival probability",
+                           y.label = "Seeds/Fruit", 
+                           colors = "gray",line.thickness = 0,
+                           jitter = 0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. maroccanus")))+My_Theme
+p12 <- jtools::effect_plot(PUPA_NB_deg_uncoupled_plot_RF, pred = heter_prob, interval = FALSE, plot.points = TRUE,
+                           x.label = "Heterospecific pollen\narrival probability",
+                           y.label = "Seeds/Fruit", 
+                           colors = "gray",line.thickness = 0,
+                           jitter = 0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. paludosa")))+My_Theme
+
+library(patchwork)
+png("New_Figures/fig6_2.png", width=2000*4.2, height = 2000*2*2, res=300*2)
+(p7+p8+p9)/(p10+p11+p12)/(p1+p2+p3)/(p4+p5+p6)
+dev.off()
+
+
+####################################
+# NEGATIVE BINOMIAL MODELS THAT INCLUDE VISITS AND PLOT AS VARIABLE OR RANDOM FACTOR
+###################
+
+ALL_NB_deg_uncoupled_plot_RF_visits <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                          scale(hete_motif) +
+                                          scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + scale(visits_GF) + (1|Plot) ,
+                                        ziformula = ~1,
+                                        family = nbinom1(),
+                                        data = fitness_orig%>%ungroup() %>%
+                                          filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
+
+ALL_NB_deg_uncoupled2_plot_visits <- glm.nb(Seeds_GF ~ scale(homo_motif) +
+                                       scale(hete_motif) +
+                                       scale(consp_prob_UNCOUPLED)+scale(heter_prob) + scale(visits_GF) + Plot,
+                                     data = fitness_orig%>%ungroup() %>%
+                                       filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
+
+ALL_NB_deg_uncoupled2_plot_RF_visits <- glmer.nb(Seeds_GF ~ scale(homo_motif) +
+                                            scale(hete_motif) +
+                                            scale(consp_prob_UNCOUPLED)+scale(heter_prob) + scale(visits_GF) + (1|Plot),
+                                          data = fitness_orig%>%ungroup() %>%
+                                            filter(DegreeIn>0, Plant_Simple %in% c("LEMA","CHFU","PUPA")))
+
+LEMA_NB_deg_uncoupled_plot_RF_visits <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                           scale(hete_motif) +
+                                           scale(consp_prob_UNCOUPLED)+scale(heter_prob) + scale(visits_GF) + (1|Plot),
+                                         ziformula = ~1,
+                                         family = nbinom1(),
+                                         data = fitness_orig_LEMA%>%ungroup() %>%
+                                           filter(DegreeIn>0))
+
+LEMA_NB_deg_uncoupled2_plot_visits <- glm.nb(Seeds_GF ~ scale(homo_motif) +
+                                        scale(hete_motif) +
+                                        scale(consp_prob_UNCOUPLED) + scale(heter_prob) + scale(visits_GF) + Plot,
+                                      data = fitness_orig_LEMA%>%ungroup() %>%
+                                        filter(DegreeIn>0))
+
+LEMA_NB_deg_uncoupled2_plot_RF_visits <- glmer.nb(Seeds_GF ~ scale(homo_motif) +
+                                             scale(hete_motif) +
+                                             scale(consp_prob_UNCOUPLED)+scale(heter_prob)  + scale(visits_GF) + (1|Plot),
+                                           data = fitness_orig_LEMA%>%ungroup() %>%
+                                             filter(DegreeIn>0))
+
+CHFU_NB_deg_uncoupled_plot_RF_visits <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                           scale(hete_motif) +
+                                           scale(consp_prob_UNCOUPLED)+scale(heter_prob) + scale(visits_GF) + (1|Plot),
+                                         ziformula = ~1,
+                                         family = nbinom1(),
+                                         data = fitness_orig_CHFU%>%ungroup() %>%
+                                           filter(DegreeIn>0))
+
+CHFU_NB_deg_uncoupled2_plot_visits <- glm.nb(Seeds_GF ~ scale(homo_motif) +
+                                        scale(hete_motif) +
+                                        scale(consp_prob_UNCOUPLED)+scale(heter_prob) + scale(visits_GF) + Plot,
+                                      data = fitness_orig_CHFU%>%ungroup() %>%
+                                        filter(DegreeIn>0))
+
+CHFU_NB_deg_uncoupled2_plot_RF_visits <- glmer.nb(Seeds_GF ~ scale(homo_motif) +
+                                             scale(hete_motif) +
+                                             scale(consp_prob_UNCOUPLED)+scale(heter_prob) + scale(visits_GF) + (1|Plot),
+                                           data = fitness_orig_CHFU%>%ungroup() %>%
+                                             filter(DegreeIn>0))
+
+PUPA_NB_deg_uncoupled_plot_RF_visits <- glmmTMB(Seeds_GF ~ scale(homo_motif) +
+                                           scale(hete_motif) +
+                                           scale(consp_prob_UNCOUPLED)+ scale(heter_prob) + scale(visits_GF) + 
+                                           (1|Plot),
+                                         ziformula = ~1,
+                                         family = nbinom1(),
+                                         data = fitness_orig_PUPA%>%ungroup() %>%
+                                           filter(DegreeIn>0))
+
+PUPA_NB_deg_uncoupled2_plot_visits <- glm.nb(Seeds_GF ~ scale(homo_motif) +
+                                        scale(hete_motif) +
+                                        scale(consp_prob_UNCOUPLED)+scale(heter_prob) + scale(visits_GF) + Plot,
+                                      control = glm.control(maxit = 50),
+                                      data = fitness_orig_PUPA %>% ungroup() %>%
+                                        filter(DegreeIn>0))
+
+PUPA_NB_deg_uncoupled2_plot_RF_visits <- glmer.nb(Seeds_GF ~ scale(homo_motif) +
+                                             scale(hete_motif) +
+                                             scale(consp_prob_UNCOUPLED)+scale(heter_prob) + scale(visits_GF) + (1|Plot),
+                                           data = fitness_orig_PUPA%>%ungroup() %>%
+                                             filter(DegreeIn>0))
+summary(ALL_NB_deg_uncoupled_plot_RF_visits)
+summary(ALL_NB_deg_uncoupled2_plot_visits)
+summary(ALL_NB_deg_uncoupled2_plot_RF_visits)
+summary(LEMA_NB_deg_uncoupled_plot_RF_visits)
+summary(LEMA_NB_deg_uncoupled2_plot_visits)
+summary(LEMA_NB_deg_uncoupled2_plot_RF_visits)
+summary(CHFU_NB_deg_uncoupled_plot_RF_visits)
+summary(CHFU_NB_deg_uncoupled2_plot_visits)
+summary(CHFU_NB_deg_uncoupled2_plot_RF_visits) # fit: see help('isSingular')
+summary(PUPA_NB_deg_uncoupled_plot_RF_visits)
+summary(PUPA_NB_deg_uncoupled2_plot_visits)
+summary(PUPA_NB_deg_uncoupled2_plot_RF_visits) # fit: see help('isSingular')
+
+res_ALL_NB_deg_uncoupled_plot_RF_visits <- simulateResiduals(fittedModel = ALL_NB_deg_uncoupled_plot_RF, n = 1500)
+res_LEMA_NB_deg_uncoupled_plot_RF_visits <- simulateResiduals(fittedModel = LEMA_NB_deg_uncoupled_plot_RF, n = 1500)
+res_CHFU_NB_deg_uncoupled_plot_RF_visits <- simulateResiduals(fittedModel = CHFU_NB_deg_uncoupled_plot_RF, n = 1500)
+res_PUPA_NB_deg_uncoupled_plot_RF_visits <- simulateResiduals(fittedModel = PUPA_NB_deg_uncoupled_plot_RF, n = 1500)
+res_ALL_NB_deg_uncoupled2_plot_visits <- simulateResiduals(fittedModel = ALL_NB_deg_uncoupled2_plot, n = 1500)
+res_LEMA_NB_deg_uncoupled2_plot_visits <- simulateResiduals(fittedModel = LEMA_NB_deg_uncoupled2_plot, n = 1500)
+res_CHFU_NB_deg_uncoupled2_plot_visits <- simulateResiduals(fittedModel = CHFU_NB_deg_uncoupled2_plot, n = 1500)
+res_PUPA_NB_deg_uncoupled2_plot_visits <- simulateResiduals(fittedModel = PUPA_NB_deg_uncoupled2_plot, n = 1500)
+
+plot(res_ALL_NB_deg_uncoupled_plot_RF_visits) # Almost OK
+plot(res_ALL_NB_deg_uncoupled2_plot_visits) # Not OK
+plot(res_LEMA_NB_deg_uncoupled_plot_RF_visits) # Almost OK
+plot(res_LEMA_NB_deg_uncoupled2_plot_visits) # OK
+plot(res_CHFU_NB_deg_uncoupled_plot_RF_visits) # OK
+plot(res_CHFU_NB_deg_uncoupled2_plot_visits) # OK
+plot(res_PUPA_NB_deg_uncoupled_plot_RF_visits) # OK
+plot(res_PUPA_NB_deg_uncoupled2_plot_visits) # Almost OK
+
+performance::r2(ALL_NB_deg_uncoupled_plot_RF_visits)  # Conditional R2: 0.226
+performance::r2(ALL_NB_deg_uncoupled2_plot_visits) # Nagelkerke's R2: 0.298
+performance::r2(LEMA_NB_deg_uncoupled_plot_RF_visits, tolerance = 1e-11) #  Conditional R2: 0.197
+performance::r2(LEMA_NB_deg_uncoupled2_plot_visits) # Nagelkerke's R2: 0.527
+performance::r2(CHFU_NB_deg_uncoupled_plot_RF_visits, tolerance = 1e-10) # Conditional R2: 0.107
+performance::r2(CHFU_NB_deg_uncoupled2_plot_visits) # Nagelkerke's R2: 0.169
+performance::r2(PUPA_NB_deg_uncoupled_plot_RF_visits, tolerance = 1e-10) # Conditional R2: 0.222
+performance::r2(PUPA_NB_deg_uncoupled2_plot_visits) # Nagelkerke's R2: 0.217
+
+
+performance::check_collinearity(ALL_NB_deg_uncoupled_plot_RF_visits) # OK
+performance::check_collinearity(LEMA_NB_deg_uncoupled_plot_RF_visits) # OK # OK # All the ( GVIF^(1/(2*Df)) )^2 < 5 
+performance::check_collinearity(CHFU_NB_deg_uncoupled_plot_RF_visits) # Moderate
+performance::check_collinearity(PUPA_NB_deg_uncoupled_plot_RF_visits) # Moderate
+
+
+library(ggtext)
+library(scales)
+
+My_Theme = theme(
+  axis.title.x = element_text(size = 14),
+  axis.text.x = element_text(size = 14),
+  axis.title.y = element_text(size = 14),
+  axis.text.y = element_text(size = 14),
+  plot.title = element_text(size = 16))
+
+p1_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_plot_RF_visits, pred = "homo_motif", interval = FALSE, plot.points = TRUE,
+                                 x.label = "Homo-triplets",
+                                 y.label = "Seeds/Fruit", 
+                                 colors = "gray",line.thickness = 0,
+                                 jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. fuscatum")))+My_Theme
+p2_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_plot_RF_visits, pred = "homo_motif", interval = TRUE, plot.points = TRUE,
+                                 x.label = "Homo-triplets",
+                                 y.label = "Seeds/Fruit", 
+                                 colors = "black",line.thickness = 2.2,
+                                 jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. maroccanus")))+My_Theme
+p3_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_plot_RF_visits, pred = "homo_motif", interval = FALSE, plot.points = TRUE,
+                                 x.label = "Homo-triplets",
+                                 y.label = "Seeds/Fruit", 
+                                 colors = "gray",line.thickness = 0,
+                                 jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. paludosa")))+My_Theme
+
+
+
+p4_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_plot_RF_visits, pred = "hete_motif", interval = FALSE, plot.points = TRUE,
+                                 x.label = "Hetero-triplets",
+                                 y.label = "Seeds/Fruit", 
+                                 colors = "gray",line.thickness = 0,
+                                 jitter = 0.05, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. fuscatum")))+My_Theme
+p5_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_plot_RF_visits, pred = "hete_motif", interval = FALSE, plot.points = TRUE,
+                                 x.label = "Hetero-triplets",
+                                 y.label = "Seeds/Fruit", 
+                                 colors = "gray",line.thickness = 0,
+                                 jitter = 0.05, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. maroccanus")))+My_Theme
+p6_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_plot_RF_visits, pred = "hete_motif", interval = FALSE, plot.points = TRUE,
+                                 x.label = "Hetero-triplets",
+                                 y.label = "Seeds/Fruit", 
+                                 colors = "gray",line.thickness = 0,
+                                 jitter = 0.05, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. paludosa")))+My_Theme
+
+
+
+p7_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_plot_RF_visits, pred = consp_prob_UNCOUPLED, interval = FALSE, plot.points = TRUE,
+                                 x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
+                                 y.label = "Seeds/Fruit",  
+                                 colors = "gray",line.thickness = 0,
+                                 jitter = 0.0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. fuscatum")))+My_Theme
+p8_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_plot_RF_visits, pred = consp_prob_UNCOUPLED, interval = FALSE, plot.points = TRUE,
+                                 x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
+                                 y.label = "Seeds/Fruit",  
+                                 colors = "gray",line.thickness = 0,
+                                 jitter = 0.0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. maroccanus")))+My_Theme
+p9_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_plot_RF_visits, pred = consp_prob_UNCOUPLED, interval = FALSE, plot.points = TRUE,
+                                 x.label = "Conspecific pollen\narrival probability\n(uncoupled layers)",
+                                 y.label = "Seeds/Fruit",  
+                                 colors = "gray",line.thickness = 0,
+                                 jitter = 0.0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. paludosa")))+My_Theme
+
+
+
+p10_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_plot_RF_visits, pred = heter_prob, interval = FALSE, plot.points = TRUE,
+                                  x.label = "Heterospecific pollen\narrival probability",
+                                  y.label = "Seeds/Fruit",  
+                                  colors = "gray",line.thickness = 0,
+                                  jitter = 0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. fuscatum")))+My_Theme
+p11_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_plot_RF_visits, pred = heter_prob, interval = TRUE, plot.points = TRUE,
+                                  x.label = "Heterospecific pollen\narrival probability",
+                                  y.label = "Seeds/Fruit",  
+                                  colors = "black",line.thickness = 2.2,
+                                  jitter = 0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. maroccanus")))+My_Theme
+p12_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_plot_RF_visits, pred = heter_prob, interval = FALSE, plot.points = TRUE,
+                                  x.label = "Heterospecific pollen\narrival probability",
+                                  y.label = "Seeds/Fruit", 
+                                  colors = "gray", line.thickness = 0,
+                                  jitter = 0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. paludosa")))+My_Theme
+
+
+p13_visits <- jtools::effect_plot(CHFU_NB_deg_uncoupled_plot_RF_visits, pred = visits_GF, interval = FALSE, plot.points = TRUE,
+                                  x.label = "Visits",
+                                  y.label = "Seeds/Fruit",  
+                                  colors = "gray",line.thickness = 0,
+                                  jitter = 0, data = fitness_orig_CHFU %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("C. fuscatum")))+My_Theme
+p14_visits <- jtools::effect_plot(LEMA_NB_deg_uncoupled_plot_RF_visits, pred = visits_GF, interval = TRUE, plot.points = TRUE,
+                                  x.label = "Visits",
+                                  y.label = "Seeds/Fruit",  
+                                  colors = "black",line.thickness = 2.2,
+                                  jitter = 0, data = fitness_orig_LEMA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("L. maroccanus")))+My_Theme
+p15_visits <- jtools::effect_plot(PUPA_NB_deg_uncoupled_plot_RF_visits, pred = visits_GF, interval = FALSE, plot.points = TRUE,
+                                  x.label = "Visits",
+                                  y.label = "Seeds/Fruit",  
+                                  colors = "gray",line.thickness = 0,
+                                  jitter = 0, data = fitness_orig_PUPA %>% ungroup() %>% filter(DegreeIn > 0))+
+  # scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x),
+  #               labels = trans_format("log10", math_format(10^.x)))+
+  labs(title=expression(italic("P. paludosa")))+My_Theme
+
+library(patchwork)
+png("New_Figures/figA16_NEW2.png", width=2000*4, height = 2000*5, res=300*2)
+(p7_visits+p8_visits+p9_visits)/(p10_visits+p11_visits+p12_visits)/(p1_visits+p2_visits+p3_visits)/(p4_visits+p5_visits+p6_visits)/(p13_visits+p14_visits+p15_visits)
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -784,7 +1270,25 @@ summary(m)
 plot(fitness_orig_PUPA$Seeds_GF ~ fitness_orig_PUPA$heter_prob, las = 1)
 abline(m) #Al reves pero ns
 
+library(EnvStats)
+test <- EnvStats::rosnerTest(fitness_orig_PUPA$Seeds_GF,
+                   k = 3)
+test
+# https://statsandr.com/blog/outliers-detection-in-r/
+# Rosner test suggest that fruitset < 0.4 are outliers
 
+ggplot(fitness_orig_PUPA,aes(x=Seeds_GF))+
+  geom_boxplot()
+ggplot(fitness_orig_PUPA,aes(x=homo_motif))+
+  geom_boxplot()
+ggplot(fitness_orig_PUPA,aes(x=hete_motif))+
+  geom_boxplot()
+
+test <- EnvStats::rosnerTest(fitness_orig_PUPA$hete_motif,
+                             k = 3)
+test
+# https://statsandr.com/blog/outliers-detection-in-r/
+# Rosner test suggest that fruitset < 0.4 are outliers
 
 head(as.data.frame(fitness_orig_CHFU))
 
@@ -831,6 +1335,7 @@ m <- lm(fitness_orig_PUPA$Seeds_GF[-c(23, 24)] ~ fitness_orig_PUPA$heter_prob[-c
                       fitness_orig_PUPA$hete_motif[-c(23, 24)]) 
 plot(m) #pasables
 summary(m) # Cons prob sig. Algunas tendencias raras.
+performance::check_model(m)
 
 m <- lm(fitness_orig_LEMA$Seeds_GF[-c(110, 112)] ~ fitness_orig_LEMA$heter_prob[-c(110, 112)] +
           fitness_orig_LEMA$consp_prob_UNCOUPLED[-c(110, 112)] + 
@@ -838,6 +1343,7 @@ m <- lm(fitness_orig_LEMA$Seeds_GF[-c(110, 112)] ~ fitness_orig_LEMA$heter_prob[
           fitness_orig_LEMA$hete_motif[-c(110, 112)]) 
 plot(m) #buenos
 summary(m) # homo sig. Algunas tendencias raras.
+performance::check_model(m)
 
 #heter_pron near sig...
 m <- lm(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$heter_prob +
@@ -846,3 +1352,5 @@ m <- lm(fitness_orig_LEMA$Seeds_GF ~ fitness_orig_LEMA$heter_prob +
           fitness_orig_LEMA$hete_motif) 
 plot(m) #buenos
 summary(m) # homo sig. Algunas tendencias raras.
+performance::check_model(m)
+car::vif(m)
