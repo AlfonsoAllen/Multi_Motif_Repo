@@ -504,6 +504,325 @@ plot_multilayer <- function(plot_id,between_poll_space, r_ext){
 }
 
 
+
+
+
+plot_multilayer_modules <- function(plot_id,between_poll_space, r_ext){
+  # Load multilayer----------
+  file_i <- paste0("Processed_data/NN_networks/Plot_",plot_id,"_NN_intra_inter.rds")
+  mult_i <- readRDS(file_i)
+  
+  # Load modules ---------------
+  file_i <- paste0("Processed_data/Modularity_Pheno_Overlap/2020_NN_Modularity_Plot",plot_id,".csv")
+  modules_i <- read_csv(file_i) %>% dplyr::select(-node_id) %>% 
+    rename(layer = layer_name) %>%
+    mutate(name = species)
+
+  modules_i$name[modules_i$type != "plant"] <- paste0(modules_i$species[modules_i$type != "plant"],
+                                                      " ",modules_i$layer[modules_i$type != "plant"])
+
+  modules_i <- modules_i %>% dplyr::select(-species)
+  
+  modules_i$type[modules_i$type != "plant"] <- "visitor"
+  
+  # get weighted adj_matrix
+  as_adjacency_matrix(mult_i,attr = "weight",sparse = T)
+  
+  nodes <- V(mult_i)$name
+  nodes_prop <- tibble(name = nodes) %>% separate(name, c("node", "layer")," ")
+  nodes_prop$type <- NA
+  nodes_prop$type[nchar(nodes_prop$node) > 2] <- "visitor"
+  nodes_prop$type[!nchar(nodes_prop$node) > 2] <- "plant"
+  
+  nodes_prop$shape <- NA
+  nodes_prop$shape[nodes_prop$type == "visitor"] <- "circle"
+  nodes_prop$shape[!nodes_prop$type == "visitor"] <- "rectangle"
+  
+  nodes_prop$name <- paste(nodes_prop$node,nodes_prop$layer, sep = " ") 
+  
+  nodes_prop <- nodes_prop %>% arrange(layer,type)
+  
+  # Add color to nodes-------
+  
+  fitness_data2 <- read_csv2("Raw_Data/final_Pollinators_2020.csv")
+  plant_list <- fitness_data2$Plant %>% unique()
+  plant_list <- plant_list[!plant_list %in% c("OUT","0")] 
+  plant_list <- plant_list[!is.na(plant_list)] 
+  
+  colors_plants <- tibble(layer = c("BEMA","CHFU","CHMI","CETE","LEMA",
+                                    "MESU","PUPA","SOAS","SCLA","SPRU"),#plant_list,
+                          color = RColorBrewer::brewer.pal(length(plant_list),"Paired"))
+  
+  nodes_prop <- nodes_prop %>% left_join(colors_plants, by = "layer")
+  
+  ############################################################
+  # Add coordinates to nodes-------
+  
+  # Circunscribe polygon--------
+  # The length of its segments will be proportional to the number of plant nodes
+  # of each species
+  
+  plant_per_species <- nodes_prop %>% filter(type == "plant") %>% group_by(layer) %>% 
+    count() %>% rename(number_nodes = n)
+  
+  # is it possible to circumscribe a polygon?
+  
+  list_lengths <- NULL
+  
+  for(i in 1:nrow(plant_per_species)){
+    
+    list_lengths <- c(list_lengths,plant_per_species$number_nodes[i],between_poll_space)
+    
+  }
+  
+  # If the sides of the polygon are not long enough to circumscribe it, we add extra
+  # distance to the "between pollinator spaces"
+  
+  if(sum(list_lengths)-max(list_lengths) < 0){
+    
+    max_edge <- max(list_lengths)
+    
+    extra_nodes <- (max_edge-sum(list_lengths))/nrow(plant_per_species)
+    
+    list_lengths[c(F,T)] <- list_lengths[c(F,T)] + extra_nodes
+    
+    
+  }
+  
+  data_polygon <- circumscribe_polygon(list_lengths)
+  r_cycle <- data_polygon[[1]]
+  angles_cycle <- data_polygon[[2]]
+  Cx <- data_polygon[[3]]
+  Cy <- data_polygon[[4]]
+  
+  # distribute the vertices of the polygon over the circle with r_cycle
+  
+  angles_cycle_accumulated <- cumsum(angles_cycle)
+  x_vertex <- r_cycle*cos(angles_cycle_accumulated)
+  y_vertex <- r_cycle*sin(angles_cycle_accumulated)
+  
+  # Segments
+  
+  x_vertex_aux <- c(x_vertex[length(x_vertex)],x_vertex)
+  y_vertex_aux <- c(y_vertex[length(y_vertex)],y_vertex)
+  x_vertex_end <- x_vertex_aux[1:(length(x_vertex_aux)-1)]
+  y_vertex_end <- y_vertex_aux[1:(length(y_vertex_aux)-1)]
+  
+  #Sanity check
+  sqrt((x_vertex-x_vertex_end)^2+(y_vertex-y_vertex_end)^2)
+  
+  # Now we distribute the pollinator nodes over the corresponding segments---
+  
+  pollinator_per_species <- nodes_prop %>% filter(type != "plant") %>% group_by(layer) %>% 
+    count() %>% rename(number_nodes = n)
+  
+  pollinator_per_species$length = list_lengths[c(T,F)]
+  pollinator_per_species$xini = x_vertex[c(T,F)]
+  pollinator_per_species$xend = x_vertex_end[c(T,F)]
+  pollinator_per_species$yini = y_vertex[c(T,F)]
+  pollinator_per_species$yend = y_vertex_end[c(T,F)]
+  
+  # Sanity_check
+  pollinator_per_species %>% mutate(dis =
+                                      sqrt((xini-xend)^2+(yini-yend)^2))
+  
+  min_separation <- min(pollinator_per_species$length/(pollinator_per_species$number_nodes-1))
+  
+  coordinates_nodes_pollinator <- NULL
+  
+  for(i in 1:nrow(pollinator_per_species)){
+    
+    coordinates_aux <- nodes_prop %>% 
+      filter(layer == pollinator_per_species$layer[i],type == "visitor") %>%
+      select(name)
+    
+    hor_points <- equidistr_nodes_x(min_separation,pollinator_per_species$number_nodes[i])
+    rot_angle <- atan((pollinator_per_species$yend[i]-pollinator_per_species$yini[i])/
+                        (pollinator_per_species$xend[i]-pollinator_per_species$xini[i]))
+    real_x <- hor_points*cos(rot_angle)+
+      0.5*(pollinator_per_species$xend[i]+pollinator_per_species$xini[i])
+    real_y <- hor_points*sin(rot_angle)+
+      0.5*(pollinator_per_species$yend[i]+pollinator_per_species$yini[i])
+    
+    coordinates_aux$x <- real_x
+    coordinates_aux$y <- real_y
+    
+    coordinates_nodes_pollinator <- bind_rows(coordinates_nodes_pollinator,
+                                              coordinates_aux)
+  }
+  
+  
+  # distribute the vertices of the polygon over the circle with r_cycle
+  
+  angles_cycle_accumulated <- cumsum(angles_cycle)
+  x_vertex_ext <- r_ext*cos(angles_cycle_accumulated)
+  y_vertex_ext <-  r_ext*sin(angles_cycle_accumulated)
+  
+  # Segments
+  
+  x_vertex_ext_aux <- c(x_vertex_ext[length(x_vertex_ext)],x_vertex_ext)
+  y_vertex_ext_aux <- c(y_vertex_ext[length(y_vertex_ext)],y_vertex_ext)
+  x_vertex_ext_end <- x_vertex_ext_aux[1:(length(x_vertex_ext_aux)-1)]
+  y_vertex_ext_end <- y_vertex_ext_aux[1:(length(y_vertex_ext_aux)-1)]
+  
+  
+  # Now we distribute the pollinator nodes over the corresponding segments---
+  
+  plant_per_species <- nodes_prop %>% filter(type == "plant") %>% group_by(layer) %>% 
+    count() %>% rename(number_nodes = n)
+  plant_per_species$angle_arc = angles_cycle[c(T,F)]
+  plant_per_species$xini = x_vertex_ext[c(T,F)]
+  plant_per_species$xend = x_vertex_ext_end[c(T,F)]
+  plant_per_species$yini = y_vertex_ext[c(T,F)]
+  plant_per_species$yend = y_vertex_ext_end[c(T,F)]
+  
+  coordinates_nodes_plant <- NULL
+  
+  for(i in 1:nrow(plant_per_species)){
+    
+    coordinates_aux <- nodes_prop %>% 
+      filter(layer == plant_per_species$layer[i],type == "plant") %>%
+      select(name)
+    
+    arc_incr <- plant_per_species$angle_arc[i] /(plant_per_species$number_nodes[i]-1)
+    arc_x_ini <- atan(plant_per_species$yend[i]/plant_per_species$xend[i])
+    
+    if(plant_per_species$yend[i]*plant_per_species$xend[i] < 0 & 
+       plant_per_species$yend[i] > plant_per_species$xend[i] &
+       arc_x_ini < 0){
+      arc_x_ini <- arc_x_ini + pi
+    }else if(plant_per_species$yend[i]*plant_per_species$xend[i] > 0 & 
+             plant_per_species$yend[i] < 0 &
+             arc_x_ini > 0){
+      arc_x_ini <- arc_x_ini + pi
+    }
+    
+    arc_aux <- c(arc_x_ini,rep(arc_incr,(plant_per_species$number_nodes[i]-1)))
+    arc_aux_acc <- cumsum(arc_aux)
+    
+    coordinates_aux$x <- (r_ext*cos(arc_aux_acc))
+    coordinates_aux$y <-  (r_ext*sin(arc_aux_acc))
+    
+    coordinates_nodes_plant <- bind_rows(coordinates_nodes_plant,
+                                         coordinates_aux)
+  }
+  
+  
+  coordinates_nodes <- bind_rows(coordinates_nodes_plant,coordinates_nodes_pollinator)
+  
+  data_net <- tibble(name = nodes) %>% left_join(nodes_prop, by = "name") %>%
+    left_join(coordinates_nodes, by = "name")
+  
+  l <- as.matrix(data_net[,c(7,8)])
+  
+  
+  # Add color to edges---------
+  # get weighted edge_list
+  edge_prop <- cbind( get.edgelist(mult_i) , round( E(mult_i)$weight, 3 ))  %>% 
+    as_tibble() %>% rename(from = V1, to = V2, weight = V3) %>% 
+    mutate(weight = as.numeric(weight)) %>%
+    separate(from,c("node_from","layer_from")," ") %>%
+    separate(to,c("node_to","layer_to")," ")
+  
+  edge_prop$layer <- NA
+  edge_prop$type <- NA
+  edge_prop$lty <- NA
+  
+  edge_prop$type[edge_prop$layer_from==edge_prop$layer_to] <- "intra"
+  edge_prop$type[edge_prop$layer_from!=edge_prop$layer_to] <- "inter"
+  edge_prop$layer[edge_prop$type=="intra"] <- edge_prop$layer_from[edge_prop$type=="intra"]
+  edge_prop$layer[edge_prop$type!="intra"] <- "inter"
+  
+  edge_prop$lty [edge_prop$type=="intra"] <- 1
+  edge_prop$lty [edge_prop$type!="intra"] <- 2
+  
+  edge_prop_color <- edge_prop %>% left_join(colors_plants, by = "layer")
+  edge_prop_color$color[is.na(edge_prop_color$color)] <- "gray20"
+  
+  # To avoid overlaping of dashed lines (interlinks) from i to j and j to i, we remove the
+  # edges from j to i
+  
+  edge_prop_color_aux <- edge_prop_color
+  
+  edge_prop_color_aux %>% filter((edge_prop_color_aux$type == "inter"))
+  
+  edge_prop_color_aux$weight[(edge_prop_color_aux$type == "inter") & c(T,F)] <- -0
+  #edge_prop_color_aux$color[(edge_prop_color_aux$type == "inter") & c(T,F)] <- "white"
+  
+  V(mult_i)$type[data_net$type=="plant"] <- TRUE
+  V(mult_i)$type[data_net$type!="plant"] <- FALSE
+  
+  sp_plant_names <- tibble(layer = c("CHFU","LEMA","SOAS","SCLA","BEMA",
+                                     "SPRU","CHMI","MESU","CETE","PUPA"),
+                           sp_name = c("Chamaemelum\nfuscatum","Leontodon\nmaroccanus",
+                                       "Sonchus\nasper","Scorzonera\nlaciniata",
+                                       "Beta\nmacrocarpa","Spergularia\nrubra",
+                                       "Chamaemelum\nmixtum","Melilotus\nsulcatus",
+                                       "Centaurium\ntenuiflorum","Pulicaria\npaludosa"))
+  
+  
+  data_net_modules <- data_net %>% left_join(modules_i, by =c("name","layer","type"))
+  
+  color_modules <- tibble(module = unique(data_net_modules$module))
+  color_modules <- color_modules %>% arrange(module)
+  color_modules$color_module <- NA
+  color_modules$color_module <- palette(rainbow(nrow(color_modules)))     # six color rainbow
+  
+  if(plot_id==8){
+    color_modules$color_module <-c("#c46875",
+      "#6eba44",
+      "#8e60cf",
+      "#cea432",
+      "#6c80cc",
+      "#55802f",
+      "#cc50a8",
+      "#5ec189",
+      "#d23c62",
+      "#388864",
+      "#c8522f",
+      "#45b0cf",
+      "#d78c59",
+      "#b16fa9",
+      "#a9ae59",
+      "#84692a")
+  }
+   
+  data_net_modules_color <- data_net_modules %>% left_join(color_modules,by="module")
+  
+  node_modules_color <- data_net_modules_color %>%
+    dplyr::select(node,layer,color_module) %>% rename(node_from = node, layer_from = layer)
+  
+  edge_prop_color_aux_module <- edge_prop_color_aux %>% left_join(node_modules_color, by = c("node_from","layer_from"))
+  
+  result <- plot.igraph(mult_i,
+                        vertex.label = NA, vertex.label.color = data_net_modules_color$color_module,
+                        vertex.size = 5,vertex.size2 = 5,
+                        vertex.color = data_net_modules_color$color_module, vertex.frame.color = "gray20",
+                        vertex.shape = data_net$shape,
+                        edge.arrow.size = 0.2, edge.color = edge_prop_color_aux_module$color_module, 
+                        edge.width = ifelse(edge_prop_color_aux$weight > 0, 1, -1),
+                        edge.curved = F,
+                        edge.lty = edge_prop_color_aux$lty,
+                        edge.arrow.mode = 0, # both arrows
+                        layout = l) +
+    legend("right",inset=c(-0.32,0),legend = paste0("Mod. ",color_modules$module),
+           fill=color_modules$color_module,
+           bty = "n",
+           y.intersp=1.1,
+           # text.font = 3,
+           cex=0.75, pt.cex = 1)
+  
+
+  
+  return(result)
+  #
+}
+
+
+
+
+
+
 #dev.off()
 #par(mfrow=c(3,3))
 par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
@@ -537,7 +856,12 @@ multi_9 <- plot_multilayer(9,between_poll_space=3, r_ext= 40)
 
 png("New_Figures/fig2.png", width=1476*2, height = 900*2, res=300*2)
 par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
-plot_multilayer(8,between_poll_space=5, r_ext= 40)
+plot_multilayer(plot_id=8,between_poll_space=5, r_ext= 40)
+dev.off()
+
+png("New_Figures/fig2_b.png", width=1476*2, height = 900*2, res=300*2)
+par(mar=c(0,0,0,6.5)+.1,xpd=TRUE)
+plot_multilayer_modules(plot_id=8,between_poll_space=5, r_ext= 40)
 dev.off()
 
 # Appendix 6
