@@ -144,52 +144,52 @@ total_heter_prob_intralinks_PROBABILITY <- raw_intralinks_PROBABILITY[grep("ind"
                                                                     raw_intralinks_PROBABILITY$name,
                                                                     ignore.case = T),] %>%
   separate(name,c("Ind","Plant"), " ") %>%
-  select(Plot,Plant,heter_prob)
+  dplyr::select(Plot,Plant,heter_prob)
 
 total_heter_prob_decreasing_mix_PROBABILITY <- raw_decreasing_mix_PROBABILITY[grep("ind",
                                                                     raw_decreasing_mix_PROBABILITY$name,
                                                                     ignore.case = T),] %>%
   separate(name,c("Ind","Plant"), " ") %>%
-  select(Plot,Plant,heter_prob)
+  dplyr::select(Plot,Plant,heter_prob)
 
 total_heter_prob_individuals_PROBABILITY <- raw_individuals_PROBABILITY[grep("ind",
                                                                       raw_individuals_PROBABILITY$name,
                                                                       ignore.case = T),] %>%
   separate(name,c("Ind","Plant"), " ") %>%
-  select(Plot,Plant,heter_prob)
+  dplyr::select(Plot,Plant,heter_prob)
 
 
 total_heter_prob_increasing_mix_PROBABILITY <- raw_increasing_mix_PROBABILITY[grep("ind",
                                                                       raw_increasing_mix_PROBABILITY$name,
                                                                       ignore.case = T),] %>%
   separate(name,c("Ind","Plant"), " ") %>%
-  select(Plot,Plant,heter_prob)
+  dplyr::select(Plot,Plant,heter_prob)
 
 
 total_consp_prob_UNCOUPLED_intralinks_PROBABILITY <- raw_intralinks_PROBABILITY_UNCOUPLED[grep("ind",
                                                                  raw_intralinks_PROBABILITY$name,
                                                                  ignore.case = T),] %>%
   separate(name,c("Ind","Plant"), " ") %>%
-  select(Plot,Plant,consp_prob_UNCOUPLED)
+  dplyr::select(Plot,Plant,consp_prob_UNCOUPLED)
 
 total_consp_prob_UNCOUPLED_decreasing_mix_PROBABILITY <- raw_decreasing_mix_PROBABILITY_UNCOUPLED[grep("ind",
                                                                  raw_decreasing_mix_PROBABILITY$name,
                                                                  ignore.case = T),] %>%
   separate(name,c("Ind","Plant"), " ") %>%
-  select(Plot,Plant,consp_prob_UNCOUPLED)
+  dplyr::select(Plot,Plant,consp_prob_UNCOUPLED)
 
 total_consp_prob_UNCOUPLED_individuals_PROBABILITY <- raw_individuals_PROBABILITY_UNCOUPLED[grep("ind",
                                                                    raw_individuals_PROBABILITY$name,
                                                                    ignore.case = T),] %>%
   separate(name,c("Ind","Plant"), " ") %>%
-  select(Plot,Plant,consp_prob_UNCOUPLED)
+  dplyr::select(Plot,Plant,consp_prob_UNCOUPLED)
 
 
 total_consp_prob_UNCOUPLED_increasing_mix_PROBABILITY <- raw_increasing_mix_PROBABILITY_UNCOUPLED[grep("ind",
                                                                    raw_increasing_mix_PROBABILITY$name,
                                                                    ignore.case = T),] %>%
   separate(name,c("Ind","Plant"), " ") %>%
-  select(Plot,Plant,consp_prob_UNCOUPLED)
+  dplyr::select(Plot,Plant,consp_prob_UNCOUPLED)
 
 
 total_heter_prob_intralinks_PROBABILITY$Plot <- paste0(total_heter_prob_intralinks_PROBABILITY$Plot,
@@ -449,3 +449,92 @@ png("New_Figures/simulations_modularity.png",
 
 (code_length_plot & number_modules_plot)
 dev.off()
+
+
+##############################################################################
+# Significant pairwise differences in probabilities
+
+library(sandwich)
+library(multcomp)
+amod <- aov(consp_prob_UNCOUPLED ~ condition, total_consp_prob_UNCOUPLED_PROBABILITY_deco %>%
+              mutate(condition=as.factor(number_intra)))
+amod_glht <- glht(amod, mcp(condition="Tukey"), vcov=vcovHC)
+summary(amod_glht)
+confint(amod_glht)
+confint_report <- confint(amod_glht)
+
+
+
+# Configurar la relación de aspecto y los márgenes
+par(mar = c(5, 5, 2, 2))  # c(bottom, left, top, right)
+plot(confint(amod_glht), main="95% family-wise confidence level for the prob. of receiving pollen from consp. (uncopled layers)")
+
+# summary_report <- summary(amod_glht)
+# pvalues <- summary_report[["test"]][["pvalues"]]
+# pvalues[pvalues<0.05]
+# which(pvalues<0.05)
+# coefficients <- summary_report[["test"]][["coefficients"]][which(pvalues<0.05)]
+# sigma <- summary_report[["test"]][["sigma"]][which(pvalues<0.05)]
+# # confint(amod_glht)
+# plot(confint(amod_glht))
+
+results_consp <- data.frame(confint_report[["confint"]])
+results_consp$comparisson <- rownames(results_consp)
+
+ggplot(results_consp,aes(y = as.factor(comparisson)))+
+  geom_point(aes(x=Estimate,size=2))+
+  geom_errorbar(aes(xmin=lwr, xmax=upr), width=.2)+
+  geom_vline(xintercept = 0,linetype = "dashed")+
+  theme_bw()+
+  guides(size = "none")+
+  labs(title="Prob. of receiving pollen from consp. (uncopled layers)", x=NULL, y = NULL)+
+  theme(axis.text=element_text(size=14),  plot.title=element_text(size=19))+
+  theme(strip.text = element_text(size=15,face = "italic"))
+
+
+
+
+amod <- aov(heter_prob ~ condition, total_heter_prob_PROBABILITY_deco %>%
+              mutate(condition=as.factor(number_intra)))
+amod_glht <- glht(amod, mcp(condition="Tukey"), vcov=vcovHC)
+summary(amod_glht)
+confint(amod_glht)
+plot(confint(amod_glht), main="95% family-wise confidence level for the prob. of receiving pollen from heterosp.")
+confint_report <- confint(amod_glht)
+# summary_report <- summary(amod_glht)
+# pvalues <- summary_report[["test"]][["pvalues"]]
+# pvalues[pvalues<.9]
+# which(pvalues<.9)
+# coefficients <- summary_report[["test"]][["coefficients"]][which(pvalues<0.9)]
+# sigma <- summary_report[["test"]][["sigma"]][which(pvalues<0.9)]
+# # confint(amod_glht)
+# # plot(confint(amod_glht))
+# 
+# results_heter <- tibble(comparisson = names(coefficients),
+#                         coefficients = as.numeric(coefficients),
+#                         sigma = as.numeric(sigma))
+# 
+# ggplot(results_heter,aes(y = as.factor(comparisson)))+
+#   geom_point(aes(x=coefficients,size=2))+
+#   geom_errorbar(aes(xmin=coefficients-1.96*sigma, xmax=coefficients+1.96*sigma), width=.2)+
+#   geom_vline(xintercept = 0,linetype = "dashed")+
+#   theme_bw()+
+#   guides(size = "none")+
+#   labs(title="Prob. of receiving pollen from heterosp.", x=NULL, y = NULL)+
+#   theme(axis.text=element_text(size=14),  plot.title=element_text(size=19))+
+#   theme(strip.text = element_text(size=15,face = "italic"))
+
+
+results_heter <- data.frame(confint_report[["confint"]])
+results_heter$comparisson <- rownames(results_heter)
+
+ggplot(results_heter,aes(y = as.factor(comparisson)))+
+  geom_point(aes(x=Estimate,size=2))+
+  geom_errorbar(aes(xmin=lwr, xmax=upr), width=.2)+
+  geom_vline(xintercept = 0,linetype = "dashed")+
+  theme_bw()+
+  guides(size = "none")+
+  labs(title="Prob. of receiving pollen from heterosp.", x=NULL, y = NULL)+
+  theme(axis.text=element_text(size=14),  plot.title=element_text(size=19))+
+  theme(strip.text = element_text(size=15,face = "italic"))
+

@@ -58,7 +58,7 @@ for (Plot_i in list_sites){
   
   # Create a list that contains directed and weighted intra- and inter-links
   
-  S_edge_list <- create_weighted_link_list(plot_edge_list)
+  S_edge_list <- create_weighted_link_list(plot_edge_list) %>% filter(layer_from == layer_to)
   
   # Extract conspecific and heterospecif probabilities for Plot_i
   
