@@ -466,7 +466,7 @@ confint_report <- confint(amod_glht)
 
 
 # Configurar la relación de aspecto y los márgenes
-par(mar = c(5, 5, 2, 2))  # c(bottom, left, top, right)
+# par(mar = c(5, 5, 2, 2))  # c(bottom, left, top, right)
 plot(confint(amod_glht), main="95% family-wise confidence level for the prob. of receiving pollen from consp. (uncopled layers)")
 
 # summary_report <- summary(amod_glht)
@@ -481,17 +481,21 @@ plot(confint(amod_glht), main="95% family-wise confidence level for the prob. of
 results_consp <- data.frame(confint_report[["confint"]])
 results_consp$comparisson <- rownames(results_consp)
 
+png("New_Figures/pairwise_comp_consp_prob_UNCOUPLED_V2.png",
+    width = 11.69*0.55, # The width of the plot in inches
+    height = 11.69*0.35, units = "in", res=300*2)
+
 ggplot(results_consp,aes(y = as.factor(comparisson)))+
-  geom_point(aes(x=Estimate,size=2))+
-  geom_errorbar(aes(xmin=lwr, xmax=upr), width=.2)+
+  geom_point(aes(x=Estimate,size=2),shape=1)+
+  geom_errorbar(aes(xmin=lwr, xmax=upr), width=.3)+
   geom_vline(xintercept = 0,linetype = "dashed")+
   theme_bw()+
   guides(size = "none")+
-  labs(title="Prob. of receiving pollen from consp. (uncopled layers)", x=NULL, y = NULL)+
+  labs(title="Pairwise comparisons of the mean prob. of\nreceiving pollen from consp. (uncopled layers)", x=NULL, y = NULL)+
   theme(axis.text=element_text(size=14),  plot.title=element_text(size=19))+
   theme(strip.text = element_text(size=15,face = "italic"))
 
-
+dev.off()
 
 
 amod <- aov(heter_prob ~ condition, total_heter_prob_PROBABILITY_deco %>%
@@ -528,13 +532,19 @@ confint_report <- confint(amod_glht)
 results_heter <- data.frame(confint_report[["confint"]])
 results_heter$comparisson <- rownames(results_heter)
 
+
+png("New_Figures/pairwise_comp_heter_prob_V2.png",
+    width = 11.69*0.55, # The width of the plot in inches
+    height = 11.69*0.35, units = "in", res=300*2)
+
 ggplot(results_heter,aes(y = as.factor(comparisson)))+
   geom_point(aes(x=Estimate,size=2))+
   geom_errorbar(aes(xmin=lwr, xmax=upr), width=.2)+
   geom_vline(xintercept = 0,linetype = "dashed")+
   theme_bw()+
   guides(size = "none")+
-  labs(title="Prob. of receiving pollen from heterosp.", x=NULL, y = NULL)+
+  labs(title="Pairwise comparisons of the mean prob. of\nreceiving pollen from heterosp.", x=NULL, y = NULL)+
   theme(axis.text=element_text(size=14),  plot.title=element_text(size=19))+
   theme(strip.text = element_text(size=15,face = "italic"))
 
+dev.off()
